@@ -11,7 +11,10 @@
   "author": "andresloal",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "apollo-server-express": "^2.9.16",
+=======
+>>>>>>> bb253ed499422611a79ab45a46c1215aafd48590
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
