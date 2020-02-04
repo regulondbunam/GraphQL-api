@@ -1,8 +1,7 @@
 import express from 'express';
 // graphql
-<<<<<<< HEAD
 import { ApolloServer } from 'apollo-server-express';
-import typeDefs from './schemas';
+import typeDefs from './schemas/schemas';
 
 // variables de entorno
 require('dotenv').config();
@@ -24,29 +23,3 @@ app.listen({ port: 4000 }, () =>
     `El servidor está corriendo http://localhost:4000${server.graphqlPath}`
   )
 );
-=======
-import graphqlHTTP from 'express-graphql';
-import schema from './schemas';
-// variables de entorno
-require('dotenv').config();
-
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Todo Listo');
-});
-
-// resolver
-const root = { hola: () => 'Hola Mundo desde GraphQL' };
-
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    rootValue: root,
-    graphiql: true
-  })
-);
-
-app.listen(8000, () => console.log('Servidor en línea'));
->>>>>>> bb253ed499422611a79ab45a46c1215aafd48590
