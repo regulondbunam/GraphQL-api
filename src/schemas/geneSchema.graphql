@@ -1,0 +1,229 @@
+type Gene {
+  geneInfo: GeneInfo
+  product: Product
+  shineDalgarno: [ShineDalgarno]
+  regulation: Regulation
+  growthConditions: [GrowthConditions]
+  organismName: String
+}
+
+"""
+GeneInfo Type Schema
+"""
+type GeneInfo {
+  id: String
+  name: String
+  leftEndPosition: Int
+  rightEndPosition: Int
+  strand: String
+  sequence: String
+  gcContent: Float
+  centisomePosition: Float
+  note: String
+  type: String
+  synonyms: [String]
+  terms: [Terms]
+  externalCrossReferences: [ExternalCrossReferences]
+  evidenceReferences: [EvidenceReferences]
+}
+
+"""
+Terms
+"""
+type Terms {
+  multifun: [[String]]
+  geneOntology: GeneOntologyTerms
+}
+
+"""
+OntologyTerms
+"""
+type GeneOntologyTerms {
+  cellularComponent: [CellularComponent]
+  molecularFunction: [MolecularFunction]
+  biologicalProccess: [BiologicalProccess]
+}
+
+"""
+CellularComponent
+"""
+type CellularComponent {
+  id: String
+  name: String
+}
+
+"""
+MolecularFunction
+"""
+type MolecularFunction {
+  id: String
+  name: String
+}
+
+"""
+BiologicalProccess
+"""
+type BiologicalProccess {
+  id: String
+  name: String
+}
+
+"""
+ExternalCrossReference
+"""
+type ExternalCrossReferences {
+  id: String
+  name: String
+  url: String
+}
+
+"""
+EvidenceReferences
+"""
+type EvidenceReferences {
+  evidenceName: String
+  evidenceCode: String
+  evidenceType: String
+  referenceId: String
+  referenceURL: String
+  referenceCitation: String
+}
+
+"""
+Product Type Schema
+"""
+type Product {
+  name: String
+  molecularWeight: Float
+  isoelectricPoint: Float
+  cellularLocation: String
+  anticodon: String
+  note: String
+  node: String
+  type: String
+  sequence: String
+  synonyms: [String]
+  motifs: [Motifs]
+  externalCrossReferences: [ExternalCrossReferences]
+  evidenceReferences: [EvidenceReferences]
+}
+
+"""
+Motifs
+"""
+type Motifs {
+  leftEndPosition: Int
+  rightEndPosition: Int
+  sequence: String
+  description: String
+  type: String
+  note: String
+}
+
+"""
+ShineDalgarno Type Schema
+"""
+type ShineDalgarno {
+  distanceToGene: Int
+  leftEndPosition: Int
+  rightEndPosition: Int
+  sequence: String
+  note: String
+}
+
+"""
+Regulation Type Schema
+"""
+type Regulation {
+  operon: Operon
+  transcriptional: [Transcriptional]
+  context: [Context]
+  statistics: Statistics
+}
+
+"""
+Operon
+"""
+type Operon {
+  id: String
+  name: String
+  arrangement: [Arrangement]
+}
+
+"""
+Arrangement
+"""
+type Arrangement {
+  transcriptionFactor: TranscriptionFactor
+  promoter: Promoter
+  transcriptionUnit: TranscriptionUnit
+}
+
+"""
+TranscriptionFactor
+"""
+type TranscriptionFactor {
+  id: String
+  name: String
+}
+
+"""
+Promoter
+"""
+type Promoter {
+  id: String
+  name: String
+}
+
+"""
+TranscriptionUnit
+"""
+type TranscriptionUnit {
+  id: String
+  name: String
+}
+
+"""
+Transcriptional
+"""
+type Transcriptional {
+  id: String
+  name: String
+}
+
+"""
+Context
+"""
+type Context {
+  type: String
+  name: String
+  leftEndPosition: Int
+  rightEndPosition: Int
+  strand: String
+  note: String
+  evidenceReferences: [EvidenceReferences]
+}
+
+"""
+Statistics
+"""
+type Statistics {
+  regulators: Int
+  regulatoryInteractions: Int
+  promoters: Int
+}
+
+"""
+GrowthConditions Type Schema
+"""
+type GrowthConditions {
+  controlCondition: String
+  experimentalCondition: String
+  effect: String
+  evidenceReferences: [EvidenceReferences]
+}
+
+type Query {
+  getGenes(limit: Int, offset: Int): [Gene]
+  getGene(id: String): Gene
+}

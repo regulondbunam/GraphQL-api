@@ -1,0 +1,20 @@
+"""
+ExternalCrossReference
+"""
+type ExternalCrossReference {
+  id: String
+  name: String
+  url: String
+}
+
+"""
+EvidenceReferences
+"""
+type EvidenceReferences {
+  evidenceName: String
+  evidenceCode: String
+  evidenceType: String
+  referenceId: String
+  referenceURL: String
+  referenceCitation: String
+}
