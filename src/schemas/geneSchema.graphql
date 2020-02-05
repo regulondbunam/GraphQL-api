@@ -5,6 +5,7 @@ type Gene {
   regulation: Regulation
   growthConditions: [GrowthConditions]
   organismName: String
+  schemaVersion: Float
 }
 
 """
@@ -93,13 +94,13 @@ type EvidenceReferences {
 Product Type Schema
 """
 type Product {
+  regulatorId: String
   name: String
   molecularWeight: Float
   isoelectricPoint: Float
   cellularLocation: String
   anticodon: String
   note: String
-  node: String
   type: String
   sequence: String
   synonyms: [String]
@@ -136,7 +137,7 @@ Regulation Type Schema
 """
 type Regulation {
   operon: Operon
-  transcriptional: [Transcriptional]
+  regulators: [Regulators]
   context: [Context]
   statistics: Statistics
 }
@@ -154,7 +155,7 @@ type Operon {
 Arrangement
 """
 type Arrangement {
-  transcriptionFactor: TranscriptionFactor
+  regulator: Regulator
   promoter: Promoter
   transcriptionUnit: TranscriptionUnit
 }
@@ -162,9 +163,10 @@ type Arrangement {
 """
 TranscriptionFactor
 """
-type TranscriptionFactor {
+type Regulator {
   id: String
   name: String
+  type: String
 }
 
 """
@@ -184,11 +186,12 @@ type TranscriptionUnit {
 }
 
 """
-Transcriptional
+Regulators
 """
-type Transcriptional {
+type Regulators {
   id: String
   name: String
+  type: String
 }
 
 """
@@ -224,6 +227,12 @@ type GrowthConditions {
 }
 
 type Query {
+  """
+  Return all genes
+  """
   getGenes(limit: Int, offset: Int): [Gene]
+  """
+  Return a specific gene by the Id in the GeneInfo
+  """
   getGene(id: String): Gene
 }

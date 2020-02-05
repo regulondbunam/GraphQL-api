@@ -18,25 +18,25 @@ const geneInfoSchema = new mongoose.Schema({
       geneOntology: {
         cellularComponent: {
           id: String,
-          name: String
+          name: String,
         },
         molecularFunction: {
           id: String,
-          name: String
+          name: String,
         },
         biologicalProcess: {
           id: String,
-          name: String
-        }
-      }
-    }
+          name: String,
+        },
+      },
+    },
   ],
   externalCrossReferences: [
     {
       id: String,
       name: String,
-      url: String
-    }
+      url: String,
+    },
   ],
   evidenceReferences: [
     {
@@ -45,12 +45,13 @@ const geneInfoSchema = new mongoose.Schema({
       evidenceType: String,
       referenceID: String,
       referenceURL: String,
-      referenceCitation: String
-    }
-  ]
+      referenceCitation: String,
+    },
+  ],
 });
 
 const productSchema = new mongoose.Schema({
+  regulatorId: String,
   name: String,
   molecularWeight: Number,
   isoelectricPoint: Number,
@@ -67,15 +68,15 @@ const productSchema = new mongoose.Schema({
       sequence: String,
       description: String,
       type: String,
-      note: String
-    }
+      note: String,
+    },
   ],
   externalCrossReferences: [
     {
       id: String,
       name: String,
-      url: String
-    }
+      url: String,
+    },
   ],
   evidenceReferences: [
     {
@@ -84,9 +85,9 @@ const productSchema = new mongoose.Schema({
       evidenceType: String,
       referenceID: String,
       referenceURL: String,
-      referenceCitation: String
-    }
-  ]
+      referenceCitation: String,
+    },
+  ],
 });
 
 const geneSchema = new mongoose.Schema({
@@ -98,8 +99,8 @@ const geneSchema = new mongoose.Schema({
       leftEndPosition: Number,
       rightEndPosition: Number,
       sequence: String,
-      note: String
-    }
+      note: String,
+    },
   ],
   regulation: {
     operon: {
@@ -107,26 +108,28 @@ const geneSchema = new mongoose.Schema({
       name: String,
       arrangement: [
         {
-          transcriptionFactor: {
+          regulator: {
             id: String,
-            name: String
+            name: String,
+            type: String,
           },
           promoter: {
             id: String,
-            name: String
+            name: String,
           },
           transcriptionUnit: {
             id: String,
-            name: String
-          }
-        }
-      ]
+            name: String,
+          },
+        },
+      ],
     },
-    transcriptional: [
+    regulators: [
       {
         id: String,
-        name: String
-      }
+        name: String,
+        type: String,
+      },
     ],
     context: [
       {
@@ -143,16 +146,16 @@ const geneSchema = new mongoose.Schema({
             evidenceType: String,
             referenceID: String,
             referenceURL: String,
-            referenceCitation: String
-          }
-        ]
-      }
+            referenceCitation: String,
+          },
+        ],
+      },
     ],
     statistics: {
       regulators: Number,
       regulatoryInteractions: Number,
-      promoters: Number
-    }
+      promoters: Number,
+    },
   },
   growthConditions: [
     {
@@ -166,12 +169,13 @@ const geneSchema = new mongoose.Schema({
           evidenceType: String,
           referenceID: String,
           referenceURL: String,
-          referenceCitation: String
-        }
-      ]
-    }
+          referenceCitation: String,
+        },
+      ],
+    },
   ],
-  organismName: String
+  organismName: String,
+  schemaVersion: Number,
 });
 
 const Gene = mongoose.model('genedatamarts', geneSchema);
