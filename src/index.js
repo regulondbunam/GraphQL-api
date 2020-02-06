@@ -8,10 +8,13 @@ import { resolvers } from './resolvers/resolvers';
 // variables de entorno
 require('dotenv').config();
 
-mongoose.connect(process.env.STRING_CONNECT, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  }
+);
 
 const app = express();
 
