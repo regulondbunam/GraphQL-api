@@ -228,11 +228,15 @@ type GrowthConditions {
 
 type Query {
   """
-  Return all genes
+  List all the genes with a limit
   """
-  getGenes(limit: Int, offset: Int): [Gene]
+  listGenes(limit: Int, offset: Int): [Gene]
   """
-  Return a specific gene by the Id in the GeneInfo
+  Return a specific gene by the Id or Name specified in the GeneInfo
   """
-  getGene(id: String): Gene
+  getGeneBy(id: String, name: String): Gene
+  """
+  Return the genes that are between rightEndPosition and leftEndPosition
+  """
+  getGenesIn(lowerLimit: Int, upperLimit: Int): [Gene]
 }

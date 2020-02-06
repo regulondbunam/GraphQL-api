@@ -2,6 +2,7 @@ import express from 'express';
 // graphql
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
+import costAnalysis from 'graphql-cost-analysis';
 import { typeDefs } from './schemas/schemas';
 import { resolvers } from './resolvers/resolvers';
 
@@ -21,6 +22,11 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  validationRules: [
+    costAnalysis({
+      maximumCost: 1000,
+    }),
+  ],
 });
 
 server.applyMiddleware({ app });
