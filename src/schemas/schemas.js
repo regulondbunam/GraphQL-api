@@ -5,8 +5,8 @@ import fs from 'fs';
 const Gene = gql`
   ${fs.readFileSync('./src/schemas/geneSchema.graphql').toString()}
 `;
-const inheritance = gql`
-  ${fs.readFileSync('./src/schemas/inheritence.graphql').toString()}
+const commonProperties = gql`
+  ${fs.readFileSync('./src/schemas/commonProperties.graphql').toString()}
 `;
 
-export const typeDefs = mergeTypes([Gene, inheritance], { all: true });
+export const typeDefs = mergeTypes([Gene, commonProperties], { all: true });

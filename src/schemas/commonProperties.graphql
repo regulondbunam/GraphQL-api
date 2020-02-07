@@ -1,7 +1,7 @@
 """
 ExternalCrossReference
 """
-type ExternalCrossReference {
+type ExternalCrossReferences {
   id: String
   name: String
   url: String
@@ -17,4 +17,8 @@ type EvidenceReferences {
   referenceId: String
   referenceURL: String
   referenceCitation: String
+}
+
+type Query {
+  testQuery(id: ID): Gene
 }

@@ -32,7 +32,7 @@ type GeneInfo {
 Terms
 """
 type Terms {
-  multifun: [[String]]
+  multifun: [String]
   geneOntology: GeneOntologyTerms
 }
 
@@ -67,27 +67,6 @@ BiologicalProccess
 type BiologicalProccess {
   id: String
   name: String
-}
-
-"""
-ExternalCrossReference
-"""
-type ExternalCrossReferences {
-  id: String
-  name: String
-  url: String
-}
-
-"""
-EvidenceReferences
-"""
-type EvidenceReferences {
-  evidenceName: String
-  evidenceCode: String
-  evidenceType: String
-  referenceId: String
-  referenceURL: String
-  referenceCitation: String
 }
 
 """
