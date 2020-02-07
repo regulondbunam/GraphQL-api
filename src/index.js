@@ -2,7 +2,7 @@ import express from 'express';
 // graphql
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
-import costAnalysis from 'graphql-cost-analysis';
+import queryComplexity from 'graphql-query-complexity';
 import { typeDefs } from './schemas/schemas';
 import { resolvers } from './resolvers/resolvers';
 
@@ -21,9 +21,11 @@ mongoose.connect(
 
 const app = express();
 
-const costAnalyzer = costAnalysis({
-  maximumCost: 1000,
-  onComplete: cost => console.log('Query resquest cost', cost),
+const costAnalyzer = queryComplexity({
+  maximumComplexity: 1000,
+  onComplete: complexity => {
+    console.log('Query Cost:', complexity);
+  },
 });
 
 const server = new ApolloServer({
