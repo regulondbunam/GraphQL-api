@@ -16,18 +16,24 @@ const geneInfoSchema = new mongoose.Schema({
     {
       multifun: [[String]],
       geneOntology: {
-        cellularComponent: {
-          id: String,
-          name: String,
-        },
-        molecularFunction: {
-          id: String,
-          name: String,
-        },
-        biologicalProcess: {
-          id: String,
-          name: String,
-        },
+        cellularComponent: [
+          {
+            id: String,
+            name: String,
+          },
+        ],
+        molecularFunction: [
+          {
+            id: String,
+            name: String,
+          },
+        ],
+        biologicalProcess: [
+          {
+            id: String,
+            name: String,
+          },
+        ],
       },
     },
   ],

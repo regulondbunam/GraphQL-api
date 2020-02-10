@@ -32,7 +32,7 @@ type GeneInfo {
 Terms
 """
 type Terms {
-  multifun: [String]
+  multifun: [[String]]
   geneOntology: GeneOntologyTerms
 }
 
@@ -207,15 +207,11 @@ type GrowthConditions {
 
 type Query {
   """
-  List all the genes with a limit
+  List all the genes with a limit, can be apply a range of Genes that are between rightEndPosition and leftEndPosition
   """
-  listGenes(limit: Int, offset: Int): [Gene]
+  listGenes(limit: Int, offset: Int, lowerLimit: Int, upperLimit: Int): [Gene]
   """
   Return a specific gene by the Id or Name specified in the GeneInfo
   """
   getGeneBy(id: String, name: String): Gene
-  """
-  Return the genes that are between rightEndPosition and leftEndPosition
-  """
-  getGenesIn(lowerLimit: Int, upperLimit: Int): [Gene]
 }
