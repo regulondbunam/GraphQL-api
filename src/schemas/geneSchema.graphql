@@ -1,6 +1,6 @@
 type Gene {
   geneInfo: GeneInfo
-  product: Product
+  products: [Product]
   shineDalgarno: [ShineDalgarno]
   regulation: Regulation
   growthConditions: [GrowthConditions]
@@ -42,7 +42,7 @@ OntologyTerms
 type GeneOntologyTerms {
   cellularComponent: [CellularComponent]
   molecularFunction: [MolecularFunction]
-  biologicalProccess: [BiologicalProccess]
+  biologicalProcess: [BiologicalProcess]
 }
 
 """
@@ -64,7 +64,7 @@ type MolecularFunction {
 """
 BiologicalProccess
 """
-type BiologicalProccess {
+type BiologicalProcess {
   id: String
   name: String
 }
