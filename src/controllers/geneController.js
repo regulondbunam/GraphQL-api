@@ -1,24 +1,30 @@
 import { Gene } from '../models/geneModel';
 
+/**
+ * @description services that retrives documentes in Gene Datamart
+ * @example E
+ * @license UNAM2020
+ * @author Andres Loal
+ */
+
 /** @constructor Define a class geneController */
 class geneController {
   /** function that resolves the listGenes query with a Gene array
    * @param {int} limit set the number of genes that will be returned
    * @param {int} offset the page number that want to see
-   * @param {int} lowerLimit leftEndPosition delimiter
-   * @param {int} upperLimit rightEndPosition delimiter
+   * @param {int} leftEndPos leftEndPosition delimiter
+   * @param {int} rightEndPos rightEndPosition delimiter
    */
-  static listGenes(limit, offset, lowerLimit, upperLimit) {
-    /** checks if limit has been defined, in false case, assigns 10 to limit */
-    if (!limit) {
-      limit = 10;
-    }
+  static listGenes(limit = 10, offset, leftEndPos, rightEndPos) {
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
-    if (lowerLimit && upperLimit) {
+    if (leftEndPos && rightEndPos) {
       return Gene.find({
-        'geneInfo.leftEndPosition': { $gt: lowerLimit, $lt: upperLimit },
+        'geneInfo.leftEndPosition': {
+          $gt: leftEndPos,
+          $lt: rightEndPos,
+        },
       })
         .limit(limit)
         .skip(offset);
