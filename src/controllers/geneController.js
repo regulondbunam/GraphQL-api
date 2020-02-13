@@ -19,8 +19,9 @@ class geneController {
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
+    let geneList;
     if (leftEndPos && rightEndPos) {
-      return Gene.find({
+      geneList = Gene.find({
         'geneInfo.leftEndPosition': {
           $gt: leftEndPos,
           $lt: rightEndPos,
@@ -28,10 +29,21 @@ class geneController {
       })
         .limit(limit)
         .skip(offset);
+    } else {
+      geneList = Gene.find({})
+        .limit(limit)
+        .skip(offset);
     }
-    return Gene.find({})
-      .limit(limit)
-      .skip(offset);
+
+    console.log(
+      Gene.countDocuments({
+        'geneInfo.leftEndPosition': {
+          $gt: leftEndPos,
+          $lt: rightEndPos,
+        },
+      })
+    );
+    return geneList;
   }
 
   /** function that resolves the getGeneBy query with one only Gene Result

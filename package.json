@@ -20,7 +20,9 @@
     "graphql-tools": "^4.0.6",
     "merge-graphql-schemas": "^1.7.6",
     "mongoose": "^5.8.11",
-    "nodemon": "^2.0.2"
+    "node-statsd": "^0.1.1",
+    "nodemon": "^2.0.2",
+    "response-time": "^2.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
