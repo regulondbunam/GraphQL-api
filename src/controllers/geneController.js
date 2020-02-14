@@ -7,6 +7,41 @@ import { Gene } from '../models/geneModel';
  * @author Andres Loal
  */
 
+function setFilter(rightEndPosition, leftEndPosition) {
+  let filter = {};
+  if (leftEndPosition !== undefined) {
+    filter = {
+      'geneInfo.leftEndPosition': {
+        $gt: leftEndPosition,
+      },
+    };
+  }
+  if (rightEndPosition !== undefined) {
+    filter = {
+      'geneInfo.rightEndPosition': {
+        $lt: rightEndPosition,
+      },
+    };
+  }
+  if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
+    filter = {
+      $and: [
+        {
+          'geneInfo.leftEndPosition': {
+            $gt: leftEndPosition,
+          },
+        },
+        {
+          'geneInfo.rightEndPosition': {
+            $lt: rightEndPosition,
+          },
+        },
+      ],
+    };
+  }
+  return filter;
+}
+
 /** @constructor Define a class geneController */
 class geneController {
   /** function that resolves the listGenes query with a Gene array
@@ -15,34 +50,21 @@ class geneController {
    * @param {int} leftEndPos leftEndPosition delimiter
    * @param {int} rightEndPos rightEndPosition delimiter
    */
-  static listGenes(limit = 10, offset, leftEndPos, rightEndPos) {
+  static listGenes(limit = 10, offset = 0, leftEndPos, rightEndPos) {
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
-    let geneList;
-    if (leftEndPos && rightEndPos) {
-      geneList = Gene.find({
-        'geneInfo.leftEndPosition': {
-          $gt: leftEndPos,
-          $lt: rightEndPos,
-        },
-      })
-        .limit(limit)
-        .skip(offset);
-    } else {
-      geneList = Gene.find({})
-        .limit(limit)
-        .skip(offset);
-    }
-
-    console.log(
-      Gene.countDocuments({
-        'geneInfo.leftEndPosition': {
-          $gt: leftEndPos,
-          $lt: rightEndPos,
-        },
-      })
-    );
+    let totalCount;
+    const filter = setFilter(rightEndPos, leftEndPos);
+    const geneList = Gene.find(filter)
+      .limit(limit)
+      .skip(offset * limit);
+    Gene.countDocuments(filter).exec(function(err, count) {
+      totalCount = count;
+      console.log(`Resultados totales: ${count}`);
+    });
+    geneList['total Count'] = totalCount;
+    console.log(geneList);
     return geneList;
   }
 

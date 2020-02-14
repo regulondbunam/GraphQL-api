@@ -24,18 +24,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   // debug: false,
-  formatResponse: (response, requestContext) => {
-    // return response
-    response = Object.assign(
-      {
-        extensions: {
-          resultado: null,
-        },
-      },
-      response
-    );
-    return response;
-  },
 });
 
 /** set up the ApolloServer with an express middleware */
