@@ -7,14 +7,14 @@ export const evidenceReferencesSchema = new mongoose.Schema([
     evidenceType: String,
     referenceID: String,
     referenceURL: String,
-    referenceCitation: String
-  }
+    referenceCitation: String,
+  },
 ]);
 
 export const externalCrossReferencesSchema = new mongoose.Schema([
   {
     id: String,
     name: String,
-    url: String
-  }
+    url: String,
+  },
 ]);

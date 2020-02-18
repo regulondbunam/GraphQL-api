@@ -1,4 +1,4 @@
-import { Gene } from '../models/geneModel';
+import { Gene } from './geneModel';
 
 /**
  * @description services that retrives documentes in Gene Datamart
@@ -7,7 +7,7 @@ import { Gene } from '../models/geneModel';
  * @author Andres Loal
  */
 
-function setFilter(rightEndPosition, leftEndPosition) {
+function defineFilter(rightEndPosition, leftEndPosition) {
   let filter = {};
   if (leftEndPosition !== undefined) {
     filter = {
@@ -50,21 +50,23 @@ class geneController {
    * @param {int} leftEndPos leftEndPosition delimiter
    * @param {int} rightEndPos rightEndPosition delimiter
    */
-  static listGenes(limit = 10, offset = 0, leftEndPos, rightEndPos) {
+  static async listGenes(limit = 10, page = 0, leftEndPos, rightEndPos) {
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
     let totalCount;
-    const filter = setFilter(rightEndPos, leftEndPos);
-    const geneList = Gene.find(filter)
+    const offset = page * limit;
+    const filter = defineFilter(rightEndPos, leftEndPos);
+    const geneList = await Gene.find(filter)
       .limit(limit)
-      .skip(offset * limit);
-    Gene.countDocuments(filter).exec(function(err, count) {
-      totalCount = count;
-      console.log(`Resultados totales: ${count}`);
-    });
-    geneList['total Count'] = totalCount;
-    console.log(geneList);
+      .skip(offset);
+    Gene.countDocuments(filter)
+      .limit(limit)
+      .exec(function(err, count) {
+        totalCount = count;
+        console.log(`Total results: ${totalCount}`);
+      });
+    // console.log(geneList);
     return geneList;
   }
 

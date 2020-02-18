@@ -209,7 +209,7 @@ type Query {
   """
   List all the genes with a limit, can be apply a range of Genes that are between rightEndPosition and leftEndPosition
   """
-  listGenes(limit: Int, offset: Int, leftEndPos: Int, rightEndPos: Int): [Gene]
+  listGenes(limit: Int, page: Int, leftEndPos: Int, rightEndPos: Int): [Gene]
   """
   Return a specific gene by the Id or Name specified in the GeneInfo
   """
