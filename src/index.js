@@ -1,11 +1,8 @@
 import express from 'express';
-/** query cost analyzer */
-import { createComplexityLimitRule } from 'graphql-validation-complexity';
 /** graphql libraries importation */
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 /** GraphQL server set up requirements */
-import { GraphQLError } from 'graphql';
 import { typeDefs } from './common/schemas';
 import { resolvers } from './common/resolvers';
 
@@ -18,18 +15,6 @@ mongoose.connect(
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
 
-/** creating a limitRule for GraphQL queries */
-const complexLimitRule = createComplexityLimitRule(1000, {
-  scalarCost: 1,
-  objectCost: 5,
-  listFactor: 5,
-  onCost: cost => {
-    console.log(`query cost: ${cost}`);
-  },
-  formatErrorMessage: cost =>
-    `Your query with cost ${cost} exceeds limit complexity, use less fields`,
-});
-
 /** Setting up the GraphQL - Apollo Server Express Playground
  * @param typeDefs are the merged .graphql schemas
  * @param resolvers are the merged resolvers
@@ -38,13 +23,17 @@ const complexLimitRule = createComplexityLimitRule(1000, {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // debug: false,
-  validationRules: [complexLimitRule],
+  debug: false,
 });
 
 /** set up the ApolloServer with an express middleware */
 const app = express();
-server.applyMiddleware({ app });
+server.applyMiddleware({
+  app,
+  cors: {
+    origin: '*',
+  },
+});
 
 const serv = app.listen({ port: 4000 }, () =>
   console.log(

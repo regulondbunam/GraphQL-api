@@ -111,11 +111,7 @@ const regulationSchema = new mongoose.Schema({
     name: String,
     arrangement: [
       {
-        regulator: {
-          id: String,
-          name: String,
-          type: String,
-        },
+        regulator: regulationRegulatorSchema,
         promoter: {
           id: String,
           name: String,
