@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "name": "Regulon",
+    "script": "npm",
+    "args": "run start:prod",
+    "watch": true,
+    "env": {
+      "PORT": "4000"
+    }
+  }
+}

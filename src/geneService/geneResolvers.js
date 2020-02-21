@@ -6,8 +6,13 @@ export const geneResolvers = {
   Query: {
     /** obtains an array with Genes in a range */
     listGenes: (root, { limit, page, leftEndPos, rightEndPos }) => {
-      if (limit > 999)
-        throw new GraphQLError(`Cannot resolve a response with limit ${limit}`);
+      if (limit >= 1000) {
+        const err = new GraphQLError(
+          `Cannot resolve a response with limit ${limit}`
+        );
+        err.status = 413;
+        throw err;
+      }
       return geneController.listGenes(limit, page, leftEndPos, rightEndPos);
     },
     /** retrieves a specific Gene */

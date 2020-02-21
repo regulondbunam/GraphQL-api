@@ -2,6 +2,7 @@ import express from 'express';
 /** graphql libraries importation */
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
+import { GraphQLError } from 'graphql';
 /** GraphQL server set up requirements */
 import { typeDefs } from './common/schemas';
 import { resolvers } from './common/resolvers';
@@ -37,7 +38,7 @@ server.applyMiddleware({
 
 const serv = app.listen({ port: 4000 }, () =>
   console.log(
-    `El servidor está corriendo http://localhost:4000${server.graphqlPath}`
+    `The server is running in http://localhost:4000${server.graphqlPath}`
   )
 );
 
