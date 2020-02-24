@@ -18,10 +18,13 @@
     $ npm install -g nodemon
     $ npm install -g pm2
     
-    Starting up with pm2Config.json file
-    $ pm2 start pm2Config.json
+    Starting up in production
+    $ pm2 start pm2ProductionConfig.json
+
+    Starting up in development
+    $ pm2 start pm2DevelopmentConfig.json
     
-    Now the GraphQL Playgroud will run at http://localhost:4000
+    Now the GraphQL Playgroud will run at http://localhost:4000/graphql
 
     Note: In case that Playground cannot be reached, please reinstall Nodemon, it can be the problem
     
