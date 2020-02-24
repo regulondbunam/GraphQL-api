@@ -214,4 +214,8 @@ type Query {
   Return a specific gene by the Id or Name specified in the GeneInfo
   """
   getGeneBy(id: String, name: String): Gene
+  """
+  Return a list of genes by an Id or name array
+  """
+  getGenesBy(id:[String], name:[String]): [Gene]
 }

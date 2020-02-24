@@ -4,7 +4,7 @@
   "description": "API for RegulonDB",
   "main": "index.js",
   "scripts": {
-    "start:prod": "nodemon ./src/index.js --exec babel-node -e js",
+    "start": " NODE_ENV=production nodemon ./src/index.js --exec babel-node -e js",
     "start:dev": "nodemon ./src/index.js --exec babel-node -e js",
     "slint": "eslint .",
     "slint:fix": "eslint . --fix"
@@ -14,7 +14,6 @@
   "dependencies": {
     "apollo-server-express": "^2.9.16",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",

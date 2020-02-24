@@ -84,6 +84,13 @@ class geneController {
       return Gene.findOne({ 'geneInfo.name': name });
     }
   }
+
+  static getGenesBy(id, name) {
+    if (id !== undefined) {
+      return Gene.find({ 'geneInfo.id': id });
+    }
+    return Gene.find({ 'geneInfo.name': name });
+  }
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */
