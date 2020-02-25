@@ -3,6 +3,7 @@
     "name": "Regulon",
     "script": "npm",
     "args": "run start",
+    "instances": 3,
     "watch": true,
     "env": {
       "PORT": "4000"

@@ -23,6 +23,8 @@ mongoose.connect(
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true,
+  playground: true,
   debug: false,
   formatError: err => ({
     message: err.message,
@@ -40,10 +42,12 @@ server.applyMiddleware({
   },
 });
 
-const serv = app.listen({ port: 4000 }, () =>
+const servExpress = app.listen({ port: 4000 || 0 }, () =>
   console.log(
-    `The server is running in http://localhost:4000${server.graphqlPath}`
+    `The server is running in http://localhost:${servExpress.address().port}${
+      server.graphqlPath
+    }`
   )
 );
 
-serv.setTimeout(10000);
+servExpress.setTimeout(10000);

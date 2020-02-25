@@ -3,3 +3,5 @@ node_modules
 src/conf.json
 out
 env.variables.json
+coverage
+__tests__

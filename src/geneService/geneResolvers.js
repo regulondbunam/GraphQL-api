@@ -6,9 +6,9 @@ export const geneResolvers = {
   Query: {
     /** obtains an array with Genes in a range */
     listGenes: (root, { limit, page, leftEndPos, rightEndPos }) => {
-      if (limit >= 1000) {
+      if (limit <= 0 || limit >= 1000) {
         const err = new GraphQLError(
-          `Cannot resolve a response with limit ${limit}. Limit must be less than 1000`
+          `Cannot resolve a response with limit ${limit}. Limit must be greater than 0 and less than 1000`
         );
         err.status = 'Request Entity Too Large';
         err.statusCode = 413;

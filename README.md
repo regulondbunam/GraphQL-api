@@ -22,10 +22,16 @@
     $ pm2 start pm2Config.json
     
     Now the GraphQL Playgroud will run at http://localhost:4000
+    
+    ## Notes
+    - In case that Playground cannot be reached, please reinstall Nodemon, it can be the problem
+    - Sometimes Nodemon doesn't restart the port correctly, in that case:
+    	-$ lsof -i :4000 to know the PID that use port 4000
+    	-$ kill -9 <PID> to terminate process 
+    	-Start again the Playground
 
-    Note: In case that Playground cannot be reached, please reinstall Nodemon, it can be the problem
-    
-    
+
+​    
 
 ## License
 
