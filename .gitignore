@@ -5,3 +5,4 @@ out
 env.variables.json
 coverage
 __tests__
+benchmarks

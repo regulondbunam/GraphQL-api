@@ -1,3 +1,4 @@
+import { GraphQLError } from 'graphql';
 import { Gene } from './geneModel';
 
 /**
@@ -51,6 +52,15 @@ class geneController {
    * @param {int} rightEndPos rightEndPosition delimiter
    */
   static async listGenes(limit = 10, page = 0, leftEndPos, rightEndPos) {
+    /** Identified the limit assigned, if is greater than 1000 or less than 1, returns an error */
+    if (limit <= 0 || limit >= 1000) {
+      const err = new GraphQLError(
+        `Cannot resolve a response with limit ${limit}. Limit must be greater than 0 and less than 1000`
+      );
+      err.status = 'Request Entity Too Large';
+      err.statusCode = 413;
+      throw err;
+    }
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
@@ -85,6 +95,8 @@ class geneController {
     }
   }
 
+  /**  checks if id has been defined, in false case, passes to resolve by name,
+   * in case that both are defined, it resolves by the id */
   static getGenesBy(id, name) {
     if (id !== undefined) {
       return Gene.find({ 'geneInfo.id': id });
