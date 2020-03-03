@@ -25,8 +25,8 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
-  debug: false,
-  mocks: true,
+  debug: true,
+  // tracing: true,
   formatError: err => ({
     message: err.message,
     status: err.extensions.exception.status,

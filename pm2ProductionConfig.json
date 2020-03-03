@@ -1,11 +1,12 @@
 {
   "apps": {
-    "name": "Regulon",
+    "name": "RegulonProd",
     "script": "npm",
     "args": "run start",
+    "exec_interpreter": "./node_modules/babel-cli/bin/babel-node.js",
     "instances": 3,
-    "watch": true,
     "env": {
+      "NODE_ENV": "production",
       "PORT": "4000"
     }
   }
