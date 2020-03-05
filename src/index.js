@@ -2,6 +2,10 @@ import express from 'express';
 /** graphql libraries importation */
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
+import {
+  createRateLimitTypeDef,
+  createRateLimitDirective,
+} from 'graphql-rate-limit-directive';
 /** GraphQL server set up requirements */
 import { typeDefs } from './common/schemas';
 import { resolvers } from './common/resolvers';
@@ -21,11 +25,14 @@ mongoose.connect(
  */
 
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: [createRateLimitTypeDef(), typeDefs],
   resolvers,
   introspection: true,
   playground: true,
   debug: true,
+  schemaDirectives: {
+    rateLimit: createRateLimitDirective(),
+  },
   // tracing: true,
   formatError: err => ({
     message: err.message,
@@ -50,5 +57,3 @@ const servExpress = app.listen({ port: 4000 || 0 }, () =>
     }`
   )
 );
-
-servExpress.setTimeout(10000);

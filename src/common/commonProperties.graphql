@@ -18,7 +18,3 @@ type EvidenceReferences {
   referenceURL: String
   referenceCitation: String
 }
-
-type Query {
-  testQuery(id: ID): Gene
-}

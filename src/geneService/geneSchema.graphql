@@ -207,15 +207,11 @@ type GrowthConditions {
 
 type Query {
   """
-  List all the genes with a limit, can be apply a range of Genes that are between rightEndPosition and leftEndPosition
+  List all the genes or with a limit
   """
-  listGenes(limit: Int, page: Int, leftEndPos: Int, rightEndPos: Int): [Gene]
-  """
-  Return a specific gene by the Id or Name specified in the GeneInfo
-  """
-  getGeneBy(id: String, name: String): Gene
+  getAllGenes(limit: Int, page: Int, leftEndPos: Int, rightEndPos: Int): [Gene] @rateLimit(limit:1000, duration:60)
   """
   Return a list of genes by an Id or name array
   """
-  getGenesBy(id:[String], name:[String]): [Gene]
+  getGenesBy(id:[String], name:[String]): [Gene] @rateLimit(limit:1000, duration:60)
 }

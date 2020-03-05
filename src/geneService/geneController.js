@@ -1,5 +1,9 @@
-import { GraphQLError } from 'graphql';
+// import { GraphQLError } from 'graphql';
 import { Gene } from './geneModel';
+import {
+  defineFilter,
+  setLimitResults,
+} from '../common/controllerCommonFunctions';
 
 /**
  * @description services that retrives documentes in Gene Datamart
@@ -7,41 +11,6 @@ import { Gene } from './geneModel';
  * @license UNAM2020
  * @author Andres Loal
  */
-
-function defineFilter(rightEndPosition, leftEndPosition) {
-  let filter = {};
-  if (leftEndPosition !== undefined) {
-    filter = {
-      'geneInfo.leftEndPosition': {
-        $gt: leftEndPosition,
-      },
-    };
-  }
-  if (rightEndPosition !== undefined) {
-    filter = {
-      'geneInfo.rightEndPosition': {
-        $lt: rightEndPosition,
-      },
-    };
-  }
-  if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
-    filter = {
-      $and: [
-        {
-          'geneInfo.leftEndPosition': {
-            $gt: leftEndPosition,
-          },
-        },
-        {
-          'geneInfo.rightEndPosition': {
-            $lt: rightEndPosition,
-          },
-        },
-      ],
-    };
-  }
-  return filter;
-}
 
 /** @constructor Define a class geneController */
 class geneController {
@@ -51,52 +20,23 @@ class geneController {
    * @param {int} leftEndPos leftEndPosition delimiter
    * @param {int} rightEndPos rightEndPosition delimiter
    */
-  static async listGenes(limit = 10, page = 0, leftEndPos, rightEndPos) {
-    /** Identified the limit assigned, if is greater than 1000 or less than 1, returns an error */
-    if (limit <= 0 || limit >= 1000) {
-      const err = new GraphQLError(
-        `Cannot resolve a response with limit ${limit}. Limit must be greater than 0 and less than 1000`
-      );
-      err.status = 'Request Entity Too Large';
-      err.statusCode = 413;
-      throw err;
-    }
+  static async getAllGenes(limit = 0, page = 0, leftEndPos, rightEndPos) {
     /** checks if lower and upper limit has been defined, and returns the query by the
      * specified range in false case, only return the Gene array by the limit.
      */
-    let totalCount;
-    const offset = page * limit;
     const filter = defineFilter(rightEndPos, leftEndPos);
+    const lim = setLimitResults(Gene, limit, filter);
+    const offset = page * limit;
     const geneList = await Gene.find(filter)
-      .limit(limit)
+      .limit(lim)
       .skip(offset);
-    Gene.countDocuments(filter)
-      .limit(limit)
-      .exec(function(err, count) {
-        totalCount = count;
-        console.log(`Total results: ${totalCount}`);
-      });
-    // console.log(geneList);
     return geneList;
   }
 
-  /** function that resolves the getGeneBy query with one only Gene Result
+  /** function that resolves the getGeneBy query with an array Gene Result
    * @param {String} id the id defined on the geneInfo object of Gene
    * @param {String} name the name defined on the geneInfo object of Gene
    */
-  static getGeneBy(id, name) {
-    /** checks if id has been defined, in false case, passes to resolve by name,
-     * in case that both are defined, it resolves by the id */
-    if (id !== undefined) {
-      return Gene.findOne({ 'geneInfo.id': id });
-    }
-    if (name !== undefined) {
-      return Gene.findOne({ 'geneInfo.name': name });
-    }
-  }
-
-  /**  checks if id has been defined, in false case, passes to resolve by name,
-   * in case that both are defined, it resolves by the id */
   static getGenesBy(id, name) {
     if (id !== undefined) {
       return Gene.find({ 'geneInfo.id': id });
