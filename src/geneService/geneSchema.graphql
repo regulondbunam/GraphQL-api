@@ -213,5 +213,9 @@ type Query {
   """
   Return a list of genes by an Id or name array
   """
-  getGenesBy(id:[String], name:[String]): [Gene] @rateLimit(limit:1000, duration:60)
+  getGenesBy(id:[String], name:[String], advanceSearch:String): [Gene] @rateLimit(limit:1000, duration:60)
+  """
+  Test query; retrieves a list of gene with arguments
+  """
+  getGenesByArgs(id:[String],name:[String], productName:[String], strand:[String]): [Gene]
 }

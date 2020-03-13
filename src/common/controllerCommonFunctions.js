@@ -13,14 +13,14 @@ export function defineFilter(rightEndPosition, leftEndPosition) {
   if (leftEndPosition !== undefined) {
     filter = {
       'geneInfo.leftEndPosition': {
-        $gt: leftEndPosition,
+        $gte: leftEndPosition,
       },
     };
   }
   if (rightEndPosition !== undefined) {
     filter = {
       'geneInfo.rightEndPosition': {
-        $lt: rightEndPosition,
+        $lte: rightEndPosition,
       },
     };
   }
@@ -29,12 +29,12 @@ export function defineFilter(rightEndPosition, leftEndPosition) {
       $and: [
         {
           'geneInfo.leftEndPosition': {
-            $gt: leftEndPosition,
+            $gte: leftEndPosition,
           },
         },
         {
           'geneInfo.rightEndPosition': {
-            $lt: rightEndPosition,
+            $lte: rightEndPosition,
           },
         },
       ],
@@ -60,4 +60,38 @@ export function setLimitResults(colection, defaultLim, filter) {
       console.log(`Total results: ${count}`);
     });
   return limit;
+}
+
+export function prepareQueryFilter(id, name, productName, strand) {
+  // eslint-disable-next-line prefer-const
+  let filter = {
+    $or: [],
+  };
+  if (id !== undefined) {
+    filter.$or = [
+      {
+        'geneInfo.id': id,
+      },
+    ];
+  }
+
+  if (name !== undefined) {
+    filter.$or.push({
+      'geneInfo.name': name,
+    });
+  }
+
+  if (strand !== undefined) {
+    filter.$or.push({
+      'geneInfo.strand': strand,
+    });
+  }
+
+  if (productName !== undefined) {
+    filter.$or.push({
+      'products.names': productName,
+    });
+  }
+  console.log(JSON.stringify(filter));
+  return filter;
 }

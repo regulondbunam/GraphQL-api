@@ -3,6 +3,7 @@ import { Gene } from './geneModel';
 import {
   defineFilter,
   setLimitResults,
+  prepareQueryFilter,
 } from '../common/controllerCommonFunctions';
 
 /**
@@ -42,6 +43,13 @@ class geneController {
       return Gene.find({ 'geneInfo.id': id });
     }
     return Gene.find({ 'geneInfo.name': name });
+  }
+
+  static async getGenesByArgs(id, name, productName, strand) {
+    console.log(Object.keys(Gene.schema.paths));
+    const filter = prepareQueryFilter(id, name, productName, strand);
+    const genes = await Gene.find(filter);
+    return genes;
   }
 }
 
