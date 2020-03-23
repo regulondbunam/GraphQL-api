@@ -211,7 +211,7 @@ type Query {
   """
   getAllGenes(limit: Int, page: Int, leftEndPos: Int, rightEndPos: Int): [Gene] @rateLimit(limit:1000, duration:60)
   """
-  Return a list of genes by an Id or name array
+  Return a list of genes by an Id or name array, advancedSearch is not currently available
   """
-  getGenesBy(id:[String], name:[String], advanceSearch:String): [Gene] @rateLimit(limit:1000, duration:60)
+  getGenesBy(id:[String], name:[String], advancedSearch:String): [Gene] @rateLimit(limit:1000, duration:60)
 }
