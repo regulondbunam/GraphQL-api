@@ -45,12 +45,6 @@ class geneController {
     return Gene.find({ 'geneInfo.name': name });
   }
 
-  static async getGenesByArgs(id, name, productName, strand) {
-    console.log(Object.keys(Gene.schema.paths));
-    const filter = prepareQueryFilter(id, name, productName, strand);
-    const genes = await Gene.find(filter);
-    return genes;
-  }
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */

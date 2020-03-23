@@ -8,7 +8,5 @@ export const geneResolvers = {
       geneController.getAllGenes(limit, page, leftEndPos, rightEndPos),
     /** retrieves a list of Genes defined by it name or id in geneInfo */
     getGenesBy: (root, { id, name }) => geneController.getGenesBy(id, name),
-    getGenesByArgs: (root, { id, name, productName, strand }) =>
-      geneController.getGenesByArgs(id, name, productName, strand),
   },
 };
