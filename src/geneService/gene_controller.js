@@ -1,10 +1,10 @@
 // import { GraphQLError } from 'graphql';
-import { Gene } from './geneModel';
+import { Gene } from './gene_model';
 import {
   defineFilter,
   setLimitResults,
   prepareQueryFilter,
-} from '../common/controllerCommonFunctions';
+} from '../common/controller_common_functions';
 
 /**
  * @description services that retrives documentes in Gene Datamart

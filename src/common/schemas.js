@@ -4,10 +4,10 @@ import fs from 'fs';
 
 /** Reading each graphql schema of all services defined and parsing to String */
 const Gene = gql`
-  ${fs.readFileSync('./src/geneService/geneSchema.graphql').toString()}
+  ${fs.readFileSync('./src/geneService/gene_schema.graphql').toString()}
 `;
 const commonProperties = gql`
-  ${fs.readFileSync('./src/common/commonProperties.graphql').toString()}
+  ${fs.readFileSync('./src/common/common_properties.graphql').toString()}
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */

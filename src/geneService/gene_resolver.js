@@ -1,5 +1,5 @@
 /** import the geneController that contains the resolver functions */
-import { geneController } from './geneController';
+import { geneController } from './gene_controller';
 
 export const geneResolvers = {
   Query: {
