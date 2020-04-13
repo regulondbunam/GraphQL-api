@@ -151,4 +151,4 @@ const geneSchema = new mongoose.Schema({
 
 const Gene = mongoose.model('genedatamarts', geneSchema);
 
-export { Gene };
+export {Gene};

@@ -1,22 +1,22 @@
 import express from 'express';
 /** graphql libraries importation */
-import { ApolloServer } from 'apollo-server-express';
+import {ApolloServer} from 'apollo-server-express';
 import mongoose from 'mongoose';
 import {
   createRateLimitTypeDef,
   createRateLimitDirective,
 } from 'graphql-rate-limit-directive';
 /** GraphQL server set up requirements */
-import { typeDefs } from './common/schemas';
-import { resolvers } from './common/resolvers';
+import {typeDefs} from './common/schemas';
+import {resolvers} from './common/resolvers';
 
 /**  enviroment variables require */
 const enviroment = require('../config-module').config();
 
 /** Conecction to mongoDB with the credentials on .env file */
 mongoose.connect(
-  `mongodb://${enviroment.DB_USER}:${enviroment.DB_PASS}@${enviroment.DB_URL}`,
-  { useUnifiedTopology: true, useNewUrlParser: true }
+    `mongodb://${enviroment.DB_USER}:${enviroment.DB_PASS}@${enviroment.DB_URL}`,
+    {useUnifiedTopology: true, useNewUrlParser: true}
 );
 
 /** Setting up the GraphQL - Apollo Server Express Playground
@@ -34,7 +34,7 @@ const server = new ApolloServer({
     rateLimit: createRateLimitDirective(),
   },
   // tracing: true,
-  formatError: err => ({
+  formatError: (err) => ({
     message: err.message,
     status: err.extensions.exception.status,
     statusCode: err.extensions.exception.statusCode,
@@ -50,10 +50,10 @@ server.applyMiddleware({
   },
 });
 
-const servExpress = app.listen({ port: 4000 || 0 }, () =>
+const servExpress = app.listen({port: 4000 || 0}, () =>
   console.log(
-    `The server is running in http://localhost:${servExpress.address().port}${
-      server.graphqlPath
-    }`
+      `The server is running in http://localhost:${servExpress.address().port}${
+        server.graphqlPath
+      }`
   )
 );
