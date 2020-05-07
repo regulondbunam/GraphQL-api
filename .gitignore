@@ -4,5 +4,5 @@ src/conf.json
 out
 env.variables.json
 coverage
-__tests__
 benchmarks
+src/regulonService

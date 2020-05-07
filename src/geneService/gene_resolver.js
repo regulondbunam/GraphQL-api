@@ -1,5 +1,7 @@
 /** import the geneController that contains the resolver functions */
-import {geneController} from './gene_controller';
+import {Gene} from './gene_model';
+import { geneController } from './gene_controller';
+import { commonController } from '../common/controller_common_functions'
 
 export const geneResolvers = {
   Query: {
@@ -7,12 +9,13 @@ export const geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
      */
-    getAllGenes: (root, {limit, page, leftEndPos, rightEndPos}) =>
-      geneController.getAllGenes(limit, page, leftEndPos, rightEndPos),
+    getAllGenes: (root, {limit, page}) =>
+      commonController.getAll(Gene, limit, page),
     /** retrieves a list of Genes defined by it name or id in geneInfo
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
     */
-    getGenesBy: (root, {id, name}) => geneController.getGenesBy(id, name),
+    getGenesBy: (root, {simpleSearch, advancedSearch, limit, page}) =>
+      geneController.getGenesBy(simpleSearch, advancedSearch, limit, page),
   },
 };
