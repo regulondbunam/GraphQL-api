@@ -1,0 +1,140 @@
+type Regulon {
+	_id: String
+	transcriptionFactor: TranscriptionFactor
+	terms: Terms
+	regulates: Regulates
+	summary: Summary
+	organismName: String
+}
+
+type TranscriptionFactor {
+	name: String
+}
+
+type Terms {
+	multifunTerms: [Multifun]
+	geneOntology: [GeneOntology]
+}
+
+type Multifun {
+	id: String
+	name: String
+	genes: [String]
+}
+
+type GeneOntology {
+	id: String
+	name: String
+	genes: [String]
+}
+
+type Regulates {
+	genes: [Genes]
+	transcriptionFactors: [TranscriptionFactors]
+	transcriptionUnits: [TranscriptionUnits]
+	operons: [Operons]
+	sigmaFactors: [SigmaFactors]
+}
+
+type Genes {
+	id: String
+	name: String
+	function: String
+	terms: [Terms]
+}
+
+type Terms {
+	multifunT: [String]
+	geneOntologyT: [String]
+}
+
+type TranscriptionFactors {
+	id: String
+	name: String
+	function: String
+}
+
+type TranscriptionUnits {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type Operons {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type SigmaFactors {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type FirstGene {
+	id: String
+	name: String
+}
+
+type Summary {
+	genes: GenesSum
+	transcriptionFactorsSum: TranscriptionFactorsSum
+	transcriptionUnits: TranscriptionUnitsSum
+	operons: OperonsSum
+	sigmaFactorsSum: SigmaFactorsSum
+}
+
+type GenesSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type TranscriptionFactorsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type TranscriptionUnitsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type OperonsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type SigmaFactorsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type Query {
+  """
+  List all the Regulon docs or defined by a limit
+  """
+  getAllRegulon(limit: Int, page: Int): [Regulon] @rateLimit(limit:1000, duration:60)
+  """
+  Return a list of Regulon docs by an advancedSearch string
+  """
+  getRegulonBy(id:[String], name:[String], advancedSearch:String): [Regulon] @rateLimit(limit:1000, duration:60)
+}
