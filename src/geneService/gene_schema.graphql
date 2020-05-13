@@ -213,6 +213,6 @@ type Query {
   """
   Return a list of genes by an Id or name array, advancedSearch is not currently available
   """
-  getGenesBy(simpleSearch: String, advancedSearch: String, limit: Int, page: Int): [Gene] @rateLimit(limit:1000, duration:60)
+  getGenesBy(search: String, advancedSearch: String, limit: Int, page: Int): [Gene] @rateLimit(limit:1000, duration:60)
 
 }

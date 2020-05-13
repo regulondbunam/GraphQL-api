@@ -15,7 +15,7 @@ export const geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
     */
-    getGenesBy: (root, {simpleSearch, advancedSearch, limit, page}) =>
-      geneController.getGenesBy(simpleSearch, advancedSearch, limit, page),
+    getGenesBy: (root, {search, advancedSearch, limit, page}) =>
+      geneController.getGenesBy(search, advancedSearch, limit, page),
   },
 };

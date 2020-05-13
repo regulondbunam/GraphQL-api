@@ -15,5 +15,5 @@ const commonProperties = gql`
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 export const typeDefs = mergeTypes(
-    [Gene, Regulon, commonProperties],
+    [Gene, commonProperties],
     {all: true});

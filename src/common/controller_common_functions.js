@@ -90,7 +90,7 @@ class commonController {
      * the Gene array by the limit.
      */
     // const filter = defineFilter(leftEndPos, rightEndPos);
-    const lim = setLimitResults(collection, limit, filter);
+    const lim = setLimitResults(collection, limit);
     const offset = page * limit;
     const response = await collection.find({})
         .limit(lim)
