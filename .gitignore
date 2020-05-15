@@ -1,7 +1,7 @@
-node_modules
+node_modules/
 .env
 src/conf.json
-out
 env.variables.json
-coverage
-benchmarks
+coverage/
+benchmarks/
+.vscode/
