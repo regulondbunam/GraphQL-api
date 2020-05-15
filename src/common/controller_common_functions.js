@@ -63,7 +63,7 @@ export function setLimitResults(collection, limit, filter) {
       console.log(`Total results: ${count}`);
       limit = count;
     });
-  }if(limit>0) {
+  } if (limit>0) {
     collection
         .countDocuments(filter)
         .limit(limit)
@@ -75,9 +75,9 @@ export function setLimitResults(collection, limit, filter) {
 }
 
 class commonController {
-  /** function that resolves the query and responses with all documents of 
+  /** function that resolves the query and responses with all documents of
    * the Collection restricted by a limit and pagination
-   * @param {Collection} collection is the collection where the query 
+   * @param {Collection} collection is the collection where the query
    * needs to be resolved
    * @param {number} limit set the number of genes that will be returned
    * @param {number} page the page number that want to see
@@ -99,4 +99,4 @@ class commonController {
   }
 }
 
-export {commonController}
+export {commonController};

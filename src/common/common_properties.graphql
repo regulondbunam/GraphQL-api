@@ -18,3 +18,64 @@ type EvidenceReferences {
   referenceURL: String
   referenceCitation: String
 }
+
+"""
+Operon
+"""
+type Operon {
+  id: String
+  name: String
+}
+
+"""
+Terms
+"""
+type Terms {
+  multifun: [[String]]
+  geneOntology: GeneOntology
+}
+
+"""
+Multifun
+"""
+type Multifun {
+	id: String
+	name: String
+	gene_ids: [String]
+}
+
+"""
+GeneOntology
+"""
+type GeneOntology {
+  cellularComponent: [CellularComponent]
+  molecularFunction: [MolecularFunction]
+  biologicalProcess: [BiologicalProcess]
+}
+
+"""
+CellularComponent
+"""
+type CellularComponent {
+  term_id: String
+  name: String
+  gene_ids: [String]
+}
+
+"""
+MolecularFunction
+"""
+type MolecularFunction {
+  term_id: String
+  name: String
+  gene_ids: [String]
+}
+
+"""
+BiologicalProccess
+"""
+type BiologicalProcess {
+  term_id: String
+  name: String
+  gene_ids: [String]
+}

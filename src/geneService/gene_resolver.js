@@ -1,7 +1,7 @@
 /** import the geneController that contains the resolver functions */
 import {Gene} from './gene_model';
-import { geneController } from './gene_controller';
-import { commonController } from '../common/controller_common_functions'
+import {geneController} from './gene_controller';
+import {commonController} from '../common/controller_common_functions';
 
 export const geneResolvers = {
   Query: {

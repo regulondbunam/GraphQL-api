@@ -29,47 +29,6 @@ type GeneInfo {
 }
 
 """
-Terms
-"""
-type Terms {
-  multifun: [[String]]
-  geneOntologyTerms: GeneOntologyTerms
-}
-
-"""
-OntologyTerms
-"""
-type GeneOntologyTerms {
-  cellularComponent: [CellularComponent]
-  molecularFunction: [MolecularFunction]
-  biologicalProcess: [BiologicalProcess]
-}
-
-"""
-CellularComponent
-"""
-type CellularComponent {
-  id: String
-  name: String
-}
-
-"""
-MolecularFunction
-"""
-type MolecularFunction {
-  id: String
-  name: String
-}
-
-"""
-BiologicalProccess
-"""
-type BiologicalProcess {
-  id: String
-  name: String
-}
-
-"""
 Product Type Schema
 """
 type Product {
@@ -125,8 +84,6 @@ type Regulation {
 Operon
 """
 type Operon {
-  id: String
-  name: String
   arrangement: [Arrangement]
 }
 

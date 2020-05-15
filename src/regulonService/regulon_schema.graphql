@@ -1,31 +1,48 @@
 type Regulon {
 	_id: String
-	transcriptionFactor: TranscriptionFactor
+	regulator: Regulator
 	terms: Terms
 	regulates: Regulates
+	regulatoryInteractions: RegulatoryInteractions
+	aligmentMatrix: AligmentMatrix
+	evolutionaryConservation: EvolutionaryConservation
+	organism: String
 	summary: Summary
-	organismName: String
 }
 
-type TranscriptionFactor {
+type Regulator {
 	name: String
+	synonyms: [String]
+	note: String
+	conformations: Conformations
+	genes: Genes
+	operon: Operon
+	sensingClass: String
+	connectivityClass: String
 }
 
-type Terms {
-	multifunTerms: [Multifun]
-	geneOntology: [GeneOntology]
-}
-
-type Multifun {
+type Conformations {
 	id: String
 	name: String
-	genes: [String]
+	type: String
+	effectorInteractionType: String
+	evidenceReferences: [EvidenceReferences]
+	functionalType: String
 }
 
-type GeneOntology {
-	id: String
-	name: String
-	genes: [String]
+type Genes {
+	gene_id: String
+	genomePosition: String
+	length: String
+}
+
+type Operon {
+	tusEncodingRegulator: [TusEncodingRegulator]
+}
+
+type TusEncodingRegulator {
+	transcriptionUnitName: String
+	promoterName: String
 }
 
 type Regulates {
@@ -41,11 +58,6 @@ type Genes {
 	name: String
 	function: String
 	terms: [Terms]
-}
-
-type Terms {
-	multifunT: [String]
-	geneOntologyT: [String]
 }
 
 type TranscriptionFactors {
@@ -78,6 +90,34 @@ type SigmaFactors {
 type FirstGene {
 	id: String
 	name: String
+}
+
+type RegulatoryInteractions {
+	conformationName: String
+	function: String
+	promoter_id: String
+	promoter_strand: String
+	promoter_name: String
+	sigmaFactorName: String
+	centralRelativePosition: Int
+	distanceToFirstGene: Int
+	genes: Genes
+	site_leftEndPosition: Int
+	site_rightEndPosition: Int
+	evidenceReferences: EvidenceReferences
+}
+
+type AligmentMatrix {
+	aligment: String
+	matrix: String
+	consensus: String
+	urlPWMLogo: String
+	urlMatrixQualityResult: String
+}
+
+type EvolutionaryConservation {
+	urlRegulatorTargetGene: String
+	urlPromoterTargetGene: String
 }
 
 type Summary {
@@ -136,5 +176,5 @@ type Query {
   """
   Return a list of Regulon docs by an advancedSearch string
   """
-  getRegulonBy(id:[String], name:[String], advancedSearch:String): [Regulon] @rateLimit(limit:1000, duration:60)
+  getRegulonBy(search: String, advancedSearch: String, limit: Int, page: Int): [Regulon] @rateLimit(limit:1000, duration:60)
 }

@@ -1,7 +1,7 @@
 /** import the regulonController that contains the resolver functions */
-import { Regulon } from './regulon_model';
+import {Regulon} from './regulon_model';
 import {regulonController} from './gene_controller';
-import { commonController } from '../common/controller_common_functions'
+import {commonController} from '../common/controller_common_functions';
 
 export const geneResolvers = {
   Query: {
@@ -15,7 +15,7 @@ export const geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
     */
-    getRegulonBy: (root, {id, name, advancedSearch}) =>
-      regulonController.getRegulonBy(id, name, advancedSearch),
+    getRegulonBy: (root, {search, advancedSearch, limit, page}) =>
+      regulonController.getRegulonBy(search, advancedSearch, limit, page),
   },
 };
