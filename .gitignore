@@ -1,7 +1,8 @@
-node_modules/
+GraphQL-api/node_modules/
 .env
-src/conf.json
-env.variables.json
+GraphQL-api/env.variables.json
+GraphQL-api/pm2DevelopmentConfig.json
 coverage/
 benchmarks/
 .vscode/
+LICENSE
