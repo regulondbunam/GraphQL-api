@@ -38,6 +38,11 @@ server.applyMiddleware({
 	}
 });
 
-const servExpress = app.listen({ port: 4000 || 0 }, () =>
+const PORT = process.env.PORT || 4000;
+const servExpress = app.listen(PORT, () => {
+	console.log(`The server is running in http://localhost:${servExpress.address().port}${server.graphqlPath}`);
+});
+
+/*const servExpress = app.listen({ port: 4000 || 0 }, () =>
 	console.log(`The server is running in http://localhost:${servExpress.address().port}${server.graphqlPath}`)
-);
+);*/
