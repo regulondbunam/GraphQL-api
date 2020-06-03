@@ -1,11 +1,10 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.defineFilter = defineFilter;
 exports.setLimitResults = setLimitResults;
-
 /** Creates a filter to be used on MongoDB Queries that
  * require a range in leftEndPosition and
  * rightEndPosition, return to the controller.
@@ -20,7 +19,6 @@ exports.setLimitResults = setLimitResults;
  */
 function defineFilter(leftEndPosition, rightEndPosition) {
   let filter = {};
-
   if (leftEndPosition !== undefined) {
     filter = {
       'geneInfo.leftEndPosition': {
@@ -28,7 +26,6 @@ function defineFilter(leftEndPosition, rightEndPosition) {
       }
     };
   }
-
   if (rightEndPosition !== undefined) {
     filter = {
       'geneInfo.rightEndPosition': {
@@ -36,7 +33,6 @@ function defineFilter(leftEndPosition, rightEndPosition) {
       }
     };
   }
-
   if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
     filter = {
       $and: [{
@@ -50,9 +46,9 @@ function defineFilter(leftEndPosition, rightEndPosition) {
       }]
     };
   }
-
   return filter;
 }
+
 /** get the count of documents instead if limit has been
  *  defined or not and show them in console
  * @param {Model} collection the model defined by mongoose, pases
@@ -64,8 +60,6 @@ function defineFilter(leftEndPosition, rightEndPosition) {
  * @return {number} return the total results, if the limit was defined
  * will be same number
  * */
-
-
 function setLimitResults(collection, limit, filter) {
   // eslint-disable-next-line no-var
   if (limit === 0) {
@@ -73,14 +67,11 @@ function setLimitResults(collection, limit, filter) {
       console.log(`Total results: ${count}`);
       limit = count;
     });
-  }
-
-  if (limit > 0) {
+  }if (limit > 0) {
     collection.countDocuments(filter).limit(limit).exec(function (err, count) {
       console.log(`Total results: ${count}`);
     });
   }
-
   return limit;
 }
 
@@ -105,7 +96,6 @@ class commonController {
     const response = await collection.find({}).limit(lim).skip(offset);
     return response;
   }
-
 }
 
 exports.commonController = commonController;

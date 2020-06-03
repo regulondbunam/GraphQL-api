@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 /**  enviroment variables require */
-const enviroment = require('../config-module').config();
+require('dotenv').config();
 
 /** Conecction to mongoDB with the credentials on .env file */
-mongoose.connect(`mongodb://${enviroment.DB_USER}:${enviroment.DB_PASS}@${enviroment.DB_URL}`, {
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
 	useUnifiedTopology: true,
 	useNewUrlParser: true
 });

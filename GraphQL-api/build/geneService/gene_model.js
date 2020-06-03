@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Gene = undefined;
 
-var _mongoose = require("mongoose");
+var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
@@ -19,11 +19,13 @@ const evidenceReferencesSchema = new _mongoose2.default.Schema({
   referenceURL: String,
   referenceCitation: String
 });
+
 const externalCrossReferencesSchema = new _mongoose2.default.Schema({
   id: String,
   name: String,
   url: String
 });
+
 const geneInfoSchema = new _mongoose2.default.Schema({
   id: String,
   name: String,
@@ -56,6 +58,7 @@ const geneInfoSchema = new _mongoose2.default.Schema({
   externalCrossReferences: [externalCrossReferencesSchema],
   evidenceReferences: [evidenceReferencesSchema]
 });
+
 const productSchema = new _mongoose2.default.Schema({
   regulatorId: String,
   name: String,
@@ -78,6 +81,7 @@ const productSchema = new _mongoose2.default.Schema({
   externalCrossReferences: [externalCrossReferencesSchema],
   evidenceReferences: [evidenceReferencesSchema]
 });
+
 const shineDalgarnoSchema = new _mongoose2.default.Schema({
   distanceToGene: Number,
   leftEndPosition: Number,
@@ -85,6 +89,7 @@ const shineDalgarnoSchema = new _mongoose2.default.Schema({
   sequence: String,
   note: String
 });
+
 const regulationContextSchema = new _mongoose2.default.Schema({
   type: String,
   name: String,
@@ -94,11 +99,13 @@ const regulationContextSchema = new _mongoose2.default.Schema({
   note: String,
   evidenceReferences: [evidenceReferencesSchema]
 });
+
 const regulationRegulatorSchema = new _mongoose2.default.Schema({
   id: String,
   name: String,
   type: String
 });
+
 const regulationSchema = new _mongoose2.default.Schema({
   operon: {
     id: String,
@@ -123,12 +130,14 @@ const regulationSchema = new _mongoose2.default.Schema({
     promoters: Number
   }
 });
+
 const growthConditionsSchema = new _mongoose2.default.Schema({
   controlCondition: String,
   experimentalCondition: String,
   effect: String,
   evidenceReferences: [evidenceReferencesSchema]
 });
+
 const geneSchema = new _mongoose2.default.Schema({
   geneInfo: geneInfoSchema,
   products: [productSchema],

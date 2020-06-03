@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Regulon = undefined;
 
-var _mongoose = require("mongoose");
+var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
@@ -23,10 +23,12 @@ const termsSchema = new _mongoose2.default.Schema({
     genes: [String]
   }
 });
+
 const firstGeneSchema = new _mongoose2.default.Schema({
   id: String,
   name: String
 });
+
 const regulatesSchema = new _mongoose2.default.Schema({
   genes: [{
     id: String,
@@ -61,6 +63,7 @@ const regulatesSchema = new _mongoose2.default.Schema({
     firstGene: firstGeneSchema
   }]
 });
+
 const summaryValuesSchema = new _mongoose2.default.Schema({
   repressed: Number,
   activated: Number,
@@ -68,6 +71,7 @@ const summaryValuesSchema = new _mongoose2.default.Schema({
   unknown: Number,
   total: Number
 });
+
 const summarySchema = new _mongoose2.default.Schema({
   genes: summaryValuesSchema,
   transcriptionFactors: summaryValuesSchema,
@@ -75,6 +79,7 @@ const summarySchema = new _mongoose2.default.Schema({
   operons: summaryValuesSchema,
   sigmaFactors: summaryValuesSchema
 });
+
 const regulonSchema = new _mongoose2.default.Schema({
   _id: String,
   transcriptionFactor: {
