@@ -11,38 +11,38 @@
  * filter by mongoose to make the query
  */
 export function defineFilter(leftEndPosition, rightEndPosition) {
-  let filter = {};
-  if (leftEndPosition !== undefined) {
-    filter = {
-      'geneInfo.leftEndPosition': {
-        $gte: leftEndPosition,
-      },
-    };
-  }
-  if (rightEndPosition !== undefined) {
-    filter = {
-      'geneInfo.rightEndPosition': {
-        $lte: rightEndPosition,
-      },
-    };
-  }
-  if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
-    filter = {
-      $and: [
-        {
-          'geneInfo.leftEndPosition': {
-            $gte: leftEndPosition,
-          },
-        },
-        {
-          'geneInfo.rightEndPosition': {
-            $lte: rightEndPosition,
-          },
-        },
-      ],
-    };
-  }
-  return filter;
+	let filter = {};
+	if (leftEndPosition !== undefined) {
+		filter = {
+			'geneInfo.leftEndPosition': {
+				$gte: leftEndPosition
+			}
+		};
+	}
+	if (rightEndPosition !== undefined) {
+		filter = {
+			'geneInfo.rightEndPosition': {
+				$lte: rightEndPosition
+			}
+		};
+	}
+	if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
+		filter = {
+			$and: [
+				{
+					'geneInfo.leftEndPosition': {
+						$gte: leftEndPosition
+					}
+				},
+				{
+					'geneInfo.rightEndPosition': {
+						$lte: rightEndPosition
+					}
+				}
+			]
+		};
+	}
+	return filter;
 }
 
 /** get the count of documents instead if limit has been
@@ -57,25 +57,23 @@ export function defineFilter(leftEndPosition, rightEndPosition) {
  * will be same number
  * */
 export function setLimitResults(collection, limit, filter) {
-  // eslint-disable-next-line no-var
-  if (limit === 0) {
-    collection.countDocuments(filter).exec(function(err, count) {
-      console.log(`Total results: ${count}`);
-      limit = count;
-    });
-  } if (limit>0) {
-    collection
-        .countDocuments(filter)
-        .limit(limit)
-        .exec(function(err, count) {
-          console.log(`Total results: ${count}`);
-        });
-  }
-  return limit;
+	// eslint-disable-next-line no-var
+	if (limit === 0) {
+		collection.countDocuments(filter).exec(function(err, count) {
+			console.log(`Total results: ${count}`);
+			limit = count;
+		});
+	}
+	if (limit > 0) {
+		collection.countDocuments(filter).limit(limit).exec(function(err, count) {
+			console.log(`Total results: ${count}`);
+		});
+	}
+	return limit;
 }
 
 class commonController {
-  /** function that resolves the query and responses with all documents of
+	/** function that resolves the query and responses with all documents of
    * the Collection restricted by a limit and pagination
    * @param {Collection} collection is the collection where the query
    * needs to be resolved
@@ -84,19 +82,26 @@ class commonController {
    * @param {number} leftEndPos leftEndPosition delimiter
    * @param {number} rightEndPos rightEndPosition delimiter
    */
-  static async getAll(collection, limit = 0, page = 0) {
-    /** checks if lower and upper limit has been defined, and returns
+	static async getAll(collection, limit = 0, page = 0) {
+		/** checks if lower and upper limit has been defined, and returns
      * the query by the specified range in false case, only return
      * the Gene array by the limit.
      */
-    // const filter = defineFilter(leftEndPos, rightEndPos);
-    const lim = setLimitResults(collection, limit);
-    const offset = page * limit;
-    const response = await collection.find({})
-        .limit(lim)
-        .skip(offset);
-    return response;
-  }
+		// const filter = defineFilter(leftEndPos, rightEndPos);
+		const lim = setLimitResults(collection, limit);
+		const offset = page * limit;
+		const response = await collection.find({}).sort({ 'geneInfo.name': 1 }).limit(lim).skip(offset);
+		return response;
+	}
+
+	static async countAll(collection) {
+		return new Promise((resolve, object) => {
+			collection.countDocuments({}, (error, count) => {
+				if (error) rejects(error);
+				else resolve(count);
+			});
+		});
+	}
 }
 
-export {commonController};
+export { commonController };

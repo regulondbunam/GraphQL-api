@@ -33,12 +33,26 @@ class geneController {
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');
-			let organismFilter = { "$and": [{ "organismName": organismName }] };
+			let organismFilter = { $and: [{ organismName: organismName }] };
 			organismFilter.$and.push(filter);
 			filter = organismFilter;
 		}
 		console.log(JSON.stringify(filter));
-		return _gene_model.Gene.find(filter).limit(limit).skip(offset);
+		return _gene_model.Gene.find(filter).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
+	}
+
+	static countGenesBy(search, advancedSearch) {
+		let filter;
+		if (advancedSearch !== undefined) {
+			filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
+		} else if (search !== undefined) {
+			filter = (0, _mongodbFilterObjectParser.searchFilter)(search);
+		}
+		return new Promise((resolve, object) => {
+			_gene_model.Gene.countDocuments(filter, (error, count) => {
+				if (error) rejects(error);else resolve(count);
+			});
+		});
 	}
 }
 

@@ -167,9 +167,10 @@ type Query {
   List all the genes or with a limit
   """
   getAllGenes(limit: Int, page: Int): [Gene] @rateLimit(limit:1000, duration:60)
+  countAllGenes(limit: Int, page: Int) : String
   """
   Return a list of genes by an Id or name array, advancedSearch is not currently available
   """
   getGenesBy(search: String, advancedSearch: String, limit: Int, page: Int, organismName: String): [Gene] @rateLimit(limit:1000, duration:60)
-
+  countGenesBy(search:String, advancedSearch:String) : String
 }

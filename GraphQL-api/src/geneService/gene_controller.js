@@ -23,15 +23,29 @@ class geneController {
 		} else if (search !== undefined) {
 			filter = searchFilter(search);
 		}
-		if (organismName !== undefined)
-		{
-			organismName = new RegExp(organismName,'i')
-			let organismFilter = { "$and": [{ "organismName": organismName }] }
-			organismFilter.$and.push(filter)
+		if (organismName !== undefined) {
+			organismName = new RegExp(organismName, 'i');
+			let organismFilter = { $and: [ { organismName: organismName } ] };
+			organismFilter.$and.push(filter);
 			filter = organismFilter;
 		}
 		console.log(JSON.stringify(filter));
-		return Gene.find(filter).limit(limit).skip(offset);
+		return Gene.find(filter).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
+	}
+
+	static countGenesBy(search, advancedSearch) {
+		let filter;
+		if (advancedSearch !== undefined) {
+			filter = advancedSearchFilter(advancedSearch);
+		} else if (search !== undefined) {
+			filter = searchFilter(search);
+		}
+		return new Promise((resolve, object) => {
+			Gene.countDocuments(filter, (error, count) => {
+				if (error) rejects(error);
+				else resolve(count);
+			});
+		});
 	}
 }
 
