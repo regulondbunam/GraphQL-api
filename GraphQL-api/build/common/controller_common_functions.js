@@ -92,9 +92,14 @@ class commonController {
      * the Gene array by the limit.
      */
 		// const filter = defineFilter(leftEndPos, rightEndPos);
-		const lim = setLimitResults(collection, limit);
-		const offset = page * limit;
-		const response = await collection.find({}).sort({ 'geneInfo.name': 1 }).limit(lim).skip(offset);
+		const lim = (page + 1) * limit;
+		const skip = page * limit;
+		setLimitResults(collection, limit);
+		let response;
+		if (limit > 0) {
+			const offset = page * limit;
+			response = await collection.find({}).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
+		} else response = await collection.aggregate([{ $sort: { 'geneInfo.name': 1 } }]).allowDiskUse(true);
 		return response;
 	}
 
