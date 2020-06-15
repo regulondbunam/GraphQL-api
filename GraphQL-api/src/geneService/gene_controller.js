@@ -1,6 +1,7 @@
 // import { GraphQLError } from 'graphql';
 import { Gene } from './gene_model';
 import { advancedSearchFilter, searchFilter } from 'mongodb-filter-object-parser';
+import { textSearch } from '../../lib/textSearchFilter';
 
 /** Define a geneController. */
 class geneController {
@@ -21,7 +22,8 @@ class geneController {
 		if (advancedSearch !== undefined) {
 			filter = advancedSearchFilter(advancedSearch);
 		} else if (search !== undefined) {
-			filter = searchFilter(search);
+			//filter = searchFilter(search);
+			filter = textSearch(search);
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');
@@ -38,7 +40,7 @@ class geneController {
 		if (advancedSearch !== undefined) {
 			filter = advancedSearchFilter(advancedSearch);
 		} else if (search !== undefined) {
-			filter = searchFilter(search);
+			filter = textSearch(search);
 		}
 		return new Promise((resolve, object) => {
 			Gene.countDocuments(filter, (error, count) => {

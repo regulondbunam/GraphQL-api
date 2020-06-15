@@ -9,8 +9,9 @@ var _gene_model = require('./gene_model');
 
 var _mongodbFilterObjectParser = require('mongodb-filter-object-parser');
 
+var _textSearchFilter = require('../../lib/textSearchFilter');
+
 /** Define a geneController. */
-// import { GraphQLError } from 'graphql';
 class geneController {
 	/** function that resolves the getGeneBy query with an array Gene Result
    * @param {String} search contains all argument and operators for search
@@ -29,7 +30,8 @@ class geneController {
 		if (advancedSearch !== undefined) {
 			filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
 		} else if (search !== undefined) {
-			filter = (0, _mongodbFilterObjectParser.searchFilter)(search);
+			//filter = searchFilter(search);
+			filter = (0, _textSearchFilter.textSearch)(search);
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');
@@ -46,7 +48,7 @@ class geneController {
 		if (advancedSearch !== undefined) {
 			filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
 		} else if (search !== undefined) {
-			filter = (0, _mongodbFilterObjectParser.searchFilter)(search);
+			filter = (0, _textSearchFilter.textSearch)(search);
 		}
 		return new Promise((resolve, object) => {
 			_gene_model.Gene.countDocuments(filter, (error, count) => {
@@ -57,4 +59,5 @@ class geneController {
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */
+// import { GraphQLError } from 'graphql';
 exports.geneController = geneController;
