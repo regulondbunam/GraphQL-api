@@ -16,14 +16,21 @@ class geneController {
    * @return {Object} return the results of the query identified by the
    *                  ID or name
    */
-	static getGenesBy(search, advancedSearch, limit = 0, page = 0, organismName) {
+	static getGenesBy(
+		search,
+		advancedSearch,
+		limit = 0,
+		page = 0,
+		properties = [ 'geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name' ],
+		organismName
+	) {
 		const offset = page * limit;
 		let filter;
 		if (advancedSearch !== undefined) {
 			filter = advancedSearchFilter(advancedSearch);
 		} else if (search !== undefined) {
 			//filter = searchFilter(search);
-			filter = textSearch(search);
+			filter = textSearch(search, properties);
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');
@@ -35,12 +42,16 @@ class geneController {
 		return Gene.find(filter).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
 	}
 
-	static countGenesBy(search, advancedSearch) {
+	static countGenesBy(
+		search,
+		advancedSearch,
+		properties = [ 'geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name' ]
+	) {
 		let filter;
 		if (advancedSearch !== undefined) {
 			filter = advancedSearchFilter(advancedSearch);
 		} else if (search !== undefined) {
-			filter = textSearch(search);
+			filter = textSearch(search, properties);
 		}
 		return new Promise((resolve, object) => {
 			Gene.countDocuments(filter, (error, count) => {

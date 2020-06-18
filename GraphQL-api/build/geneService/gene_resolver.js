@@ -23,7 +23,7 @@ const geneResolvers = exports.geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
     */
-		getGenesBy: (root, { search, advancedSearch, limit, page, organismName }) => _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, organismName),
-		countGenesBy: (root, { search, advancedSearch }) => _gene_controller.geneController.countGenesBy(search, advancedSearch)
+		getGenesBy: (root, { search, advancedSearch, limit, page, properties, organismName }) => _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName),
+		countGenesBy: (root, { search, advancedSearch, properties }) => _gene_controller.geneController.countGenesBy(search, advancedSearch, properties)
 	}
 }; /** import the geneController that contains the resolver functions */

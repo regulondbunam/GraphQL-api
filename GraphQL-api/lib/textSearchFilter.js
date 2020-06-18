@@ -1,4 +1,4 @@
-const textSearch = (searchString) => {
+const textSearch = (searchString, properties) => {
 	let finalObject = {};
 	searchString = replaceDoubleQuotes(searchString);
 	// prettier-ignore
@@ -11,95 +11,38 @@ const textSearch = (searchString) => {
 			if (regexOperator.test(extractedWord)) {
 				extractedWord = extractedWord.toLowerCase();
 				let nextExtract = wordsToFind.shift();
+				let orObject;
 				let filterPlaceHolder;
 				switch (extractedWord) {
 					case 'or':
-						nextExtract = new RegExp(replaceChar(nextExtract, 1), 'i');
+						orObject = buildOrObject(properties, nextExtract);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$or: [
-								{
-									$or: [
-										{ 'geneInfo.id': nextExtract },
-										{ 'geneInfo.name': nextExtract },
-										{ 'geneInfo.synonyms': nextExtract },
-										{ 'products.name': nextExtract }
-									]
-								},
-								filterPlaceHolder
-							]
+							$or: [ orObject, filterPlaceHolder ]
 						};
 						break;
 					case 'and':
-						nextExtract = new RegExp(replaceChar(nextExtract, 1), 'i');
+						orObject = buildOrObject(properties, nextExtract);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$and: [
-								{
-									$or: [
-										{ 'geneInfo.id': nextExtract },
-										{ 'geneInfo.name': nextExtract },
-										{ 'geneInfo.synonyms': nextExtract },
-										{ 'products.name': nextExtract }
-									]
-								},
-								filterPlaceHolder
-							]
+							$and: [ orObject, filterPlaceHolder ]
 						};
 						break;
 					case 'not':
-						nextExtract = new RegExp(replaceChar(nextExtract, 1), 'i');
+						orObject = buildNotObject(properties, nextExtract);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$and: [
-								{
-									'geneInfo.name': {
-										$not: nextExtract
-									}
-								},
-								{
-									'geneInfo.name': {
-										$not: nextExtract
-									}
-								},
-								{
-									'geneInfo.synonyms': {
-										$not: nextExtract
-									}
-								},
-								{
-									'products.name': {
-										$not: nextExtract
-									}
-								},
-								filterPlaceHolder
-							]
+							$and: [ orObject, filterPlaceHolder ]
 						};
 						break;
 				}
 			} else {
 				//if is not an operator, continues here, replace the possible '_' on word
-				extractedWord = new RegExp(replaceChar(extractedWord, 1), 'i');
-				finalObject = {
-					$or: [
-						{ 'geneInfo.id': extractedWord },
-						{ 'geneInfo.name': extractedWord },
-						{ 'geneInfo.synonyms': extractedWord },
-						{ 'products.name': extractedWord }
-					]
-				};
+				finalObject = buildOrObject(properties, replaceChar(extractedWord, 1));
 			}
 		} while (wordsToFind.length != 0);
 	} else {
-		searchRegex = new RegExp(replaceChar(wordsToFind[0], 1), 'i');
-		finalObject = {
-			$or: [
-				{ 'geneInfo.id': searchRegex },
-				{ 'geneInfo.name': searchRegex },
-				{ 'geneInfo.synonyms': searchRegex },
-				{ 'products.name': searchRegex }
-			]
-		};
+		finalObject = buildOrObject(properties, replaceChar(wordsToFind[0], 1));
 	}
 	return finalObject;
 };
@@ -161,6 +104,30 @@ function replaceChar(variousWord, skip) {
 		}
 	}
 	return variousWord;
+}
+
+function buildOrObject(fieldsToUse, wordToSearch) {
+	let orObject = { $or: [] };
+	wordToSearch = new RegExp('^' + wordToSearch + '|' + wordToSearch + '\\b', 'i');
+	for (let i = 0; i < fieldsToUse.length; i++) {
+		let property = fieldsToUse[i];
+		orObject['$or'].push({
+			[property]: wordToSearch
+		});
+	}
+	return orObject;
+}
+
+function buildNotObject(fieldsToUse, wordToSearch) {
+	let notObject = { $and: [] };
+	wordToSearch = new RegExp(wordToSearch + '\\b', 'i');
+	for (let i = 0; i < fieldsToUse.length; i++) {
+		let property = fieldsToUse[i];
+		notObject['$and'].push({
+			[property]: { $not: wordToSearch }
+		});
+	}
+	return notObject;
 }
 
 module.exports = { textSearch };
