@@ -86,7 +86,7 @@ class commonController {
    * @param {number} leftEndPos leftEndPosition delimiter
    * @param {number} rightEndPos rightEndPosition delimiter
    */
-	static async getAll(collection, limit = 0, page = 0) {
+	static async getAll(collection, limit = 0, page = 0, sortField) {
 		/** checks if lower and upper limit has been defined, and returns
      * the query by the specified range in false case, only return
      * the Gene array by the limit.
@@ -98,17 +98,9 @@ class commonController {
 		let response;
 		if (limit > 0) {
 			const offset = page * limit;
-			response = await collection.find({}).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
-		} else response = await collection.aggregate([{ $sort: { 'geneInfo.name': 1 } }]).allowDiskUse(true);
+			response = await collection.find({}).sort({ sortField: 1 }).limit(limit).skip(offset);
+		} else response = await collection.aggregate([{ $sort: { sortField: 1 } }]).allowDiskUse(true);
 		return response;
-	}
-
-	static async countAll(collection) {
-		return new Promise((resolve, object) => {
-			collection.countDocuments({}, (error, count) => {
-				if (error) rejects(error);else resolve(count);
-			});
-		});
 	}
 }
 

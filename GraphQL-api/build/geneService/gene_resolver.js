@@ -17,13 +17,11 @@ const geneResolvers = exports.geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
      */
-		getAllGenes: (root, { limit, page }) => _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page),
-		countAllGenes: (root, {}) => _controller_common_functions.commonController.countAll(_gene_model.Gene),
+		getAllGenes: (root, { limit, page }) => _gene_controller.geneController.getAllGenes(_gene_model.Gene, limit, page),
 		/** retrieves a list of Genes defined by it name or id in geneInfo
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
     */
-		getGenesBy: (root, { search, advancedSearch, limit, page, properties, organismName }) => _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName),
-		countGenesBy: (root, { search, advancedSearch, properties }) => _gene_controller.geneController.countGenesBy(search, advancedSearch, properties)
+		getGenesBy: (root, { search, advancedSearch, limit, page, properties, organismName }) => _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName)
 	}
 }; /** import the geneController that contains the resolver functions */
