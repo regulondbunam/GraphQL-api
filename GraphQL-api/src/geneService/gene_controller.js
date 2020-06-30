@@ -55,7 +55,8 @@ class geneController {
 		limit = 0,
 		page = 0,
 		properties = [ 'geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name' ],
-		organismName
+		organismName,
+		fullMatchOnly = false
 	) {
 		const offset = page * limit;
 		let filter;
@@ -64,7 +65,7 @@ class geneController {
 			filter = advancedSearchFilter(advancedSearch);
 		} else if (search !== undefined) {
 			//filter = searchFilter(search);
-			filter = textSearch(search, properties);
+			filter = textSearch(search, properties, fullMatchOnly);
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');

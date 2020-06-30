@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.externalCrossReferencesSchema = exports.evidenceReferencesSchema = undefined;
 
-var _mongoose = require('mongoose');
+var _mongoose = require("mongoose");
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
@@ -19,7 +19,6 @@ const evidenceReferencesSchema = exports.evidenceReferencesSchema = new _mongoos
   referenceURL: String,
   referenceCitation: String
 }]);
-
 const externalCrossReferencesSchema = exports.externalCrossReferencesSchema = new _mongoose2.default.Schema([{
   id: String,
   name: String,

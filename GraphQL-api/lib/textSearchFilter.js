@@ -1,4 +1,4 @@
-const textSearch = (searchString, properties) => {
+const textSearch = (searchString, properties, fullMatchOnly) => {
 	let finalObject = {};
 	searchString = replaceDoubleQuotes(searchString);
 	// prettier-ignore
@@ -15,21 +15,21 @@ const textSearch = (searchString, properties) => {
 				let filterPlaceHolder;
 				switch (extractedWord) {
 					case 'or':
-						orObject = buildOrObject(properties, nextExtract);
+						orObject = buildOrObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
 							$or: [ orObject, filterPlaceHolder ]
 						};
 						break;
 					case 'and':
-						orObject = buildOrObject(properties, nextExtract);
+						orObject = buildOrObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
 							$and: [ orObject, filterPlaceHolder ]
 						};
 						break;
 					case 'not':
-						orObject = buildNotObject(properties, nextExtract);
+						orObject = buildNotObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
 							$and: [ orObject, filterPlaceHolder ]
@@ -38,11 +38,11 @@ const textSearch = (searchString, properties) => {
 				}
 			} else {
 				//if is not an operator, continues here, replace the possible '_' on word
-				finalObject = buildOrObject(properties, replaceChar(extractedWord, 1));
+				finalObject = buildOrObject(properties, replaceChar(extractedWord, 1), fullMatchOnly);
 			}
 		} while (wordsToFind.length != 0);
 	} else {
-		finalObject = buildOrObject(properties, replaceChar(wordsToFind[0], 1));
+		finalObject = buildOrObject(properties, replaceChar(wordsToFind[0], 1), fullMatchOnly);
 	}
 	return finalObject;
 };
@@ -106,9 +106,10 @@ function replaceChar(variousWord, skip) {
 	return variousWord;
 }
 
-function buildOrObject(fieldsToUse, wordToSearch) {
+function buildOrObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 	let orObject = { $or: [] };
-	wordToSearch = new RegExp('^' + wordToSearch + '|' + wordToSearch + '\\b', 'i');
+	if (fullMatchOnly) wordToSearch = new RegExp('\\b' + wordToSearch + '\\b', 'i');
+	else wordToSearch = new RegExp('\\b' + wordToSearch, 'i');
 	for (let i = 0; i < fieldsToUse.length; i++) {
 		let property = fieldsToUse[i];
 		orObject['$or'].push({
@@ -118,9 +119,10 @@ function buildOrObject(fieldsToUse, wordToSearch) {
 	return orObject;
 }
 
-function buildNotObject(fieldsToUse, wordToSearch) {
+function buildNotObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 	let notObject = { $and: [] };
-	wordToSearch = new RegExp(wordToSearch + '\\b', 'i');
+	if (fullMatchOnly) wordToSearch = new RegExp('\\b' + wordToSearch + '\\b', 'i');
+	else wordToSearch = new RegExp('\\b' + wordToSearch, 'i');
 	for (let i = 0; i < fieldsToUse.length; i++) {
 		let property = fieldsToUse[i];
 		notObject['$and'].push({

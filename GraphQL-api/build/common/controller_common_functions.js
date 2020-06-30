@@ -1,10 +1,11 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.defineFilter = defineFilter;
 exports.setLimitResults = setLimitResults;
+
 /** Creates a filter to be used on MongoDB Queries that
  * require a range in leftEndPosition and
  * rightEndPosition, return to the controller.
@@ -18,37 +19,40 @@ exports.setLimitResults = setLimitResults;
  * filter by mongoose to make the query
  */
 function defineFilter(leftEndPosition, rightEndPosition) {
-	let filter = {};
-	if (leftEndPosition !== undefined) {
-		filter = {
-			'geneInfo.leftEndPosition': {
-				$gte: leftEndPosition
-			}
-		};
-	}
-	if (rightEndPosition !== undefined) {
-		filter = {
-			'geneInfo.rightEndPosition': {
-				$lte: rightEndPosition
-			}
-		};
-	}
-	if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
-		filter = {
-			$and: [{
-				'geneInfo.leftEndPosition': {
-					$gte: leftEndPosition
-				}
-			}, {
-				'geneInfo.rightEndPosition': {
-					$lte: rightEndPosition
-				}
-			}]
-		};
-	}
-	return filter;
-}
+  let filter = {};
 
+  if (leftEndPosition !== undefined) {
+    filter = {
+      'geneInfo.leftEndPosition': {
+        $gte: leftEndPosition
+      }
+    };
+  }
+
+  if (rightEndPosition !== undefined) {
+    filter = {
+      'geneInfo.rightEndPosition': {
+        $lte: rightEndPosition
+      }
+    };
+  }
+
+  if (leftEndPosition !== undefined && rightEndPosition !== undefined) {
+    filter = {
+      $and: [{
+        'geneInfo.leftEndPosition': {
+          $gte: leftEndPosition
+        }
+      }, {
+        'geneInfo.rightEndPosition': {
+          $lte: rightEndPosition
+        }
+      }]
+    };
+  }
+
+  return filter;
+}
 /** get the count of documents instead if limit has been
  *  defined or not and show them in console
  * @param {Model} collection the model defined by mongoose, pases
@@ -60,48 +64,61 @@ function defineFilter(leftEndPosition, rightEndPosition) {
  * @return {number} return the total results, if the limit was defined
  * will be same number
  * */
+
+
 function setLimitResults(collection, limit, filter) {
-	// eslint-disable-next-line no-var
-	if (limit === 0) {
-		collection.countDocuments(filter).exec(function (err, count) {
-			console.log(`Total results: ${count}`);
-			limit = count;
-		});
-	}
-	if (limit > 0) {
-		collection.countDocuments(filter).limit(limit).exec(function (err, count) {
-			console.log(`Total results: ${count}`);
-		});
-	}
-	return limit;
+  // eslint-disable-next-line no-var
+  if (limit === 0) {
+    collection.countDocuments(filter).exec(function (err, count) {
+      console.log(`Total results: ${count}`);
+      limit = count;
+    });
+  }
+
+  if (limit > 0) {
+    collection.countDocuments(filter).limit(limit).exec(function (err, count) {
+      console.log(`Total results: ${count}`);
+    });
+  }
+
+  return limit;
 }
 
 class commonController {
-	/** function that resolves the query and responses with all documents of
-   * the Collection restricted by a limit and pagination
-   * @param {Collection} collection is the collection where the query
-   * needs to be resolved
-   * @param {number} limit set the number of genes that will be returned
-   * @param {number} page the page number that want to see
-   * @param {number} leftEndPos leftEndPosition delimiter
-   * @param {number} rightEndPos rightEndPosition delimiter
-   */
-	static async getAll(collection, limit = 0, page = 0, sortField) {
-		/** checks if lower and upper limit has been defined, and returns
-     * the query by the specified range in false case, only return
-     * the Gene array by the limit.
-     */
-		// const filter = defineFilter(leftEndPos, rightEndPos);
-		const lim = (page + 1) * limit;
-		const skip = page * limit;
-		setLimitResults(collection, limit);
-		let response;
-		if (limit > 0) {
-			const offset = page * limit;
-			response = await collection.find({}).sort({ sortField: 1 }).limit(limit).skip(offset);
-		} else response = await collection.aggregate([{ $sort: { sortField: 1 } }]).allowDiskUse(true);
-		return response;
-	}
+  /** function that resolves the query and responses with all documents of
+    * the Collection restricted by a limit and pagination
+    * @param {Collection} collection is the collection where the query
+    * needs to be resolved
+    * @param {number} limit set the number of genes that will be returned
+    * @param {number} page the page number that want to see
+    * @param {number} leftEndPos leftEndPosition delimiter
+    * @param {number} rightEndPos rightEndPosition delimiter
+    */
+  static async getAll(collection, limit = 0, page = 0, sortField) {
+    /** checks if lower and upper limit has been defined, and returns
+       * the query by the specified range in false case, only return
+       * the Gene array by the limit.
+       */
+    // const filter = defineFilter(leftEndPos, rightEndPos);
+    const lim = (page + 1) * limit;
+    const skip = page * limit;
+    setLimitResults(collection, limit);
+    let response;
+
+    if (limit > 0) {
+      const offset = page * limit;
+      response = await collection.find({}).sort({
+        sortField: 1
+      }).limit(limit).skip(offset);
+    } else response = await collection.aggregate([{
+      $sort: {
+        sortField: 1
+      }
+    }]).allowDiskUse(true);
+
+    return response;
+  }
+
 }
 
 exports.commonController = commonController;
