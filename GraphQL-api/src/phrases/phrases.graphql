@@ -9,10 +9,10 @@ type Properties {
 	name: String
 	value: String
 	pmid: String
-	phrases: [Phrases]
+	phrases: [phrasesProperties]
 }
 
-type Phrases {
+type phrasesProperties {
 	phraseID: String
 	phrase: String
 	evidence: String
