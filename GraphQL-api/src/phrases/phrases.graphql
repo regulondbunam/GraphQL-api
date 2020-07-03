@@ -1,0 +1,23 @@
+type Phrases {
+	objectId: String
+	objectType: String
+	name: String
+	properties: [Properties]
+}
+
+type Properties {
+	name: String
+	value: String
+	pmid: String
+	phrases: [Phrases]
+}
+
+type Phrases {
+	phraseID: String
+	phrase: String
+	evidence: String
+}
+
+type Query {
+	getPhraseOf(id: [String]): [Phrases]
+}
