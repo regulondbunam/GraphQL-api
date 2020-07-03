@@ -9,7 +9,7 @@ export const geneResolvers = {
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa
      */
-		getAllGenes: (root, { limit, page }) => geneController.getAllGenes(Gene, limit, page),
+		getAllGenes: (root, { limit, page }) => commonController.getAll(Gene, limit, page, 'geneInfo.name'),
 		/** retrieves a list of Genes defined by it name or id in geneInfo
      * @return {JSON} retrieves the result of the query
      * @param {undefined} root description will added asa

@@ -7,6 +7,7 @@
 		"test": "jest",
 		"start": "npm run build && node build/index.js",
 		"start:dev": "npm run build && nodemon build/index.js",
+		"stop": "pm2 delete pm2ProductionConfig.json",
 		"slint": "eslint .",
 		"slint:fix": "eslint . --fix",
 		"build": "babel src -d build"
@@ -30,6 +31,7 @@
 		"merge-graphql-schemas": "^1.7.8",
 		"mongodb-filter-object-parser": "^1.1.7",
 		"mongoose": "^5.9.20",
+		"node-cmd": "^3.0.0",
 		"node-statsd": "^0.1.1",
 		"nodemon": "^2.0.3",
 		"open": "^7.0.4",

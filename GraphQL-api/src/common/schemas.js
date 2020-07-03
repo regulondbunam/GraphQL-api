@@ -13,5 +13,9 @@ const commonProperties = gql`
   ${fs.readFileSync('./src/common/common_properties.graphql').toString()}
 `;
 
+const phrases = gql`
+${fs.readFileSync('./src/phrases/phrases.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const typeDefs = mergeTypes([ Gene, commonProperties ], { all: true });
+export const typeDefs = mergeTypes([ Gene, commonProperties, phrases ], { all: true });

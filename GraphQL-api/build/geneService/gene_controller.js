@@ -30,45 +30,6 @@ class geneController {
     * @return {Object} return the results of the query identified by the
     *                  ID or name
     */
-  static async getAllGenes(collection, limit = 0, page = 0) {
-    /** checks if lower and upper limit has been defined, and returns
-    * the query by the specified range in false case, only return
-    * the Gene array by the limit.
-    */
-    // const filter = defineFilter(leftEndPos, rightEndPos);
-    const lim = (page + 1) * limit;
-    const skip = page * limit;
-    let hasMore = false;
-    (0, _controller_common_functions.setLimitResults)(collection, limit);
-    let response;
-
-    if (limit > 0) {
-      const offset = page * limit;
-      response = await collection.find({}).sort({
-        'geneInfo.name': 1
-      }).limit(limit).skip(offset);
-    } else response = await collection.aggregate([{
-      $sort: {
-        'geneInfo.name': 1
-      }
-    }]).allowDiskUse(true);
-
-    const total = await this.countGenesBy({});
-    const showedResult = limit * (page + 1);
-    if (showedResult < total) hasMore = true;
-    return {
-      data: response,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: Math.floor(total / limit),
-        totalResults: total,
-        hasNextPage: hasMore
-      }
-    };
-  }
-
   static async getGenesBy(search, advancedSearch, limit = 0, page = 0, properties = ['geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
@@ -92,13 +53,11 @@ class geneController {
       filter = organismFilter;
     }
 
-    console.log(JSON.stringify(filter));
-
     const Genes = _gene_model.Gene.find(filter).sort({
       'geneInfo.name': 1
     }).limit(limit).skip(offset);
 
-    const total = await this.countGenesBy(filter);
+    const total = await _controller_common_functions.commonController.countDocumentsIn(_gene_model.Gene, filter);
     const lastPage = Math.floor(total / limit);
     if (limit * (page + 1) < total) hasMore = true;
 
@@ -118,14 +77,6 @@ class geneController {
         hasNextPage: hasMore
       }
     };
-  }
-
-  static countGenesBy(filter = {}) {
-    return new Promise((resolve, object) => {
-      _gene_model.Gene.countDocuments(filter, (error, count) => {
-        if (error) rejects(error);else resolve(count);
-      });
-    });
   }
 
 }

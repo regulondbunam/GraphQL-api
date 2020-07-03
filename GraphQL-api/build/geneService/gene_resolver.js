@@ -21,7 +21,7 @@ const geneResolvers = exports.geneResolvers = {
     getAllGenes: (root, {
       limit,
       page
-    }) => _gene_controller.geneController.getAllGenes(_gene_model.Gene, limit, page),
+    }) => _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'geneInfo.name'),
 
     /** retrieves a list of Genes defined by it name or id in geneInfo
        * @return {JSON} retrieves the result of the query
