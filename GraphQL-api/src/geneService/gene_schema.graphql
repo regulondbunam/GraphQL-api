@@ -162,14 +162,34 @@ type GrowthConditions {
   evidenceReferences: [EvidenceReferences]
 }
 
+type Pagination {
+  limit: Int
+  currentPage: Int
+  firstPage: Int
+  lastPage: Int
+  totalResults: Int
+  hasNextPage: Boolean
+}
+
+type GenesResult { 
+  data: [Gene]
+  pagination: Pagination
+}
+
 type Query {
   """
   List all the genes or with a limit
   """
-  getAllGenes(limit: Int, page: Int): [Gene] @rateLimit(limit:1000, duration:60)
+  getAllGenes(limit: Int, page: Int): GenesResult! @rateLimit(limit:1000, duration:60)
   """
   Return a list of genes by an Id or name array, advancedSearch is not currently available
   """
-  getGenesBy(search: String, advancedSearch: String, limit: Int, page: Int, organismName: String): [Gene] @rateLimit(limit:1000, duration:60)
-
+  getGenesBy(
+    search: String, 
+    advancedSearch: String, 
+    limit: Int, 
+    page: Int, 
+    properties: [String], 
+    organismName: String, 
+    fullMatchOnly: Boolean): GenesResult! @rateLimit(limit:1000, duration:60)
 }

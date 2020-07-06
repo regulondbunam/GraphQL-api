@@ -25,8 +25,11 @@ const Regulon = _apolloServerExpress.gql`
 const commonProperties = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/common/common_properties.graphql').toString()}
 `;
+const phrases = _apolloServerExpress.gql`
+${_fs2.default.readFileSync('./src/phrases/phrases.graphql').toString()}
+`;
 /** Exports the merged Schema to the index to construct the GQL Server */
 
-const typeDefs = exports.typeDefs = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties], {
+const typeDefs = exports.typeDefs = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases], {
   all: true
 });

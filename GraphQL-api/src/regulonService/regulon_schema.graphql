@@ -37,6 +37,8 @@ type Genes {
 }
 
 type Operon {
+	operon_Id: String
+	name: String
 	tusEncodingRegulator: [TusEncodingRegulator]
 }
 

@@ -12,11 +12,11 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**  enviroment variables require */
-const enviroment = require('../config-module').config();
+require('dotenv').config();
 /** Conecction to mongoDB with the credentials on .env file */
 
 
-_mongoose2.default.connect(`mongodb://${enviroment.DB_USER}:${enviroment.DB_PASS}@${enviroment.DB_URL}`, {
+_mongoose2.default.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });

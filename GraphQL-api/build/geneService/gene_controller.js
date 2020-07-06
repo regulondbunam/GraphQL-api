@@ -9,6 +9,12 @@ var _gene_model = require("./gene_model");
 
 var _mongodbFilterObjectParser = require("mongodb-filter-object-parser");
 
+var _textSearchFilter = require("../../lib/textSearchFilter");
+
+var _controller_common_functions = require("../common/controller_common_functions");
+
+var _graphql = require("graphql");
+
 // import { GraphQLError } from 'graphql';
 
 /** Define a geneController. */
@@ -24,29 +30,53 @@ class geneController {
     * @return {Object} return the results of the query identified by the
     *                  ID or name
     */
-  static getGenesBy(search, advancedSearch, limit = 0, page = 0, organismName) {
+  static async getGenesBy(search, advancedSearch, limit = 0, page = 0, properties = ['geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
+    let hasMore = false;
 
     if (advancedSearch !== undefined) {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
-      filter = (0, _mongodbFilterObjectParser.searchFilter)(search);
+      //filter = searchFilter(search);
+      filter = (0, _textSearchFilter.textSearch)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {
       organismName = new RegExp(organismName, 'i');
       let organismFilter = {
-        "$and": [{
-          "organismName": organismName
+        $and: [{
+          organismName: organismName
         }]
       };
       organismFilter.$and.push(filter);
       filter = organismFilter;
     }
 
-    console.log(JSON.stringify(filter));
-    return _gene_model.Gene.find(filter).limit(limit).skip(offset);
+    const Genes = _gene_model.Gene.find(filter).sort({
+      'geneInfo.name': 1
+    }).limit(limit).skip(offset);
+
+    const total = await _controller_common_functions.commonController.countDocumentsIn(_gene_model.Gene, filter);
+    const lastPage = Math.floor(total / limit);
+    if (limit * (page + 1) < total) hasMore = true;
+
+    if (page > lastPage) {
+      const err = new _graphql.GraphQLError('You must select an available page number');
+      err.status = 'No Content';
+      err.statusCode = 204;
+      throw err;
+    } else return {
+      data: Genes,
+      pagination: {
+        limit: limit,
+        currentPage: page,
+        firstPage: 0,
+        lastPage: lastPage,
+        totalResults: total,
+        hasNextPage: hasMore
+      }
+    };
   }
 
 }
