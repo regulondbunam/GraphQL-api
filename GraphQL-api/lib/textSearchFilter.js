@@ -1,38 +1,59 @@
+/** This function contains all needed to build filters for Search
+ *  without using $text operator that mongoDB use, this function can
+ *  define if the search will be partial or full match, also accepts 
+ *  a String array that contains all the fields that will be queried
+ * 
+ *  textSearch is the Main function and this start the build process
+ *  @param {String} searchString contains all argument and operator that
+ * 	will be parsed
+ * 	@param {Array} properties contains all field that will be queried by
+ * 	all search args.
+ * 	@param {Boolean} fullMatchOnly indicates if the query accepts partial
+ * 	or full match 
+ */
 const textSearch = (searchString, properties, fullMatchOnly) => {
 	let finalObject = {};
+	// used to search args defined by two or more words
 	searchString = replaceDoubleQuotes(searchString);
+	// get an array with all arguments and operators and remove all possible
+	// empty objects
 	// prettier-ignore
 	let wordsToFind = searchString.split(/\"|\s/);
 	wordsToFind = removeEmptyObject(wordsToFind);
 	let regexOperator = /^OR|AND|NOT$/i;
+	// function start a loop to search all possible operator
 	if (wordsToFind.length > 1) {
 		do {
+			// obtain the first element in array and detects if is an operator
 			let extractedWord = wordsToFind.shift();
 			if (regexOperator.test(extractedWord)) {
+				// with an operator encounter, function needs next element in array,
+				// and identified all special characters that are contained
 				extractedWord = extractedWord.toLowerCase();
-				let nextExtract = wordsToFind.shift();
-				let orObject;
+				let nextExtract = escapeChar(wordsToFind.shift());
+				// build the filter based on the operator obtained
+				let operatorObject;
 				let filterPlaceHolder;
 				switch (extractedWord) {
 					case 'or':
-						orObject = buildOrObject(properties, nextExtract, fullMatchOnly);
+						operatorObject = buildOrObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$or: [ orObject, filterPlaceHolder ]
+							$or: [ operatorObject, filterPlaceHolder ]
 						};
 						break;
 					case 'and':
-						orObject = buildOrObject(properties, nextExtract, fullMatchOnly);
+						operatorObject = buildOrObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$and: [ orObject, filterPlaceHolder ]
+							$and: [ operatorObject, filterPlaceHolder ]
 						};
 						break;
 					case 'not':
-						orObject = buildNotObject(properties, nextExtract, fullMatchOnly);
+						operatorObject = buildNotObject(properties, nextExtract, fullMatchOnly);
 						filterPlaceHolder = finalObject;
 						finalObject = {
-							$and: [ orObject, filterPlaceHolder ]
+							$and: [ operatorObject, filterPlaceHolder ]
 						};
 						break;
 				}
@@ -42,7 +63,9 @@ const textSearch = (searchString, properties, fullMatchOnly) => {
 			}
 		} while (wordsToFind.length != 0);
 	} else {
-		finalObject = buildOrObject(properties, replaceChar(wordsToFind[0], 1), fullMatchOnly);
+		// if is only an arg in the string the filter will be builded without a loop
+		let word = replaceChar(wordsToFind[0], 1);
+		finalObject = buildOrObject(properties, escapeChar(word), fullMatchOnly);
 	}
 	return finalObject;
 };
@@ -106,6 +129,12 @@ function replaceChar(variousWord, skip) {
 	return variousWord;
 }
 
+/** function to build a filter part with the arg transformed to regex and applied to
+ *  all field to be queried
+ *  @param {Array} fieldsToUse contains all fields to use
+ *  @param {String} wordToSearch arg to be queried
+ *  @param {Boolean} fullMatchOnly defines if will be partial or full match
+ */
 function buildOrObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 	let orObject = { $or: [] };
 	if (fullMatchOnly) wordToSearch = new RegExp('\\b' + wordToSearch + '\\b', 'i');
@@ -119,6 +148,12 @@ function buildOrObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 	return orObject;
 }
 
+/** function to build a filter part with the argument transformed to regular expression 
+ *  and applied to all the fields to query when the argument is preceded by a "NO" operator
+ *  @param {Array} fieldsToUse contains all fields to use
+ *  @param {String} wordToSearch arg to be queried
+ *  @param {Boolean} fullMatchOnly defines if will be partial or full match
+ */
 function buildNotObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 	let notObject = { $and: [] };
 	if (fullMatchOnly) wordToSearch = new RegExp('\\b' + wordToSearch + '\\b', 'i');
@@ -130,6 +165,20 @@ function buildNotObject(fieldsToUse, wordToSearch, fullMatchOnly) {
 		});
 	}
 	return notObject;
+}
+
+/** function to replace all special characters in the argument with the same 
+ *  character but escaped */
+// prettier-ignore
+function escapeChar(str) {
+	return str.replace(/[\+\-\&\/]/g, (match) => {
+		return {
+			'\+': '\\+',
+			'\-': '\\-',
+			'\&': '\\&',
+			'\/': '\\/',
+		}[match];
+	});
 }
 
 module.exports = { textSearch };
