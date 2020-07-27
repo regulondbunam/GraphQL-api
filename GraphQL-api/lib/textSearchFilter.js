@@ -59,7 +59,8 @@ const textSearch = (searchString, properties, fullMatchOnly) => {
 				}
 			} else {
 				//if is not an operator, continues here, replace the possible '_' on word
-				finalObject = buildOrObject(properties, replaceChar(extractedWord, 1), fullMatchOnly);
+				extractedWord = replaceChar(extractedWord, 1);
+				finalObject = buildOrObject(properties, escapeChar(extractedWord), fullMatchOnly);
 			}
 		} while (wordsToFind.length != 0);
 	} else {
