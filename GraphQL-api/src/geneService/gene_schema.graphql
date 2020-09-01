@@ -1,16 +1,13 @@
 type Gene {
-  geneInfo: GeneInfo
-  products: [Product]
+  geneInfo: GeneInfo!
+  products: [Products]
   shineDalgarno: [ShineDalgarno]
-  regulation: Regulation
+  regulation: Regulation!
   growthConditions: [GrowthConditions]
   organismName: String
   schemaVersion: Float
 }
 
-"""
-GeneInfo Type Schema
-"""
 type GeneInfo {
   id: String
   name: String
@@ -28,28 +25,24 @@ type GeneInfo {
   evidenceReferences: [EvidenceReferences]
 }
 
-"""
-Product Type Schema
-"""
-type Product {
-  regulatorId: String
+type Products {
+  product_id: String
   name: String
+  type: String
+  sequence: String
+  note: String
   molecularWeight: Float
   isoelectricPoint: Float
   cellularLocation: String
   anticodon: String
-  note: String
-  type: String
-  sequence: String
   synonyms: [String]
   motifs: [Motifs]
   externalCrossReferences: [ExternalCrossReferences]
   evidenceReferences: [EvidenceReferences]
+  isRegulator: Boolean
+  regulator_id: String
 }
 
-"""
-Motifs
-"""
 type Motifs {
   leftEndPosition: Int
   rightEndPosition: Int
@@ -59,9 +52,6 @@ type Motifs {
   note: String
 }
 
-"""
-ShineDalgarno Type Schema
-"""
 type ShineDalgarno {
   distanceToGene: Int
   leftEndPosition: Int
@@ -70,9 +60,6 @@ type ShineDalgarno {
   note: String
 }
 
-"""
-Regulation Type Schema
-"""
 type Regulation {
   operon: Operon
   regulators: [Regulators]
@@ -80,59 +67,41 @@ type Regulation {
   statistics: Statistics
 }
 
-"""
-Operon
-"""
 type Operon {
+  id: String
+  name: String
   arrangement: [Arrangement]
 }
 
-"""
-Arrangement
-"""
+
 type Arrangement {
   regulator: Regulator
   promoter: Promoter
   transcriptionUnit: TranscriptionUnit
 }
 
-"""
-TranscriptionFactor
-"""
 type Regulator {
   id: String
   name: String
   type: String
 }
 
-"""
-Promoter
-"""
 type Promoter {
   id: String
   name: String
 }
 
-"""
-TranscriptionUnit
-"""
 type TranscriptionUnit {
   id: String
   name: String
 }
 
-"""
-Regulators
-"""
 type Regulators {
   id: String
   name: String
   type: String
 }
 
-"""
-Context
-"""
 type Context {
   type: String
   name: String
@@ -143,18 +112,12 @@ type Context {
   evidenceReferences: [EvidenceReferences]
 }
 
-"""
-Statistics
-"""
 type Statistics {
   regulators: Int
   regulatoryInteractions: Int
   promoters: Int
 }
 
-"""
-GrowthConditions Type Schema
-"""
 type GrowthConditions {
   controlCondition: String
   experimentalCondition: String
@@ -162,34 +125,70 @@ type GrowthConditions {
   evidenceReferences: [EvidenceReferences]
 }
 
-type Pagination {
-  limit: Int
-  currentPage: Int
-  firstPage: Int
-  lastPage: Int
-  totalResults: Int
-  hasNextPage: Boolean
-}
-
 type GenesResult { 
+  """
+  contains server response
+  """
   data: [Gene]
+  """
+  contains pagination info
+  """
   pagination: Pagination
 }
 
 type Query {
   """
-  List all the genes or with a limit
+  #### name
+  getAllGenes
+  #### description
+  List all the genes contained in collection
   """
-  getAllGenes(limit: Int, page: Int): GenesResult! @rateLimit(limit:1000, duration:60)
+  getAllGenes(
+    "**limit**: defines the page results showed (10 by default)"
+    limit: Int, 
+    "**page**: select the current result page (0 by default)"
+    page: Int): GenesResult! 
+  
+  
   """
-  Return a list of genes by an Id or name array, advancedSearch is not currently available
+  #### name
+  getGenesBy
+  #### description
+  List the genes obtained by a search or advancedSearch String
+  #### example
+  ```json
+  {
+    getGenesBy(args){
+      data{
+        fields_to_show
+      }
+      pagination{
+        fields_to_show
+      }
+    }
+  }
+  ```
   """
   getGenesBy(
+    """
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    """
     search: String, 
+    """
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[geneInfo.strand])\"
+    """
     advancedSearch: String, 
+    "defines the page results showed (10 by default)"
     limit: Int, 
+    "select the current result page (0 by default)"
     page: Int, 
+    "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
     properties: [String], 
+    "usable for specific organismName queries"
     organismName: String, 
-    fullMatchOnly: Boolean): GenesResult! @rateLimit(limit:1000, duration:60)
+    "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
+    fullMatchOnly: Boolean): GenesResult! 
 }
+ 

@@ -1,23 +1,62 @@
+/**
+# name: geneController.js version: 1.0
+
+## synopsis
+
+```javascript
+commonController.getAll(collection, limit, page);
+```
+
+## description
+Defines function that resolves the query and responses with all documents of
+the Collection restricted by a limit and pagination
+
+## arguments
+In getAllGenes:
+	* collection
+	tells to function the mongoose model to be used
+	* limit
+	defines the page results showed (10 by default)
+	* page
+	select the current result page (0 by default)
+	* sortValue
+	tells the function the field by which the results will be sorted
+
+In countDocuments:
+	* collection
+	tells to function the mongoose model to be used
+	* filter
+	needs the filter used by the query to get the count (by default is 
+	empty {} por getAll count)
+
+* __Return:__
+Object - __ MongoDB-Response
+Returns an object containing a response that will be sent to GraphQL
+
+## code
+**/
+
 class commonController {
-	/** function that resolves the query and responses with all documents of
-   * the Collection restricted by a limit and pagination
-   * @param {Collection} collection is the collection where the query
-   * needs to be resolved
-   * @param {number} limit set the number of genes that will be returned
-   * @param {number} page the page number that want to see
-   * @param {String} sortValue value by which the response will be sorted
-   */
-	static async getAll(collection, limit = 0, page = 0, sortValue) {
+	static async getAll(collection, limit = 10, page = 0, sortValue) {
+		// start to define limit and page values to be used on query
 		const lim = (page + 1) * limit;
 		const skip = page * limit;
+
+		// variable definitions
 		let hasMore = false,
-			response;
+			response,
+			total,
+			showedResult;
+
+		// get query response from mongodb through mongoose
 		if (limit > 0) {
 			const offset = page * limit;
 			response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 		} else response = await collection.aggregate([ { $sort: { sortValue: 1 } } ]).allowDiskUse(true);
-		const total = await this.countDocumentsIn(collection, {});
-		const showedResult = limit * (page + 1);
+
+		// get another data that be in Pagination Type
+		total = await this.countDocumentsIn(collection);
+		showedResult = limit * (page + 1);
 		if (showedResult < total) hasMore = true;
 		return {
 			data: response,
@@ -32,7 +71,7 @@ class commonController {
 		};
 	}
 
-	static countDocumentsIn(collection, filter) {
+	static countDocumentsIn(collection, filter = {}) {
 		return new Promise((resolve, object) => {
 			collection.countDocuments(filter, (error, count) => {
 				if (error) rejects(error);

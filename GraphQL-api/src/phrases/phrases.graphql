@@ -19,5 +19,13 @@ type phrasesProperties {
 }
 
 type Query {
-	getPhraseOf(id: [String]): [Phrases]
+  """
+  #### name
+  getPhraseOf
+  #### description
+  gets all the phrases of a gene based on an identifier
+  """
+	getPhraseOf(
+		"array of gene ids to be queried"
+		id: [String]): [Phrases]
 }

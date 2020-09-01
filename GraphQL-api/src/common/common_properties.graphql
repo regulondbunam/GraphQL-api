@@ -1,81 +1,63 @@
-"""
-ExternalCrossReference
-"""
 type ExternalCrossReferences {
-  id: String
-  name: String
-  url: String
+	id: String
+	name: String
+	url: String
 }
 
-"""
-EvidenceReferences
-"""
 type EvidenceReferences {
-  evidenceName: String
-  evidenceCode: String
-  evidenceType: String
-  referenceId: String
-  referenceURL: String
-  referenceCitation: String
+	evidenceName: String
+	evidenceCode: String
+	evidenceType: String
+	referenceId: String
+	referenceURL: String
+	referenceCitation: String
 }
 
-"""
-Operon
-"""
 type Operon {
-  id: String
-  name: String
+	id: String
+	name: String
 }
 
-"""
-Terms
-"""
 type Terms {
-  multifun: [[String]]
-  geneOntology: GeneOntology
+	multifun: [[String]]
+	geneOntology: GeneOntology
 }
 
-"""
-Multifun
-"""
 type Multifun {
 	id: String
 	name: String
 	gene_ids: [String]
 }
 
-"""
-GeneOntology
-"""
 type GeneOntology {
-  cellularComponent: [CellularComponent]
-  molecularFunction: [MolecularFunction]
-  biologicalProcess: [BiologicalProcess]
+	cellularComponent: [CellularComponent]
+	molecularFunction: [MolecularFunction]
+	biologicalProcess: [BiologicalProcess]
 }
 
-"""
-CellularComponent
-"""
 type CellularComponent {
-  term_id: String
-  name: String
-  gene_ids: [String]
+	term_id: String
+	name: String
+	gene_ids: [String]
 }
 
-"""
-MolecularFunction
-"""
 type MolecularFunction {
-  term_id: String
-  name: String
-  gene_ids: [String]
+	term_id: String
+	name: String
+	gene_ids: [String]
 }
 
-"""
-BiologicalProccess
-"""
 type BiologicalProcess {
-  term_id: String
-  name: String
-  gene_ids: [String]
+	term_id: String
+	name: String
+	gene_ids: [String]
+}
+
+type Pagination {
+	limit: Int
+	currentPage: Int
+	firstPage: Int
+	lastPage: Int
+	totalResults: Int
+	hasNextPage: Boolean
 }
