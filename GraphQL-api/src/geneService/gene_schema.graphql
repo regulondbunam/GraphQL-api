@@ -40,7 +40,7 @@ type Products {
   externalCrossReferences: [ExternalCrossReferences]
   evidenceReferences: [EvidenceReferences]
   isRegulator: Boolean
-  regulator_id: String
+  regulatorId: String
 }
 
 type Motifs {
