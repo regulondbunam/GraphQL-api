@@ -4,9 +4,11 @@ var _express = require("express");
 
 var _express2 = _interopRequireDefault(_express);
 
-var _apolloServerExpress = require("apollo-server-express");
+var _expressRateLimit = require("express-rate-limit");
 
-var _graphqlRateLimitDirective = require("graphql-rate-limit-directive");
+var _expressRateLimit2 = _interopRequireDefault(_expressRateLimit);
+
+var _apolloServerExpress = require("apollo-server-express");
 
 var _schemas = require("./common/schemas");
 
@@ -27,24 +29,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param resolvers are the merged resolvers
  */
 const server = new _apolloServerExpress.ApolloServer({
-  typeDefs: [(0, _graphqlRateLimitDirective.createRateLimitTypeDef)(), _schemas.typeDefs],
+  typeDefs: [_schemas.typeDefs],
   resolvers: _resolvers.resolvers,
   introspection: true,
   playground: true,
   debug: true,
-  schemaDirectives: {
-    rateLimit: (0, _graphqlRateLimitDirective.createRateLimitDirective)()
-  },
-  // tracing: true,
   formatError: err => ({
     message: err.message,
     status: err.extensions.exception.status,
     statusCode: err.extensions.exception.statusCode
   })
-});
-/** set up the ApolloServer with an express middleware */
+}); // Create an Instance of express to be used with ApolloServer
 
-const app = (0, _express2.default)();
+const app = (0, _express2.default)(); // set up the ApolloServer with an express middleware
+
+const apiLimiter = (0, _expressRateLimit2.default)({
+  windowMs: 60000,
+  max: 1000,
+  message: {
+    message: 'Too many requests',
+    statusCode: '429'
+  }
+});
+app.use(apiLimiter); // Apply Cors and Express instance to ApolloServer
+
 server.applyMiddleware({
   app,
   cors: {
