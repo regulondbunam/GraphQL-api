@@ -1,7 +1,7 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 /** graphql libraries importation */
 import { ApolloServer } from 'apollo-server-express';
-import { createRateLimitTypeDef, createRateLimitDirective } from 'graphql-rate-limit-directive';
 /** GraphQL server set up requirements */
 import { typeDefs } from './common/schemas';
 import { resolvers } from './common/resolvers';
@@ -11,17 +11,12 @@ import connection from './dbConnection';
  * @param typeDefs are the merged .graphql schemas
  * @param resolvers are the merged resolvers
  */
-
 const server = new ApolloServer({
-	typeDefs: [ createRateLimitTypeDef(), typeDefs ],
+	typeDefs: [ typeDefs ],
 	resolvers,
 	introspection: true,
 	playground: true,
 	debug: true,
-	schemaDirectives: {
-		rateLimit: createRateLimitDirective()
-	},
-	// tracing: true,
 	formatError: (err) => ({
 		message: err.message,
 		status: err.extensions.exception.status,
@@ -29,8 +24,21 @@ const server = new ApolloServer({
 	})
 });
 
-/** set up the ApolloServer with an express middleware */
+// Create an Instance of express to be used with ApolloServer
 const app = express();
+
+// set up the ApolloServer with an express middleware
+const apiLimiter = rateLimit({
+	windowMs: 60000,
+	max: 1000,
+	message: {
+		message: 'Too many requests',
+		statusCode: '429'
+	}
+});
+app.use(apiLimiter);
+
+// Apply Cors and Express instance to ApolloServer
 server.applyMiddleware({
 	app,
 	cors: {
