@@ -37,7 +37,7 @@ Returns an object containing a response that will be sent to GraphQL
 **/
 
 class commonController {
-	static async getAll(collection, limit = 10, page = 0, sortValue) {
+	static async getAll(collection, limit = 20, page = 0, sortValue) {
 		// start to define limit and page values to be used on query
 		const lim = (page + 1) * limit;
 		const skip = page * limit;
@@ -49,7 +49,7 @@ class commonController {
 			showedResult;
 
 		// get query response from mongodb through mongoose
-		if (limit > 0) {
+		if (limit < 500) {
 			const offset = page * limit;
 			response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 		} else response = await collection.aggregate([ { $sort: { sortValue: 1 } } ]).allowDiskUse(true);

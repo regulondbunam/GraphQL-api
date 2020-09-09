@@ -1,46 +1,90 @@
-type Gene {
-  geneInfo: GeneInfo!
+type GeneData {
+  id: String
+  gene: Gene
   products: [Products]
-  shineDalgarno: [ShineDalgarno]
-  regulation: Regulation!
+  shineDalgarnos: [ShineDalgarnos]
+  regulation: Regulation
   growthConditions: [GrowthConditions]
-  organismName: String
+  organism: Organism
+  allEvidenceReferences: [EvidenceReferences]
   schemaVersion: Float
 }
 
-type GeneInfo {
+"This contains all data of Gene properties"
+type Gene {
+  "It is the ID of RegulonDB associated with the gene"
   id: String
+  """
+  The primary name by which an object is known to scientists. 
+  Typically the name will be a standard name or a widely used and familiar name.
+  """
   name: String
+  "Encodes the position of the left end of the region (inclusive)"
   leftEndPosition: Int
+  "Encodes the position of the right end of the region (inclisive)"
   rightEndPosition: Int
+  "Indicates the direction of the transcription of gene"
   strand: String
+  "Sequence used by the gene"
   sequence: String
+  "The percentage of GC found in the sequence"
   gcContent: Float
+  "This slot lists the map position of this gene on the chromosome in centisome units."
   centisomePosition: Float
+  "Stores a general commeny about the object that contains the column"
   note: String
+  "Describes the type of the Gene"
   type: String
+  "Contains all the synonyms for this Gene"
   synonyms: [String]
-  terms: [Terms]
+  "Identifying multifunctional genes"
+  multifunTerms: [MultifunTerms]
+  "All external references of this Gene information"
   externalCrossReferences: [ExternalCrossReferences]
+  "All references of this Gene information"
   evidenceReferences: [EvidenceReferences]
 }
 
-type Products {
-  product_id: String
+type MultifunTerms {
+  geneIds:[String]
+  id: String
+  label: String
   name: String
+}
+
+type Products {
+  "It is the ID of RegulonDB associated with the product"
+  id: String
+  "The primary name by which an object is known to scientists."
+  name: String
+  "Describes the type of the Product"
   type: String
+  "It is the sequence used by the product "
   sequence: String
+  "note of the Product"
   note: String
-  molecularWeight: Float
+  "A molecular weight as computed from an amino-aid sequence."
+  molecularWeight: String
+  "Is a percentage the pH at which the amino acid does not migrate in an electric field."
   isoelectricPoint: Float
-  cellularLocation: String
+  "cellularLocations of the Product"
+  cellularLocations: [String]
+  "anticodon of the Product"
   anticodon: String
+  "synonyms of the Product"
   synonyms: [String]
+  "motifs of the Product"
   motifs: [Motifs]
+  "All external references of this Product information"
   externalCrossReferences: [ExternalCrossReferences]
+  "All references of this Product information"
   evidenceReferences: [EvidenceReferences]
+  "Confirms if is a Regulator"
   isRegulator: Boolean
-  regulatorId: String
+  "Id of Regulon"
+  regulonId: String
+  "geneOntologyTerms of the Product"
+  geneOntologyTerms: [GeneOntologyTerms]
 }
 
 type Motifs {
@@ -52,8 +96,9 @@ type Motifs {
   note: String
 }
 
-type ShineDalgarno {
+type ShineDalgarnos {
   distanceToGene: Int
+  id: String
   leftEndPosition: Int
   rightEndPosition: Int
   sequence: String
@@ -75,15 +120,16 @@ type Operon {
 
 
 type Arrangement {
-  regulator: Regulator
-  promoter: Promoter
+  regulator: [Regulators]
+  promoters: [Promoter]
   transcriptionUnit: TranscriptionUnit
 }
 
-type Regulator {
+type Regulators {
   id: String
   name: String
   type: String
+  function: String
 }
 
 type Promoter {
@@ -96,13 +142,8 @@ type TranscriptionUnit {
   name: String
 }
 
-type Regulators {
-  id: String
-  name: String
-  type: String
-}
-
 type Context {
+  id: String
   type: String
   name: String
   leftEndPosition: Int
@@ -119,17 +160,23 @@ type Statistics {
 }
 
 type GrowthConditions {
+  id: String
   controlCondition: String
   experimentalCondition: String
   effect: String
   evidenceReferences: [EvidenceReferences]
 }
 
+type Organism {
+  id: String
+  name: String
+}
+
 type GenesResult { 
   """
   contains server response
   """
-  data: [Gene]
+  data: [GeneData]
   """
   contains pagination info
   """

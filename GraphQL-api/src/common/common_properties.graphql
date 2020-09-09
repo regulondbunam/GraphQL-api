@@ -1,6 +1,7 @@
 type ExternalCrossReferences {
-	id: String
-	name: String
+	externalCrossReferenceid: String
+	externalCrossReferencename: String
+	objectId: String
 	url: String
 }
 
@@ -8,7 +9,9 @@ type EvidenceReferences {
 	evidenceName: String
 	evidenceCode: String
 	evidenceType: String
-	referenceId: String
+	evidenceID: String
+	pmid: String
+	publicationId: String
 	referenceURL: String
 	referenceCitation: String
 }
@@ -18,39 +21,37 @@ type Operon {
 	name: String
 }
 
-type Terms {
-	multifun: [[String]]
-	geneOntology: GeneOntology
-}
-
 type Multifun {
 	id: String
 	name: String
 	gene_ids: [String]
 }
 
-type GeneOntology {
+type GeneOntologyTerms {
 	cellularComponent: [CellularComponent]
 	molecularFunction: [MolecularFunction]
 	biologicalProcess: [BiologicalProcess]
 }
 
 type CellularComponent {
-	term_id: String
+	evidenceReferences: [EvidenceReferences]
+	id: String
 	name: String
-	gene_ids: [String]
+	productsIds: [String]
 }
 
 type MolecularFunction {
-	term_id: String
+	evidenceReferences: [EvidenceReferences]
+	id: String
 	name: String
-	gene_ids: [String]
+	productsIds: [String]
 }
 
 type BiologicalProcess {
-	term_id: String
+	evidenceReferences: [EvidenceReferences]
+	id: String
 	name: String
-	gene_ids: [String]
+	productsIds: [String]
 }
 
 type Pagination {

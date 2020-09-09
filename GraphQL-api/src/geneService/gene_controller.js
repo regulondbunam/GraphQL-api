@@ -47,7 +47,7 @@ class geneController {
 		advancedSearch,
 		limit = 10,
 		page = 0,
-		properties = [ 'geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name' ],
+		properties = [ 'gene.id', 'gene.name', 'gene.synonyms', 'gene.type', 'products.name' ],
 		organismName,
 		fullMatchOnly = false
 	) {
@@ -66,7 +66,7 @@ class geneController {
 			organismFilter.$and.push(filter);
 			filter = organismFilter;
 		}
-		const Genes = Gene.find(filter).sort({ 'geneInfo.name': 1 }).limit(limit).skip(offset);
+		const Genes = Gene.find(filter).sort({ 'gene.name': 1 }).limit(limit).skip(offset);
 		const total = await commonController.countDocumentsIn(Gene, filter);
 		const lastPage = Math.floor(total / limit);
 		if (limit * (page + 1) < total) hasMore = true;
