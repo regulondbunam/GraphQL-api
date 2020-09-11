@@ -2,8 +2,6 @@ GraphQL-api/node_modules/
 .env
 GraphQL-api/src/startscript.js
 GraphQL-api/env.variables.json
-GraphQL-api/pm2DevelopmentConfig.json
-coverage/
-benchmarks/
+GraphQL-api/src/generateSchemas.js
 .vscode/
 LICENSE

@@ -49,10 +49,13 @@ class commonController {
 			showedResult;
 
 		// get query response from mongodb through mongoose
-		if (limit < 500) {
-			const offset = page * limit;
-			response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
-		} else response = await collection.aggregate([ { $sort: { sortValue: 1 } } ]).allowDiskUse(true);
+		const offset = page * limit;
+
+		// if the limit is greater than 100, the data will not be sorted to reduce the response time,
+		// if it is less than or equal to 100 the data will be ordered alphabetically by Gene.name
+		if (limit > 100) {
+			response = await collection.aggregate([ { $limit: limit }, { $skip: offset } ]).allowDiskUse(true);
+		} else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 
 		// get another data that be in Pagination Type
 		total = await this.countDocumentsIn(collection);

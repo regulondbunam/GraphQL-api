@@ -14,6 +14,8 @@ var _schemas = require("./common/schemas");
 
 var _resolvers = require("./common/resolvers");
 
+var _playground_Options = require("./playground_Options");
+
 var _dbConnection = require("./dbConnection");
 
 var _dbConnection2 = _interopRequireDefault(_dbConnection);
@@ -32,7 +34,7 @@ const server = new _apolloServerExpress.ApolloServer({
   typeDefs: [_schemas.typeDefs],
   resolvers: _resolvers.resolvers,
   introspection: true,
-  playground: true,
+  playground: _playground_Options.playgroundTabs,
   debug: true,
   formatError: err => ({
     message: err.message,

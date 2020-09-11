@@ -162,6 +162,6 @@ const geneServiceSchema = new mongoose.Schema({
 	schemaVersion: Number
 });
 
-const Gene = mongoose.model('gene_datamart_updateds', geneServiceSchema);
+const Gene = mongoose.model('gene_datamart_updated_without_term_members', geneServiceSchema);
 
 export { Gene };

@@ -9,8 +9,6 @@ var _gene_model = require("./gene_model");
 
 var _mongodbFilterObjectParser = require("mongodb-filter-object-parser");
 
-var _textSearchFilter = require("../../lib/textSearchFilter");
-
 var _controller_common_functions = require("../common/controller_common_functions");
 
 var _graphql = require("graphql");
@@ -62,7 +60,7 @@ class geneController {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
       //filter = searchFilter(search);
-      filter = (0, _textSearchFilter.textSearch)(search, properties, fullMatchOnly);
+      filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {

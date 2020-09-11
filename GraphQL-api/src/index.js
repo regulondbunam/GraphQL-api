@@ -1,10 +1,11 @@
-import express from 'express';
+import express, { query } from 'express';
 import rateLimit from 'express-rate-limit';
 /** graphql libraries importation */
 import { ApolloServer } from 'apollo-server-express';
 /** GraphQL server set up requirements */
 import { typeDefs } from './common/schemas';
 import { resolvers } from './common/resolvers';
+import { playgroundTabs } from './playground_Options';
 import connection from './dbConnection';
 
 /** Setting up the GraphQL - Apollo Server Express Playground
@@ -15,7 +16,7 @@ const server = new ApolloServer({
 	typeDefs: [ typeDefs ],
 	resolvers,
 	introspection: true,
-	playground: true,
+	playground: playgroundTabs,
 	debug: true,
 	formatError: (err) => ({
 		message: err.message,

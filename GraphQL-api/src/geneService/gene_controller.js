@@ -35,8 +35,7 @@ Returns an object containing a response that will be sent to GraphQL
 
 // import { GraphQLError } from 'graphql';
 import { Gene } from './gene_model';
-import { advancedSearchFilter, searchFilter } from 'mongodb-filter-object-parser';
-import { textSearch } from '../../lib/textSearchFilter';
+import { advancedSearchFilter, textSearch } from 'mongodb-filter-object-parser';
 import { commonController } from '../common/controller_common_functions';
 import { GraphQLError } from 'graphql';
 
