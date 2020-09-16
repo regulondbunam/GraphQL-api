@@ -1,0 +1,31 @@
+type Phrases {
+	objectId: String
+	objectType: String
+	name: String
+	properties: [Properties]
+}
+
+type Properties {
+	name: String
+	value: String
+	pmid: String
+	phrases: [phrasesProperties]
+}
+
+type phrasesProperties {
+	phraseID: String
+	phrase: String
+	evidence: String
+}
+
+type Query {
+  """
+  #### name
+  getPhraseOf
+  #### description
+  gets all the phrases of a gene based on an identifier
+  """
+	getPhraseOf(
+		"array of gene ids to be queried"
+		id: [String]): [Phrases]
+}

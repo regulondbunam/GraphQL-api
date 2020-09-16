@@ -1,0 +1,7 @@
+GraphQL-api/node_modules/
+.env
+GraphQL-api/src/startscript.js
+GraphQL-api/env.variables.json
+GraphQL-api/src/generateSchemas.js
+.vscode/
+LICENSE

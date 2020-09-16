@@ -1,0 +1,189 @@
+type Regulon {
+	_id: String
+	regulator: Regulator
+	terms: Terms
+	regulates: Regulates
+	regulatoryInteractions: RegulatoryInteractions
+	aligmentMatrix: AligmentMatrix
+	evolutionaryConservation: EvolutionaryConservation
+	organism: String
+	summary: Summary
+}
+
+type Regulator {
+	name: String
+	synonyms: [String]
+	note: String
+	conformations: Conformations
+	genes: Genes
+	operon: Operon
+	sensingClass: String
+	connectivityClass: String
+}
+
+type Conformations {
+	id: String
+	name: String
+	type: String
+	effectorInteractionType: String
+	evidenceReferences: [EvidenceReferences]
+	functionalType: String
+}
+
+type Genes {
+	gene_id: String
+	genomePosition: String
+	length: String
+}
+
+type Operon {
+	operon_Id: String
+	name: String
+	tusEncodingRegulator: [TusEncodingRegulator]
+}
+
+type TusEncodingRegulator {
+	transcriptionUnitName: String
+	promoterName: String
+}
+
+type Regulates {
+	genes: [Genes]
+	transcriptionFactors: [TranscriptionFactors]
+	transcriptionUnits: [TranscriptionUnits]
+	operons: [Operons]
+	sigmaFactors: [SigmaFactors]
+}
+
+type Genes {
+	id: String
+	name: String
+	function: String
+	terms: [Terms]
+}
+
+type TranscriptionFactors {
+	id: String
+	name: String
+	function: String
+}
+
+type TranscriptionUnits {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type Operons {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type SigmaFactors {
+	id: String
+	name: String
+	function: String
+	firstGene: FirstGene
+}
+
+type FirstGene {
+	id: String
+	name: String
+}
+
+type RegulatoryInteractions {
+	conformationName: String
+	function: String
+	promoter_id: String
+	promoter_strand: String
+	promoter_name: String
+	sigmaFactorName: String
+	centralRelativePosition: Int
+	distanceToFirstGene: Int
+	genes: Genes
+	site_leftEndPosition: Int
+	site_rightEndPosition: Int
+	evidenceReferences: EvidenceReferences
+}
+
+type AligmentMatrix {
+	aligment: String
+	matrix: String
+	consensus: String
+	urlPWMLogo: String
+	urlMatrixQualityResult: String
+}
+
+type EvolutionaryConservation {
+	urlRegulatorTargetGene: String
+	urlPromoterTargetGene: String
+}
+
+type Summary {
+	genes: GenesSum
+	transcriptionFactorsSum: TranscriptionFactorsSum
+	transcriptionUnits: TranscriptionUnitsSum
+	operons: OperonsSum
+	sigmaFactorsSum: SigmaFactorsSum
+}
+
+type GenesSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type TranscriptionFactorsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type TranscriptionUnitsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type OperonsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type SigmaFactorsSum {
+	repressed: Int
+	activated: Int
+	dual: Int
+	unknown: Int
+	total: Int
+}
+
+type Query {
+  """
+  List all the Regulon docs or defined by a limit
+  """
+  getAllRegulon(limit: Int, page: Int): [Regulon] 
+  """
+  Return a list of Regulon docs by an advancedSearch string
+  """
+  getRegulonBygetGenesBy(
+    search: String, 
+    advancedSearch: String, 
+    limit: Int, 
+    page: Int, 
+    properties: [String], 
+    organismName: String, 
+    fullMatchOnly: Boolean): [Regulon] 
+} 

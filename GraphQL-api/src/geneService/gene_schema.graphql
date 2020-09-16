@@ -1,0 +1,495 @@
+# This schema represent geneDatamart, principal Type is GeneData.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+""" 
+This is a geneDatamart type
+"""
+type geneDatamart {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  gene: Gene
+  """
+  _
+  """
+  products: [Products]
+  """
+  _
+  """
+  shineDalgarnos: [ShineDalgarnos]
+  """
+  _
+  """
+  regulation: Regulation
+  """
+  _
+  """
+  growthConditions: [GrowthConditions]
+  """
+  _
+  """
+  organism: Organism
+  """
+  _
+  """
+  allCitations: [Citations]
+  """
+  _
+  """
+  schemaVersion: Float
+}
+
+"""
+This contains all data of Gene properties
+"""
+type Gene {
+  """
+  _
+  """
+  bnumber: String
+  """
+  
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  leftEndPosition: Int
+  """
+  _
+  """
+  rightEndPosition: Int
+  """
+  _
+  """
+  strand: String
+  """
+  _
+  """
+  sequence: String
+  """
+  _
+  """
+  gcContent: Float
+  """
+  _
+  """
+  centisomePosition: Float
+  """
+  _
+  """
+  note: String
+  """
+  _
+  """
+  type: String
+  """
+  _
+  """
+  synonyms: [String]
+  """
+  _
+  """
+  multifunTerms: [MultifunTerms]
+  """
+  _
+  """
+  externalCrossReferences: [ExternalCrossReferences]
+  """
+  _
+  """
+  citations: [Citations]
+}
+
+"""
+_
+"""
+type MultifunTerms {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  label: String
+  """
+  _
+  """
+  name: String
+}
+
+type Products {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  type: String
+  """
+  _
+  """
+  sequence: String
+  """
+  _
+  """
+  note: String
+  """
+  _
+  """
+  molecularWeight: String
+  """
+  _
+  """
+  isoelectricPoint: Float
+  """
+  _
+  """
+  cellularLocations: [String]
+  """
+  _
+  """
+  anticodon: String
+  """
+  _
+  """
+  synonyms: [String]
+  """
+  _
+  """
+  motifs: [Motifs]
+  """
+  _
+  """
+  externalCrossReferences: [ExternalCrossReferences]
+  """
+  _
+  """
+  citations: [Citations]
+  """
+  _
+  """
+  isRegulator: Boolean
+  """
+  _
+  """
+  regulonId: String
+  """
+  _
+  """
+  geneOntologyTerms: [GeneOntologyTerms]
+}
+
+"""
+_
+"""
+type Motifs {
+  """
+  _
+  """
+  leftEndPosition: Int
+  """
+  _
+  """
+  rightEndPosition: Int
+  """
+  _
+  """
+  sequence: String
+  """
+  _
+  """
+  description: String
+  """
+  _
+  """
+  type: String
+  """
+  _
+  """
+  note: String
+}
+
+"""
+_
+"""
+type ShineDalgarnos {
+  """
+  _
+  """
+  distanceToGene: Int
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  leftEndPosition: Int
+  """
+  _
+  """
+  rightEndPosition: Int
+  """
+  _
+  """
+  sequence: String
+  """
+  _
+  """
+  note: String
+}
+
+"""
+_
+"""
+type Regulation {
+  """
+  _
+  """
+  operon: Operon
+  """
+  _
+  """
+  regulators: [Regulators]
+  """
+  _
+  """
+  statistics: Statistics
+}
+
+"""
+_
+"""
+type Operon {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  arrangement: [Arrangement]
+}
+
+"""
+_
+"""
+type Arrangement {
+  """
+  _
+  """
+  regulator: [Regulators]
+  """
+  _
+  """
+  promoters: [Promoter]
+  """
+  _
+  """
+  transcriptionUnit: TranscriptionUnit
+}
+
+  """
+  _
+  """
+type Regulators {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  type: String
+  """
+  _
+  """
+  function: String
+}
+
+  """
+  _
+  """
+type Promoter {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+}
+
+  """
+  _
+  """
+type TranscriptionUnit {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+}
+
+"""
+_
+"""
+type Statistics {
+  """
+  _
+  """
+  regulators: Int
+  """
+  _
+  """
+  regulatoryInteractions: Int
+  """
+  _
+  """
+  promoters: Int
+}
+
+"""
+_
+"""
+type GrowthConditions {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  controlCondition: String
+  """
+  _
+  """
+  experimentalCondition: String
+  """
+  _
+  """
+  effect: String
+  """
+  _
+  """
+  citations: [Citations]
+}
+
+"""
+_
+"""
+type Organism {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+}
+
+"""
+This type contains all data retrieved by server and
+pagination info for better control of the responses
+"""
+type GenesResult { 
+  """
+  contains server response
+  """
+  data: [geneDatamart]
+  """
+  contains pagination info
+  """
+  pagination: Pagination
+}
+
+type Query {
+  """
+  #### name
+  getAllGenes
+  #### description
+  List all the genes contained in collection
+  """
+  getAllGenes(
+    "**limit**: defines the page results showed (10 by default)"
+    limit: Int, 
+    "**page**: select the current result page (0 by default)"
+    page: Int): GenesResult! 
+  
+  
+  """
+  #### name
+  getGenesBy
+  #### description
+  List the genes obtained by a search or advancedSearch String
+  #### example
+  ```json
+  {
+    getGenesBy(args){
+      data{
+        fields_to_show
+      }
+      pagination{
+        fields_to_show
+      }
+    }
+  }
+  ```
+  """
+  getGenesBy(
+    """
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    """
+    search: String, 
+    """
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[geneInfo.strand])\"
+    """
+    advancedSearch: String, 
+    "defines the page results showed (10 by default)"
+    limit: Int, 
+    "select the current result page (0 by default)"
+    page: Int, 
+    "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
+    properties: [String], 
+    "usable for specific organismName queries (not available right now)"
+    organismName: String, 
+    "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
+    fullMatchOnly: Boolean): GenesResult! 
+}
+ 

@@ -1,0 +1,18 @@
+{
+  "extends": "google",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "globals": {
+    "describe": 1,
+    "test": 1,
+    "expect": 1
+  }
+}

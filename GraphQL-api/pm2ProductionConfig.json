@@ -1,0 +1,10 @@
+{
+	"apps": {
+		"name": "RegulonDB",
+		"script": "src/startscript.js",
+		"instances": 3,
+		"env": {
+			"PORT": "4000"
+		}
+	}
+}
