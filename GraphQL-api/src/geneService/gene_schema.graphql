@@ -1,182 +1,436 @@
-type GeneData {
+# This schema represent geneDatamart, principal Type is GeneData.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+""" 
+This is a geneDatamart type
+"""
+type geneDatamart {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   gene: Gene
+  """
+  _
+  """
   products: [Products]
+  """
+  _
+  """
   shineDalgarnos: [ShineDalgarnos]
+  """
+  _
+  """
   regulation: Regulation
+  """
+  _
+  """
   growthConditions: [GrowthConditions]
+  """
+  _
+  """
   organism: Organism
-  allEvidenceReferences: [EvidenceReferences]
+  """
+  _
+  """
+  allCitations: [Citations]
+  """
+  _
+  """
   schemaVersion: Float
 }
 
-"This contains all data of Gene properties"
+"""
+This contains all data of Gene properties
+"""
 type Gene {
-  "It is the ID of RegulonDB associated with the gene"
+  """
+  _
+  """
+  bnumber: String
+  """
+  
+  """
   id: String
   """
-  The primary name by which an object is known to scientists. 
-  Typically the name will be a standard name or a widely used and familiar name.
+  _
   """
   name: String
-  "Encodes the position of the left end of the region (inclusive)"
+  """
+  _
+  """
   leftEndPosition: Int
-  "Encodes the position of the right end of the region (inclisive)"
+  """
+  _
+  """
   rightEndPosition: Int
-  "Indicates the direction of the transcription of gene"
+  """
+  _
+  """
   strand: String
-  "Sequence used by the gene"
+  """
+  _
+  """
   sequence: String
-  "The percentage of GC found in the sequence"
+  """
+  _
+  """
   gcContent: Float
-  "This slot lists the map position of this gene on the chromosome in centisome units."
+  """
+  _
+  """
   centisomePosition: Float
-  "Stores a general commeny about the object that contains the column"
+  """
+  _
+  """
   note: String
-  "Describes the type of the Gene"
+  """
+  _
+  """
   type: String
-  "Contains all the synonyms for this Gene"
+  """
+  _
+  """
   synonyms: [String]
-  "Identifying multifunctional genes"
+  """
+  _
+  """
   multifunTerms: [MultifunTerms]
-  "All external references of this Gene information"
+  """
+  _
+  """
   externalCrossReferences: [ExternalCrossReferences]
-  "All references of this Gene information"
-  evidenceReferences: [EvidenceReferences]
+  """
+  _
+  """
+  citations: [Citations]
 }
 
+"""
+_
+"""
 type MultifunTerms {
-  geneIds:[String]
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   label: String
+  """
+  _
+  """
   name: String
 }
 
 type Products {
-  "It is the ID of RegulonDB associated with the product"
+  """
+  _
+  """
   id: String
-  "The primary name by which an object is known to scientists."
+  """
+  _
+  """
   name: String
-  "Describes the type of the Product"
+  """
+  _
+  """
   type: String
-  "It is the sequence used by the product "
+  """
+  _
+  """
   sequence: String
-  "note of the Product"
+  """
+  _
+  """
   note: String
-  "A molecular weight as computed from an amino-aid sequence."
+  """
+  _
+  """
   molecularWeight: String
-  "Is a percentage the pH at which the amino acid does not migrate in an electric field."
+  """
+  _
+  """
   isoelectricPoint: Float
-  "cellularLocations of the Product"
+  """
+  _
+  """
   cellularLocations: [String]
-  "anticodon of the Product"
+  """
+  _
+  """
   anticodon: String
-  "synonyms of the Product"
+  """
+  _
+  """
   synonyms: [String]
-  "motifs of the Product"
+  """
+  _
+  """
   motifs: [Motifs]
-  "All external references of this Product information"
+  """
+  _
+  """
   externalCrossReferences: [ExternalCrossReferences]
-  "All references of this Product information"
-  evidenceReferences: [EvidenceReferences]
-  "Confirms if is a Regulator"
+  """
+  _
+  """
+  citations: [Citations]
+  """
+  _
+  """
   isRegulator: Boolean
-  "Id of Regulon"
+  """
+  _
+  """
   regulonId: String
-  "geneOntologyTerms of the Product"
+  """
+  _
+  """
   geneOntologyTerms: [GeneOntologyTerms]
 }
 
+"""
+_
+"""
 type Motifs {
+  """
+  _
+  """
   leftEndPosition: Int
+  """
+  _
+  """
   rightEndPosition: Int
+  """
+  _
+  """
   sequence: String
+  """
+  _
+  """
   description: String
+  """
+  _
+  """
   type: String
+  """
+  _
+  """
   note: String
 }
 
+"""
+_
+"""
 type ShineDalgarnos {
+  """
+  _
+  """
   distanceToGene: Int
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   leftEndPosition: Int
+  """
+  _
+  """
   rightEndPosition: Int
+  """
+  _
+  """
   sequence: String
+  """
+  _
+  """
   note: String
 }
 
+"""
+_
+"""
 type Regulation {
+  """
+  _
+  """
   operon: Operon
+  """
+  _
+  """
   regulators: [Regulators]
-  context: [Context]
+  """
+  _
+  """
   statistics: Statistics
 }
 
+"""
+_
+"""
 type Operon {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   name: String
+  """
+  _
+  """
   arrangement: [Arrangement]
 }
 
-
+"""
+_
+"""
 type Arrangement {
+  """
+  _
+  """
   regulator: [Regulators]
+  """
+  _
+  """
   promoters: [Promoter]
+  """
+  _
+  """
   transcriptionUnit: TranscriptionUnit
 }
 
+  """
+  _
+  """
 type Regulators {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   name: String
+  """
+  _
+  """
   type: String
+  """
+  _
+  """
   function: String
 }
 
+  """
+  _
+  """
 type Promoter {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   name: String
 }
 
+  """
+  _
+  """
 type TranscriptionUnit {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   name: String
 }
 
-type Context {
-  id: String
-  type: String
-  name: String
-  leftEndPosition: Int
-  rightEndPosition: Int
-  strand: String
-  note: String
-  evidenceReferences: [EvidenceReferences]
-}
-
+"""
+_
+"""
 type Statistics {
+  """
+  _
+  """
   regulators: Int
+  """
+  _
+  """
   regulatoryInteractions: Int
+  """
+  _
+  """
   promoters: Int
 }
 
+"""
+_
+"""
 type GrowthConditions {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   controlCondition: String
+  """
+  _
+  """
   experimentalCondition: String
+  """
+  _
+  """
   effect: String
-  evidenceReferences: [EvidenceReferences]
+  """
+  _
+  """
+  citations: [Citations]
 }
 
+"""
+_
+"""
 type Organism {
+  """
+  _
+  """
   id: String
+  """
+  _
+  """
   name: String
 }
 
+"""
+This type contains all data retrieved by server and
+pagination info for better control of the responses
+"""
 type GenesResult { 
   """
   contains server response
   """
-  data: [GeneData]
+  data: [geneDatamart]
   """
   contains pagination info
   """
@@ -233,7 +487,7 @@ type Query {
     page: Int, 
     "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
     properties: [String], 
-    "usable for specific organismName queries"
+    "usable for specific organismName queries (not available right now)"
     organismName: String, 
     "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
     fullMatchOnly: Boolean): GenesResult! 

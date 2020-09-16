@@ -67,7 +67,7 @@ class geneController {
       organismName = new RegExp(organismName, 'i');
       let organismFilter = {
         $and: [{
-          organismName: organismName
+          'organism.organismName': organismName
         }]
       };
       organismFilter.$and.push(filter);

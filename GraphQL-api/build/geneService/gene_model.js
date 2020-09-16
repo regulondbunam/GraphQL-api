@@ -11,29 +11,35 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const evidenceReferencesSchema = new _mongoose2.default.Schema({
-  evidenceId: String,
-  evidenceName: String,
-  evidenceCode: String,
-  evidenceType: String,
-  pmid: String,
-  publicationId: String,
-  referenceURL: String,
-  referenceCitation: String
+const evidenceSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String,
+  code: String,
+  type: String
+});
+const citationsSchema = new _mongoose2.default.Schema({
+  evidence: evidenceSchema,
+  publication: {
+    id: String,
+    pmid: String,
+    citation: String,
+    url: String
+  }
 });
 const externalCrossReferencesSchema = new _mongoose2.default.Schema({
-  externalCrossReferenceid: String,
-  externalCrossReferencename: String,
+  externalCrossReferenceId: String,
+  externalCrossReferenceName: String,
   objectId: String,
   url: String
 });
 const geneOntologyTermsProperties = new _mongoose2.default.Schema({
-  evidenceReferences: [evidenceReferencesSchema],
+  citations: [citationsSchema],
   id: String,
   name: String,
   productsId: [String]
 });
 const geneSchema = new _mongoose2.default.Schema({
+  bnumber: String,
   id: String,
   name: String,
   leftEndPosition: Number,
@@ -46,13 +52,20 @@ const geneSchema = new _mongoose2.default.Schema({
   type: String,
   synonyms: [String],
   multifunTerms: [{
-    geneIds: [String],
     id: String,
     label: String,
     name: String
   }],
   externalCrossReferences: [externalCrossReferencesSchema],
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
+});
+const motifsSchema = new _mongoose2.default.Schema({
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  sequence: String,
+  description: String,
+  type: String,
+  note: String
 });
 const productSchema = new _mongoose2.default.Schema({
   id: String,
@@ -67,21 +80,14 @@ const productSchema = new _mongoose2.default.Schema({
   sequence: String,
   synonyms: [String],
   isRegulator: Boolean,
-  motifs: [{
-    leftEndPosition: Number,
-    rightEndPosition: Number,
-    sequence: String,
-    description: String,
-    type: String,
-    note: String
-  }],
+  motifs: [motifsSchema],
   geneOntologyTerms: {
     cellularComponent: [geneOntologyTermsProperties],
     molecularFunction: [geneOntologyTermsProperties],
     biologicalProcess: [geneOntologyTermsProperties]
   },
   externalCrossReferences: [externalCrossReferencesSchema],
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
 });
 const shineDalgarnoSchema = new _mongoose2.default.Schema({
   id: String,
@@ -90,16 +96,6 @@ const shineDalgarnoSchema = new _mongoose2.default.Schema({
   rightEndPosition: Number,
   sequence: String,
   note: String
-});
-const regulationContextSchema = new _mongoose2.default.Schema({
-  id: String,
-  type: String,
-  name: String,
-  leftEndPosition: Number,
-  rightEndPosition: Number,
-  strand: String,
-  note: String,
-  evidenceReferences: [evidenceReferencesSchema]
 });
 const regulatorsSchema = new _mongoose2.default.Schema({
   id: String,
@@ -124,7 +120,6 @@ const regulationSchema = new _mongoose2.default.Schema({
     }]
   },
   regulators: [regulatorsSchema],
-  context: [regulationContextSchema],
   statistics: {
     regulators: Number,
     regulatoryInteractions: Number,
@@ -136,7 +131,7 @@ const growthConditionsSchema = new _mongoose2.default.Schema({
   controlCondition: String,
   experimentalCondition: String,
   effect: String,
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
 });
 const organismSchema = new _mongoose2.default.Schema({
   id: String,
@@ -150,10 +145,10 @@ const geneServiceSchema = new _mongoose2.default.Schema({
   regulation: regulationSchema,
   growthConditions: [growthConditionsSchema],
   organism: [organismSchema],
-  allEvidenceReferences: [evidenceReferencesSchema],
+  allCitations: [citationsSchema],
   schemaVersion: Number
 });
 
-const Gene = _mongoose2.default.model('gene_datamart_updated_without_term_members', geneServiceSchema);
+const Gene = _mongoose2.default.model('genedatamarts_all_citations', geneServiceSchema);
 
 exports.Gene = Gene;

@@ -61,7 +61,7 @@ class geneController {
 		}
 		if (organismName !== undefined) {
 			organismName = new RegExp(organismName, 'i');
-			let organismFilter = { $and: [ { organismName: organismName } ] };
+			let organismFilter = { $and: [ { 'organism.organismName': organismName } ] };
 			organismFilter.$and.push(filter);
 			filter = organismFilter;
 		}
