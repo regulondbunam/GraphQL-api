@@ -1,0 +1,34 @@
+"""
+This is a type description
+sample type is principal type on service
+"""
+type sample {
+	"""
+	This is a property description
+	"""
+	message: String
+	"""
+	Current user of the service
+	"""
+	user: String
+}
+
+type Query {
+	"""
+	#### name
+	
+	#### description
+	
+	#### example
+	```json
+	{
+	  query(args){
+	    data{
+	      fields_to_show
+	    }
+	  }
+	}
+	```
+	"""
+	getExample: sample
+}

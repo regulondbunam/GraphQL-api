@@ -1,3 +1,2 @@
-# GraphQL-api
-
-Repository as boilerplate for projects that implement an API based on GraphQL
+# RegulonDB-GraphQL-Template
+This is a repository template, includes a defined directory structure and files of a GraphQL API for RegulonDB.
