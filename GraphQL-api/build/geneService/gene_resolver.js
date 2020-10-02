@@ -21,12 +21,12 @@ import {geneResolver} from './geneResolver'
 ```
 
 ## description
-Resolves the GraphQL Query based on controller's response 
+Resolves the GraphQL Query based on controller's response
 for Gene Service
 
 ## arguments
    N/A
-   
+
 * __Return:__
 Object - __ Genes
 Returns a JSON object containing a response to send to GraphQL

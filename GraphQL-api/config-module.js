@@ -1,6 +1,6 @@
-var envJSON = require('./env.variables.json');
+const envJSON = require('./env.variables.json');
 
 exports.config = function() {
-	const nodeEnv = process.env.NODE_ENV || 'development';
-	return envJSON[nodeEnv];
+  const nodeEnv = process.env.NODE_ENV || 'development';
+  return envJSON[nodeEnv];
 };

@@ -26,10 +26,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /** GraphQL server set up requirements */
 
+/**  enviroment variables require */
+require('dotenv').config();
 /** Setting up the GraphQL - Apollo Server Express Playground
  * @param typeDefs are the merged .graphql schemas
  * @param resolvers are the merged resolvers
  */
+
+
 const server = new _apolloServerExpress.ApolloServer({
   typeDefs: [_schemas.typeDefs],
   resolvers: _resolvers.resolvers,

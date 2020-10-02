@@ -149,6 +149,6 @@ const geneServiceSchema = new _mongoose2.default.Schema({
   schemaVersion: Number
 });
 
-const Gene = _mongoose2.default.model('genedatamarts_all_citations', geneServiceSchema);
+const Gene = _mongoose2.default.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
 
 exports.Gene = Gene;

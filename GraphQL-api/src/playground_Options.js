@@ -1,9 +1,9 @@
 export const playgroundTabs = {
-	tabs: [
-		{
-			endpoint: 'graphql',
-			name: 'updates',
-			query: `# 08/09/2020
+  tabs: [
+    {
+      endpoint: 'graphql',
+      name: 'updates',
+      query: `# 08/09/2020
 # graphql gene schema has changed to v0.2 some fields have 
 # been updated
 ## geneInfo is no longer available now its name is gene
@@ -19,7 +19,7 @@ getGenesBy(search:"arac"){
         # fields to show
     }
 }
-}`
-		}
-	]
+}`,
+    },
+  ],
 };

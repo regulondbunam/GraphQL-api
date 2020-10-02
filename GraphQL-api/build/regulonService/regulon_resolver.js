@@ -21,12 +21,12 @@ import {regulonResolver} from './regulon_Resolver'
 ```
 
 ## description
-Resolves the GraphQL Query based on controller's response 
+Resolves the GraphQL Query based on controller's response
 for Regulon Service
 
 ## arguments
    N/A
-   
+
 * __Return:__
 Returns a JSON object containing a response to send to GraphQL
 

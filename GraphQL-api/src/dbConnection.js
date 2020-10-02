@@ -5,8 +5,8 @@ require('dotenv').config();
 
 /** Conecction to mongoDB with the credentials on .env file */
 mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
-	useUnifiedTopology: true,
-	useNewUrlParser: true
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
 
-export { mongoose };
+export {mongoose};
