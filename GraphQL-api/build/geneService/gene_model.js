@@ -11,20 +11,35 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const evidenceReferencesSchema = new _mongoose2.default.Schema({
-  evidenceName: String,
-  evidenceCode: String,
-  evidenceType: String,
-  referenceID: String,
-  referenceURL: String,
-  referenceCitation: String
-});
-const externalCrossReferencesSchema = new _mongoose2.default.Schema({
+const evidenceSchema = new _mongoose2.default.Schema({
   id: String,
   name: String,
+  code: String,
+  type: String
+});
+const citationsSchema = new _mongoose2.default.Schema({
+  evidence: evidenceSchema,
+  publication: {
+    id: String,
+    pmid: String,
+    citation: String,
+    url: String
+  }
+});
+const externalCrossReferencesSchema = new _mongoose2.default.Schema({
+  externalCrossReferenceId: String,
+  externalCrossReferenceName: String,
+  objectId: String,
   url: String
 });
-const geneInfoSchema = new _mongoose2.default.Schema({
+const geneOntologyTermsProperties = new _mongoose2.default.Schema({
+  citations: [citationsSchema],
+  id: String,
+  name: String,
+  productsId: [String]
+});
+const geneSchema = new _mongoose2.default.Schema({
+  bnumber: String,
   id: String,
   name: String,
   leftEndPosition: Number,
@@ -36,87 +51,75 @@ const geneInfoSchema = new _mongoose2.default.Schema({
   note: String,
   type: String,
   synonyms: [String],
-  terms: [{
-    multifun: [[String]],
-    geneOntology: {
-      cellularComponent: [{
-        id: String,
-        name: String
-      }],
-      molecularFunction: [{
-        id: String,
-        name: String
-      }],
-      biologicalProcess: [{
-        id: String,
-        name: String
-      }]
-    }
+  multifunTerms: [{
+    id: String,
+    label: String,
+    name: String
   }],
   externalCrossReferences: [externalCrossReferencesSchema],
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
+});
+const motifsSchema = new _mongoose2.default.Schema({
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  sequence: String,
+  description: String,
+  type: String,
+  note: String
 });
 const productSchema = new _mongoose2.default.Schema({
-  regulatorId: String,
+  id: String,
+  regulon_id: String,
   name: String,
   molecularWeight: Number,
   isoelectricPoint: Number,
-  cellularLocation: String,
-  anticondon: String,
+  cellularLocations: [String],
+  anticodon: String,
   note: String,
   type: String,
   sequence: String,
-  synonyms: Array,
-  motifs: [{
-    leftEndPosition: Number,
-    rightEndPosition: Number,
-    sequence: String,
-    description: String,
-    type: String,
-    note: String
-  }],
+  synonyms: [String],
+  isRegulator: Boolean,
+  motifs: [motifsSchema],
+  geneOntologyTerms: {
+    cellularComponent: [geneOntologyTermsProperties],
+    molecularFunction: [geneOntologyTermsProperties],
+    biologicalProcess: [geneOntologyTermsProperties]
+  },
   externalCrossReferences: [externalCrossReferencesSchema],
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
 });
 const shineDalgarnoSchema = new _mongoose2.default.Schema({
+  id: String,
   distanceToGene: Number,
   leftEndPosition: Number,
   rightEndPosition: Number,
   sequence: String,
   note: String
 });
-const regulationContextSchema = new _mongoose2.default.Schema({
-  type: String,
-  name: String,
-  leftEndPosition: Number,
-  rightEndPosition: Number,
-  strand: String,
-  note: String,
-  evidenceReferences: [evidenceReferencesSchema]
-});
-const regulationRegulatorSchema = new _mongoose2.default.Schema({
+const regulatorsSchema = new _mongoose2.default.Schema({
   id: String,
   name: String,
-  type: String
+  type: String,
+  function: String
 });
 const regulationSchema = new _mongoose2.default.Schema({
   operon: {
     id: String,
     name: String,
     arrangement: [{
-      regulator: regulationRegulatorSchema,
-      promoter: {
+      regulator: [regulatorsSchema],
+      promoter: [{
         id: String,
         name: String
-      },
+      }],
       transcriptionUnit: {
         id: String,
         name: String
       }
     }]
   },
-  regulators: [regulationRegulatorSchema],
-  context: [regulationContextSchema],
+  regulators: [regulatorsSchema],
   statistics: {
     regulators: Number,
     regulatoryInteractions: Number,
@@ -124,21 +127,28 @@ const regulationSchema = new _mongoose2.default.Schema({
   }
 });
 const growthConditionsSchema = new _mongoose2.default.Schema({
+  id: String,
   controlCondition: String,
   experimentalCondition: String,
   effect: String,
-  evidenceReferences: [evidenceReferencesSchema]
+  citations: [citationsSchema]
 });
-const geneSchema = new _mongoose2.default.Schema({
-  geneInfo: geneInfoSchema,
+const organismSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String
+});
+const geneServiceSchema = new _mongoose2.default.Schema({
+  _id: String,
+  gene: geneSchema,
   products: [productSchema],
-  shineDalgarno: [shineDalgarnoSchema],
+  shineDalgarnos: [shineDalgarnoSchema],
   regulation: regulationSchema,
   growthConditions: [growthConditionsSchema],
-  organismName: String,
+  organism: [organismSchema],
+  allCitations: [citationsSchema],
   schemaVersion: Number
 });
 
-const Gene = _mongoose2.default.model('genedatamarts', geneSchema);
+const Gene = _mongoose2.default.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
 
 exports.Gene = Gene;

@@ -174,9 +174,16 @@ type Query {
   """
   List all the Regulon docs or defined by a limit
   """
-  getAllRegulon(limit: Int, page: Int): [Regulon] @rateLimit(limit:1000, duration:60)
+  getAllRegulon(limit: Int, page: Int): [Regulon] 
   """
   Return a list of Regulon docs by an advancedSearch string
   """
-  getRegulonBy(search: String, advancedSearch: String, limit: Int, page: Int): [Regulon] @rateLimit(limit:1000, duration:60)
-}
+  getRegulonBygetGenesBy(
+    search: String, 
+    advancedSearch: String, 
+    limit: Int, 
+    page: Int, 
+    properties: [String], 
+    organismName: String, 
+    fullMatchOnly: Boolean): [Regulon] 
+} 

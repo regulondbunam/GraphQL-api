@@ -11,22 +11,36 @@ var _gene_controller = require("./gene_controller");
 
 var _controller_common_functions = require("../common/controller_common_functions");
 
+/**
+# name: geneResolver.js version: 1.0
+
+## synopsis
+
+```javascript
+import {geneResolver} from './geneResolver'
+```
+
+## description
+Resolves the GraphQL Query based on controller's response
+for Gene Service
+
+## arguments
+   N/A
+
+* __Return:__
+Object - __ Genes
+Returns a JSON object containing a response to send to GraphQL
+
+## code
+**/
+
 /** import the geneController that contains the resolver functions */
 const geneResolvers = exports.geneResolvers = {
   Query: {
-    /** obtains an array with Genes in a range
-       * @return {JSON} retrieves the result of the query
-       * @param {undefined} root description will added asa
-       */
     getAllGenes: (root, {
       limit,
       page
-    }) => _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'geneInfo.name'),
-
-    /** retrieves a list of Genes defined by it name or id in geneInfo
-       * @return {JSON} retrieves the result of the query
-       * @param {undefined} root description will added asa
-      */
+    }) => _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name'),
     getGenesBy: (root, {
       search,
       advancedSearch,

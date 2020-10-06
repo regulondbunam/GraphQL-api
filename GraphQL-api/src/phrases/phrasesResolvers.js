@@ -1,7 +1,7 @@
-import { phrasesController } from './phrasesController';
+import {phrasesController} from './phrasesController';
 
 export const phrasesResolvers = {
-	Query: {
-		getPhraseOf: (root, { id }) => phrasesController.getPhraseOf(id)
-	}
+  Query: {
+    getPhraseOf: (root, {id}) => phrasesController.getPhraseOf(id),
+  },
 };

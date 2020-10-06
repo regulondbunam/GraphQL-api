@@ -24,7 +24,7 @@ Stores all the Queries and Mutations that are defined in schema and will used in
 
 **controllers**
 
-Makes the process required on resolver file and returns the result.
+It has the code to perform the required processing in the solve file and returns the result.
 
 ---
 

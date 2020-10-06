@@ -9,28 +9,52 @@ var _gene_model = require("./gene_model");
 
 var _mongodbFilterObjectParser = require("mongodb-filter-object-parser");
 
-var _textSearchFilter = require("../../lib/textSearchFilter");
-
 var _controller_common_functions = require("../common/controller_common_functions");
 
 var _graphql = require("graphql");
 
+/**
+# name: geneController.js version: 1.0
+
+## synopsis
+
+```javascript
+geneController.getGenesBy(search, properties, fullMatchOnly);
+```
+
+## description
+Defines functions to resolve GraphQL queries of Gene Service
+
+## arguments
+* search
+  usable for text search on fields defined in "Properties" parameter. **e.g.**:
+  "arad AND arac OR \"biosynthesis of macromolecules\""
+* advancedSearch
+  usable for specific query by a "value[field]" syntax
+* limit
+  defines the page results showed (10 by default)
+* page
+  select the current result page (0 by default)
+* properties
+  select the fields to be queried by "search" (by default
+  geneInfo[id, name, synonyms] and products[name])
+* organismName
+  usable for specific organismName queries
+* fullMatchOnly
+  define if "search" will be Case Sensitive and cannot be a substring
+  (by default "false")
+
+* __Return:__
+Object - __ Genes
+Returns an object containing a response that will be sent to GraphQL
+
+## code
+**/
 // import { GraphQLError } from 'graphql';
 
 /** Define a geneController. */
 class geneController {
-  /** function that resolves the getGeneBy query with an array Gene Result
-    * @param {String} search contains all argument and operators for search
-    * query by construct a text search filter
-    * @param {String} advancedSearch contains all the arguments and operators
-    * to make an advanced search after build a query filter
-    * @param {Number} limit the maximum of documents that query returns
-    * can not be passed and get all documents with the query
-    * @param {Number} page allows control on skip function of the query
-    * @return {Object} return the results of the query identified by the
-    *                  ID or name
-    */
-  static async getGenesBy(search, advancedSearch, limit = 0, page = 0, properties = ['geneInfo.id', 'geneInfo.name', 'geneInfo.synonyms', 'products.name'], organismName, fullMatchOnly = false) {
+  static async getGenesBy(search, advancedSearch, limit = 10, page = 0, properties = ['gene.id', 'gene.name', 'gene.synonyms', 'gene.type', 'products.name'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;
@@ -38,15 +62,15 @@ class geneController {
     if (advancedSearch !== undefined) {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
-      //filter = searchFilter(search);
-      filter = (0, _textSearchFilter.textSearch)(search, properties, fullMatchOnly);
+      // filter = searchFilter(search);
+      filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {
       organismName = new RegExp(organismName, 'i');
-      let organismFilter = {
+      const organismFilter = {
         $and: [{
-          organismName: organismName
+          'organism.organismName': organismName
         }]
       };
       organismFilter.$and.push(filter);
@@ -54,7 +78,7 @@ class geneController {
     }
 
     const Genes = _gene_model.Gene.find(filter).sort({
-      'geneInfo.name': 1
+      'gene.name': 1
     }).limit(limit).skip(offset);
 
     const total = await _controller_common_functions.commonController.countDocumentsIn(_gene_model.Gene, filter);
@@ -66,17 +90,19 @@ class geneController {
       err.status = 'No Content';
       err.statusCode = 204;
       throw err;
-    } else return {
-      data: Genes,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: lastPage,
-        totalResults: total,
-        hasNextPage: hasMore
-      }
-    };
+    } else {
+      return {
+        data: Genes,
+        pagination: {
+          limit: limit,
+          currentPage: page,
+          firstPage: 0,
+          lastPage: lastPage,
+          totalResults: total,
+          hasNextPage: hasMore
+        }
+      };
+    }
   }
 
 }
