@@ -74,6 +74,10 @@ type Publication {
 	"""
 	_
 	"""
+	authors: [String]
+	"""
+	_
+	"""
 	pmid: String
 	"""
 	_
@@ -83,6 +87,14 @@ type Publication {
 	_
 	"""
 	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
 }
 
 """
