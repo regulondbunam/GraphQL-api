@@ -32,7 +32,7 @@ Once the repo is cloned, use this command to install all libraries dependencies 
 $ npm install
 ```
 
-After that, edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name), then rename the file to ".env"
+After that, edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the port for GraphQL server (by default is used port 4000), then rename the file to ".env"
 
 # Quick start
 
@@ -54,7 +54,7 @@ To shutdown server with PM2 use
 $ npm run stop:pm2
 ```
 
-Now if the PORT in .env was not defined, it will take port 4000 and GraphQL Playgroud will run at http://localhost:4000/graphql
+Now if the GraphQL PORT in .env was not defined, it will take port 4000 and GraphQL Playgroud will run at http://localhost:4000/graphql
 
 # Project website
 
