@@ -7,10 +7,10 @@ const playgroundTabs = exports.playgroundTabs = {
   tabs: [{
     endpoint: 'graphql',
     name: 'updates',
-    query: `# 08/09/2020
-# graphql gene schema has changed to v0.2 some fields have 
+    query: `# 13/10/2020
+# graphql gene schema has changed to v0.3 some fields have 
 # been updated
-## geneInfo is no longer available now its name is gene
+## publications has been updated with authors, title, year fields
 # Query sample usage
 {
 # Select query, see \"docs\" tab to get description about 
@@ -18,9 +18,14 @@ const playgroundTabs = exports.playgroundTabs = {
 getGenesBy(search:"arac"){
     data{
         # fields to show
+        Gene{
+          id
+          name
+        }
     }
     pagination{
         # fields to show
+        totalResults
     }
 }
 }`
