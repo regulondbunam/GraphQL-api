@@ -23,7 +23,10 @@ const citationsSchema = new _mongoose2.default.Schema({
     id: String,
     pmid: String,
     citation: String,
-    url: String
+    url: String,
+    authors: [String],
+    title: String,
+    year: Number
   }
 });
 const externalCrossReferencesSchema = new _mongoose2.default.Schema({
