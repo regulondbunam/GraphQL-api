@@ -50,7 +50,7 @@ server.applyMiddleware({
   },
 });
 
-const PORT = process.env.GRAPHQl_PORT || 4000;
+const PORT = process.env.PORT || process.env.GRAPHQl_PORT || 4000 ;
 const servExpress = app.listen(PORT, () => {
   console.log(`The server is running in http://localhost:${servExpress.address().port}${server.graphqlPath}`);
 });
