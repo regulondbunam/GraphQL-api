@@ -1,23 +1,36 @@
 /**
-# name: index.js version: 1.0
+# index.js
+	
+## Description
 
-## synopsis
+Configures GraphQL server
+
+## Usage 
 
 ```shell
     npm start 
 ```
 
-## description
-Configures GraphQL server
+## Arguments/Parameters
+N/A
 
-## arguments
-NA
+## Examples
+N/A
 
-* __Return:__
-NA
+## Return 
+N/A
 
-## code
+## Category
 
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: [full developer name]
 **/
 
 // import needed libraries

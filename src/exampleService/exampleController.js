@@ -1,28 +1,70 @@
 /**
-# name: exampleController.js version: 1.0
+# Example Service Model
+	
+## Description
 
-## synopsis
-
-```javascript
-exampleController.getExample()
-
-```
-
-## description
 Here are defined all function with logic to connect and get data from DB,
 they return responses obtained to the resolvers
 
-## arguments
+## Usage 
 
-* arg_name
-arg description
+```javascript
+import { exampleController } from './exampleController';
+exampleController.getExample()
+```
 
-* __Return:__
-Object - __ [Type Name]
-Description
+## Arguments/Parameters
 
-## code
+N/A
 
+## Examples
+
+[Example details]
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: [full developer name]
+**/
+
+
+/**
+	
+# Functions description
+
+## [Function name]
+
+__Description:__ 
+
+[Description of the function]
+
+
+__Usage:__
+
+```javascript
+&function(Parameters, if any);
+```
+
+__Input arguments/parameters:__ 
+
+__[Name]:__ [Description]
+__[Name]:__ [Description]
+
+__Return:__ 
+
+__[Type]:__ [Name]
+[Description (if necessary)]
 **/
 
 // import defined model of the collection to be used

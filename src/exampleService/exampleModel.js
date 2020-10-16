@@ -1,26 +1,39 @@
 /**
-# name: exampleModel.js version: 1.0
+# Example Service Model
+	
+## Description
 
-## synopsis
-
-```javascript
-
-import { Example } from './exampleModel'
-
-```
-
-## description
 model object to access to DB of RegulonDB through mongoose
 
-## arguments
-NA
+## Usage 
 
-* __Return:__
-NA
+```javascript
+import { Example } from './exampleModel';
+```
 
+## Arguments/Parameters
 
-## code
+N/A
 
+## Examples
+
+N/A
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: [full developer name]
 **/
 
 import mongoose from 'mongoose';

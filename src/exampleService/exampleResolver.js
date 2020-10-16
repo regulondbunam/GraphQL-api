@@ -1,27 +1,40 @@
 /**
-# name: exampleResolver version: 1.0
+# Example Service Resolver
+	
+## Description
 
-## synopsis
-
-```javascript
-
-import {resolvers} from './resolvers'
-
-```
-
-## description
 Here are contained all resolver to defined queries in the GraphQL schema
 it's used for the server definition
 
-## arguments
-No aplica
+## Usage 
 
-* __Return:__
-Type JSON __ Gene
+```javascript
+import {resolvers} from './resolvers'
+```
 
+## Arguments/Parameters
 
-## code
+N/A
 
+## Examples
+
+[Example details]
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: [full developer name]
 **/
 
 // imports exampleController to use functions defined in it
