@@ -26,20 +26,23 @@ geneController.getGenesBy(search, properties, fullMatchOnly);
 Defines functions to resolve GraphQL queries of Gene Service
 
 ## arguments
-	* search
-		usable for text search on fields defined in "Properties" parameter. **e.g.**: "arad AND arac OR \"biosynthesis of macromolecules\"" 
-	* advancedSearch
-	  usable for specific query by a "value[field]" syntax
-	* limit
-	  defines the page results showed (10 by default)
-	* page
-	  select the current result page (0 by default)
-	* properties
-	  select the fields to be queried by "search" (by default geneInfo[id, name, synonyms] and products[name])
-	* organismName
-	  usable for specific organismName queries
-	* fullMatchOnly
-	  define if "search" will be Case Sensitive and cannot be a substring (by default "false")
+* search
+  usable for text search on fields defined in "Properties" parameter. **e.g.**:
+  "arad AND arac OR \"biosynthesis of macromolecules\""
+* advancedSearch
+  usable for specific query by a "value[field]" syntax
+* limit
+  defines the page results showed (10 by default)
+* page
+  select the current result page (0 by default)
+* properties
+  select the fields to be queried by "search" (by default
+  geneInfo[id, name, synonyms] and products[name])
+* organismName
+  usable for specific organismName queries
+* fullMatchOnly
+  define if "search" will be Case Sensitive and cannot be a substring
+  (by default "false")
 
 * __Return:__
 Object - __ Genes
@@ -59,13 +62,13 @@ class geneController {
     if (advancedSearch !== undefined) {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
-      //filter = searchFilter(search);
+      // filter = searchFilter(search);
       filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {
       organismName = new RegExp(organismName, 'i');
-      let organismFilter = {
+      const organismFilter = {
         $and: [{
           'organism.organismName': organismName
         }]
@@ -87,17 +90,19 @@ class geneController {
       err.status = 'No Content';
       err.statusCode = 204;
       throw err;
-    } else return {
-      data: Genes,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: lastPage,
-        totalResults: total,
-        hasNextPage: hasMore
-      }
-    };
+    } else {
+      return {
+        data: Genes,
+        pagination: {
+          limit: limit,
+          currentPage: page,
+          firstPage: 0,
+          lastPage: lastPage,
+          totalResults: total,
+          hasNextPage: hasMore
+        }
+      };
+    }
   }
 
 }

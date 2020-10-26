@@ -23,7 +23,10 @@ const citationsSchema = new _mongoose2.default.Schema({
     id: String,
     pmid: String,
     citation: String,
-    url: String
+    url: String,
+    authors: [String],
+    title: String,
+    year: Number
   }
 });
 const externalCrossReferencesSchema = new _mongoose2.default.Schema({
@@ -149,6 +152,6 @@ const geneServiceSchema = new _mongoose2.default.Schema({
   schemaVersion: Number
 });
 
-const Gene = _mongoose2.default.model('genedatamarts_all_citations', geneServiceSchema);
+const Gene = _mongoose2.default.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
 
 exports.Gene = Gene;

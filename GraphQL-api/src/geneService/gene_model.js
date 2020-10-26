@@ -13,7 +13,10 @@ const citationsSchema = new mongoose.Schema({
 		id: String,
 		pmid: String,
 		citation: String,
-		url: String
+		url: String,
+		authors: [ String ],
+		title: String,
+		year: Number
 	}
 });
 
@@ -156,6 +159,6 @@ const geneServiceSchema = new mongoose.Schema({
 	schemaVersion: Number
 });
 
-const Gene = mongoose.model('genedatamarts_all_citations', geneServiceSchema);
+const Gene = mongoose.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
 
 export { Gene };

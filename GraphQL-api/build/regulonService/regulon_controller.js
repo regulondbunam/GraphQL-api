@@ -23,7 +23,7 @@ Defines functions to resolve GraphQL queries of Gene Service
 
 ## arguments
 	* search
-		usable for text search on fields defined in "Properties" parameter. **e.g.**: "arad AND arac OR \"biosynthesis of macromolecules\"" 
+		usable for text search on fields defined in "Properties" parameter. **e.g.**: "arad AND arac OR \"biosynthesis of macromolecules\""
 	* advancedSearch
 	  usable for specific query by a "value[field]" syntax
 	* limit
