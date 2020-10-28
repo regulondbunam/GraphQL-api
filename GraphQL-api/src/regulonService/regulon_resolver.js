@@ -1,31 +1,48 @@
 /**
-# name: regulon_Resolver.js version: 1.0
+# [Regulon Service Resolver]
+	
+## Description
 
-## synopsis
+[Resolves the GraphQL Query based on controller's response
+for Regulon Service]
+
+## Usage 
 
 ```javascript
-import {regulonResolver} from './regulon_Resolver'
+import {regulonResolver} from './regulonResolver'
 ```
 
-## description
-Resolves the GraphQL Query based on controller's response
-for Regulon Service
+## Arguments/Parameters
 
-## arguments
-   N/A
+N/A
 
-* __Return:__
-Returns a JSON object containing a response to send to GraphQL
+## Examples
 
-## code
+N/A
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
 /** import the regulonController that contains the resolver functions */
-import {Regulon} from './regulon_model';
-import {regulonController} from './regulon_controller';
-import {commonController} from '../common/controller_common_functions';
+import { Regulon } from './regulon_model';
+import { regulonController } from './regulon_controller';
+import { commonController } from '../common/controller_common_functions';
 
-export const geneResolvers = {
+export const regulonResolvers = {
   Query: {
     getAllRegulon: (root, {limit, page}) => commonController.getAll(Regulon, limit, page),
     getRegulonBy: (root, {search, advancedSearch, limit, page}) =>

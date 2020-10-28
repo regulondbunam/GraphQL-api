@@ -1,7 +1,6 @@
 type Regulon {
 	_id: String
 	regulator: Regulator
-	terms: Terms
 	regulates: Regulates
 	regulatoryInteractions: RegulatoryInteractions
 	aligmentMatrix: AligmentMatrix
@@ -26,7 +25,7 @@ type Conformations {
 	name: String
 	type: String
 	effectorInteractionType: String
-	evidenceReferences: [EvidenceReferences]
+	citations: [Citations]
 	functionalType: String
 }
 
@@ -59,7 +58,6 @@ type Genes {
 	id: String
 	name: String
 	function: String
-	terms: [Terms]
 }
 
 type TranscriptionFactors {
@@ -106,7 +104,7 @@ type RegulatoryInteractions {
 	genes: Genes
 	site_leftEndPosition: Int
 	site_rightEndPosition: Int
-	evidenceReferences: EvidenceReferences
+	citations: Citations
 }
 
 type AligmentMatrix {
@@ -178,7 +176,7 @@ type Query {
   """
   Return a list of Regulon docs by an advancedSearch string
   """
-  getRegulonBygetGenesBy(
+  getRegulonBy(
     search: String, 
     advancedSearch: String, 
     limit: Int, 
