@@ -1,43 +1,87 @@
 /**
-# name: geneController.js version: 1.0
+# Controller Common Functions
+	
+## Description
 
-## synopsis
-
-```javascript
-commonController.getAll(collection, limit, page);
-```
-
-## description
 Defines function that resolves the query and responses with all documents of
 the Collection restricted by a limit and pagination
 
-## arguments
-In getAllGenes:
-* collection
-tells to function the mongoose model to be used
-* limit
-defines the page results showed (10 by default)
-* page
-select the current result page (0 by default)
-* sortValue
-tells the function the field by which the results will be sorted
+## Usage 
 
-In countDocuments:
-* collection
-tells to function the mongoose model to be used
-* filter
-needs the filter used by the query to get the count (by default is
-empty {} por getAll count)
+```javascript
+import {commonController} from '../common/controller_common_functions';
+```
 
-* __Return:__
-Object - __ MongoDB-Response
+## Category
+
+RegulonDB datamart web service controller
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: Lopez Almazo Andres Gerardo
+**/
+
+/**
+	
+# Functions description
+
+## getAll
+
+__Description:__ 
+
+Retrieve a object with all the documents containing in selected collection
+
+
+__Usage:__
+
+```javascript
+commonController.getAll(collection, limit, page, sortValue);
+```
+
+__Input arguments/parameters:__ 
+
+__collection:__ tells to function the mongoose model to be used
+__limit:__ defines the page results showed (10 by default)
+__page:__ select the current result page (0 by default)
+__sortValue:__ tells the function the field by which the results will be sorted
+
+__Return:__ 
+
+__Object:__ unnamed
 Returns an object containing a response that will be sent to GraphQL
 
-## code
+
+## countDocumentsIn
+
+__Description:__ 
+
+Get the count document of the selected collection
+
+
+__Usage:__
+
+```javascript
+commonController.getAll(collection, filter);
+```
+
+__Input arguments/parameters:__ 
+
+__collection:__ tells to function the mongoose model to be used
+__filter:__ needs the filter used by the query to get the count (by default is
+empty {} por getAll count)
+
+__Return:__ 
+
+__int:__ count
+Contains document count
 **/
 
 class commonController {
-  static async getAll(collection, limit = 20, page = 0, sortValue) {
+  static async getAll(collection, limit = 10, page = 0, sortValue) {
     // variable definitions
     let hasMore = false;
     let response;

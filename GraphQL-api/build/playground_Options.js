@@ -18,7 +18,7 @@ const playgroundTabs = exports.playgroundTabs = {
 getGenesBy(search:"arac"){
     data{
         # fields to show
-        Gene{
+        gene{
           id
           name
         }

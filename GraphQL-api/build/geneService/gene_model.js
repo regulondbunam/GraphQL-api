@@ -9,26 +9,10 @@ var _mongoose = require("mongoose");
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
+var _general_model = require("../common/general_model");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const evidenceSchema = new _mongoose2.default.Schema({
-  id: String,
-  name: String,
-  code: String,
-  type: String
-});
-const citationsSchema = new _mongoose2.default.Schema({
-  evidence: evidenceSchema,
-  publication: {
-    id: String,
-    pmid: String,
-    citation: String,
-    url: String,
-    authors: [String],
-    title: String,
-    year: Number
-  }
-});
 const externalCrossReferencesSchema = new _mongoose2.default.Schema({
   externalCrossReferenceId: String,
   externalCrossReferenceName: String,
@@ -36,7 +20,7 @@ const externalCrossReferencesSchema = new _mongoose2.default.Schema({
   url: String
 });
 const geneOntologyTermsProperties = new _mongoose2.default.Schema({
-  citations: [citationsSchema],
+  citations: [_general_model.citationsSchema],
   id: String,
   name: String,
   productsId: [String]
@@ -60,7 +44,7 @@ const geneSchema = new _mongoose2.default.Schema({
     name: String
   }],
   externalCrossReferences: [externalCrossReferencesSchema],
-  citations: [citationsSchema]
+  citations: [_general_model.citationsSchema]
 });
 const motifsSchema = new _mongoose2.default.Schema({
   leftEndPosition: Number,
@@ -90,7 +74,7 @@ const productSchema = new _mongoose2.default.Schema({
     biologicalProcess: [geneOntologyTermsProperties]
   },
   externalCrossReferences: [externalCrossReferencesSchema],
-  citations: [citationsSchema]
+  citations: [_general_model.citationsSchema]
 });
 const shineDalgarnoSchema = new _mongoose2.default.Schema({
   id: String,
@@ -134,7 +118,7 @@ const growthConditionsSchema = new _mongoose2.default.Schema({
   controlCondition: String,
   experimentalCondition: String,
   effect: String,
-  citations: [citationsSchema]
+  citations: [_general_model.citationsSchema]
 });
 const organismSchema = new _mongoose2.default.Schema({
   id: String,
@@ -148,7 +132,7 @@ const geneServiceSchema = new _mongoose2.default.Schema({
   regulation: regulationSchema,
   growthConditions: [growthConditionsSchema],
   organism: [organismSchema],
-  allCitations: [citationsSchema],
+  allCitations: [_general_model.citationsSchema],
   schemaVersion: Number
 });
 

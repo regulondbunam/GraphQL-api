@@ -22,11 +22,15 @@ const Gene = _apolloServerExpress.gql`
 const Regulon = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/regulonService/regulon_schema.graphql').toString()}
 `;
+/* const Operon = gql`
+  ${fs.readFileSync('./src/operonService/operon_schema.graphql').toString()}
+`; */
+
 const commonProperties = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/common/common_properties.graphql').toString()}
 `;
 const phrases = _apolloServerExpress.gql`
-${_fs2.default.readFileSync('./src/phrases/phrases.graphql').toString()}
+${_fs2.default.readFileSync('./src/phrases/phrasesSchema.graphql').toString()}
 `;
 /** Exports the merged Schema to the index to construct the GQL Server */
 

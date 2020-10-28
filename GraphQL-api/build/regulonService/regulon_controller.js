@@ -10,38 +10,77 @@ var _regulon_model = require("./regulon_model");
 var _mongodbFilterObjectParser = require("mongodb-filter-object-parser");
 
 /**
-# name: regulon_Controller.js version: 1.0
+# [Regulon Service Controller]
+	
+## Description
 
-## synopsis
+[Defines functions to resolve GraphQL queries of Regulon Service]
+
+## Usage 
 
 ```javascript
-regulonController.getRegulonBy(search, properties, fullMatchOnly);
+import {regulonController} from './regulon_controller';
 ```
 
-## description
-Defines functions to resolve GraphQL queries of Gene Service
+## Arguments/Parameters
 
-## arguments
-	* search
-		usable for text search on fields defined in "Properties" parameter. **e.g.**: "arad AND arac OR \"biosynthesis of macromolecules\""
-	* advancedSearch
-	  usable for specific query by a "value[field]" syntax
-	* limit
-	  defines the page results showed (10 by default)
-	* page
-	  select the current result page (0 by default)
-	* properties
-	  select the fields to be queried by "search" (by default geneInfo[id, name, synonyms] and products[name])
-	* organismName
-	  usable for specific organismName queries
-	* fullMatchOnly
-	  define if "search" will be Case Sensitive and cannot be a substring (by default "false")
+N/A
 
-* __Return:__
-Object - __ Genes
+## Examples
+
+N/A
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: Lopez Almazo Andres Gerardo
+**/
+
+/**
+	
+# Functions description
+
+## [getRegulonBy]
+
+__Description:__ 
+
+[Retrieve all documents that match with a query]
+
+
+__Usage:__
+
+```javascript
+regulonController.getRegulonBy(args);
+```
+
+__Input arguments/parameters:__ 
+
+__[search]:__ usable for text search on fields defined in "Properties" parameter. **e.g.**:
+    "arad AND arac OR \"biosynthesis of macromolecules\""
+__[advancedSearch]:__ usable for specific query by a "value[field]" syntax
+__[limit]:__ defines the page results showed (10 by default)
+__[page]:__ select the current result page (0 by default)
+__[properties]:__ select the fields to be queried by "search" (by default
+    geneInfo[id, name, synonyms] and products[name])
+__[organismName]:__ usable for specific organismName queries
+__[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a substring
+    (by default "false")
+
+__Return:__ 
+
+__Object:__ Regulon
 Returns an object containing a response that will be sent to GraphQL
-
-## code
 **/
 
 /** Define a geneController. */

@@ -1,20 +1,21 @@
 import mongoose from 'mongoose';
 
-export const evidenceReferencesSchema = new mongoose.Schema([
-  {
-    evidenceName: String,
-    evidenceCode: String,
-    evidenceType: String,
-    referenceID: String,
-    referenceURL: String,
-    referenceCitation: String,
-  },
-]);
+const evidenceSchema = new mongoose.Schema({
+	id: String,
+	name: String,
+	code: String,
+	type: String
+});
 
-export const externalCrossReferencesSchema = new mongoose.Schema([
-  {
-    id: String,
-    name: String,
-    url: String,
-  },
-]);
+export const citationsSchema = new mongoose.Schema({
+	evidence: evidenceSchema,
+	publication: {
+		id: String,
+		pmid: String,
+		citation: String,
+		url: String,
+		authors: [ String ],
+		title: String,
+		year: Number
+	}
+});
