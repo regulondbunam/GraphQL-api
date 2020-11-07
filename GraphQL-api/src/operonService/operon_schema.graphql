@@ -1,0 +1,495 @@
+"""
+This is a operonDatamart Type
+"""
+type operonDatamart {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	operon: Operon
+	"""
+	_
+	"""
+	transcriptionUnits: [TranscriptionUnits]
+	"""
+	_
+	"""
+	organism: Organism
+	"""
+	_
+	"""
+	allCitations: [Citations]
+	"""
+	_
+	"""
+	schemaVersion: Float
+}
+
+"""
+_
+"""
+type Operon {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	regulationPositions: RegulationPositions
+	"""
+	_
+	"""
+	strand: String
+}
+
+"""
+_
+"""
+type RegulationPositions {
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
+}
+
+"""
+_
+"""
+type TranscriptionUnits {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	firstGene: FirstGene
+	"""
+	_
+	"""
+	genes: [Genes]
+	"""
+	_
+	"""
+	note: String
+	"""
+	_
+	"""
+	synonyms: [String]
+	"""
+	_
+	"""
+	promoters: [Promoters]
+	"""
+	_
+	"""
+	terminators: [Terminators]
+	"""
+	_
+	"""
+	transcriptionFactorBindingSites: [TranscriptionFactorBindingSites]
+}
+
+"""
+_
+"""
+type FirstGene {
+	"""
+	_
+	"""
+	distanceToPromoter: Float
+	"""
+	_
+	"""
+	gene_id: String
+	"""
+	_
+	"""
+	gene_name: String
+}
+
+"""
+_
+"""
+type Genes {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type Promoters {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	note: String
+	"""
+	_
+	"""
+	pos1: Float
+	"""
+	_
+	"""
+	promoterFeatures: [PromoterFeatures]
+	"""
+	_
+	"""
+	sequence: String
+	"""
+	_
+	"""
+	synonyms: [String]
+	"""
+	_
+	"""
+	transcriptionFactorBindingSites: [TranscriptionFactorBindingSites]
+	"""
+	_
+	"""
+	transcriptionStartSite: TranscriptionStartSite
+}
+
+"""
+_
+"""
+type PromoterFeatures {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	bindsSigmaFactor: BindsSigmaFactor
+	"""
+	_
+	"""
+	boxes: [Boxes]
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	score: Float
+}
+
+"""
+_
+"""
+type BindsSigmaFactor {
+	"""
+	_
+	"""
+	sigmaFactor_id: String
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	sigmaFactor_name: String
+}
+
+"""
+_
+"""
+type Boxes {
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
+	"""
+	_
+	"""
+	sequence: String
+	"""
+	_
+	"""
+	type: String	
+}
+
+"""
+_
+"""
+type TranscriptionFactorBindingSites {
+	"""
+	_
+	"""
+	transcriptionFactor: TranscriptionFactor
+	"""
+	_
+	"""
+	regulatoryInteractions: RegulatoryInteractions
+	"""
+	_
+	"""
+	function: String
+}
+
+"""
+_
+"""
+type TranscriptionFactor {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	function: String
+}
+
+"""
+_
+"""
+type RegulatoryInteractions {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	centerPosition: Float
+	"""
+	_
+	"""
+	citations: Citations
+	"""
+	_
+	"""
+	function: String
+	"""
+	_
+	"""
+	note: String
+	"""
+	_
+	"""
+	transcriptionFactorRegulatorySite: TranscriptionFactorRegulatorySite
+}
+
+"""
+_
+"""
+type TranscriptionFactorRegulatorySite {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	absolutePosition: Float
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	length: Int
+	"""
+	_
+	"""
+	note: String
+	"""
+	_
+	"""
+	rightEndPosition: String
+	"""
+	_
+	"""
+	sequence: String
+}
+
+"""
+_
+"""
+type TranscriptionStartSite {
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
+	"""
+	_
+	"""
+	range: Int
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type Terminators {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	citations: [Citations]
+	"""
+	_
+	"""
+	sequence: String
+	"""
+	_
+	"""
+	transcriptionTerminationSite: TranscriptionTerminationSite
+}
+
+"""
+_
+"""
+type TranscriptionTerminationSite {
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+This type contains operon and pagination
+data obtained by the query
+"""
+type OperonResult { 
+  """
+  contains server response
+  """
+  data: [operonDatamart]
+  """
+  contains pagination info
+  """
+  pagination: Pagination
+}
+
+type Query {
+  """
+  #### name
+  getAllOperon
+  #### description
+  List all the operon objects contained in collection
+  """
+  getAllOperon(
+    "**limit**: defines the page results showed (10 by default)"
+    limit: Int, 
+    "**page**: select the current result page (0 by default)"
+    page: Int): OperonResult! 
+  
+  
+  """
+  #### name
+  getOperonBy
+  #### description
+  List the Operon objects obtained by a search or advancedSearch String
+  #### example
+  ```json
+  {
+    getOperonBy(args){
+      data{
+        fields_to_show
+      }
+      pagination{
+        fields_to_show
+      }
+    }
+  }
+  ```
+  """
+  getOperonBy(
+    """
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    """
+    search: String, 
+    """
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[geneInfo.strand])\"
+    """
+    advancedSearch: String, 
+    "defines the page results showed (10 by default)"
+    limit: Int, 
+    "select the current result page (0 by default)"
+    page: Int, 
+    "select the fields to be queried by \"search\" (by default operon[id, name])"
+    properties: [String],
+    "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
+    fullMatchOnly: Boolean): OperonResult! 
+}
+ 
