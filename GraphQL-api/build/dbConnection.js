@@ -16,7 +16,7 @@ require('dotenv').config();
 /** Conecction to mongoDB with the credentials on .env file */
 
 
-_mongoose2.default.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
+_mongoose2.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });

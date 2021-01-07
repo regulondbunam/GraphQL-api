@@ -89,7 +89,7 @@ Returns an object containing a response that will be sent to GraphQL
 
 /** Define a geneController. */
 class operonController {
-  static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['operon.id', 'gene.name'], organismName, fullMatchOnly = false) {
+  static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['operon.id', 'operon.name'], fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;
@@ -98,11 +98,11 @@ class operonController {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
       // filter = searchFilter(search);
-      filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
+      filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
 
     const Operons = _operon_model.Operon.find(filter).sort({
-      'gene.name': 1
+      'operon.name': 1
     }).limit(limit).skip(offset);
 
     const total = await _controller_common_functions.commonController.countDocumentsIn(_operon_model.Operon, filter);

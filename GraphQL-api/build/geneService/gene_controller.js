@@ -97,7 +97,7 @@ class geneController {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
       // filter = searchFilter(search);
-      filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
+      filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {

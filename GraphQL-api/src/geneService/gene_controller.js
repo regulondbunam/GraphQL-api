@@ -74,7 +74,7 @@ Returns an object containing a response that will be sent to GraphQL
 
 // import { GraphQLError } from 'graphql';
 import { Gene } from './gene_model';
-import { advancedSearchFilter, textSearch } from 'mongodb-filter-object-parser';
+import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
 import { commonController } from '../common/controller_common_functions';
 import { GraphQLError } from 'graphql';
 
@@ -95,7 +95,7 @@ class geneController {
       filter = advancedSearchFilter(advancedSearch);
     } else if (search !== undefined) {
       // filter = searchFilter(search);
-      filter = textSearch(search, properties, fullMatchOnly);
+      filter = textSearchFilter(search, properties, fullMatchOnly);
     }
     if (organismName !== undefined) {
       organismName = new RegExp(organismName, 'i');

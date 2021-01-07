@@ -9,9 +9,9 @@ const Gene = gql`
 const Regulon = gql`
   ${fs.readFileSync('./src/regulonService/regulon_schema.graphql').toString()}
 `;
-/* const Operon = gql`
+const Operon = gql`
   ${fs.readFileSync('./src/operonService/operon_schema.graphql').toString()}
-`; */
+`; 
 const commonProperties = gql`
   ${fs.readFileSync('./src/common/common_properties.graphql').toString()}
 `;
@@ -21,4 +21,4 @@ ${fs.readFileSync('./src/phrases/phrasesSchema.graphql').toString()}
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const typeDefs = mergeTypes([Gene, commonProperties, phrases], {all: true});
+export const typeDefs = mergeTypes([Gene, commonProperties, phrases, Operon], {all: true});

@@ -75,7 +75,7 @@ Returns an object containing a response that will be sent to GraphQL
 
 import { Operon } from './operon_model';
 import { commonController } from '../common/controller_common_functions';
-import { advancedSearchFilter, textSearch } from 'mongodb-filter-object-parser';
+import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
 import { GraphQLError } from 'graphql';
 
 /** Define a geneController. */
@@ -85,8 +85,7 @@ class operonController {
     advancedSearch,
     limit = 10,
     page = 0,
-    properties = ['operon.id', 'gene.name'],
-    organismName,
+    properties = ['operon.id', 'operon.name'],
     fullMatchOnly = false
 ) {
   const offset = page * limit;
@@ -96,9 +95,9 @@ class operonController {
     filter = advancedSearchFilter(advancedSearch);
   } else if (search !== undefined) {
     // filter = searchFilter(search);
-    filter = textSearch(search, properties, fullMatchOnly);
+    filter = textSearchFilter(search, properties, fullMatchOnly);
   }
-  const Operons = Operon.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
+  const Operons = Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
   const total = await commonController.countDocumentsIn(Operon, filter);
   const lastPage = Math.floor(total / limit);
   if (limit * (page + 1) < total) hasMore = true;

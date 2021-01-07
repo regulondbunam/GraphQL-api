@@ -89,7 +89,7 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
     gene_id: String,
     gene_name: String
   },
-  gene: [{
+  genes: [{
     id: String,
     name: String
   }],

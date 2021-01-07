@@ -86,7 +86,7 @@ const transcriptionUnitsSchema = new mongoose.Schema({
         gene_id: String,
         gene_name: String
     },
-    gene: [
+    genes: [
         {
             id: String,
             name: String
