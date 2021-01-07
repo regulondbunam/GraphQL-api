@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 require('dotenv').config();
 
 /** Conecction to mongoDB with the credentials on .env file */
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}`, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
