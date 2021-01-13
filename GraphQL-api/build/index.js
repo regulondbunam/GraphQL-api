@@ -16,6 +16,8 @@ var _resolvers = require("./common/resolvers");
 
 var _playground_Options = require("./playground_Options");
 
+var _federation = require("@apollo/federation");
+
 var _dbConnection = require("./dbConnection");
 
 var _dbConnection2 = _interopRequireDefault(_dbConnection);
@@ -34,9 +36,12 @@ require('dotenv').config();
  */
 
 
+const federatedSchema = (0, _federation.buildFederatedSchema)({
+  typeDefs: _apolloServerExpress.gql`${_schemas.typeDefs}`,
+  resolvers: _resolvers.resolvers
+});
 const server = new _apolloServerExpress.ApolloServer({
-  typeDefs: [_schemas.typeDefs],
-  resolvers: _resolvers.resolvers,
+  schema: federatedSchema,
   introspection: true,
   playground: _playground_Options.playgroundTabs,
   debug: true,
