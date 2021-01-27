@@ -16,6 +16,8 @@ var _resolvers = require("./common/resolvers");
 
 var _playground_Options = require("./playground_Options");
 
+var _federation = require("@apollo/federation");
+
 var _dbConnection = require("./dbConnection");
 
 var _dbConnection2 = _interopRequireDefault(_dbConnection);
@@ -34,9 +36,12 @@ require('dotenv').config();
  */
 
 
+const federatedSchema = (0, _federation.buildFederatedSchema)({
+  typeDefs: _apolloServerExpress.gql`${_schemas.typeDefs}`,
+  resolvers: _resolvers.resolvers
+});
 const server = new _apolloServerExpress.ApolloServer({
-  typeDefs: [_schemas.typeDefs],
-  resolvers: _resolvers.resolvers,
+  schema: federatedSchema,
   introspection: true,
   playground: _playground_Options.playgroundTabs,
   debug: true,
@@ -65,7 +70,7 @@ server.applyMiddleware({
     origin: '*'
   }
 });
-const PORT = process.env.GRAPHQl_PORT || 4000;
+const PORT = process.env.PORT || process.env.GRAPHQl_PORT || 4000;
 const servExpress = app.listen(PORT, () => {
   console.log(`The server is running in http://localhost:${servExpress.address().port}${server.graphqlPath}`);
 });

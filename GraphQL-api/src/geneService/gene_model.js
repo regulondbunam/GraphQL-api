@@ -1,24 +1,5 @@
-import mongoose, { mongo } from 'mongoose';
-
-const evidenceSchema = new mongoose.Schema({
-	id: String,
-	name: String,
-	code: String,
-	type: String
-});
-
-const citationsSchema = new mongoose.Schema({
-	evidence: evidenceSchema,
-	publication: {
-		id: String,
-		pmid: String,
-		citation: String,
-		url: String,
-		authors: [ String ],
-		title: String,
-		year: Number
-	}
-});
+import mongoose from 'mongoose';
+import { citationsSchema } from '../common/general_model';
 
 const externalCrossReferencesSchema = new mongoose.Schema({
 	externalCrossReferenceId: String,

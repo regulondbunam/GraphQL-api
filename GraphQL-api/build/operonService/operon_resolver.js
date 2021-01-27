@@ -3,26 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.geneResolvers = undefined;
+exports.operonResolvers = undefined;
 
-var _gene_model = require("./gene_model");
+var _operon_model = require("./operon_model");
 
-var _gene_controller = require("./gene_controller");
+var _operon_controller = require("./operon_controller");
 
 var _controller_common_functions = require("../common/controller_common_functions");
 
 /**
-# [Gene Service Resolver]
+# [Operon Service Resolver]
 	
 ## Description
 
 [Resolves the GraphQL Query based on controller's response
-for Gene Service]
+for Operon Service]
 
 ## Usage 
 
 ```javascript
-import {geneResolver} from './geneResolver'
+import {operonResolver} from './operonResolver'
 ```
 
 ## Arguments/Parameters
@@ -50,14 +50,14 @@ MIT License
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
-/** import the geneController that contains the resolver functions */
-const geneResolvers = exports.geneResolvers = {
+/** import the operonController that contains the resolver functions */
+const operonResolvers = exports.operonResolvers = {
   Query: {
-    getAllGenes: (root, {
+    getAllOperon: (root, {
       limit,
       page
-    }) => _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name'),
-    getGenesBy: (root, {
+    }) => _controller_common_functions.commonController.getAll(_operon_model.Operon, limit, page, 'operon.name'),
+    getOperonBy: (root, {
       search,
       advancedSearch,
       limit,
@@ -65,6 +65,6 @@ const geneResolvers = exports.geneResolvers = {
       properties,
       organismName,
       fullMatchOnly
-    }) => _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly)
+    }) => _operon_controller.operonController.getOperonBy(search, advancedSearch, limit, page)
   }
 };

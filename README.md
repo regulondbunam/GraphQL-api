@@ -32,7 +32,25 @@ Once the repo is cloned, use this command to install all libraries dependencies 
 $ npm install
 ```
 
-After that, edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the port for GraphQL server (by default is used port 4000), then rename the file to ".env"
+After that, use the following command and edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the port for GraphQL server (by default is used port 4000).
+
+```bash
+# On Unix
+nano .env-sample
+
+# On Windows
+notepad .\.env-sample
+```
+
+Then use the next command for rename the file to ".env"
+
+```bash
+# On Unix
+mv .env-sample .env
+
+# On Windows
+REN .env-sample .env
+```
 
 # Quick start
 

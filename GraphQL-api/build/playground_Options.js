@@ -7,10 +7,15 @@ const playgroundTabs = exports.playgroundTabs = {
   tabs: [{
     endpoint: 'graphql',
     name: 'updates',
-    query: `# 13/10/2020
-# graphql gene schema has changed to v0.3 some fields have 
-# been updated
-## publications has been updated with authors, title, year fields
+    query: `# 07/01/2021
+# Added a first version of Operon Service using v0.1, 
+# Operon MongoDB colection isn't complete, the following 
+# root fields can be queried:
+# allCitations -> except publication
+# operon -> except citations
+# organism
+# transcription units -> only genes, citations(evidence), id
+
 # Query sample usage
 {
 # Select query, see \"docs\" tab to get description about 
@@ -18,7 +23,7 @@ const playgroundTabs = exports.playgroundTabs = {
 getGenesBy(search:"arac"){
     data{
         # fields to show
-        Gene{
+        gene{
           id
           name
         }
@@ -27,7 +32,7 @@ getGenesBy(search:"arac"){
         # fields to show
         totalResults
     }
-}
+  }
 }`
   }]
 };

@@ -1,11 +1,12 @@
 import express, {query} from 'express';
 import rateLimit from 'express-rate-limit';
 /** graphql libraries importation */
-import {ApolloServer} from 'apollo-server-express';
+import {gql, ApolloServer} from 'apollo-server-express';
 /** GraphQL server set up requirements */
 import {typeDefs} from './common/schemas';
 import {resolvers} from './common/resolvers';
 import {playgroundTabs} from './playground_Options';
+import {buildFederatedSchema} from "@apollo/federation"
 import connection from './dbConnection';
 
 /**  enviroment variables require */
@@ -15,9 +16,14 @@ require('dotenv').config();
  * @param typeDefs are the merged .graphql schemas
  * @param resolvers are the merged resolvers
  */
+
+ const federatedSchema = buildFederatedSchema({
+   typeDefs: gql`${typeDefs}`,
+   resolvers,
+ })
+
 const server = new ApolloServer({
-  typeDefs: [typeDefs],
-  resolvers,
+  schema: federatedSchema,
   introspection: true,
   playground: playgroundTabs,
   debug: true,
@@ -50,7 +56,7 @@ server.applyMiddleware({
   },
 });
 
-const PORT = process.env.GRAPHQl_PORT || 4000;
+const PORT = process.env.PORT || process.env.GRAPHQl_PORT || 4000 ;
 const servExpress = app.listen(PORT, () => {
   console.log(`The server is running in http://localhost:${servExpress.address().port}${server.graphqlPath}`);
 });

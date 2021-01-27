@@ -14,45 +14,79 @@ var _controller_common_functions = require("../common/controller_common_function
 var _graphql = require("graphql");
 
 /**
-# name: geneController.js version: 1.0
+# [Gene Service Controller]
+	
+## Description
 
-## synopsis
+[Defines functions to resolve GraphQL queries of Gene Service]
+
+## Usage 
 
 ```javascript
-geneController.getGenesBy(search, properties, fullMatchOnly);
+import {geneController} from './gene_controller';
 ```
 
-## description
-Defines functions to resolve GraphQL queries of Gene Service
+## Arguments/Parameters
 
-## arguments
-* search
-  usable for text search on fields defined in "Properties" parameter. **e.g.**:
-  "arad AND arac OR \"biosynthesis of macromolecules\""
-* advancedSearch
-  usable for specific query by a "value[field]" syntax
-* limit
-  defines the page results showed (10 by default)
-* page
-  select the current result page (0 by default)
-* properties
-  select the fields to be queried by "search" (by default
-  geneInfo[id, name, synonyms] and products[name])
-* organismName
-  usable for specific organismName queries
-* fullMatchOnly
-  define if "search" will be Case Sensitive and cannot be a substring
-  (by default "false")
+N/A
 
-* __Return:__
-Object - __ Genes
+## Examples
+
+N/A
+
+## Return 
+
+N/A
+
+## Category
+
+RegulonDB datamart web service
+
+## License
+
+MIT License
+
+## Author 
+
+RegulonDB Team: Lopez Almazo Andres Gerardo
+**/
+
+/**
+	
+# Functions description
+
+## getGenesBy
+
+__Description:__ 
+
+Retrieve all documents that match with a query
+
+
+__Usage:__
+
+```javascript
+geneController.getGenesBy(args);
+```
+
+__Input arguments/parameters:__ 
+
+__search:__ usable for text search on fields defined in "Properties" parameter. **e.g.**:
+    "arad AND arac OR \"biosynthesis of macromolecules\""
+__advancedSearch]:__ usable for specific query by a "value[field]" syntax
+__limit:__ defines the page results showed (10 by default)
+__page:__ select the current result page (0 by default)
+__properties:__ select the fields to be queried by "search" (by default
+    geneInfo[id, name, synonyms] and products[name])
+__organismName:__ usable for specific organismName queries
+__fullMatchOnly:__ define if "search" will be Case Sensitive and cannot be a substring
+    (by default "false")
+
+__Return:__ 
+
+__Object:__ Genes
 Returns an object containing a response that will be sent to GraphQL
-
-## code
 **/
 // import { GraphQLError } from 'graphql';
-
-/** Define a geneController. */
 class geneController {
   static async getGenesBy(search, advancedSearch, limit = 10, page = 0, properties = ['gene.id', 'gene.name', 'gene.synonyms', 'gene.type', 'products.name'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
@@ -63,7 +97,7 @@ class geneController {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
       // filter = searchFilter(search);
-      filter = (0, _mongodbFilterObjectParser.textSearch)(search, properties, fullMatchOnly);
+      filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
 
     if (organismName !== undefined) {
