@@ -1,13 +1,14 @@
-# RegulonDB-WS GraphQL API
-
-
+# [Software name]
 
 # Description
 
-API Web Service to connect RegulonDB MongoDB collections
-Functional services currently: 
- - Gene
- - Phrases
+API web services to connect RegulonDB MongoDB collections. 
+Functional services currently:
+- Gene
+- Operon
+- Drawing Traces Tool 
+- Coexpression
+- Phrases
 
 Services in Development: 
 
@@ -15,66 +16,55 @@ Services in Development:
 
 # Motivation
 
-With the reengineering of RegulonDB passing from relational model to an documental model, was needed a new web service to connect to the new documental database using GraphQL technology, with this web service  API can be possible to get data from RegulonDB with an application layer using the technology previously mentioned with Javascript. 
+With the reengineering of RegulonDB passing from relational model to document model, and the updating of them tools to new technologies, was needed new web services using GraphQL technology to get the required data from RegulonDB. This API´s are for the Drawing Traces Tool and Coexpression Tool.
 
 # System requirements
 
-Required software
-
-- Node JS 12.18.4
+Required software 
+- Node JS 12.18.4 
 - NPM 6.14.6
 
-# Install
+# Install 
 
-Once the repo is cloned, use this command to install all libraries dependencies of the API
+Once the repo is cloned, use this command  to install all libraries dependencies of the API´s.
+`$ npm install`
 
-```bash
-$ npm install
+After that, use the following command to edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name).
 ```
-
-After that, use the following command and edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the port for GraphQL server (by default is used port 4000).
-
-```bash
-# On Unix
+# On unix
 nano .env-sample
 
-# On Windows
+#On windows
 notepad .\.env-sample
 ```
-
-Then use the next command for rename the file to ".env"
-
-```bash
-# On Unix
+Then used the next command for rename the file to ".env"
+```
+# On unix
 mv .env-sample .env
 
-# On Windows
+#On windows
 REN .env-sample .env
 ```
 
+
 # Quick start
 
-Starting up server with node use
+There are differents ways to start up the services.
+To start closed services. In local it runs on port: 4002
+    `$ npm run start:dev:closedTools`
 
- ```bash
-$ npm start
- ```
+To start open services. In local it runs on port: 4003
+    `$ npm run start:dev:openTools`
 
-Instead, can be used PM2 to start server with 
+Instead they can be run at the same time
+    `$ npm run start:all`
 
-```bash
-$ npm run start:pm2
-```
+To use apollo federation gateway both services need to be start up then execute the script. In local it runs on port 4001
+    `$ npm run start:dev:gateway`
 
-To shutdown server with PM2 use
 
-```bash
-$ npm run stop:pm2
-```
 
-Now if the GraphQL PORT in .env was not defined, it will take port 4000 and GraphQL Playgroud will run at http://localhost:4000/graphql
-
-# Project website
+# Project website 
 
 [Website where the software is described and allows users to obtain it as well as its documentation.]
 

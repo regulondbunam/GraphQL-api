@@ -1,0 +1,147 @@
+"""
+CoexpressionData is the principal type on the service
+"""
+type CoexpressionData {
+    """
+    id of the coexpression element
+    """
+    _id: String
+    """
+    id of the first gene 
+    """
+    gene_id1: String
+    """
+    id of the second gene 
+    """
+    gene_id2: String
+    """
+    tag of the first gene
+    """
+    locusTag1: String
+    """
+    tag of the second gene
+    """
+    locusTag2: String
+    """
+    name of the first gene
+    """
+    gene_name1: String
+    """
+    name of the second gene
+    """
+    gene_name2: String
+    """
+    rank of the match between both elements
+    """
+    rank: Int
+    """
+    organism information
+    """
+    organism: CoexpressionOrganism
+}
+"""
+CoexpressionResume is the type that resumes the documents
+that match with the query but only shows specified data
+to make a short response for the front end.
+"""
+
+type CoexpressionResume {
+    coexpressionId: String
+    geneId: String
+    geneName: String
+    rank: Int
+}
+
+"""
+OrganismType contains the information of the organism 
+"""
+type CoexpressionOrganism {
+    """
+    id of the organism
+    """
+    organism_id: String
+    """
+    name of the organism
+    """
+    organism_name: String
+}
+
+type Query {
+    """
+    ### Name
+    getTopCoexpressionRanking
+
+    ### Description
+    Gets the top Coexpression (50 max and default) by a gene ID or name.
+
+    ### Example
+    ```json{
+    getTopCoexpressionRanking(gene: "arac" or id: "RDBECOLIGN0001")
+    {
+        coexpressionId
+        geneId
+        geneName
+        rank
+    }
+    }
+    ```
+    """
+    getTopCoexpressionRanking(
+        """
+        Defines the id of the gene to search
+        """
+        id: String, 
+        """
+        Defines the name of the gene to search
+        """
+        gene: String,
+        """
+        Defines the limit of the elements to show (max 50)
+        """
+        limit: Int): [CoexpressionResume]
+
+     """
+    ### Name
+    getRankFromGeneList
+
+    ### Description
+    Get the coexpression list from a gene compared to the top of other gene. It works with names or ids.
+
+    ### Example
+    ```json{
+    getRankFromGeneList(
+    gene: "arac", 
+    geneList:[name list] 
+    OR 
+    geneId:"id", 
+    geneIdList[id list])
+    {
+        coexpressionId
+        geneId
+        geneName
+        rank
+    }
+    }
+    ```
+    """
+    getRankFromGeneList(
+        """
+        Id of the gene to compare with the principal gene
+        """
+        geneId: String,
+
+        """
+        Id list of the top 50 principal gene
+        """ 
+        geneIdList: [String],
+
+        """
+        Name of the gene to compare with the principal gene
+        """ 
+        gene: String,
+
+        """
+        Name list of the top 50 principal gene
+        """ 
+        geneList: [String]): [CoexpressionResume]
+}
