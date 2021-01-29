@@ -4,10 +4,13 @@
 
 # Description
 
-API Web Service to connect RegulonDB MongoDB collections
-Functional services currently: 
- - Gene
- - Phrases
+API web services to connect RegulonDB MongoDB collections. 
+Functional services currently:
+- Gene
+- Operon
+- Drawing Traces Tool 
+- Coexpression
+- Phrases
 
 Services in Development: 
 

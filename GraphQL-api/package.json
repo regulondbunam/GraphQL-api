@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/regulondbunam/RegulonDB-ServiciosWeb-Daniel.git"
+    "url": "git+https://github.com/regulondbunam/GraphQL-api.git"
   },
   "contributors": [
     "Andrés Gerardo López Almazo",
     "Daniel Moreno Alonso",
-    "Edgar"
+    "Edgar Enrrique Hernández Marcelo"
   ],
   "license": "ISC",
   "dependencies": {
