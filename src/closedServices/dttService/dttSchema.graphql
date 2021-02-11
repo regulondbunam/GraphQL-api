@@ -1,0 +1,221 @@
+"""
+DTTData type is principal type on the service
+
+"""
+
+type DTTData {
+    """
+    id of the element object
+    """
+    _id: String
+
+    """
+    Type of the element to draw
+    """
+    objectType: String
+
+    """
+    Beginning of element position
+    """
+    leftEndPosition: String
+
+    """
+    Ending of element position
+    """
+    rightEndPosition: String
+
+    """
+    Direction of the genetic element
+    """ 
+    strand: String
+
+    """
+    RGB value to paint the element 
+    """
+    objectRGBColor: String
+
+    """
+    Width of the line
+    """
+    lineWidth: Int
+
+    """
+    Type of the line
+    """
+    lineType: Int
+
+    """
+    Name of the genetic element drawed
+    """
+    labelName: String
+
+    """
+    Font of the label
+    """
+    labelFont: String
+
+    """
+    Color of the label in RGB value
+    """
+    labelRGBColor: String
+
+    """
+    Size of the label that deploys in the page
+    """
+    labelSize: Int
+
+    """
+    Description of the genetic element drawed
+    """
+    tooltip: String
+
+    """
+    Color of the line drawed in RGB value
+    """
+    lineRGBColor: String
+
+    """
+    Name of the drawed organism
+    """
+    organism: organismType
+
+    """
+    Objects that don´t have position
+    """
+    linkedObjectsWhenNoPositions: [linkedObjectsWhenNoPositionsType]
+
+    """
+    Genes related to the elements
+    """
+    relatedGenes: [relatedGenesType]
+}
+
+"""
+OrganismType contains the information of the organism 
+"""
+type organismType {
+    """
+    id of the organism type
+    """
+    organism_id: String
+
+    """
+    Name of the organism type
+    """
+    organism_name:String
+}
+
+"""
+RelatedGenesType contains the information of those elements that are related with th principal genes
+"""
+type relatedGenesType {
+    """
+    id of the related gene
+    """
+    gene_id: String
+    """
+    efect of the gene
+    """
+    effect: String
+    """
+    Color to draw of the gene
+    """
+    objectRGBColor: String
+
+    """
+    Direction of the gene
+    """
+    strand: String
+
+    """
+    Description of the gene
+    """
+    tooltip: String
+}
+
+"""
+linkedObjectsWhenNoPositionsType contains information of those elements without position
+"""
+type linkedObjectsWhenNoPositionsType {
+    """
+    id of the gene with no position
+    """
+    _id: String
+
+    """
+    Position of the gen
+    """
+    leftEndPosition: String
+    
+    """
+    Name of the gene
+    """
+    name: String
+    
+    """
+    Position of the gene
+    """
+    rightEndPosition: String
+    
+    """
+    Direction of the element to draw
+    """
+    strand: String
+
+    """
+    Type of the element
+    """
+    type: String
+}
+
+type Query {
+"""
+### Name
+getGeneticElementsFromInterval
+
+### Description
+Obtained all the elements that are in the selected range
+
+### Example
+```json
+{
+    getGeneticElementsFromInterval(args){
+        
+        fields_to_show
+
+        organism{
+            fields_to_show
+        }
+        relatedGenes{
+            fields_to_show
+        }
+        linkedObjectsWhenNoPositions{
+            fields_to_show
+        }
+
+    }
+}
+```
+"""
+    getGeneticElementsFromInterval(
+        """
+        Defines the beginning of the element range to draw
+        """
+        leftEndPosition:Int,
+        """
+        Defines the ending of the element range to draw
+        """
+        rightEndPosition:Int,
+        """
+        Defines the direction of the element strand, could be forward, reverse or both
+        """
+        strand:String,
+        """
+        Defines the elements to display 
+        """
+        objectType: [String],
+        """
+        Define if the elements to draw are completely in the selected range (true) or could be outside the range (false by default)
+        """ 
+        covered: Boolean): [DTTData]
+}
