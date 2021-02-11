@@ -1,20 +1,18 @@
 # RegulonDB-WS GraphQL API
 
 
-
 # Description
 
 API web services to connect RegulonDB MongoDB collections. 
 Functional services currently:
 - Gene
-- Operon
-- Drawing Traces Tool 
+- DrawingTracesTool 
 - Coexpression
 - Phrases
 
 Services in Development: 
-
- - Regulon
+- Operon (first version integrated)
+- Regulon (not available)
 
 # Motivation
 
@@ -24,8 +22,8 @@ With the reengineering of RegulonDB passing from relational model to an document
 
 Required software
 
-- Node JS 12.18.4
-- NPM 6.14.6
+- Node JS ^12.18.4
+- NPM ^6.14.6
 
 # Install
 
@@ -35,7 +33,7 @@ Once the repo is cloned, use this command to install all libraries dependencies 
 $ npm install
 ```
 
-After that, use the following command and edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the port for GraphQL server (by default is used port 4000).
+After that, use the following command and edit the ".env-sample" file to add credentials to access the MongoDB collections (keeping the variable name) and the ports for GraphQL servers (by default is used port 4001 for the gateway, 4002 for private services, and 4003 for public services).
 
 ```bash
 # On Unix
@@ -57,33 +55,27 @@ REN .env-sample .env
 
 # Quick start
 
-Starting up server with node use
+Starting up openServices and closedServices server firstly, without this, the GraphQL Gateway server will fail to start
 
  ```bash
-$ npm start
+$ npm run services
  ```
 
-Instead, can be used PM2 to start server with 
+ When services are up, use this command to start GraphQL Gateway Service:
 
-```bash
-$ npm run start:pm2
+```
+$ npm start
 ```
 
-To shutdown server with PM2 use
-
-```bash
-$ npm run stop:pm2
-```
-
-Now if the GraphQL PORT in .env was not defined, it will take port 4000 and GraphQL Playgroud will run at http://localhost:4000/graphql
+Now if the GraphQL Closed or Open ports in .env was not defined, it will take port 4002 and 4003 (by default) and GraphQL Playgroud for closedServices will run at http://localhost:4002/graphql and for OpenServices will run at http://localhost:4003/graphql
 
 # Project website
 
-[Website where the software is described and allows users to obtain it as well as its documentation.]
+[NOT DEFINED]
 
 # License
 
-Copyright 2020 RegulonDB
+Copyright 2021 RegulonDB
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
@@ -118,7 +110,7 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
 
 **Copyright & Licensing**
 
-- [ ] LICENSE file
+- [x] LICENSE file
 
 **Portability**
 
@@ -140,8 +132,8 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
 
 **Changeability**
 
-- [ ] CONTRIBUTING file
-- [ ] Code of Conduct file
+- [x] CONTRIBUTING file
+- [x] Code of Conduct file
 - [ ] Code changes, and their authorship, publicly visible
 
 **Reusability**
