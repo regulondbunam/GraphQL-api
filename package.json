@@ -16,6 +16,7 @@
     "services": "npm run build && concurrently -k npm:service:*",
     "service:closedTools": "node build/closedServices/closedServicesServer.js",
     "service:openTools": "node build/openServices/openServicesServer.js",
+    "preinstall": "npx npm-force-resolutions",
     "gateway": "node build/gateway.js",
     "build": "babel src -d build",
     "slint": "eslint .",
@@ -35,7 +36,7 @@
   "dependencies": {
     "@apollo/federation": "^0.20.7",
     "@apollo/gateway": "^0.21.4",
-    "apollo-server-express": "^2.20.0",
+    "apollo-server-express": "^2.21.0",
     "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -43,19 +44,21 @@
     "dotenv": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "express": "^4.17.1",
-    "express-rate-limit": "^5.2.5",
+    "express-rate-limit": "^5.2.6",
     "graphql": "^15.5.0",
     "graphql-import": "^1.0.2",
     "merge-graphql-schemas": "^1.7.8",
     "mongodb-filter-object-parser": "^1.2.4",
-    "mongoose": "^5.11.15"
+    "mongoose": "^5.11.17",
+    "npm-force-resolutions": "0.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
     "axios": "^0.21.1",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^25.5.1",
+    "braces": "^3.0.2",
     "concurrently": "^5.3.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
@@ -67,9 +70,16 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "jest": "^26.6.3",
+    "lodash": "^4.17.20",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
     "prettier": "^1.19.1"
+  },
+  "resolutions": {
+    "lodash": "^4.17.19",
+    "braces": "^2.3.1",
+    "node-fetch": "^2.6.1"
   }
 }
