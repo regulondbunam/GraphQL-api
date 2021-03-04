@@ -15,18 +15,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const transcriptionFactorBindingSitesSchema = new _mongoose2.default.Schema({
     transcriptionFactor: {
-        id: String,
+        _id: String,
         name: String,
         function: String
     },
     regulatoryInteractions: [{
-        id: String,
+        _id: String,
         centerPosition: Number,
         citations: [_general_model.citationsSchema],
         function: String,
         note: String,
-        transcriptionFactorRegulatorySite: {
-            id: String,
+        regulatorySite: {
+            _id: String,
             absolutePosition: Number,
             citations: [_general_model.citationsSchema],
             leftEndPosition: Number,
@@ -34,15 +34,22 @@ const transcriptionFactorBindingSitesSchema = new _mongoose2.default.Schema({
             note: String,
             rightEndPosition: Number,
             sequence: String
-        }
+        },
+        mechanism: String
     }],
     function: String
 });
 
-const statisticsSchema = new _mongoose2.default.Schema({
+const transcriptionUnitStatisticsSchema = new _mongoose2.default.Schema({
     genes: Number,
     sites: Number,
     transcriptionFactors: Number
+});
+
+const operonStatisticsSchema = new _mongoose2.default.Schema({
+    transcriptionUnit: Number,
+    promoters: Number,
+    genes: Number
 });
 
 const operonSchema = new _mongoose2.default.Schema({
@@ -54,11 +61,11 @@ const operonSchema = new _mongoose2.default.Schema({
         rightEndPosition: Number
     },
     strand: String,
-    statistics: [statisticsSchema]
+    statistics: operonStatisticsSchema
 });
 
 const promotersSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     bindsSigmaFactor: {
         sigmaFactor_id: String,
         citations: [_general_model.citationsSchema],
@@ -67,7 +74,6 @@ const promotersSchema = new _mongoose2.default.Schema({
     citations: [_general_model.citationsSchema],
     name: String,
     note: String,
-    pos1: Number,
     boxes: [{
         leftEndPosition: String,
         rightEndPosition: String,
@@ -96,11 +102,12 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
     },
     genes: [{
         id: String,
-        name: String
+        name: String,
+        transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema]
     }],
     note: String,
     synonyms: [String],
-    promoters: [promotersSchema],
+    promoter: promotersSchema,
     terminators: [{
         id: String,
         citations: [_general_model.citationsSchema],
@@ -108,11 +115,12 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
         transcriptionTerminationSite: {
             leftEndPosition: Number,
             rightEndPosition: Number,
+            range: Number,
             type: String
         }
     }],
     transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
-    statistics: statisticsSchema
+    statistics: transcriptionUnitStatisticsSchema
 });
 
 const operonServiceSchema = new _mongoose2.default.Schema({
@@ -124,10 +132,9 @@ const operonServiceSchema = new _mongoose2.default.Schema({
         name: String
     },
     allCitations: [_general_model.citationsSchema],
-    statistics: statisticsSchema,
     schemaVersion: Number
 });
 
-const Operon = _mongoose2.default.model('operon_datamarts', operonServiceSchema, 'operonDatamarts');
+const Operon = _mongoose2.default.model('operon_datamarts', operonServiceSchema, 'operonDatamart');
 
 exports.Operon = Operon;

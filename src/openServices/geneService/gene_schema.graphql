@@ -113,6 +113,10 @@ type Gene {
   _
   """
   citations: [Citations]
+  """
+  _
+  """
+  fragments: [Fragments]
 }
 
 """
@@ -133,6 +137,39 @@ type MultifunTerms {
   name: String
 }
 
+"""
+_
+"""
+type Fragments {
+  """
+  _
+  """
+  id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  leftEndPosition: Int
+  """
+  _
+  """
+  rightEndPosition: Int
+  """
+  _
+  """
+  sequence: String
+  """
+  _
+  """
+  centisomePosition: String
+}
+
+"""
+_
+"""
 type Products {
   """
   _

@@ -35,6 +35,16 @@ const geneSchema = new mongoose.Schema({
 			name: String
 		}
 	],
+	fragments:[
+		{
+			id: String,
+			name: String,
+			leftEndPosition: Number,
+			rightEndPosition: Number,
+			sequence: String,
+			centisomePosition: Number
+		}
+	],
 	externalCrossReferences: [ externalCrossReferencesSchema ],
 	citations: [ citationsSchema ]
 });
@@ -140,6 +150,6 @@ const geneServiceSchema = new mongoose.Schema({
 	schemaVersion: Number
 });
 
-const Gene = mongoose.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
+const Gene = mongoose.model('gene_datamarts', geneServiceSchema, 'geneDatamart');
 
 export { Gene };
