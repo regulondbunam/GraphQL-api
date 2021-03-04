@@ -51,7 +51,7 @@ const operonSchema = new mongoose.Schema({
         rightEndPosition: Number
     },
     strand: String,
-    statistics: [operonStatisticsSchema]
+    statistics: operonStatisticsSchema
 });
 
 const promotersSchema = new mongoose.Schema({

@@ -61,7 +61,7 @@ const operonSchema = new _mongoose2.default.Schema({
         rightEndPosition: Number
     },
     strand: String,
-    statistics: [operonStatisticsSchema]
+    statistics: operonStatisticsSchema
 });
 
 const promotersSchema = new _mongoose2.default.Schema({
