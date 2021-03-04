@@ -45,6 +45,14 @@ const geneSchema = new _mongoose2.default.Schema({
 		label: String,
 		name: String
 	}],
+	fragments: [{
+		id: String,
+		name: String,
+		leftEndPosition: Number,
+		rightEndPosition: Number,
+		sequence: String,
+		centisomePosition: Number
+	}],
 	externalCrossReferences: [externalCrossReferencesSchema],
 	citations: [_general_model.citationsSchema]
 });
@@ -146,6 +154,6 @@ const geneServiceSchema = new _mongoose2.default.Schema({
 	schemaVersion: Number
 });
 
-const Gene = _mongoose2.default.model('gene_datamarts', geneServiceSchema, 'geneDatamarts');
+const Gene = _mongoose2.default.model('gene_datamarts', geneServiceSchema, 'geneDatamart');
 
 exports.Gene = Gene;

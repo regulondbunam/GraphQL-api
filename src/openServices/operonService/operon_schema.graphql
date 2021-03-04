@@ -5,7 +5,7 @@ type operonDatamart {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -22,10 +22,6 @@ type operonDatamart {
 	_
 	"""
 	allCitations: [Citations]
-	"""
-	_
-	"""
-	statistics: Statistics
 	"""
 	_
 	"""
@@ -59,7 +55,16 @@ type Operon {
 	"""
 	_
 	"""
-	statistics: [Statistics]
+	statistics: [OperonStatistics]
+}
+
+"""
+_
+"""
+type OperonStatistics {
+	transcriptionUnit: Int
+	promoters: Int
+	genes: Int
 }
 
 """
@@ -111,7 +116,7 @@ type TranscriptionUnits {
 	"""
 	_
 	"""
-	promoters: [Promoters]
+	promoter: Promoter
 	"""
 	_
 	"""
@@ -123,12 +128,12 @@ type TranscriptionUnits {
 	"""
 	_
 	"""
-	statistics: Statistics
+	statistics: TranscriptionUnitStatistics
 }
 """
 _
 """
-type Statistics {
+type TranscriptionUnitStatistics {
 	genes: Int
 	sites: Int
 	transcriptionFactors: Int
@@ -164,12 +169,16 @@ type Genes {
 	_
 	"""
 	name: String
+	"""
+	_
+	"""
+	transcriptionFactorBindingSites: TranscriptionFactorBindingSites
 }
 
 """
 _
 """
-type Promoters {
+type Promoter {
 	"""
 	_
 	"""
@@ -190,10 +199,6 @@ type Promoters {
 	_
 	"""
 	note: String
-	"""
-	_
-	"""
-	pos1: Float
 	"""
 	_
 	"""
@@ -286,7 +291,7 @@ type TranscriptionFactor {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -304,7 +309,7 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -324,17 +329,21 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
-	transcriptionFactorRegulatorySite: TranscriptionFactorRegulatorySite
+	regulatorySite: RegulatorySite
+	"""
+	_
+	"""
+	mechanism: String
 }
 
 """
 _
 """
-type TranscriptionFactorRegulatorySite {
+type RegulatorySite {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -394,7 +403,7 @@ type Terminators {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""

@@ -3,19 +3,19 @@ import { citationsSchema } from '../common/general_model';
 
 const transcriptionFactorBindingSitesSchema = new mongoose.Schema({
     transcriptionFactor: {
-        id: String,
+        _id: String,
         name: String,
         function: String
     },
     regulatoryInteractions: [
         {
-            id: String,
+            _id: String,
             centerPosition: Number,
             citations: [citationsSchema],
             function: String,
             note: String,
-            transcriptionFactorRegulatorySite: {
-                id: String,
+            regulatorySite: {
+                _id: String,
                 absolutePosition: Number,
                 citations: [citationsSchema],
                 leftEndPosition: Number,
@@ -23,16 +23,23 @@ const transcriptionFactorBindingSitesSchema = new mongoose.Schema({
                 note: String,
                 rightEndPosition: Number,
                 sequence: String
-            }
+            },
+            mechanism: String
         }
     ],
     function: String
 })
 
-const statisticsSchema = new mongoose.Schema({
+const transcriptionUnitStatisticsSchema = new mongoose.Schema({
     genes: Number,
     sites: Number,
     transcriptionFactors: Number
+})
+
+const operonStatisticsSchema = new mongoose.Schema({
+    transcriptionUnit: Number,
+    promoters: Number,
+    genes: Number
 })
 
 const operonSchema = new mongoose.Schema({
@@ -44,11 +51,11 @@ const operonSchema = new mongoose.Schema({
         rightEndPosition: Number
     },
     strand: String,
-    statistics: [statisticsSchema]
+    statistics: [operonStatisticsSchema]
 });
 
 const promotersSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     bindsSigmaFactor: {
         sigmaFactor_id: String,
         citations: [citationsSchema],
@@ -57,7 +64,6 @@ const promotersSchema = new mongoose.Schema({
     citations: [citationsSchema],
     name: String,
     note: String,
-    pos1: Number,
     boxes: [
         {
             leftEndPosition: String,
@@ -89,12 +95,13 @@ const transcriptionUnitsSchema = new mongoose.Schema({
     genes: [
         {
             id: String,
-            name: String
+            name: String,
+            transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema]
         }
     ],
     note: String,
     synonyms: [String],
-    promoters: [promotersSchema],
+    promoter: promotersSchema,
     terminators: [
         {
             id: String,
@@ -103,12 +110,13 @@ const transcriptionUnitsSchema = new mongoose.Schema({
             transcriptionTerminationSite: {
                 leftEndPosition: Number,
                 rightEndPosition: Number,
+                range: Number,
                 type: String
             }
         }
     ],
     transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
-    statistics: statisticsSchema
+    statistics: transcriptionUnitStatisticsSchema
 });
 
 const operonServiceSchema = new mongoose.Schema({
@@ -120,10 +128,9 @@ const operonServiceSchema = new mongoose.Schema({
         name: String
     },
     allCitations: [citationsSchema],
-    statistics: statisticsSchema,
     schemaVersion: Number
 })
 
-const Operon = mongoose.model('operon_datamarts', operonServiceSchema, 'operonDatamarts')
+const Operon = mongoose.model('operon_datamarts', operonServiceSchema, 'operonDatamart')
 
 export { Operon };
