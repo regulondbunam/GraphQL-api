@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import { citationsSchema } from '../common/general_model';
 
-const transcriptionFactorBindingSitesSchema = new mongoose.Schema({
-    transcriptionFactor: {
+const RegulatorBindingSitesSchema = new mongoose.Schema({
+    regulator: {
         _id: String,
         name: String,
         function: String
@@ -74,7 +74,7 @@ const promotersSchema = new mongoose.Schema({
     ],
     sequence: String,
     synonyms: [String],
-    transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
+    regulatorBindingSites: [RegulatorBindingSitesSchema],
     transcriptionStartSite: {
         leftEndPosition: String,
         rightEndPosition: String,
@@ -96,7 +96,7 @@ const transcriptionUnitsSchema = new mongoose.Schema({
         {
             id: String,
             name: String,
-            transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema]
+            regulatorBindingSites: [RegulatorBindingSitesSchema]
         }
     ],
     note: String,
@@ -115,7 +115,7 @@ const transcriptionUnitsSchema = new mongoose.Schema({
             }
         }
     ],
-    transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
+    regulatorBindingSites: [RegulatorBindingSitesSchema],
     statistics: transcriptionUnitStatisticsSchema
 });
 

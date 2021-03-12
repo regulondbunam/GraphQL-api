@@ -13,8 +13,8 @@ var _general_model = require('../common/general_model');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const transcriptionFactorBindingSitesSchema = new _mongoose2.default.Schema({
-    transcriptionFactor: {
+const RegulatorBindingSitesSchema = new _mongoose2.default.Schema({
+    regulator: {
         _id: String,
         name: String,
         function: String
@@ -82,7 +82,7 @@ const promotersSchema = new _mongoose2.default.Schema({
     }],
     sequence: String,
     synonyms: [String],
-    transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
+    regulatorBindingSites: [RegulatorBindingSitesSchema],
     transcriptionStartSite: {
         leftEndPosition: String,
         rightEndPosition: String,
@@ -103,7 +103,7 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
     genes: [{
         id: String,
         name: String,
-        transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema]
+        regulatorBindingSites: [RegulatorBindingSitesSchema]
     }],
     note: String,
     synonyms: [String],
@@ -119,7 +119,7 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
             type: String
         }
     }],
-    transcriptionFactorBindingSites: [transcriptionFactorBindingSitesSchema],
+    regulatorBindingSites: [RegulatorBindingSitesSchema],
     statistics: transcriptionUnitStatisticsSchema
 });
 
