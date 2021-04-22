@@ -74,21 +74,51 @@ Returns an object containing a response that will be sent to GraphQL
 **/
 
 import { Regulon } from './regulon_model';
-import { advancedSearchFilter, searchFilter } from 'mongodb-filter-object-parser';
+import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
+import { commonController } from '../common/controller_common_functions';
+import { GraphQLError } from 'graphql';
 
-/** Define a geneController. */
+/** Define a geneController. */ 
 class regulonController {
-  static getRegulonBy(search, advancedSearch, limit = 0, page = 0) {
-    const offset = page * limit;
-    let filter;
-    if (advancedSearch !== undefined) {
-      filter = advancedSearchFilter(advancedSearch);
-    } else if (search !== undefined) {
-      filter = searchFilter(search);
+  static async getRegulonBy(
+    search, 
+    advancedSearch, 
+    limit = 0, 
+    page = 0, 
+    properties = ["transcriptionFactor.id", "transcriptionFactor.name"], 
+    fullMatchOnly) {
+      const offset = page * limit;
+      let filter;
+      let hasMore = false;
+      if (advancedSearch !== undefined) {
+        filter = advancedSearchFilter(advancedSearch);
+      } else if (search !== undefined) {
+        // filter = searchFilter(search);
+        filter = textSearchFilter(search, properties, fullMatchOnly);
+      }
+      const Regulons = Regulon.find(filter).sort({'transcriptionFactor.name': 1}).limit(limit).skip(offset);
+      const total = await commonController.countDocumentsIn(Regulon, filter);
+      const lastPage = Math.floor(total / limit);
+      if (limit * (page + 1) < total) hasMore = true;
+      if (page > lastPage) {
+        const err = new GraphQLError('You must select an available page number');
+        err.status = 'No Content';
+        err.statusCode = 204;
+        throw err;
+      } else {
+        return {
+          data: Regulons,
+          pagination: {
+            limit: limit,
+            currentPage: page,
+            firstPage: 0,
+            lastPage: lastPage,
+            totalResults: total,
+            hasNextPage: hasMore,
+          },
+        };
+      }
     }
-    console.log(JSON.stringify(filter));
-    return Regulon.find(filter).limit(limit).skip(offset);
-  }
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */

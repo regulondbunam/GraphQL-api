@@ -1,187 +1,666 @@
-type Regulon {
+"""
+_
+"""
+type RegulonDatamart {
+	"""
+	_
+	"""
 	_id: String
-	regulator: Regulator
+	"""
+	_
+	"""
+	transcriptionFactor: TranscriptionFactor
+	"""
+	_
+	"""
+	terms: Terms
+	"""
+	_
+	"""
 	regulates: Regulates
-	regulatoryInteractions: RegulatoryInteractions
+	"""
+	_
+	"""
+	regulatoryInteractions: [RegulonRegulatoryInteractions]
+	"""
+	_
+	"""
 	aligmentMatrix: AligmentMatrix
+	"""
+	_
+	"""
 	evolutionaryConservation: EvolutionaryConservation
+	"""
+	_
+	"""
 	organism: String
+	"""
+	_
+	"""
 	summary: Summary
 }
 
-type Regulator {
+"""
+_
+"""
+type TranscriptionFactor {
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	synonyms: [String]
+	"""
+	_
+	"""
 	note: String
-	conformations: Conformations
-	genes: Genes
-	operon: Operon
+	"""
+	_
+	"""
+	conformations: [Conformations]
+	"""
+	_
+	"""
+	encodedFrom: EncodedFrom
+	"""
+	_
+	"""
 	sensingClass: String
+	"""
+	_
+	"""
 	connectivityClass: String
 }
 
+"""
+_
+"""
+type EncodedFrom {
+	"""
+	_
+	"""
+	genes: [Genes]
+	"""
+	_
+	"""
+	operon: [Operon]
+}
+
+"""
+_
+"""
 type Conformations {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	type: String
+	"""
+	_
+	"""
 	effectorInteractionType: String
+	"""
+	_
+	"""
 	citations: [Citations]
+	"""
+	_
+	"""
 	functionalType: String
 }
 
+"""
+_
+"""
 type Genes {
+	"""
+	_
+	"""
 	gene_id: String
+	"""
+	_
+	"""
+	gene_name: String
+	"""
+	_
+	"""
 	genomePosition: String
+	"""
+	_
+	"""
 	length: String
 }
 
+"""
+_
+"""
 type Operon {
-	operon_Id: String
+	"""
+	_
+	"""
+	operon_id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	tusEncodingRegulator: [TusEncodingRegulator]
 }
 
+"""
+_
+"""
 type TusEncodingRegulator {
+	"""
+	_
+	"""
 	transcriptionUnitName: String
+	"""
+	_
+	"""
 	promoterName: String
 }
 
+"""
+_
+"""
+type Terms {
+	"""
+	_
+	"""
+	multifun: [RegulonMultifun]
+	"""
+	_
+	"""
+	geneOntology: RegulonGeneOntology
+}
+
+"""
+_
+"""
+type RegulonGeneOntology {
+	"""
+	_
+	"""
+	term_id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	gene_ids: [String]
+}
+
+"""
+_
+"""
+type RegulonMultifun {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	gene_ids: [String]
+}
+
+"""
+_
+"""
 type Regulates {
-	genes: [Genes]
-	transcriptionFactors: [TranscriptionFactors]
-	transcriptionUnits: [TranscriptionUnits]
-	operons: [Operons]
-	sigmaFactors: [SigmaFactors]
+	"""
+	_
+	"""
+	genes: [RegulatedGenes]
+	"""
+	_
+	"""
+	transcriptionFactors: [RegulatedTranscriptionFactors]
+	"""
+	_
+	"""
+	transcriptionUnits: [RegulatedTranscriptionUnits]
+	"""
+	_
+	"""
+	operons: [RegulatedOperons]
+	"""
+	_
+	"""
+	sigmaFactors: [RegulatedSigmaFactors]
 }
 
-type Genes {
+"""
+_
+"""
+type RegulatedGenes {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
+	function: String
+	"""
+	_
+	"""
+	terms: Terms
+}
+
+"""
+_
+"""
+type RegulatedTranscriptionFactors {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
 	function: String
 }
 
-type TranscriptionFactors {
+"""
+_
+"""
+type RegulatedTranscriptionUnits {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	function: String
+	"""
+	_
+	"""
+	firstGene: RegulatedFirstGene
 }
 
-type TranscriptionUnits {
+"""
+_
+"""
+type RegulatedOperons {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	function: String
-	firstGene: FirstGene
+	"""
+	_
+	"""
+	firstGene: RegulatedFirstGene
 }
 
-type Operons {
+"""
+_
+"""
+type RegulatedSigmaFactors {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
+	"""
+	_
+	"""
 	function: String
-	firstGene: FirstGene
+	"""
+	_
+	"""
+	firstGene: RegulatedFirstGene
 }
 
-type SigmaFactors {
+"""
+_
+"""
+type RegulatedFirstGene {
+	"""
+	_
+	"""
 	id: String
+	"""
+	_
+	"""
 	name: String
-	function: String
-	firstGene: FirstGene
 }
 
-type FirstGene {
-	id: String
-	name: String
-}
-
-type RegulatoryInteractions {
-	conformationName: String
+"""
+_
+"""
+type RegulonRegulatoryInteractions {
+	"""
+	_
+	"""
+	regulator: RegulonRegulator
+	"""
+	_
+	"""
 	function: String
-	promoter_id: String
-	promoter_strand: String
-	promoter_name: String
-	sigmaFactorName: String
-	centralRelativePosition: Int
+	"""
+	_
+	"""
+	regulatedEntity: RegulatedEntity
+	"""
+	_
+	"""
 	distanceToFirstGene: Int
-	genes: Genes
-	site_leftEndPosition: Int
-	site_rightEndPosition: Int
-	citations: Citations
+	"""
+	_
+	"""
+	distanceToPromoter: Int
+	"""
+	_
+	"""
+	regulatedGenes: [RegulatedGenesByRegulator]
+	"""
+	_
+	"""
+	regulatoryBindingSites: RegulatoryBindingSites
+	"""
+	_
+	"""
+	citations: [Citations]
 }
 
+"""
+_
+"""
+type RegulonRegulator {
+	"""
+	_
+	"""
+	_id: String
+	"""
+	_
+	"""
+	type: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type RegulatedEntity {
+	"""
+	_
+	"""
+	_id: String
+	"""
+	_
+	"""
+	type: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type RegulatedGenesByRegulator {
+	"""
+	_
+	"""
+	id: String, 
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type RegulatoryBindingSites {
+	"""
+	_
+	"""
+	absolutePosition: Int
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
+	"""
+	_
+	"""
+	sequence: String
+	"""
+	_
+	"""
+	strand: String
+	"""
+	_
+	"""
+	citations: [Citations]
+}
+
+"""
+_
+"""
 type AligmentMatrix {
+	"""
+	_
+	"""
 	aligment: String
+	"""
+	_
+	"""
 	matrix: String
+	"""
+	_
+	"""
 	consensus: String
+	"""
+	_
+	"""
 	urlPWMLogo: String
+	"""
+	_
+	"""
 	urlMatrixQualityResult: String
 }
 
+"""
+_
+"""
 type EvolutionaryConservation {
+	"""
+	_
+	"""
 	urlRegulatorTargetGene: String
+	"""
+	_
+	"""
 	urlPromoterTargetGene: String
 }
 
+"""
+_
+"""
 type Summary {
-	genes: GenesSum
-	transcriptionFactorsSum: TranscriptionFactorsSum
-	transcriptionUnits: TranscriptionUnitsSum
-	operons: OperonsSum
-	sigmaFactorsSum: SigmaFactorsSum
+	"""
+	_
+	"""
+	genes: SummaryObject
+	"""
+	_
+	"""
+	transcriptionFactors: SummaryObject
+	"""
+	_
+	"""
+	transcriptionUnits: SummaryObject
+	"""
+	_
+	"""
+	operons: SummaryObject
+	"""
+	_
+	"""
+	sigmaFactors: SummaryObject
+	"""
+	_
+	"""
+	bindingSites: SummaryObject
+	"""
+	_
+	"""
+	regulatoryInteractions: SummaryObject
 }
 
-type GenesSum {
+"""
+_
+"""
+type SummaryObject {
+	"""
+	_
+	"""
 	repressed: Int
+	"""
+	_
+	"""
 	activated: Int
+	"""
+	_
+	"""
 	dual: Int
+	"""
+	_
+	"""
 	unknown: Int
+	"""
+	_
+	"""
 	total: Int
 }
 
-type TranscriptionFactorsSum {
-	repressed: Int
-	activated: Int
-	dual: Int
-	unknown: Int
-	total: Int
+"""
+_
+"""
+type RegulonResult { 
+  """
+  contains server response
+  """
+  data: [RegulonDatamart]
+  """
+  contains pagination info
+  """
+  pagination: Pagination
 }
 
-type TranscriptionUnitsSum {
-	repressed: Int
-	activated: Int
-	dual: Int
-	unknown: Int
-	total: Int
-}
-
-type OperonsSum {
-	repressed: Int
-	activated: Int
-	dual: Int
-	unknown: Int
-	total: Int
-}
-
-type SigmaFactorsSum {
-	repressed: Int
-	activated: Int
-	dual: Int
-	unknown: Int
-	total: Int
-}
-
+"""
+_
+"""
 type Query {
   """
-  List all the Regulon docs or defined by a limit
+  #### Type
+  Data
+  #### Service
+  Regulon
+  #### Name
+  getAllRegulon
+  #### Description
+  List all the regulon contained in collection
   """
-  getAllRegulon(limit: Int, page: Int): [Regulon] 
+  getAllRegulon(
+    "**limit**: defines the page results showed (10 by default)"
+	limit: Int = 10, 
+    "**page**: select the current result page (0 by default)"
+	page: Int = 0): RegulonResult!
   """
-  Return a list of Regulon docs by an advancedSearch string
+  #### Type
+  Data
+  #### Service
+  Regulon
+  #### Name
+  getRegulonBy
+  #### Description
+  List the regulon docs obtained by a search or advancedSearch String
+  #### Example
+  ```json
+  {
+    getGenesBy(args){
+      data{
+        fields_to_show
+      }
+      pagination{
+        fields_to_show
+      }
+    }
+  }
+  ```
   """
   getRegulonBy(
+    """
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    """
     search: String, 
+    """
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arac|arad[transcriptionFactor.name]\"
+    """
     advancedSearch: String, 
-    limit: Int, 
-    page: Int, 
-    properties: [String], 
+    "defines the page results showed"
+    limit: Int = 10, 
+    "select the current result page"
+    page: Int = 0, 
+    "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
+    properties: [String] = ["transcriptionFactor.id", "transcriptionFactor.name"], 
+    "usable for specific organismName queries (not available right now)"
     organismName: String, 
-    fullMatchOnly: Boolean): [Regulon] 
+    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    fullMatchOnly: Boolean = false): RegulonResult!
 } 

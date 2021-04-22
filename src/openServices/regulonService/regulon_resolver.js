@@ -44,8 +44,8 @@ import { commonController } from '../common/controller_common_functions';
 
 export const regulonResolvers = {
   Query: {
-    getAllRegulon: (root, {limit, page}) => commonController.getAll(Regulon, limit, page),
-    getRegulonBy: (root, {search, advancedSearch, limit, page}) =>
-      regulonController.getRegulonBy(search, advancedSearch, limit, page),
+    getAllRegulon: (root, {limit, page}) => commonController.getAll(Regulon, limit, page, "transcriptionFactor.name"),
+    getRegulonBy: (root, {search, advancedSearch, limit, page, properties, organismName, fullMatchOnly}) =>
+      regulonController.getRegulonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
   },
 };

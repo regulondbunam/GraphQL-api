@@ -1,15 +1,64 @@
 import mongoose from 'mongoose';
+import { citationsSchema } from '../common/general_model';
+
+const tusEncodingRegulatorSchema = new mongoose.Schema({
+  transcriptionUnitName: String, 
+  promoterName: String
+});
+
+const encodedFromGenes = new mongoose.Schema({
+  gene_id: String,
+  gene_name: String,
+  genomePosition: String,
+  length: Number
+})
+
+const encodedFromOperons = new mongoose.Schema({
+  operon_id: String,
+  name: String,
+  tusEncodingRegulator: [tusEncodingRegulatorSchema]
+})
+
+const encodedFromSchema = new mongoose.Schema({
+  genes: [encodedFromGenes],
+  operon: [encodedFromOperons]
+});
+
+const ConformationsSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  type: String,
+  effectorInteractionType: String,
+  citations: [citationsSchema],
+  functionalType: String
+})
+
+const transcriptionFactorSchema = new mongoose.Schema({
+  name: String,
+  synonyms: [String],
+  note: String,
+  conformations: [ConformationsSchema],
+  encodedFrom: encodedFromSchema,
+  sensingClass: String,
+  connectivityClass: String
+});
+
+const geneOntologySchema = ({
+  term_id: String,
+  name: String,
+  gene_ids: [String]
+})
 
 const termsSchema = new mongoose.Schema({
-  multifun: {
+  multifun: [{
     id: String,
     name: String,
-    genes: [String],
-  },
+    gene_ids: [String]
+  }],
   geneOntology: {
-    id: String,
-    name: String,
-    genes: [String],
+    cellularComponent: [geneOntologySchema],
+    molecularFunction: [geneOntologySchema],
+    biologicalProcess: [geneOntologySchema],
   },
 });
 
@@ -24,12 +73,7 @@ const regulatesSchema = new mongoose.Schema({
       id: String,
       name: String,
       function: String,
-      terms: [
-        {
-          multifun: [String],
-          geneOntology: [String],
-        },
-      ],
+      terms: [termsSchema],
     },
   ],
   transcriptionFactors: [
@@ -65,6 +109,48 @@ const regulatesSchema = new mongoose.Schema({
   ],
 });
 
+const regulatoryBindingSitesSchema = ({
+  absolutePosition: Number, 
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  sequence: String,
+  strand: String,
+  citations: [citationsSchema]
+});
+
+const regSchema = new mongoose.Schema({
+  _id: String,
+  type: String,
+  name: String
+})
+
+const regulatoryInteractionsSchema = ({
+  regulator: regSchema,
+  function: String,
+  regulatedEntity: regSchema,
+  distanceToFirstGene: Number,
+  distanceToPromoter: Number,
+  regulatedGenes: [{
+    id: String,
+    name: String
+  }],
+  regulatoryBindingSites: regulatoryBindingSitesSchema,
+  citations: [citationsSchema]
+});
+
+const aligmentMatrixSchema = ({
+  aligment: String,
+  matrix: String,
+  consensus: String,
+  urlPWMLogo: String,
+  urlMatrixQualityResult: String
+});
+
+const evolutionaryConservationSchema = ({
+  urlRegulatorTargetGene: String,
+  urlPromoterTargetGene: String
+});
+
 const summaryValuesSchema = new mongoose.Schema({
   repressed: Number,
   activated: Number,
@@ -83,15 +169,16 @@ const summarySchema = new mongoose.Schema({
 
 const regulonSchema = new mongoose.Schema({
   _id: String,
-  transcriptionFactor: {
-    name: String,
-  },
+  transcriptionFactor: transcriptionFactorSchema,
   terms: termsSchema,
   regulates: regulatesSchema,
+  regulatoryInteractions: [regulatoryInteractionsSchema],
+  aligmentMatrix: [aligmentMatrixSchema],
+  evolutionaryConservation: evolutionaryConservationSchema,
   summary: summarySchema,
   organismName: String,
 });
 
-const Regulon = mongoose.model('regulondatamarts', regulonSchema);
+const Regulon = mongoose.model('regulon_datamarts', regulonSchema, "regulonDatamart");
 
 export {Regulon};
