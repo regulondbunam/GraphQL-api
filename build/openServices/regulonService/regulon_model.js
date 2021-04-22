@@ -9,18 +9,68 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
+var _general_model = require('../common/general_model');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const tusEncodingRegulatorSchema = new _mongoose2.default.Schema({
+  transcriptionUnitName: String,
+  promoterName: String
+});
+
+const encodedFromGenes = new _mongoose2.default.Schema({
+  gene_id: String,
+  gene_name: String,
+  genomePosition: String,
+  length: Number
+});
+
+const encodedFromOperons = new _mongoose2.default.Schema({
+  operon_id: String,
+  name: String,
+  tusEncodingRegulator: [tusEncodingRegulatorSchema]
+});
+
+const encodedFromSchema = new _mongoose2.default.Schema({
+  genes: [encodedFromGenes],
+  operon: [encodedFromOperons]
+});
+
+const ConformationsSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String,
+  type: String,
+  effectorInteractionType: String,
+  citations: [_general_model.citationsSchema],
+  functionalType: String
+});
+
+const transcriptionFactorSchema = new _mongoose2.default.Schema({
+  name: String,
+  synonyms: [String],
+  note: String,
+  conformations: [ConformationsSchema],
+  encodedFrom: encodedFromSchema,
+  sensingClass: String,
+  connectivityClass: String
+});
+
+const geneOntologySchema = {
+  term_id: String,
+  name: String,
+  gene_ids: [String]
+};
+
 const termsSchema = new _mongoose2.default.Schema({
-  multifun: {
+  multifun: [{
     id: String,
     name: String,
-    genes: [String]
-  },
+    gene_ids: [String]
+  }],
   geneOntology: {
-    id: String,
-    name: String,
-    genes: [String]
+    cellularComponent: [geneOntologySchema],
+    molecularFunction: [geneOntologySchema],
+    biologicalProcess: [geneOntologySchema]
   }
 });
 
@@ -34,10 +84,7 @@ const regulatesSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
     function: String,
-    terms: [{
-      multifun: [String],
-      geneOntology: [String]
-    }]
+    terms: [termsSchema]
   }],
   transcriptionFactors: [{
     id: String,
@@ -64,6 +111,48 @@ const regulatesSchema = new _mongoose2.default.Schema({
   }]
 });
 
+const regulatoryBindingSitesSchema = {
+  absolutePosition: Number,
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  sequence: String,
+  strand: String,
+  citations: [_general_model.citationsSchema]
+};
+
+const regSchema = new _mongoose2.default.Schema({
+  _id: String,
+  type: String,
+  name: String
+});
+
+const regulatoryInteractionsSchema = {
+  regulator: regSchema,
+  function: String,
+  regulatedEntity: regSchema,
+  distanceToFirstGene: Number,
+  distanceToPromoter: Number,
+  regulatedGenes: [{
+    id: String,
+    name: String
+  }],
+  regulatoryBindingSites: regulatoryBindingSitesSchema,
+  citations: [_general_model.citationsSchema]
+};
+
+const aligmentMatrixSchema = {
+  aligment: String,
+  matrix: String,
+  consensus: String,
+  urlPWMLogo: String,
+  urlMatrixQualityResult: String
+};
+
+const evolutionaryConservationSchema = {
+  urlRegulatorTargetGene: String,
+  urlPromoterTargetGene: String
+};
+
 const summaryValuesSchema = new _mongoose2.default.Schema({
   repressed: Number,
   activated: Number,
@@ -82,15 +171,16 @@ const summarySchema = new _mongoose2.default.Schema({
 
 const regulonSchema = new _mongoose2.default.Schema({
   _id: String,
-  transcriptionFactor: {
-    name: String
-  },
+  transcriptionFactor: transcriptionFactorSchema,
   terms: termsSchema,
   regulates: regulatesSchema,
+  regulatoryInteractions: [regulatoryInteractionsSchema],
+  aligmentMatrix: [aligmentMatrixSchema],
+  evolutionaryConservation: evolutionaryConservationSchema,
   summary: summarySchema,
   organismName: String
 });
 
-const Regulon = _mongoose2.default.model('regulondatamarts', regulonSchema);
+const Regulon = _mongoose2.default.model('regulon_datamarts', regulonSchema, "regulonDatamart");
 
 exports.Regulon = Regulon;

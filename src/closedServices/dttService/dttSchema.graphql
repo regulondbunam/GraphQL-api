@@ -170,33 +170,35 @@ type linkedObjectsWhenNoPositionsType {
 
 type Query {
 """
-### Name
-getGeneticElementsFromInterval
+  #### Type
+  Tools
+  #### Service
+  DTT
+  #### Name
+  getGeneticElementsFromInterval
+  #### Description
+  Obtained all the elements that are in the selected range
+  #### Example
+  ```json
+  {
+      getGeneticElementsFromInterval(args){
 
-### Description
-Obtained all the elements that are in the selected range
+          fields_to_show
 
-### Example
-```json
-{
-    getGeneticElementsFromInterval(args){
-        
-        fields_to_show
+          organism{
+              fields_to_show
+          }
+          relatedGenes{
+              fields_to_show
+          }
+          linkedObjectsWhenNoPositions{
+              fields_to_show
+          }
 
-        organism{
-            fields_to_show
-        }
-        relatedGenes{
-            fields_to_show
-        }
-        linkedObjectsWhenNoPositions{
-            fields_to_show
-        }
-
-    }
-}
-```
-"""
+      }
+  }
+  ```
+  """
     getGeneticElementsFromInterval(
         """
         Defines the beginning of the element range to draw
@@ -217,5 +219,5 @@ Obtained all the elements that are in the selected range
         """
         Define if the elements to draw are completely in the selected range (true) or could be outside the range (false by default)
         """ 
-        covered: Boolean): [DTTData]
+        covered: Boolean = false): [DTTData]
 }

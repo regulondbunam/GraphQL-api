@@ -9,6 +9,10 @@ var _regulon_model = require('./regulon_model');
 
 var _mongodbFilterObjectParser = require('mongodb-filter-object-parser');
 
+var _controller_common_functions = require('../common/controller_common_functions');
+
+var _graphql = require('graphql');
+
 /** Define a geneController. */
 /**
 # [Regulon Service Controller]
@@ -85,16 +89,38 @@ Returns an object containing a response that will be sent to GraphQL
 **/
 
 class regulonController {
-  static getRegulonBy(search, advancedSearch, limit = 0, page = 0) {
+  static async getRegulonBy(search, advancedSearch, limit = 0, page = 0, properties = ["transcriptionFactor.id", "transcriptionFactor.name"], fullMatchOnly) {
     const offset = page * limit;
     let filter;
+    let hasMore = false;
     if (advancedSearch !== undefined) {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
-      filter = (0, _mongodbFilterObjectParser.searchFilter)(search);
+      // filter = searchFilter(search);
+      filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
-    console.log(JSON.stringify(filter));
-    return _regulon_model.Regulon.find(filter).limit(limit).skip(offset);
+    const Regulons = _regulon_model.Regulon.find(filter).sort({ 'transcriptionFactor.name': 1 }).limit(limit).skip(offset);
+    const total = await _controller_common_functions.commonController.countDocumentsIn(_regulon_model.Regulon, filter);
+    const lastPage = Math.floor(total / limit);
+    if (limit * (page + 1) < total) hasMore = true;
+    if (page > lastPage) {
+      const err = new _graphql.GraphQLError('You must select an available page number');
+      err.status = 'No Content';
+      err.statusCode = 204;
+      throw err;
+    } else {
+      return {
+        data: Regulons,
+        pagination: {
+          limit: limit,
+          currentPage: page,
+          firstPage: 0,
+          lastPage: lastPage,
+          totalResults: total,
+          hasNextPage: hasMore
+        }
+      };
+    }
   }
 }
 

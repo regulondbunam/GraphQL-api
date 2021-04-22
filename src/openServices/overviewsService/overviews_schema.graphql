@@ -109,20 +109,28 @@ type objectsRelatedType {
 
 type Query {
   """
-  #### nombre
+  #### Type
+  Data
+  #### Service
+  Overviews
+  #### Name
   getAllObjectInfo
-  #### descripción
-    Lista todos los elementos existentes dentro de la colección
+  #### Description
+  Lists all existing items within the collection
   """
   getAllObjectInfo: [overviewInfoType]
 
   """
-    #### nombre
-    getOverview
-    #### descripción
-      Muestra el elemento que ha sido llamado y despliega toda la información que contiene
-    #### example
-    ```json
+  #### Type
+  Data
+  #### Service
+  Overviews
+  #### Name
+  getOverview
+  #### Description
+  Shows the element that has been called and shows all the information it contains
+  #### Example
+  ```json
    {
   getOverview(_id:"RDBECOLIOV00002"){
     _id
