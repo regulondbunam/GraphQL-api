@@ -29,4 +29,4 @@ ${fs.readFileSync('./src/openServices/overviewsService/overviews_schema.graphql'
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const types = mergeTypes([Gene, commonProperties, phrases, Operon, Coexpression, Overviews], {all: true});
+export const types = mergeTypes([Gene, commonProperties, phrases, Operon, Regulon, Coexpression, Overviews], {all: true});
