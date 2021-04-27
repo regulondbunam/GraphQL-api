@@ -453,24 +453,32 @@ type OperonResult {
 
 type Query {
   """
-  #### name
+  #### Type
+  Data
+  #### Service
+  Operon
+  #### Name
   getAllOperon
-  #### description
+  #### Description
   List all the operon objects contained in collection
   """
   getAllOperon(
-    "**limit**: defines the page results showed (10 by default)"
-    limit: Int, 
-    "**page**: select the current result page (0 by default)"
-    page: Int): OperonResult! 
+    "**limit**: defines the page results showed"
+    limit: Int = 10, 
+    "**page**: select the current result page"
+    page: Int = 0): OperonResult! 
   
   
   """
-  #### name
+  #### Type
+  Data
+  #### Service
+  Operon
+  #### Name
   getOperonBy
-  #### description
+  #### Description
   List the Operon objects obtained by a search or advancedSearch String
-  #### example
+  #### Example
   ```json
   {
     getOperonBy(args){
@@ -492,16 +500,16 @@ type Query {
     search: String, 
     """
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
-    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[geneInfo.strand])\"
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[operon.name] AND arab[transcriptionUnit.name])\"
     """
     advancedSearch: String, 
-    "defines the page results showed (10 by default)"
-    limit: Int, 
-    "select the current result page (0 by default)"
-    page: Int, 
-    "select the fields to be queried by \"search\" (by default operon[id, name])"
-    properties: [String],
-    "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
-    fullMatchOnly: Boolean): OperonResult! 
+    "defines the page results showed"
+    limit: Int = 10, 
+    "select the current result page"
+    page: Int = 0, 
+    "select the fields to be queried by \"search\""
+    properties: [String] = ["operon.id", "operon.name"],
+    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    fullMatchOnly: Boolean = false): OperonResult! 
 }
  

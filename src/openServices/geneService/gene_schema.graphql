@@ -476,24 +476,32 @@ type GenesResult {
 
 type Query {
   """
-  #### name
+  #### Type
+  Data
+  #### Service
+  Gene
+  #### Name
   getAllGenes
-  #### description
+  #### Description
   List all the genes contained in collection
   """
   getAllGenes(
     "**limit**: defines the page results showed (10 by default)"
-    limit: Int, 
+    limit: Int = 10, 
     "**page**: select the current result page (0 by default)"
-    page: Int): GenesResult! 
+    page: Int = 0): GenesResult! 
   
   
   """
-  #### name
+  #### Type
+  Data
+  #### Service
+  Gene
+  #### Name
   getGenesBy
-  #### description
+  #### Description
   List the genes obtained by a search or advancedSearch String
-  #### example
+  #### Example
   ```json
   {
     getGenesBy(args){
@@ -515,18 +523,18 @@ type Query {
     search: String, 
     """
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
-    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[geneInfo.strand])\"
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
     """
     advancedSearch: String, 
-    "defines the page results showed (10 by default)"
-    limit: Int, 
-    "select the current result page (0 by default)"
-    page: Int, 
+    "defines the page results showed"
+    limit: Int = 10, 
+    "select the current result page"
+    page: Int = 0, 
     "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
-    properties: [String], 
+    properties: [String] = ["gene.id", "gene.name", "gene.synonyms", "gene.type", "products.name"], 
     "usable for specific organismName queries (not available right now)"
     organismName: String, 
-    "define if \"search\" will be Case Sensitive and cannot be a substring (by default is false)"
-    fullMatchOnly: Boolean): GenesResult! 
+    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    fullMatchOnly: Boolean = false): GenesResult! 
 }
  

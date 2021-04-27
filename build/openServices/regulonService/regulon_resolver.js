@@ -13,8 +13,8 @@ var _controller_common_functions = require('../common/controller_common_function
 
 const regulonResolvers = exports.regulonResolvers = {
   Query: {
-    getAllRegulon: (root, { limit, page }) => _controller_common_functions.commonController.getAll(_regulon_model.Regulon, limit, page),
-    getRegulonBy: (root, { search, advancedSearch, limit, page }) => _regulon_controller.regulonController.getRegulonBy(search, advancedSearch, limit, page)
+    getAllRegulon: (root, { limit, page }) => _controller_common_functions.commonController.getAll(_regulon_model.Regulon, limit, page, "transcriptionFactor.name"),
+    getRegulonBy: (root, { search, advancedSearch, limit, page, properties, organismName, fullMatchOnly }) => _regulon_controller.regulonController.getRegulonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly)
   }
 }; /**
    # [Regulon Service Resolver]

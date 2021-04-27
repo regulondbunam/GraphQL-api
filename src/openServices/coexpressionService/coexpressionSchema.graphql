@@ -68,13 +68,15 @@ type CoexpressionOrganism {
 
 type Query {
     """
-    ### Name
+    #### Type
+    Tools
+    #### Service
+    Coexpression
+    #### Name
     getTopCoexpressionRanking
-
-    ### Description
+    #### Description
     Gets the top Coexpression (50 max and default) by a gene ID or name.
-
-    ### Example
+    #### Example
     ```json{
     getTopCoexpressionRanking(gene: "arac" or id: "RDBECOLIGN0001")
     {
@@ -90,7 +92,7 @@ type Query {
         """
         Defines the id of the gene to search
         """
-        id: String, 
+        id: String!, 
         """
         Defines the name of the gene to search
         """
@@ -98,22 +100,24 @@ type Query {
         """
         Defines the limit of the elements to show (max 50)
         """
-        limit: Int): [CoexpressionResume]
+        limit: Int = 50): [CoexpressionResume]
 
-     """
-    ### Name
+    """
+    #### Type
+    Tools
+    #### Service
+    Coexpression
+    #### Name
     getRankFromGeneList
-
-    ### Description
+    #### Description
     Get the coexpression list from a gene compared to the top of other gene. It works with names or ids.
-
-    ### Example
+    #### Example
     ```json{
     getRankFromGeneList(
-    gene: "arac", 
-    geneList:[name list] 
-    OR 
-    geneId:"id", 
+    gene: "arac",
+    geneList:[name list]
+    OR
+    geneId:"id",
     geneIdList[id list])
     {
         coexpressionId

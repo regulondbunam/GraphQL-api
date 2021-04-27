@@ -17,8 +17,10 @@ var _coexpressionResolver = require('../coexpressionService/coexpressionResolver
 
 var _overviews_resolver = require('../overviewsService/overviews_resolver');
 
+var _regulon_resolver = require('../regulonService/regulon_resolver');
+
 /** merges all resolver file and exports them to index */
 
-//import { regulonResolvers } from '../regulonService/regulon_resolver';
-const resolvers = exports.resolvers = (0, _mergeGraphqlSchemas.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver]);
 /** import each Resolver file */
+const resolvers = exports.resolvers = (0, _mergeGraphqlSchemas.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers]);
+//import { regulonResolvers } from '../regulonService/regulon_resolver';
