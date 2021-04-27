@@ -41,13 +41,10 @@ RegulonDB drawing traces tool web service
 
 /**
 # Function description
-
 ## getGeneticElementsFromInterval
-
 _Description:_
 This function return all genetic elements from an interval of position (left and right)
 also strand, and the object type of the elements.
-
 _Usage:_
 ```javascript
 dttController.getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand, objectType, covered);
@@ -58,10 +55,8 @@ _rightEndPosition:_ ending of element position to draw
 _strand:_ direction of the element (forward, reverse, both)
 _objectType:_ type of the genetic element to draw 
 _covered:_ indicate elements that are completely contained in the selected range(true)
-
 _Return:_
 dttController: [dttData]
-
 **/
 
 // import defined model of the collection to be used
