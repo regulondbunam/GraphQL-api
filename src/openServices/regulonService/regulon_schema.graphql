@@ -193,6 +193,24 @@ type RegulonGeneOntology {
 	"""
 	_
 	"""
+	cellularComponent: [RegulonGeneOntologyItem]
+	"""
+	_
+	"""
+	molecularFunction: [RegulonGeneOntologyItem]
+	"""
+	_
+	"""
+	biologicalProcess: [RegulonGeneOntologyItem]
+}
+
+"""
+_
+"""
+type RegulonGeneOntologyItem {
+	"""
+	_
+	"""
 	term_id: String
 	"""
 	_
