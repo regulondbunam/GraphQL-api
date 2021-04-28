@@ -1,14 +1,14 @@
 /**
-# [Operon Service Controller]
+# [Sigmulon Service Controller]
 	
 ## Description
 
-[Defines functions to resolve GraphQL queries of Operon Service]
+[Defines functions to resolve GraphQL queries of Sigmulon Service]
 
 ## Usage 
 
 ```javascript
-import {operonController} from './operon_controller';
+import { sigmulonController } from './sigmulon_controller';
 ```
 
 ## Arguments/Parameters
@@ -41,7 +41,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 	
 # Functions description
 
-## [getOperonBy]
+## [getSigmulonBy]
 
 __Description:__ 
 
@@ -51,7 +51,7 @@ __Description:__
 __Usage:__
 
 ```javascript
-operonController.getOperonBy(args);
+operonController.getSigmulonBy(args);
 ```
 
 __Input arguments/parameters:__ 
@@ -69,17 +69,17 @@ __[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a s
 
 __Return:__ 
 
-__Object:__ Operon
+__Object:__ Sigmulon
 Returns an object containing a response that will be sent to GraphQL
 **/
 
-import { Operon } from './operon_model';
+import { Sigmulon } from './sigmulon_model';
 import { commonController } from '../common/controller_common_functions';
 import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
 import { GraphQLError } from 'graphql';
 
 /** Define a geneController. */
-class operonController {
+class sigmulonController {
   static async getOperonBy(
     search,
     advancedSearch,
@@ -87,40 +87,10 @@ class operonController {
     page = 0,
     properties = ['operon.id', 'operon.name'],
     fullMatchOnly = false
-) {
-  const offset = page * limit;
-  let filter;
-  let hasMore = false;
-  if (advancedSearch !== undefined) {
-    filter = advancedSearchFilter(advancedSearch);
-  } else if (search !== undefined) {
-    // filter = searchFilter(search);
-    filter = textSearchFilter(search, properties, fullMatchOnly);
-  }
-  const Operons = Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
-  const total = await commonController.countDocumentsIn(Operon, filter);
-  const lastPage = Math.floor(total / limit);
-  if (limit * (page + 1) < total) hasMore = true;
-  if (page > lastPage) {
-    const err = new GraphQLError('You must select an available page number');
-    err.status = 'No Content';
-    err.statusCode = 204;
-    throw err;
-  } else {
-    return {
-      data: Operons,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: lastPage,
-        totalResults: total,
-        hasNextPage: hasMore,
-      },
-    };
-  }
-}
+)   {
+
+    }
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */
-export {operonController};
+export {sigmulonController};

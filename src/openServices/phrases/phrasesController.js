@@ -8,7 +8,7 @@
 ## Usage 
 
 ```javascript
-import {prasesController} from './phrasesController';
+import {phrasesController} from './phrasesController';
 ```
 
 ## Arguments/Parameters
