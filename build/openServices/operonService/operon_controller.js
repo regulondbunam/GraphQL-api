@@ -56,7 +56,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 	
 # Functions description
 
-## [getRegulonBy]
+## [getOperonBy]
 
 __Description:__ 
 
@@ -84,7 +84,7 @@ __[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a s
 
 __Return:__ 
 
-__Object:__ Regulon
+__Object:__ Operon
 Returns an object containing a response that will be sent to GraphQL
 **/
 

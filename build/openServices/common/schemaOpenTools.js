@@ -19,12 +19,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const Gene = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/openServices/geneService/gene_schema.graphql').toString()}
 `;
+
 const Regulon = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/openServices/regulonService/regulon_schema.graphql').toString()}
 `;
+
 const Operon = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/openServices/operonService/operon_schema.graphql').toString()}
 `;
+
+const Sigmulon = _apolloServerExpress.gql`
+${_fs2.default.readFileSync('./src/openServices/sigmulonService/sigmulon_schema.graphql').toString()}
+`;
+
 const commonProperties = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/openServices/common/common_properties.graphql').toString()}
 `;
@@ -42,4 +49,4 @@ ${_fs2.default.readFileSync('./src/openServices/overviewsService/overviews_schem
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */
-const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Coexpression, Overviews], { all: true });
+const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews], { all: true });

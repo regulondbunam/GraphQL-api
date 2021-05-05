@@ -1,5 +1,5 @@
 type SigmulonDatamart {
-    sigmaFactor: sigmaFactor
+    sigmaFactor: SigmaFactor
     transcribedPromoters: [TranscribedPromoters]
     statistics: SigmulonStatistics
     citations: [Citations]
@@ -32,7 +32,7 @@ type SigmulonGenes {
 type TranscribedPromoters {
     _id: String
     name: String
-    transcribedGene: [TranscribedGenes]
+    transcribedGenes: [TranscribedGenes]
     operon_id: String
     sequence: String
     boxes: [Boxes]
@@ -51,7 +51,7 @@ type SigmulonStatistics {
     promoters: Int
     transcriptionUnits: Int
     cotranscriptionFactors: Int
-    sigmaFactos: Int
+    sigmaFactors: Int
 }
 
 type SigmulonResult { 
@@ -76,10 +76,10 @@ type Query {
     #### Description
     List all the Sigmulon objects contained in collection
     """
-    getAllSigmulon(l
-    "**limit**: defines the page results showed"
+    getAllSigmulon(
+    "defines the page results showed"
     limit: Int = 10, 
-    "**page**: select the current result page"
+    "select the current result page"
     page: Int = 0): SigmulonResult!
 
 
@@ -122,7 +122,7 @@ type Query {
     "select the current result page"
     page: Int = 0, 
     "select the fields to be queried by \"search\""
-    properties: [String] = ["operon.id", "operon.name"],
+    properties: [String] = ["sigmaFactor._id", "sigmaFactor.name", "sigmaFactor.synonyms", "transcribedPromoters.name"],
     "define if \"search\" will be Case Sensitive and cannot be a substring"
     fullMatchOnly: Boolean = false): SigmulonResult!
 }

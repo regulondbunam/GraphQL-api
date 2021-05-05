@@ -1,3 +1,19 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.sigmulonController = undefined;
+
+var _sigmulon_model = require('./sigmulon_model');
+
+var _controller_common_functions = require('../common/controller_common_functions');
+
+var _mongodbFilterObjectParser = require('mongodb-filter-object-parser');
+
+var _graphql = require('graphql');
+
+/** Define a geneController. */
 /**
 # [Sigmulon Service Controller]
 	
@@ -36,7 +52,6 @@ MIT License
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
-
 /**
 	
 # Functions description
@@ -73,55 +88,42 @@ __Object:__ Sigmulon
 Returns an object containing a response that will be sent to GraphQL
 **/
 
-import { Sigmulon } from './sigmulon_model';
-import { commonController } from '../common/controller_common_functions';
-import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
-import { GraphQLError } from 'graphql';
-
-/** Define a geneController. */
 class sigmulonController {
-  static async getOperonBy(
-    search,
-    advancedSearch,
-    limit = 10,
-    page = 0,
-    properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'],
-    fullMatchOnly = false
-)   {
+    static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'], fullMatchOnly = false) {
         const offset = page * limit;
         let filter;
         let hasMore = false;
         if (advancedSearch !== undefined) {
-        filter = advancedSearchFilter(advancedSearch);
+            filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
         } else if (search !== undefined) {
-        // filter = searchFilter(search);
-        filter = textSearchFilter(search, properties, fullMatchOnly);
+            // filter = searchFilter(search);
+            filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
         }
-        
-        const Sigmulons = Sigmulon.find(filter).sort({'sigmaFactor.name': 1}).limit(limit).skip(offset);
-        const total = await commonController.countDocumentsIn(Sigmulon, filter);
+
+        const Sigmulons = _sigmulon_model.Sigmulon.find(filter).sort({ 'sigmaFactor.name': 1 }).limit(limit).skip(offset);
+        const total = await _controller_common_functions.commonController.countDocumentsIn(_sigmulon_model.Sigmulon, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;
         if (page > lastPage) {
-            const err = new GraphQLError('You must select an available page number');
+            const err = new _graphql.GraphQLError('You must select an available page number');
             err.status = 'No Content';
             err.statusCode = 204;
             throw err;
         } else {
-        return {
-            data: Sigmulons,
-            pagination: {
-            limit: limit,
-            currentPage: page,
-            firstPage: 0,
-            lastPage: lastPage,
-            totalResults: total,
-            hasNextPage: hasMore,
-            },
-        };
+            return {
+                data: Sigmulons,
+                pagination: {
+                    limit: limit,
+                    currentPage: page,
+                    firstPage: 0,
+                    lastPage: lastPage,
+                    totalResults: total,
+                    hasNextPage: hasMore
+                }
+            };
         }
     }
 }
 
 /** the geneController is referenced by the resolver of the Gene web service */
-export {sigmulonController};
+exports.sigmulonController = sigmulonController;

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { citationsSchema } from '../common/general_model';
 
-const sigmulonBasicPropertiesSchema = new mongoose({
+const sigmulonBasicPropertiesSchema = new mongoose.Schema({
     _id: String,
     name: String
 });

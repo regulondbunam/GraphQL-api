@@ -14,7 +14,7 @@ var _controller_common_functions = require('../common/controller_common_function
 const operonResolvers = exports.operonResolvers = {
   Query: {
     getAllOperon: (root, { limit, page }) => _controller_common_functions.commonController.getAll(_operon_model.Operon, limit, page, 'operon.name'),
-    getOperonBy: (root, { search, advancedSearch, limit, page, properties, organismName, fullMatchOnly }) => _operon_controller.operonController.getOperonBy(search, advancedSearch, limit, page)
+    getOperonBy: (root, { search, advancedSearch, limit, page, properties, organismName, fullMatchOnly }) => _operon_controller.operonController.getOperonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly)
   }
 }; /**
    # [Operon Service Resolver]
@@ -27,7 +27,7 @@ const operonResolvers = exports.operonResolvers = {
    ## Usage 
    
    ```javascript
-   import {operonResolver} from './operonResolver'
+   import {operonResolvers} from './operon_resolver'
    ```
    
    ## Arguments/Parameters
