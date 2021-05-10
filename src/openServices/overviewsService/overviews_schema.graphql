@@ -117,6 +117,26 @@ type Query {
   getAllObjectInfo
   #### Description
   Lists all existing items within the collection
+  #### Example
+  ```json
+  {
+    getAllObjectInfo{
+      _id
+      queryName
+      objectType
+      graph{
+        title
+        description
+        labelX
+        labelY
+      }
+      data{
+        xAxis
+        yAxis
+      }
+    }
+  }
+  ```
   """
   getAllObjectInfo: [overviewInfoType]
 
@@ -132,29 +152,29 @@ type Query {
   #### Example
   ```json
    {
-  getOverview(_id:"RDBECOLIOV00002"){
-    _id
-    queryName
-    objectType
-    graph{
-      title
-    	description
-      labelX
-      labelY
-      footGraph
-    	graphType
-    }
-    data{
-      xAxis
-      yAxis
-      objectsRelated{
+      getOverview(_id:"RDBECOLIOV00002"){
         _id
-        name
+        queryName
+        objectType
+        graph{
+          title
+          description
+          labelX
+          labelY
+          footGraph
+          graphType
+        }
+        data{
+          xAxis
+          yAxis
+          objectsRelated{
+            _id
+            name
+          }
+        }
+
       }
     }
-
-  }
-  }
     ```
   """
   getOverview(_id: String): overviewInfoType

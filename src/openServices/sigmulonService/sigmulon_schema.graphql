@@ -1,4 +1,5 @@
 type SigmulonDatamart {
+    _id: String
     sigmaFactor: SigmaFactor
     transcribedPromoters: [TranscribedPromoters]
     statistics: SigmulonStatistics
@@ -75,11 +76,37 @@ type Query {
     getAllSigmulon
     #### Description
     List all the Sigmulon objects contained in collection
+    #### Example
+    ```json
+    {
+        getAllSigmulon(limit:3){
+        data{
+            _id
+            sigmaFactor{
+                    name
+                    gene{
+                        name
+                    }
+                }
+            }
+        }
+    }
+    ```
     """
     getAllSigmulon(
-    "defines the page results showed"
+    """
+    #### Description
+    defines the page results showed 
+    #### Required
+    Optional
+    """
     limit: Int = 10, 
-    "select the current result page"
+    """
+    #### Description
+    select the current result page 
+    #### Required
+    Optional
+    """
     page: Int = 0): SigmulonResult!
 
 
@@ -95,34 +122,63 @@ type Query {
     #### Example
     ```json
     {
-        getSigmulonBy(args){
+        getSigmulonBy(search:"fliA or \\\"Sigma 70\\\""){
         data{
-            fields_to_show
-        }
-        pagination{
-            fields_to_show
-        }
+            _id
+            sigmaFactor{
+                    name
+                    gene{
+                        name
+                    }
+                }
+            }
         }
     }
     ```
     """
     getSigmulonBy(
     """
+    #### Description
     usable for text search on fields defined in \"Properties\" parameter; syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    #### Required
+    You must use search or advancedSearch
     """
     search: String, 
     """
+    #### Description
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[operon.name] AND arab[transcriptionUnit.name])\"
+    #### Required
+    You must use search or advancedSearch
     """
     advancedSearch: String, 
-    "defines the page results showed"
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
     limit: Int = 10, 
-    "select the current result page"
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
     page: Int = 0, 
-    "select the fields to be queried by \"search\""
+    """
+    #### Description
+    select the fields to be queried by \"search\"
+    #### Required
+    Optional
+    """
     properties: [String] = ["sigmaFactor._id", "sigmaFactor.name", "sigmaFactor.synonyms", "transcribedPromoters.name"],
-    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    """
+    #### Description
+    define if \"search\" will be Case Sensitive and cannot be a substring
+    #### Required
+    Optional
+    """
     fullMatchOnly: Boolean = false): SigmulonResult!
 }

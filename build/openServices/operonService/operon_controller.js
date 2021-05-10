@@ -93,12 +93,13 @@ class operonController {
     const offset = page * limit;
     let filter;
     let hasMore = false;
+
     if (advancedSearch !== undefined) {
       filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
     } else if (search !== undefined) {
-      // filter = searchFilter(search);
       filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
+
     const Operons = _operon_model.Operon.find(filter).sort({ 'operon.name': 1 }).limit(limit).skip(offset);
     const total = await _controller_common_functions.commonController.countDocumentsIn(_operon_model.Operon, filter);
     const lastPage = Math.floor(total / limit);

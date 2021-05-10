@@ -7,30 +7,34 @@ const playgroundTabs = exports.playgroundTabs = {
   tabs: [{
     endpoint: 'graphql',
     name: 'updates',
-    query: `# 07/01/2021
-# Added a first version of Operon Service using v0.1, 
-# Operon MongoDB colection isn't complete, the following 
-# root fields can be queried:
-# allCitations -> except publication
-# operon -> except citations
-# organism
-# transcription units -> only genes, citations(evidence), id
+    query: `# 10/05/2021
+# Added a first version of Sigmulon Service,
+# This version is for an upcoming release of RegulonDB GraphQL Web Services
+# In case of error or report a bug please contact us
 
 # Query sample usage
 {
-# Select query, see \"docs\" tab to get description about 
+# Select query, see "docs" tab to get description about 
 # parameters and description
-getGenesBy(search:"arac"){
+
+  getSigmulonBy(search:"fliA or \\\"Sigma 70\\\""){
     data{
-        # fields to show
+      _id
+      sigmaFactor{
+        name
         gene{
-          id
-          name
+        	name
         }
-    }
-    pagination{
-        # fields to show
-        totalResults
+    	}
+      transcribedPromoters{s
+        operon_id
+        _id
+        name
+        boxes{
+          leftEndPosition
+          rightEndPosition
+        }
+      }
     }
   }
 }`
