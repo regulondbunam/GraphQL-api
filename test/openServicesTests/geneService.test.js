@@ -26,15 +26,15 @@ describe('geneService', () => {
           "data": [
             {
               "gene": {
-                "id": "RDBECOLIGN00589",
-                "name": "3'ETS<sup><i>leuZ</i></sup>",
+                "id": "RDBECOLIGNC02727",
+                "name": "3'ETS-<i>leuZ</i>",
                 "leftEndPosition": 1991748,
                 "rightEndPosition": 1991814
               }
             },
             {
               "gene": {
-                "id": "RDBECOLIGN04491",
+                "id": "RDBECOLIGNC02891",
                 "name": "C0067",
                 "leftEndPosition": 238462,
                 "rightEndPosition": 238586
@@ -42,15 +42,15 @@ describe('geneService', () => {
             },
             {
               "gene": {
-                "id": "RDBECOLIGN04226",
+                "id": "RDBECOLIGNC02892",
                 "name": "C0293",
-                "leftEndPosition": 1196714,
-                "rightEndPosition": 1196786
+                "leftEndPosition": 1196711,
+                "rightEndPosition": 1196782
               }
             },
             {
               "gene": {
-                "id": "RDBECOLIGN00487",
+                "id": "RDBECOLIGNC02893",
                 "name": "C0299",
                 "leftEndPosition": 1230629,
                 "rightEndPosition": 1230707
@@ -58,7 +58,7 @@ describe('geneService', () => {
             },
             {
               "gene": {
-                "id": "RDBECOLIGN00139",
+                "id": "RDBECOLIGNC02897",
                 "name": "C0362",
                 "leftEndPosition": 1552001,
                 "rightEndPosition": 1552386
@@ -99,7 +99,7 @@ describe('geneService', () => {
             {
               "gene": {
                 "name": "lon",
-                "id": "RDBECOLIGN03614",
+                "id": "RDBECOLIGNC00534",
                 "strand": "forward"
               },
               "products": [
