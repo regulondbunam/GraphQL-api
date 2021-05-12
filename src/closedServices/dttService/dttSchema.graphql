@@ -180,44 +180,49 @@ type Query {
   Obtained all the elements that are in the selected range
   #### Example
   ```json
-  {
-      getGeneticElementsFromInterval(args){
-
-          fields_to_show
-
-          organism{
-              fields_to_show
-          }
-          relatedGenes{
-              fields_to_show
-          }
-          linkedObjectsWhenNoPositions{
-              fields_to_show
-          }
-
-      }
-  }
+    {
+        getGeneticElementsFromInterval(leftEndPosition:100, rightEndPosition: 1000){
+            _id
+            leftEndPosition
+            rightEndPosition
+        }
+    }
   ```
   """
     getGeneticElementsFromInterval(
         """
+        #### Description
         Defines the beginning of the element range to draw
+        #### Required
+        Required
         """
         leftEndPosition:Int,
         """
+        #### Description
         Defines the ending of the element range to draw
+        #### Required
+        Required
         """
         rightEndPosition:Int,
         """
+        #### Description
         Defines the direction of the element strand, could be forward, reverse or both
+        #### Required
+        Optional
         """
         strand:String,
         """
+        #### Description
         Defines the elements to display 
+        #### Required
+        Optional
         """
         objectType: [String],
         """
+        #### Description
         Define if the elements to draw are completely in the selected range (true) or could be outside the range (false by default)
+        #### Required
+        Optional
         """ 
         covered: Boolean = false): [DTTData]
 }

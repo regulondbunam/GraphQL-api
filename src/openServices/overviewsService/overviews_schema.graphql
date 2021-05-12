@@ -177,5 +177,13 @@ type Query {
     }
     ```
   """
-  getOverview(_id: String): overviewInfoType
+  getOverview(
+    """
+    #### Description
+    _id of the required overview
+    #### Required
+    Required
+    """
+    _id: String
+    ): overviewInfoType
 }
