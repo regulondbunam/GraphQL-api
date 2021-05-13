@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.citationsSchema = undefined;
+exports.externalCrossReferencesSchema = exports.citationsSchema = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -29,4 +29,11 @@ const citationsSchema = exports.citationsSchema = new _mongoose2.default.Schema(
 		title: String,
 		year: Number
 	}
+});
+
+const externalCrossReferencesSchema = exports.externalCrossReferencesSchema = new _mongoose2.default.Schema({
+	externalCrossReferenceId: String,
+	externalCrossReferenceName: String,
+	objectId: String,
+	url: String
 });

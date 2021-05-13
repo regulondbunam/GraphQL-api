@@ -35,5 +35,9 @@ const Overviews = gql `
 ${fs.readFileSync('./src/openServices/overviewsService/overviews_schema.graphql').toString()}
 `;
 
+const HT = gql `
+${fs.readFileSync('./src/openServices/htService/ht_search_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
 export const types = mergeTypes([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews], {all: true});

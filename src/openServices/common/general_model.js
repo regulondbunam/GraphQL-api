@@ -19,3 +19,10 @@ export const citationsSchema = new mongoose.Schema({
 		year: Number
 	}
 });
+
+export const externalCrossReferencesSchema = new mongoose.Schema({
+	externalCrossReferenceId: String,
+	externalCrossReferenceName: String,
+	objectId: String,
+	url: String
+});

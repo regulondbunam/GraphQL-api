@@ -13,13 +13,6 @@ var _general_model = require('../common/general_model');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const externalCrossReferencesSchema = new _mongoose2.default.Schema({
-	externalCrossReferenceId: String,
-	externalCrossReferenceName: String,
-	objectId: String,
-	url: String
-});
-
 const geneOntologyTermsProperties = new _mongoose2.default.Schema({
 	citations: [_general_model.citationsSchema],
 	id: String,
@@ -53,7 +46,7 @@ const geneSchema = new _mongoose2.default.Schema({
 		sequence: String,
 		centisomePosition: Number
 	}],
-	externalCrossReferences: [externalCrossReferencesSchema],
+	externalCrossReferences: [_general_model.externalCrossReferencesSchema],
 	citations: [_general_model.citationsSchema]
 });
 
@@ -85,7 +78,7 @@ const productSchema = new _mongoose2.default.Schema({
 		molecularFunction: [geneOntologyTermsProperties],
 		biologicalProcess: [geneOntologyTermsProperties]
 	},
-	externalCrossReferences: [externalCrossReferencesSchema],
+	externalCrossReferences: [_general_model.externalCrossReferencesSchema],
 	citations: [_general_model.citationsSchema]
 });
 

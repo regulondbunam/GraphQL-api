@@ -8,6 +8,7 @@ import { coexpressionResolver } from '../coexpressionService/coexpressionResolve
 import { overviewsResolver } from '../overviewsService/overviews_resolver'
 import { regulonResolvers } from '../regulonService/regulon_resolver'
 import { sigmulonResolvers } from '../sigmulonService/sigmulon_resolver'
+import { htResolvers } from '../htService/ht_search_resolver'
 
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
