@@ -47,6 +47,10 @@ type RegulonDatamart {
 	_
 	"""
 	summary: Summary
+	"""
+	_
+	"""
+	allCitations: [Citations]
 }
 
 """
@@ -81,6 +85,10 @@ type TranscriptionFactor {
 	_
 	"""
 	connectivityClass: String
+	"""
+	_
+	"""
+	citations: [Citations]
 }
 
 """
