@@ -416,6 +416,10 @@ type Terminators {
 	"""
 	_
 	"""
+	class: String
+	"""
+	_
+	"""
 	citations: [Citations]
 	"""
 	_
