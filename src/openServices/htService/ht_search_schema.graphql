@@ -1,0 +1,308 @@
+"""
+_
+"""
+type ExternalCrossReferences {
+	"""
+	_
+	"""
+	externalCrossReferenceId: String
+	"""
+	_
+	"""
+	externalCrossReferenceName: String
+	"""
+	_
+	"""
+	objectId: String
+	"""
+	_
+	"""
+	url: String
+}
+
+"""
+_
+"""
+type Citations {
+	"""
+	_
+	"""
+	evidence: Evidence
+	"""
+	_
+	"""
+	publication: Publication
+}
+
+"""
+_
+"""
+type Evidence {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type Publication {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	authors: [String]
+	"""
+	_
+	"""
+	pmid: String
+	"""
+	_
+	"""
+	citation: String
+	"""
+	_
+	"""
+	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
+}
+
+"""
+_
+"""
+type Samples {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    growthConditions: HTGrowthConditions
+    """
+    _
+    """
+    series: Series
+    """
+    _
+    """
+    platforms: Platforms
+    """
+    _
+    """
+    runID: String
+    """
+    _
+    """
+    sourcedbld: String
+    """
+    _
+    """
+    instrument: String
+    """
+    _
+    """
+    methodDetails: String
+    """
+    _
+    """
+    note: String
+    """
+    _
+    """
+    alignedOrganism: String
+    """
+    _
+    """
+    sampleType: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    title: String
+    """
+    _
+    """
+    sourceName: String
+    """
+    _
+    """
+    citations: [Citations]
+}
+
+"""
+_
+"""
+type HTGrowthConditions {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    terms: [HTTerms]
+}
+
+"""
+_
+"""
+type HTTerms {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    citations: [Citations]
+    """
+    _
+    """
+    has: String
+    """
+    _
+    """
+    isA: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    order: Int
+    """
+    _
+    """
+    synonyms: [String]
+    """
+    _
+    """
+    url: String
+    """
+    _
+    """
+    externalCrossReferences: [ExternalCrossReferences]
+}
+
+"""
+_
+"""
+type Series {
+    _id: String,
+    authors: [String]
+    laboratory: String
+    email: String
+    correspondingAuthor: String
+    organism: String
+    externalCrossReferences: [ExternalCrossReferences]
+    title: String
+    experimentType: String
+    summary: String
+    citations: [Citations]
+}
+
+"""
+_
+"""
+type Platforms {
+    _id: String
+    description: String
+    externalCrossReferences: [ExternalCrossReferences]
+    title: String
+    sourcedbld: String
+}
+ 
+type Query {
+    """
+    #### Type
+    Data
+    #### Service
+    HT
+    #### Name
+    findOnSample
+    #### Description
+    Get all sample docs that match with an advancedSearch string
+    ### Example
+    ```json
+    {
+    findOnSample(advSearch:"Landov[series.authors]"){
+            _id
+            platforms{
+                _id
+                title
+                description
+            }
+            series{
+                authors
+                email
+                experimentType
+                correspondingAuthor
+            }
+        }
+    }
+    ```
+    """
+    findOnSample(
+        """
+        #### Description
+        usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+        supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+        #### Required
+        Required
+        """
+        advSearch: String!
+        """
+        #### Description
+        defines the page results showed
+        #### Required
+        Optional
+        """
+        limit: Int = 10, 
+        """
+        #### Description
+        select the current result page
+        #### Required
+        Optional
+        """
+        page: Int = 0): [Samples]
+}

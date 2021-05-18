@@ -28,8 +28,32 @@ type Query {
   getPhraseOf
   #### Description
   gets all the phrases of a gene based on an identifier
+  #### Example
+  ```json
+  {
+	getPhraseOf(id:"RDBECOLIGN00001"){
+		name
+		objectId
+		objectType
+		properties{
+		pmid
+		name
+		value
+		phrases{
+			phraseID
+			evidence
+		}
+		}
+	}
+  }
+  ```
   """
 	getPhraseOf(
-		"array of gene ids to be queried"
+		"""
+		#### Description
+		array of gene ids to be queried
+		#### Required
+		True
+		"""
 		id: [String]): [Phrases]
 }

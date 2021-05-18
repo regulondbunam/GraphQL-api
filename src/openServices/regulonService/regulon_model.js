@@ -40,7 +40,8 @@ const transcriptionFactorSchema = new mongoose.Schema({
   conformations: [ConformationsSchema],
   encodedFrom: encodedFromSchema,
   sensingClass: String,
-  connectivityClass: String
+  connectivityClass: String,
+  citations: [citationsSchema]
 });
 
 const geneOntologySchema = ({
@@ -110,6 +111,8 @@ const regulatesSchema = new mongoose.Schema({
 });
 
 const regulatoryBindingSitesSchema = ({
+  id: String,
+  function: String,
   absolutePosition: Number, 
   leftEndPosition: Number,
   rightEndPosition: Number,
@@ -177,6 +180,7 @@ const regulonSchema = new mongoose.Schema({
   evolutionaryConservation: evolutionaryConservationSchema,
   summary: summarySchema,
   organismName: String,
+  allCitations: [citationsSchema]
 });
 
 const Regulon = mongoose.model('regulon_datamarts', regulonSchema, "regulonDatamart");

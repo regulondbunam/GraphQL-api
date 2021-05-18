@@ -2,7 +2,19 @@
 
 All notable changes in this project will be documented in this file
 
-### [0.3.0]() - 2021-04-20
+### [0.4.0]() - 2021-05-18
+
+### Updated
+
+- On all currently functional services were added a detailed description to Queries and assigned examples of use and a tag if a parameter is required for Web Service Documentation process.
+- Added Citations on regulonDatamarts as allCitations and citations of transcriptionFactor
+
+### Added
+
+- Sigmulon Service was added with its recently version of datamart as a Data Open Service in RegulonDB GraphQL Web Services. 
+- Added a first version of HT Service as a Data Open Service (this can be changed later)
+
+### [0.3.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.3.0) - 2021-04-20
 
 ### Updated
 

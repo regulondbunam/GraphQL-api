@@ -1,3 +1,12 @@
+# This schema represent regulonDatamart, principal Type is RegulonDatamart.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
 """
 _
 """
@@ -38,6 +47,10 @@ type RegulonDatamart {
 	_
 	"""
 	summary: Summary
+	"""
+	_
+	"""
+	allCitations: [Citations]
 }
 
 """
@@ -72,6 +85,10 @@ type TranscriptionFactor {
 	_
 	"""
 	connectivityClass: String
+	"""
+	_
+	"""
+	citations: [Citations]
 }
 
 """
@@ -81,11 +98,11 @@ type EncodedFrom {
 	"""
 	_
 	"""
-	genes: [Genes]
+	genes: [EncodedGenes]
 	"""
 	_
 	"""
-	operon: [Operon]
+	operon: [EncodedOperon]
 }
 
 """
@@ -121,7 +138,7 @@ type Conformations {
 """
 _
 """
-type Genes {
+type EncodedGenes {
 	"""
 	_
 	"""
@@ -143,7 +160,7 @@ type Genes {
 """
 _
 """
-type Operon {
+type EncodedOperon {
 	"""
 	_
 	"""
@@ -481,6 +498,14 @@ type RegulatoryBindingSites {
 	"""
 	_
 	"""
+	id: String
+	"""
+	_
+	"""
+	function: String
+	"""
+	_
+	"""
 	absolutePosition: Int
 	"""
 	_
@@ -631,11 +656,42 @@ type Query {
   getAllRegulon
   #### Description
   List all the regulon contained in collection
+  #### Example
+  ```json
+  {
+	getAllRegulon(limit: 5){
+		data{
+		_id
+		transcriptionFactor{
+			name
+			encodedFrom{
+			genes{
+				gene_name
+			}
+			operon{
+				name
+			}
+			}
+		}
+		}
+	}
+  }
+  ```
   """
   getAllRegulon(
-    "**limit**: defines the page results showed (10 by default)"
+    """
+    #### Description
+    defines the page results showed 
+    #### Required
+    Optional
+    """
 	limit: Int = 10, 
-    "**page**: select the current result page (0 by default)"
+    """
+    #### Description
+    select the current result page 
+    #### Required
+    Optional
+    """
 	page: Int = 0): RegulonResult!
   """
   #### Type
@@ -649,36 +705,75 @@ type Query {
   #### Example
   ```json
   {
-    getGenesBy(args){
-      data{
-        fields_to_show
-      }
-      pagination{
-        fields_to_show
-      }
-    }
+	getRegulonBy(search: "agaR or araC"){
+		data{
+		_id
+		transcriptionFactor{
+			name
+			encodedFrom{
+			genes{
+				gene_name
+			}
+			operon{
+				name
+			}
+			}
+		}
+		}
+	}
   }
   ```
   """
   getRegulonBy(
     """
+    #### Description
     usable for text search on fields defined in \"Properties\" parameter; syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    #### Required
+    You must use search or advancedSearch
     """
     search: String, 
     """
+    #### Description
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"arac|arad[transcriptionFactor.name]\"
+    #### Required
+    You must use search or advancedSearch
     """
     advancedSearch: String, 
-    "defines the page results showed"
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
     limit: Int = 10, 
-    "select the current result page"
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
     page: Int = 0, 
-    "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
+    """
+    #### Description
+    select the fields to be queried by \"search\"
+    #### Required
+    Optional
+    """
     properties: [String] = ["transcriptionFactor.id", "transcriptionFactor.name"], 
-    "usable for specific organismName queries (not available right now)"
+    """
+    #### Description
+    usable for specific organismName queries (not available right now)
+    #### Required
+    Optional
+    """
     organismName: String, 
-    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    """
+    #### Description
+    define if \"search\" will be Case Sensitive and cannot be a substring
+    #### Required
+    Optional
+    """
     fullMatchOnly: Boolean = false): RegulonResult!
 } 

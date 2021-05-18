@@ -1,12 +1,5 @@
 import mongoose from 'mongoose';
-import { citationsSchema } from '../common/general_model';
-
-const externalCrossReferencesSchema = new mongoose.Schema({
-	externalCrossReferenceId: String,
-	externalCrossReferenceName: String,
-	objectId: String,
-	url: String
-});
+import { citationsSchema, externalCrossReferencesSchema } from '../common/general_model';
 
 const geneOntologyTermsProperties = new mongoose.Schema({
 	citations: [ citationsSchema ],

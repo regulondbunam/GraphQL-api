@@ -1,0 +1,8 @@
+type geneExpressions {
+    _id: String
+    name: String
+}
+
+type Query {
+    
+}

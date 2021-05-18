@@ -41,7 +41,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 	
 # Functions description
 
-## [getRegulonBy]
+## [getOperonBy]
 
 __Description:__ 
 
@@ -69,7 +69,7 @@ __[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a s
 
 __Return:__ 
 
-__Object:__ Regulon
+__Object:__ Operon
 Returns an object containing a response that will be sent to GraphQL
 **/
 
@@ -91,12 +91,13 @@ class operonController {
   const offset = page * limit;
   let filter;
   let hasMore = false;
+  
   if (advancedSearch !== undefined) {
     filter = advancedSearchFilter(advancedSearch);
   } else if (search !== undefined) {
-    // filter = searchFilter(search);
     filter = textSearchFilter(search, properties, fullMatchOnly);
   }
+
   const Operons = Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
   const total = await commonController.countDocumentsIn(Operon, filter);
   const lastPage = Math.floor(total / limit);

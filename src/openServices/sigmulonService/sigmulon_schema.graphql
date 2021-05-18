@@ -1,0 +1,184 @@
+type SigmulonDatamart {
+    _id: String
+    sigmaFactor: SigmaFactor
+    transcribedPromoters: [TranscribedPromoters]
+    statistics: SigmulonStatistics
+    citations: [Citations]
+}
+
+type SigmaFactor {
+    _id: String
+    name: String
+    synonyms: [String]
+    gene: SigmaFactorGene
+    sigmulonRegulators:[SigmulonRegulators]
+    sigmulonGenes: [SigmulonGenes]
+}
+
+type SigmaFactorGene {
+    _id: String
+    name: String
+}
+
+type SigmulonRegulators {
+    _id: String
+    name: String
+}
+
+type SigmulonGenes {
+    _id: String
+    name: String
+}
+
+type TranscribedPromoters {
+    _id: String
+    name: String
+    transcribedGenes: [TranscribedGenes]
+    operon_id: String
+    sequence: String
+    boxes: [Boxes]
+    citations: [Citations]
+}
+
+type TranscribedGenes {
+    _id: String,
+    name: String,
+    distanceFromTSS: Int
+}
+
+type SigmulonStatistics {
+    genes: Int
+    transcriptionFactors: Int
+    promoters: Int
+    transcriptionUnits: Int
+    cotranscriptionFactors: Int
+    sigmaFactors: Int
+}
+
+type SigmulonResult { 
+  """
+  contains server response
+  """
+  data: [SigmulonDatamart]
+  """
+  contains pagination info
+  """
+  pagination: Pagination
+}
+
+type Query {
+    """
+    #### Type
+    Data
+    #### Service
+    Sigmulon
+    #### Name
+    getAllSigmulon
+    #### Description
+    List all the Sigmulon objects contained in collection
+    #### Example
+    ```json
+    {
+        getAllSigmulon(limit:3){
+        data{
+            _id
+            sigmaFactor{
+                    name
+                    gene{
+                        name
+                    }
+                }
+            }
+        }
+    }
+    ```
+    """
+    getAllSigmulon(
+    """
+    #### Description
+    defines the page results showed 
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page 
+    #### Required
+    Optional
+    """
+    page: Int = 0): SigmulonResult!
+
+
+    """
+    #### Type
+    Data
+    #### Service
+    Sigmulon
+    #### Name
+    getSigmulonBy
+    #### Description
+    List the Sigmulon objects obtained by a search or advancedSearch String
+    #### Example
+    ```json
+    {
+        getSigmulonBy(search:"fliA or \"Sigma 70\""){
+        data{
+            _id
+            sigmaFactor{
+                    name
+                    gene{
+                        name
+                    }
+                }
+            }
+        }
+    }
+    ```
+    """
+    getSigmulonBy(
+    """
+    #### Description
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    #### Required
+    You must use search or advancedSearch
+    """
+    search: String, 
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[operon.name] AND arab[transcriptionUnit.name])\"
+    #### Required
+    You must use search or advancedSearch
+    """
+    advancedSearch: String, 
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0, 
+    """
+    #### Description
+    select the fields to be queried by \"search\"
+    #### Required
+    Optional
+    """
+    properties: [String] = ["sigmaFactor._id", "sigmaFactor.name", "sigmaFactor.synonyms", "transcribedPromoters.name"],
+    """
+    #### Description
+    define if \"search\" will be Case Sensitive and cannot be a substring
+    #### Required
+    Optional
+    """
+    fullMatchOnly: Boolean = false): SigmulonResult!
+}

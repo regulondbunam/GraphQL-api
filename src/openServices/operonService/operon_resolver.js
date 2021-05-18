@@ -9,7 +9,7 @@ for Operon Service]
 ## Usage 
 
 ```javascript
-import {operonResolver} from './operonResolver'
+import {operonResolvers} from './operon_resolver'
 ```
 
 ## Arguments/Parameters
@@ -46,6 +46,6 @@ export const operonResolvers = {
   Query: {
     getAllOperon: (root, {limit, page}) => commonController.getAll(Operon, limit, page, 'operon.name'),
     getOperonBy: (root, {search, advancedSearch, limit, page, properties, organismName, fullMatchOnly}) =>
-      operonController.getOperonBy(search, advancedSearch, limit, page),
+      operonController.getOperonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
   },
 };

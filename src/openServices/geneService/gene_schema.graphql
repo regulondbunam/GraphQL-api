@@ -1,4 +1,4 @@
-# This schema represent geneDatamart, principal Type is GeneData.
+# This schema represent geneDatamart, principal Type is GeneDatamart.
 # Types that can exist in differents datamart cannot be found here, 
 # and exists in "Common_properties" Schema in "Common" Folder
 # About descriptions
@@ -484,11 +484,36 @@ type Query {
   getAllGenes
   #### Description
   List all the genes contained in collection
+  ### Example
+  ```json
+  {
+    getAllGenes(limit:5){
+      data{
+        gene{
+          id
+          name
+          leftEndPosition
+          rightEndPosition
+        }
+      }
+    }
+  }
+  ```
   """
   getAllGenes(
-    "**limit**: defines the page results showed (10 by default)"
+    """
+    #### Description
+    defines the page results showed 
+    #### Required
+    Optional
+    """
     limit: Int = 10, 
-    "**page**: select the current result page (0 by default)"
+    """
+    #### Description
+    select the current result page 
+    #### Required
+    Optional
+    """
     page: Int = 0): GenesResult! 
   
   
@@ -504,37 +529,74 @@ type Query {
   #### Example
   ```json
   {
-    getGenesBy(args){
+    getGenesBy(advancedSearch:"((forward[geneInfo.strand]) and ppk[geneInfo.name]) or Lon protease[products.name]")
+    {
       data{
-        fields_to_show
-      }
-      pagination{
-        fields_to_show
+        gene{
+          name
+          id
+          strand
+        }
+        products{
+          name
+        }
       }
     }
   }
   ```
   """
+
   getGenesBy(
     """
+    #### Description
     usable for text search on fields defined in \"Properties\" parameter; syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    #### Required
+    You must use search or advancedSearch
     """
     search: String, 
     """
+    #### Description
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
     supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    You must use search or advancedSearch
     """
     advancedSearch: String, 
-    "defines the page results showed"
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
     limit: Int = 10, 
-    "select the current result page"
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
     page: Int = 0, 
-    "select the fields to be queried by \"search\" (by default geneInfo[id, name, synonyms] and products[name])"
+    """
+    #### Description
+    select the fields to be queried by \"search\"
+    #### Required
+    Optional
+    """
     properties: [String] = ["gene.id", "gene.name", "gene.synonyms", "gene.type", "products.name"], 
-    "usable for specific organismName queries (not available right now)"
+    """
+    #### Description
+    usable for specific organismName queries (not available right now)
+    #### Required
+    Optional
+    """
     organismName: String, 
-    "define if \"search\" will be Case Sensitive and cannot be a substring"
+    """
+    #### Description
+    define if \"search\" will be Case Sensitive and cannot be a substring
+    #### Required
+    Optional
+    """
     fullMatchOnly: Boolean = false): GenesResult! 
 }
  

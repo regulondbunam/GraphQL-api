@@ -1,3 +1,12 @@
+# This schema represent CoexpressionService Datamart, principal Type is CoexpressionData.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
 """
 CoexpressionData is the principal type on the service
 """
@@ -77,28 +86,38 @@ type Query {
     #### Description
     Gets the top Coexpression (50 max and default) by a gene ID or name.
     #### Example
-    ```json{
-    getTopCoexpressionRanking(gene: "arac" or id: "RDBECOLIGN0001")
+    ```json
     {
-        coexpressionId
-        geneId
-        geneName
-        rank
-    }
+        getTopCoexpressionRanking(gene: "arac")
+        {
+            coexpressionId
+            geneId
+            geneName
+            rank
+        }
     }
     ```
     """
     getTopCoexpressionRanking(
         """
+        #### Description
         Defines the id of the gene to search
+        #### Required
+        You must choose id or gene
         """
-        id: String!, 
+        id: String, 
         """
+        #### Description
         Defines the name of the gene to search
+        #### Required
+        You must choose id or gene
         """
         gene: String,
         """
+        #### Description
         Defines the limit of the elements to show (max 50)
+        #### Required
+        Optional
         """
         limit: Int = 50): [CoexpressionResume]
 
@@ -112,40 +131,47 @@ type Query {
     #### Description
     Get the coexpression list from a gene compared to the top of other gene. It works with names or ids.
     #### Example
-    ```json{
-    getRankFromGeneList(
-    gene: "arac",
-    geneList:[name list]
-    OR
-    geneId:"id",
-    geneIdList[id list])
+    ```json
     {
-        coexpressionId
-        geneId
-        geneName
-        rank
-    }
+        getRankFromGeneList(gene:"araC" geneList:["yihX", "cdaR", "topAI"]){
+            geneId
+            geneName
+            coexpressionId
+            rank
+        }
     }
     ```
     """
     getRankFromGeneList(
         """
+        #### Description
         Id of the gene to compare with the principal gene
+        #### Required
+        Optional
         """
         geneId: String,
 
         """
+        #### Description
         Id list of the top 50 principal gene
+        #### Required
+        Only if geneId is used
         """ 
         geneIdList: [String],
 
         """
+        #### Description
         Name of the gene to compare with the principal gene
+        #### Required
+        Optional
         """ 
         gene: String,
 
         """
+        #### Description
         Name list of the top 50 principal gene
+        #### Required
+        Only if gene is used
         """ 
         geneList: [String]): [CoexpressionResume]
 }
