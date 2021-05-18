@@ -83,6 +83,13 @@ const promotersSchema = new mongoose.Schema({
     }
 });
 
+const transcriptionTerminationSiteSchema = new mongoose.Schema ({
+    leftEndPosition: Number,
+    rightEndPosition: Number,
+    range: Number,
+    type: String
+});
+
 const transcriptionUnitsSchema = new mongoose.Schema({
     id: String,
     name: String,
@@ -104,15 +111,10 @@ const transcriptionUnitsSchema = new mongoose.Schema({
     promoter: promotersSchema,
     terminators: [
         {
-            id: String,
+            _id: String,
             citations: [citationsSchema],
             sequence: String,
-            transcriptionTerminationSite: {
-                leftEndPosition: Number,
-                rightEndPosition: Number,
-                range: Number,
-                type: String
-            }
+            transcriptionTerminationSite: transcriptionTerminationSiteSchema
         }
     ],
     regulatorBindingSites: [RegulatorBindingSitesSchema],

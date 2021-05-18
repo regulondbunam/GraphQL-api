@@ -91,6 +91,13 @@ const promotersSchema = new _mongoose2.default.Schema({
     }
 });
 
+const transcriptionTerminationSiteSchema = new _mongoose2.default.Schema({
+    leftEndPosition: Number,
+    rightEndPosition: Number,
+    range: Number,
+    type: String
+});
+
 const transcriptionUnitsSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
@@ -109,15 +116,10 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
     synonyms: [String],
     promoter: promotersSchema,
     terminators: [{
-        id: String,
+        _id: String,
         citations: [_general_model.citationsSchema],
         sequence: String,
-        transcriptionTerminationSite: {
-            leftEndPosition: Number,
-            rightEndPosition: Number,
-            range: Number,
-            type: String
-        }
+        transcriptionTerminationSite: transcriptionTerminationSiteSchema
     }],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
     statistics: transcriptionUnitStatisticsSchema
