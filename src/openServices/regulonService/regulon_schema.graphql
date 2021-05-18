@@ -498,6 +498,14 @@ type RegulatoryBindingSites {
 	"""
 	_
 	"""
+	id: String
+	"""
+	_
+	"""
+	function: String
+	"""
+	_
+	"""
 	absolutePosition: Int
 	"""
 	_

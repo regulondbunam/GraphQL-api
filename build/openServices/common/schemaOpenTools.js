@@ -53,4 +53,4 @@ ${_fs2.default.readFileSync('./src/openServices/htService/ht_search_schema.graph
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */
-const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, HT], { all: true });
+const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews], { all: true });

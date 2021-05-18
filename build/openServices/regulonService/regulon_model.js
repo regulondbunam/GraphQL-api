@@ -52,7 +52,8 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   conformations: [ConformationsSchema],
   encodedFrom: encodedFromSchema,
   sensingClass: String,
-  connectivityClass: String
+  connectivityClass: String,
+  citations: [_general_model.citationsSchema]
 });
 
 const geneOntologySchema = {
@@ -112,6 +113,8 @@ const regulatesSchema = new _mongoose2.default.Schema({
 });
 
 const regulatoryBindingSitesSchema = {
+  id: String,
+  function: String,
   absolutePosition: Number,
   leftEndPosition: Number,
   rightEndPosition: Number,
@@ -178,7 +181,8 @@ const regulonSchema = new _mongoose2.default.Schema({
   aligmentMatrix: [aligmentMatrixSchema],
   evolutionaryConservation: evolutionaryConservationSchema,
   summary: summarySchema,
-  organismName: String
+  organismName: String,
+  allCitations: [_general_model.citationsSchema]
 });
 
 const Regulon = _mongoose2.default.model('regulon_datamarts', regulonSchema, "regulonDatamart");

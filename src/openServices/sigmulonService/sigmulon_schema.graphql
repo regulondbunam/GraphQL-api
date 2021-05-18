@@ -122,7 +122,7 @@ type Query {
     #### Example
     ```json
     {
-        getSigmulonBy(search:"fliA or \\\"Sigma 70\\\""){
+        getSigmulonBy(search:"fliA or \"Sigma 70\""){
         data{
             _id
             sigmaFactor{
