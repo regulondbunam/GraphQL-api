@@ -86,7 +86,6 @@ const promotersSchema = new mongoose.Schema({
 const transcriptionTerminationSiteSchema = new mongoose.Schema ({
     leftEndPosition: Number,
     rightEndPosition: Number,
-    range: Number,
     type: String
 });
 
@@ -112,6 +111,7 @@ const transcriptionUnitsSchema = new mongoose.Schema({
     terminators: [
         {
             _id: String,
+            class: String,
             citations: [citationsSchema],
             sequence: String,
             transcriptionTerminationSite: transcriptionTerminationSiteSchema
