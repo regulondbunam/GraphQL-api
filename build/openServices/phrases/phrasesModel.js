@@ -14,21 +14,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const phraseSchema = new _mongoose2.default.Schema({
   phraseID: String,
   phrase: String,
-  evidence: String
+  pmid: String
+});
+
+const associatedPropertySchema = new _mongoose2.default.Schema({
+  name: String,
+  value: String
 });
 
 const propertiesSchema = new _mongoose2.default.Schema({
-  name: String,
-  value: String,
-  pmid: String,
-  phrases: [phraseSchema]
+  position: Number,
+  associatedProperty: [associatedPropertySchema],
+  associatedPhrases: [phraseSchema]
 });
 
 const phrasesSchema = new _mongoose2.default.Schema({
-  objectId: String,
+  _id: String,
+  sourceId: String,
   objectType: String,
   name: String,
-  properties: [propertiesSchema]
+  propertyPhrases: [propertiesSchema]
 });
 
 const phrases = _mongoose2.default.model('phrases', phrasesSchema);

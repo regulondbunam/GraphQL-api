@@ -73,6 +73,6 @@ const SamplesSchema = new _mongoose2.default.Schema({
     citations: [_general_model.citationsSchema]
 });
 
-const HT_Samples = _mongoose2.default.model('samplesdatamart', SamplesSchema, 'samplesdatamarts');
+const HT_Samples = _mongoose2.default.model('htSamplesDatamart', SamplesSchema, 'htSamplesDatamart');
 
 exports.HT_Samples = HT_Samples;

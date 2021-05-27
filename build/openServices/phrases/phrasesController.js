@@ -9,7 +9,7 @@ var _phrasesModel = require('./phrasesModel');
 
 class phrasesController {
   static getPhraseOf(id) {
-    const foundPhrases = _phrasesModel.phrases.find({ objectId: id });
+    const foundPhrases = _phrasesModel.phrases.find({ _id: id });
     return foundPhrases;
   }
 } /**
