@@ -1,21 +1,26 @@
 type Phrases {
-	objectId: String
+	_id: String
+	sourceId: String
 	objectType: String
 	name: String
-	properties: [Properties]
+	propertyPhrases: [propertyPhrases]
 }
 
-type Properties {
+type propertyPhrases {
+	position: Int
+	associatedProperty: [AssociatedProperty]
+	associatedPhrases: [AssociatedPhrases]
+}
+
+type AssociatedProperty {
 	name: String
 	value: String
-	pmid: String
-	phrases: [phrasesProperties]
 }
 
-type phrasesProperties {
+type AssociatedPhrases {
 	phraseID: String
 	phrase: String
-	evidence: String
+	pmid: String
 }
 
 type Query {

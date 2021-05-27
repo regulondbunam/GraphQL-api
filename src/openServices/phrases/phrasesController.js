@@ -68,7 +68,7 @@ import { phrases } from './phrasesModel';
 
 class phrasesController {
   static getPhraseOf(id) {
-    const foundPhrases = phrases.find({objectId: id});
+    const foundPhrases = phrases.find({_id: id});
     return foundPhrases;
   }
 }
