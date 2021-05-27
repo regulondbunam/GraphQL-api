@@ -61,6 +61,6 @@ const SamplesSchema = new mongoose.Schema({
     citations: [citationsSchema]
 })
 
-const HT_Samples = mongoose.model('samplesdatamart', SamplesSchema, 'samplesdatamarts')
+const HT_Samples = mongoose.model('htSamplesDatamart', SamplesSchema, 'htSamplesDatamart')
 
 export {HT_Samples};

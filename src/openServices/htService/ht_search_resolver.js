@@ -43,7 +43,7 @@ import { commonController } from '../common/controller_common_functions';
 
 export const htResolvers = {
   Query: {
-    queryName: (root, {advSearch, limit, page}) => htController.findOnSample(advSearch, limit, page),
+    findOnSample: (root, {advSearch, limit, page}) => htController.findOnSample(advSearch, limit, page),
   },
 };
  
