@@ -3,21 +3,26 @@ import mongoose from 'mongoose';
 const phraseSchema = new mongoose.Schema({
   phraseID: String,
   phrase: String,
-  evidence: String,
+  pmid: String,
+});
+
+const associatedPropertySchema = new mongoose.Schema({
+  name: String,
+  value: String
 });
 
 const propertiesSchema = new mongoose.Schema({
-  name: String,
-  value: String,
-  pmid: String,
-  phrases: [phraseSchema],
+  position: Number,
+  associatedProperty: [associatedPropertySchema],
+  associatedPhrases: [phraseSchema],
 });
 
 const phrasesSchema = new mongoose.Schema({
-  objectId: String,
+  _id: String,
+  sourceId: String,
   objectType: String,
   name: String,
-  properties: [propertiesSchema],
+  propertyPhrases: [propertiesSchema],
 });
 
 const phrases = mongoose.model('phrases', phrasesSchema);

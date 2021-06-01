@@ -51,6 +51,6 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 /** import the geneController that contains the resolver functions */
 const htResolvers = exports.htResolvers = {
   Query: {
-    queryName: (root, { advSearch, limit, page }) => _ht_search_controller.htController.findOnSample(advSearch, limit, page)
+    findOnSample: (root, { advSearch, limit, page }) => _ht_search_controller.htController.findOnSample(advSearch, limit, page)
   }
 };

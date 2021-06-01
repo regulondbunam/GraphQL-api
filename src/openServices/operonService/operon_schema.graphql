@@ -326,7 +326,7 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
-	citations: Citations
+	citations: [Citations]
 	"""
 	_
 	"""
@@ -474,7 +474,7 @@ type Query {
   getAllOperon
   #### Description
   List all the operon objects contained in collection
-  ### Example
+  #### Example
   ```json
   {
     getAllOperon(limit:5){
