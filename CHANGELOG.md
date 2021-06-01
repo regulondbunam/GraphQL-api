@@ -2,7 +2,25 @@
 
 All notable changes in this project will be documented in this file
 
-### [0.4.0]() - 2021-05-18
+### [0.4.2]() - 2021-06-01
+
+### Fixed
+
+- A bug related to citations of Regulatory Interactions in Operon Sevices was solver
+- Some schemas were updated due a problem with the query example
+- Some problems with HT services was solved (HT is not available in services list)
+
+### Updated
+
+- A new version of Phrases Service was applied, this version is also available right now
+
+### [0.4.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.1) - 2021-05-27
+
+### Fixed
+
+- A bug related to Operon Service in Transcription Units -> Terminators were this fields resolve a null response has been solved
+
+### [0.4.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.0) - 2021-05-18
 
 ### Updated
 
