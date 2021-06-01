@@ -484,7 +484,7 @@ type Query {
   getAllGenes
   #### Description
   List all the genes contained in collection
-  ### Example
+  #### Example
   ```json
   {
     getAllGenes(limit:5){

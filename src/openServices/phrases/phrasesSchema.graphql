@@ -33,7 +33,7 @@ type Query {
   getPhraseOf
   #### Description
   gets all the phrases of a gene based on an identifier
-  #### Example
+  #### Example
   ```json
   {
 	getPhraseOf(id:"RDBECOLIGN00001"){
