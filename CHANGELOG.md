@@ -2,7 +2,7 @@
 
 All notable changes in this project will be documented in this file
 
-### [0.4.2]() - 2021-06-01
+### [0.4.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.2) - 2021-06-01
 
 ### Fixed
 

@@ -64,6 +64,20 @@ const operonSchema = new _mongoose2.default.Schema({
     statistics: operonStatisticsSchema
 });
 
+const boxesSchema = new _mongoose2.default.Schema({
+    leftEndPosition: String,
+    rightEndPosition: String,
+    sequence: String,
+    type: String
+});
+
+const tssSchema = new _mongoose2.default.Schema({
+    leftEndPosition: String,
+    rightEndPosition: String,
+    range: Number,
+    type: String
+});
+
 const promotersSchema = new _mongoose2.default.Schema({
     _id: String,
     bindsSigmaFactor: {
@@ -74,21 +88,11 @@ const promotersSchema = new _mongoose2.default.Schema({
     citations: [_general_model.citationsSchema],
     name: String,
     note: String,
-    boxes: [{
-        leftEndPosition: String,
-        rightEndPosition: String,
-        sequence: String,
-        type: String
-    }],
+    boxes: [boxesSchema],
     sequence: String,
     synonyms: [String],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    transcriptionStartSite: {
-        leftEndPosition: String,
-        rightEndPosition: String,
-        range: Number,
-        type: String
-    }
+    transcriptionStartSite: tssSchema
 });
 
 const transcriptionTerminationSiteSchema = new _mongoose2.default.Schema({
