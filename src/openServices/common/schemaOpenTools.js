@@ -39,5 +39,9 @@ const HT = gql `
 ${fs.readFileSync('./src/openServices/htService/ht_search_schema.graphql').toString()}
 `;
 
+const SRNA = gql `
+${fs.readFileSync('./src/openServices/srnaService/srna_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const types = mergeTypes([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews], {all: true});
+export const types = mergeTypes([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA], {all: true});

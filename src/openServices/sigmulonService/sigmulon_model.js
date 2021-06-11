@@ -52,7 +52,7 @@ const SigmulonSchema = new mongoose.Schema({
     sigmaFactor: sigmaFactorSchema,
     transcribedPromoters: [transcribedPromotersSchema],
     statistics: statisticsSchema,
-    citations: [citationsSchema]
+    allCitations: [citationsSchema]
 });
 
 const Sigmulon = mongoose.model('sigmulon_datamarts', SigmulonSchema, 'sigmulonDatamart');

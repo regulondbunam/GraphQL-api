@@ -7,8 +7,8 @@ const playgroundTabs = exports.playgroundTabs = {
   tabs: [{
     endpoint: 'graphql',
     name: 'updates',
-    query: `# 10/05/2021
-# Added a first version of Sigmulon Service,
+    query: `# 11/06/2021
+# Added a first version of SRNA Service,
 # This version is for an upcoming release of RegulonDB GraphQL Web Services
 # In case of error or report a bug please contact us
 
@@ -17,22 +17,28 @@ const playgroundTabs = exports.playgroundTabs = {
 # Select query, see "docs" tab to get description about 
 # parameters and description
 
-  getSigmulonBy(search:"fliA or \\\"Sigma 70\\\""){
+  getSrnaBy(search:"dicF"){
     data{
       _id
-      sigmaFactor{
+      product{
         name
         gene{
-        	name
+          _id
+          name
+          strand
         }
-    	}
-      transcribedPromoters{s
-        operon_id
-        _id
-        name
-        boxes{
+      }
+      regulatoryInteractions{
+        mechanism
+        regulatedEntity{
+          name
+          type
+        }
+        distanceToGene
+        regulatoryBindingSites{
           leftEndPosition
           rightEndPosition
+          sequence
         }
       }
     }

@@ -123,5 +123,5 @@ class sigmulonController {
     }
 }
 
-/** the geneController is referenced by the resolver of the Gene web service */
+/** the sigmulonController is referenced by the resolver of the Sigmulon web service */
 export {sigmulonController};

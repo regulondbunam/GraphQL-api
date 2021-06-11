@@ -169,7 +169,9 @@ const summarySchema = new _mongoose2.default.Schema({
   transcriptionFactors: summaryValuesSchema,
   transcriptionUnits: summaryValuesSchema,
   operons: summaryValuesSchema,
-  sigmaFactors: summaryValuesSchema
+  sigmaFactors: summaryValuesSchema,
+  regulatoryInteractions: summaryValuesSchema,
+  bindingSites: summaryValuesSchema
 });
 
 const regulonSchema = new _mongoose2.default.Schema({

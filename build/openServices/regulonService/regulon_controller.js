@@ -124,5 +124,5 @@ class regulonController {
   }
 }
 
-/** the geneController is referenced by the resolver of the Gene web service */
+/** the regulonController is referenced by the resolver of the Regulon web service */
 exports.regulonController = regulonController;

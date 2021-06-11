@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-describe('geneService', () => {
+describe('sigmulonService', () => {
   test('getAllSigmulon with limit 3', async () => {
     const response = await axios.post('http://localhost:4001/graphql', {
       query: `
@@ -58,7 +58,7 @@ describe('geneService', () => {
       });
   });
 
-  test('getGenesBy Advanced Search', async () => {
+  test('getSigmulonBy Advanced Search', async () => {
     const response = await axios.post('http://localhost:4001/graphql', {
       query: `
             query{

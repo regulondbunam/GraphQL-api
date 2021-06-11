@@ -54,6 +54,20 @@ const operonSchema = new mongoose.Schema({
     statistics: operonStatisticsSchema
 });
 
+const boxesSchema = new mongoose.Schema({
+    leftEndPosition: String,
+    rightEndPosition: String,
+    sequence: String,
+    type: String
+});
+
+const tssSchema = new mongoose.Schema({
+    leftEndPosition: String,
+    rightEndPosition: String,
+    range: Number,
+    type: String
+});
+
 const promotersSchema = new mongoose.Schema({
     _id: String,
     bindsSigmaFactor: {
@@ -64,23 +78,11 @@ const promotersSchema = new mongoose.Schema({
     citations: [citationsSchema],
     name: String,
     note: String,
-    boxes: [
-        {
-            leftEndPosition: String,
-            rightEndPosition: String,
-            sequence: String,
-            type: String
-        }
-    ],
+    boxes: [boxesSchema],
     sequence: String,
     synonyms: [String],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    transcriptionStartSite: {
-        leftEndPosition: String,
-        rightEndPosition: String,
-        range: Number,
-        type: String
-    }
+    transcriptionStartSite: tssSchema
 });
 
 const transcriptionTerminationSiteSchema = new mongoose.Schema ({

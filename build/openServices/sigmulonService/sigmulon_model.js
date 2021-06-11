@@ -64,7 +64,7 @@ const SigmulonSchema = new _mongoose2.default.Schema({
     sigmaFactor: sigmaFactorSchema,
     transcribedPromoters: [transcribedPromotersSchema],
     statistics: statisticsSchema,
-    citations: [_general_model.citationsSchema]
+    allCitations: [_general_model.citationsSchema]
 });
 
 const Sigmulon = _mongoose2.default.model('sigmulon_datamarts', SigmulonSchema, 'sigmulonDatamart');

@@ -52,5 +52,9 @@ const HT = _apolloServerExpress.gql`
 ${_fs2.default.readFileSync('./src/openServices/htService/ht_search_schema.graphql').toString()}
 `;
 
+const SRNA = _apolloServerExpress.gql`
+${_fs2.default.readFileSync('./src/openServices/srnaService/srna_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews], { all: true });
+const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA], { all: true });
