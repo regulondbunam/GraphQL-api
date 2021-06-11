@@ -123,5 +123,5 @@ class operonController {
 }
 }
 
-/** the geneController is referenced by the resolver of the Gene web service */
+/** the operonController is referenced by the resolver of the Operon web service */
 export {operonController};

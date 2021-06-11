@@ -168,6 +168,8 @@ const summarySchema = new mongoose.Schema({
   transcriptionUnits: summaryValuesSchema,
   operons: summaryValuesSchema,
   sigmaFactors: summaryValuesSchema,
+  regulatoryInteractions: summaryValuesSchema,
+  bindingSites: summaryValuesSchema
 });
 
 const regulonSchema = new mongoose.Schema({
