@@ -2,7 +2,23 @@
 
 All notable changes in this project will be documented in this file
 
-### [0.4.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.2) - 2021-06-01
+## [0.5.0](https://github.com/regulondbunam/GraphQL-api/releases) - 2021-06-11
+
+### Added
+
+- SRNA Service was added in its first version of datamart as a Data Open Service in RegulonDB GraphQL Web Services. 
+  - Some of this missing fields was:
+    - Sigmulon - allCitations
+    - Regulon - statistics
+    - Operon - transcriptionUnits.promoters.boxes 
+
+### Fixed
+
+- Some bugs related to Regulon and Sigmulon services that cause missing fields on response were solved.
+
+---
+
+## [0.4.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.2) - 2021-06-01
 
 ### Fixed
 
@@ -14,13 +30,13 @@ All notable changes in this project will be documented in this file
 
 - A new version of Phrases Service was applied, this version is also available right now
 
-### [0.4.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.1) - 2021-05-27
+## [0.4.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.1) - 2021-05-27
 
 ### Fixed
 
 - A bug related to Operon Service in Transcription Units -> Terminators were this fields resolve a null response has been solved
 
-### [0.4.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.0) - 2021-05-18
+## [0.4.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.4.0) - 2021-05-18
 
 ### Updated
 
@@ -32,7 +48,9 @@ All notable changes in this project will be documented in this file
 - Sigmulon Service was added with its recently version of datamart as a Data Open Service in RegulonDB GraphQL Web Services. 
 - Added a first version of HT Service as a Data Open Service (this can be changed later)
 
-### [0.3.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.3.0) - 2021-04-20
+---
+
+## [0.3.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.3.0) - 2021-04-20
 
 ### Updated
 
@@ -42,7 +60,9 @@ All notable changes in this project will be documented in this file
 
 - Regulon Service was added with its recently version of datamart as a Data Open Service in RegulonDB GraphQL Web Services. 
 
-### [0.2.1]([Release RegulonDB-WS-API 0.2.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.1)) - 2021-03-11
+---
+
+## [0.2.1]([Release RegulonDB-WS-API 0.2.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.1)) - 2021-03-11
 
 ### Updated
 
@@ -51,9 +71,7 @@ All notable changes in this project will be documented in this file
   - regulatorBindingSites on transcriptionUnits.genes was updated to support regulatoryInteractions regulated by sRNA's.
   - mechanism property now appears on regulatorBindingSites Object
 
-
-
-### [0.2.0]([Release RegulonDB-WS-API 0.2.0 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.0)) - 2021-03-04
+## [0.2.0]([Release RegulonDB-WS-API 0.2.0 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.0)) - 2021-03-04
 
 ### Added
 
@@ -65,15 +83,15 @@ All notable changes in this project will be documented in this file
 
 - In Gene Datamart was added fragments object property in Gene Type for genes with multiple positions.
 
-### [0.1.1]([Release RegulonDB-WS-API 0.1.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.1)) - 2021-02-19
+---
+
+## [0.1.1]([Release RegulonDB-WS-API 0.1.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.1)) - 2021-02-19
 
 ### Fixed
 
 - The mongodb connection file was updated to solve connection problems.
 
-
-
-### [0.1.0]([Release RegulonDB-WS-API-Federation · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.0)) - 2021-02-11
+## [0.1.0]([Release RegulonDB-WS-API-Federation · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.0)) - 2021-02-11
 
 ### Added
 

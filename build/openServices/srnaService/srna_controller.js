@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.sigmulonController = undefined;
+exports.srnaController = undefined;
 
-var _sigmulon_model = require('./sigmulon_model');
+var _srna_model = require('./srna_model');
 
 var _controller_common_functions = require('../common/controller_common_functions');
 
@@ -15,16 +15,16 @@ var _graphql = require('graphql');
 
 /** Define a geneController. */
 /**
-# [Sigmulon Service Controller]
+# [SRNA Service Controller]
 	
 ## Description
 
-[Defines functions to resolve GraphQL queries of Sigmulon Service]
+[Defines functions to resolve GraphQL queries of SRNA Service]
 
 ## Usage 
 
 ```javascript
-import { sigmulonController } from './sigmulon_controller';
+import { srnaController } from './srna_controller';
 ```
 
 ## Arguments/Parameters
@@ -56,7 +56,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 	
 # Functions description
 
-## [getSigmulonBy]
+## [getSrnaBy]
 
 __Description:__ 
 
@@ -66,7 +66,7 @@ __Description:__
 __Usage:__
 
 ```javascript
-operonController.getSigmulonBy(args);
+operonController.getSrnaBy(args);
 ```
 
 __Input arguments/parameters:__ 
@@ -77,7 +77,7 @@ __[advancedSearch]:__ usable for specific query by a "value[field]" syntax
 __[limit]:__ defines the page results showed (10 by default)
 __[page]:__ select the current result page (0 by default)
 __[properties]:__ select the fields to be queried by "search" (by default
-    geneInfo[id, name, synonyms] and products[name])
+    ["_id", "product.name", "product.synonyms"])
 __[organismName]:__ usable for specific organismName queries
 __[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a substring
     (by default "false")
@@ -88,8 +88,8 @@ __Object:__ Sigmulon
 Returns an object containing a response that will be sent to GraphQL
 **/
 
-class sigmulonController {
-    static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'], fullMatchOnly = false) {
+class srnaController {
+    static async getSrnaBy(search, advancedSearch, limit = 10, page = 0, properties = ["_id", "product.name", "product.synonyms"], fullMatchOnly = false) {
         const offset = page * limit;
         let filter;
         let hasMore = false;
@@ -100,8 +100,8 @@ class sigmulonController {
             filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
         }
 
-        const Sigmulons = _sigmulon_model.Sigmulon.find(filter).sort({ 'sigmaFactor.name': 1 }).limit(limit).skip(offset);
-        const total = await _controller_common_functions.commonController.countDocumentsIn(_sigmulon_model.Sigmulon, filter);
+        const SRNAS = _srna_model.SRNA.find(filter).sort({ 'product.name': 1 }).limit(limit).skip(offset);
+        const total = await _controller_common_functions.commonController.countDocumentsIn(_srna_model.SRNA, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;
         if (page > lastPage) {
@@ -111,7 +111,7 @@ class sigmulonController {
             throw err;
         } else {
             return {
-                data: Sigmulons,
+                data: SRNAS,
                 pagination: {
                     limit: limit,
                     currentPage: page,
@@ -125,5 +125,5 @@ class sigmulonController {
     }
 }
 
-/** the sigmulonController is referenced by the resolver of the Sigmulon web service */
-exports.sigmulonController = sigmulonController;
+/** the srnaController is referenced by the resolver of the SRNA web service */
+exports.srnaController = srnaController;
