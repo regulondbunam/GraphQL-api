@@ -9,10 +9,12 @@ Functional services currently:
 - DrawingTracesTool 
 - Coexpression
 - Phrases
+- Operon
+- Regulon
+- SRNA
 
 Services in Development: 
-- Operon (first version integrated)
-- Regulon (not available)
+- HighTroughput/HT (not available)
 
 # Motivation
 
@@ -55,19 +57,13 @@ REN .env-sample .env
 
 # Quick start
 
-Starting up openServices and closedServices server firstly, without this, the GraphQL Gateway server will fail to start
-
- ```bash
-$ npm run services
- ```
-
- When services are up, use this command to start GraphQL Gateway Service:
+ Just use this command to start RegulonDB GraphQL Closed, Open and Gateway Services:
 
 ```
 $ npm start
 ```
 
-Now if the GraphQL Closed or Open ports in .env was not defined, it will take port 4002 and 4003 (by default) and GraphQL Playgroud for closedServices will run at http://localhost:4002/graphql and for OpenServices will run at http://localhost:4003/graphql
+Now if the GraphQL Closed or Open ports in .env was not defined, it will take port 4001, 4002 and 4003 (by default) and GraphQL Playgroud for closedServices will run at http://localhost:4002/graphql, for OpenServices will run at http://localhost:4003/graphql and for Gateway will run at http://localhost:4001/graphql 
 
 # Project website
 
