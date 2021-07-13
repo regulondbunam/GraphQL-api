@@ -44,17 +44,22 @@ const transcriptionFactorSchema = new mongoose.Schema({
   citations: [citationsSchema]
 });
 
-const geneOntologySchema = ({
+const GeneTermSchema = new mongoose.Schema({
+  gene_id: String,
+  gene_name: String
+})
+
+const geneOntologySchema = new mongoose.Schema({
   term_id: String,
   name: String,
-  gene_ids: [String]
+  genes: [GeneTermSchema]
 })
 
 const termsSchema = new mongoose.Schema({
   multifun: [{
     id: String,
     name: String,
-    gene_ids: [String]
+    genes: [GeneTermSchema]
   }],
   geneOntology: {
     cellularComponent: [geneOntologySchema],
