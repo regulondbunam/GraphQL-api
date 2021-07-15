@@ -56,17 +56,22 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   citations: [_general_model.citationsSchema]
 });
 
-const geneOntologySchema = {
+const GeneTermSchema = new _mongoose2.default.Schema({
+  gene_id: String,
+  gene_name: String
+});
+
+const geneOntologySchema = new _mongoose2.default.Schema({
   term_id: String,
   name: String,
-  gene_ids: [String]
-};
+  genes: [GeneTermSchema]
+});
 
 const termsSchema = new _mongoose2.default.Schema({
   multifun: [{
     id: String,
     name: String,
-    gene_ids: [String]
+    genes: [GeneTermSchema]
   }],
   geneOntology: {
     cellularComponent: [geneOntologySchema],

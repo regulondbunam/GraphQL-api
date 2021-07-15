@@ -236,7 +236,7 @@ type RegulonGeneOntologyItem {
 	"""
 	_
 	"""
-	gene_ids: [String]
+	genes: [GeneTermsObject]
 }
 
 """
@@ -254,7 +254,21 @@ type RegulonMultifun {
 	"""
 	_
 	"""
-	gene_ids: [String]
+	genes: [GeneTermsObject]
+}
+
+"""
+_
+"""
+type GeneTermsObject {
+	"""
+	_
+	"""
+	gene_id: String
+	"""
+	_
+	"""
+	gene_name: String
 }
 
 """
