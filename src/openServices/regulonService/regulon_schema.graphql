@@ -236,7 +236,7 @@ type RegulonGeneOntologyItem {
 	"""
 	_
 	"""
-	gene: [GeneTermsObject]
+	genes: [GeneTermsObject]
 }
 
 """
