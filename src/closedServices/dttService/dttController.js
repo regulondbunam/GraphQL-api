@@ -73,66 +73,92 @@ class dttController {
             if (covered)
             {
                 // When strand is "forward" OR "reverse"
-                if(strand !='both')
+                if(strand == 'both')
+                    strand = ["forward","reverse"]
                 // Return the elements that are completely contained in the selected range
-                    return Data.find({$and:[{leftEndPosition: {$gte:leftEndPosition}} , {rightEndPosition: {$lte: rightEndPosition}}, {strand: strand}, {objectType: {$in: objectType}}]});
-            
-                // When strand is "forward" AND "reverse"
-                else
-                // Return the elements that are completely contained en the selected range
-                    return Data.find({$and:[{leftEndPosition: {$gte:leftEndPosition}} , {rightEndPosition: {$lte: rightEndPosition}}, {strand: {$in: ["forward","reverse"]}}, {objectType: {$in: objectType}}]});
-                
+                    return Data.find({$and:[
+                        {$or:[
+                            {leftEndPosition: {$gte:leftEndPosition}}, 
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}}
+                        ]}, 
+                        {$or:[
+                            {rightEndPosition: {$lte: rightEndPosition}}, 
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
+                        ]}, 
+                        {$or:[
+                            {strand: strand},
+                            {strand: {$exists: false}}
+                        ]},
+                        {objectType: {$in: objectType}}
+                    ]});
             }
             //When covered is false means draw both cases, when elements are contained in the range and those that not.
             else{
                 //When strand is "forward" OR "reverse"
-                if(strand != 'both')
-                                                // Return all elements that are contained in the selected range.
-                    return Data.find({$and:[{$or:[{$and:[{leftEndPosition:{$gte:leftEndPosition}},{rightEndPosition:{$lte:rightEndPosition}}]},
-                                                // Return those elements start outside the selected range but finish inside the range.
-                                                {$and:[{leftEndPosition:{$lt:leftEndPosition}},{rightEndPosition:{$gt:leftEndPosition,$lte:rightEndPosition}}]},
-                                                // Return those elements start inside the selected range but finish outside the range.
-                                                {$and:[{leftEndPosition:{$gte:leftEndPosition,$lte:rightEndPosition}},{rightEndPosition:{$gt:rightEndPosition}}]},
-                                                // Return those elements that start and finish outside the range
-                                                {$and:[{leftEndPosition:{$lte:leftEndPosition}},{rightEndPosition:{$gte:rightEndPosition}}]}]},
-                                            {strand: strand},{objectType:{$in: objectType}}]}).exec().
-                                            // This function add to the position of the element a character "+" wich means if the position is outside the range
-                                            then(dtt_response => {
-                                                let dtt_obj_extracted
-                                                for(let i =0; i<dtt_response.length; i++){
-                                                    dtt_obj_extracted = dtt_response[i].toJSON();
-                                                    if(dtt_obj_extracted.leftEndPosition < leftEndPosition)
-                                                        dtt_obj_extracted.leftEndPosition = "+" + dtt_obj_extracted.leftEndPosition;
-                                                    if(dtt_obj_extracted.rightEndPosition > rightEndPosition)
-                                                        dtt_obj_extracted.rightEndPosition += "+";
-                                                    dtt_response[i] = dtt_obj_extracted;
-                                                }
-                                                return dtt_response
-                                            });
-                // When strand is "forward" AND "reverse"
-                else
-                                                // Return all elements that are contained in the selected range.
-                    return Data.find({$and:[{$or:[{$and:[{leftEndPosition:{$gte:leftEndPosition}},{rightEndPosition:{$lte:rightEndPosition}}]},
-                                                // Return those elements start outside the selected range but finish inside the range.
-                                                {$and:[{leftEndPosition:{$lt:leftEndPosition}},{rightEndPosition:{$gt:leftEndPosition,$lte:rightEndPosition}}]},
-                                                // Return those elements start inside the selected range but finish outside the range.
-                                                {$and:[{leftEndPosition:{$gte:leftEndPosition,$lte:rightEndPosition}},{rightEndPosition:{$gt:rightEndPosition}}]},
-                                                // Return those elements that start and finish outside the range
-                                                {$and:[{leftEndPosition:{$lte:leftEndPosition}},{rightEndPosition:{$gte:rightEndPosition}}]}]},
-                                            {strand: {$in:["forward","reverse"]}},{objectType:{$in: objectType}}]}).exec().
-                                            // This function add to the position of the element a character "+" wich means if the position is outside the range
-                                            then(dtt_response => {
-                                                let dtt_obj_extracted
-                                                for(let i =0; i<dtt_response.length; i++){
-                                                    dtt_obj_extracted = dtt_response[i].toJSON();
-                                                    if(dtt_obj_extracted.leftEndPosition < leftEndPosition)
-                                                        dtt_obj_extracted.leftEndPosition = "+" + dtt_obj_extracted.leftEndPosition;
-                                                    if(dtt_obj_extracted.rightEndPosition > rightEndPosition)
-                                                        dtt_obj_extracted.rightEndPosition += "+";
-                                                    dtt_response[i] = dtt_obj_extracted;
-                                                }
-                                                return dtt_response
-                                            });
+                if(strand == 'both')
+                    strand = ["forward","reverse"]
+                // Return all elements that are contained in the selected range.
+                return Data.find({$and:[
+                    {$or:[
+                        {$and:[
+                            {leftEndPosition:{$gte:leftEndPosition}},
+                            {rightEndPosition:{$lte:rightEndPosition}}
+                        ]},
+                        // Return those elements start outside the selected range but finish inside the range.
+                        {$and:[
+                            {leftEndPosition:{$lt:leftEndPosition}},
+                            {rightEndPosition:{$gt:leftEndPosition,$lte:rightEndPosition}}
+                        ]},
+                        // Return those elements start inside the selected range but finish outside the range.
+                        {$and:[
+                            {leftEndPosition:{$gte:leftEndPosition,$lte:rightEndPosition}},
+                            {rightEndPosition:{$gt:rightEndPosition}}
+                        ]},
+                        // Return those elements that start and finish outside the range
+                        {$and:[
+                            {leftEndPosition:{$lte:leftEndPosition}},
+                            {rightEndPosition:{$gte:rightEndPosition}}
+                        ]},
+                        // Test for object when positions aren't defined, search in relatedObjects..
+                        {$and:[
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
+                        ]},
+                        // Return those elements start outside the selected range but finish inside the range.
+                        {$and:[
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$lt:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gt:leftEndPosition,$lte:rightEndPosition}}
+                        ]},
+                        // Return those elements start inside the selected range but finish outside the range.
+                        {$and:[
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition,$lte:rightEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gt:rightEndPosition}}
+                        ]},
+                        // Return those elements that start and finish outside the range
+                        {$and:[
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$lte:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gte:rightEndPosition}}
+                        ]}
+                    ]},
+                    {$or:[
+                        {strand: strand},
+                        {strand: {$exists: false}}
+                    ]},
+                    {objectType:{$in: objectType}}
+                ]}).exec().
+                // This function add to the position of the element a character "+" wich means if the position is outside the range
+                then(dtt_response => {
+                    let dtt_obj_extracted
+                    for(let i =0; i<dtt_response.length; i++){
+                        dtt_obj_extracted = dtt_response[i].toJSON();
+                        if(dtt_obj_extracted.leftEndPosition != null && dtt_obj_extracted.leftEndPosition < leftEndPosition)
+                            dtt_obj_extracted.leftEndPosition = "+" + dtt_obj_extracted.leftEndPosition;
+                        if(dtt_obj_extracted.rightEndPosition != null && dtt_obj_extracted.rightEndPosition > rightEndPosition)
+                            dtt_obj_extracted.rightEndPosition += "+";
+                        dtt_response[i] = dtt_obj_extracted;
+                    }
+                    return dtt_response
+                });
             }
         }    
             

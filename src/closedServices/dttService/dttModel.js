@@ -29,6 +29,15 @@ RegulonDB drawing traces tool web service
 
 import mongoose from 'mongoose';
 
+const linkedObjectWhenNoPositionsSchema = new mongoose.Schema({
+    _id: String,
+    leftEndPosition: Number,
+    name: String,
+    rightEndPosition: Number,
+    strand: String,
+    type: String
+})
+
 const dttDataObject = new mongoose.Schema({
     _id: String,
     objectType: String,
@@ -55,14 +64,7 @@ const dttDataObject = new mongoose.Schema({
         strand: String,
         tooltip: String
     }],
-    linkedObjectsWhenNoPositions: [{
-        _id: String,
-        leftEndPosition: Number,
-        name: String,
-        rightEndPosition: Number,
-        strand: String,
-        type: String
-    }]
+    linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsSchema
 });
 
 const Data = mongoose.model('dnafeatures', dttDataObject, 'dnaFeatures');
