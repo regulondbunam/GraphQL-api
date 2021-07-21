@@ -73,37 +73,24 @@ class dttController {
             if (covered)
             {
                 // When strand is "forward" OR "reverse"
-                if(strand !='both')
+                if(strand == 'both')
+                    strand = ["forward","reverse"]
                 // Return the elements that are completely contained in the selected range
                     return Data.find({$and:[
                         {$or:[
                             {leftEndPosition: {$gte:leftEndPosition}}, 
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}}
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}}
                         ]}, 
                         {$or:[
                             {rightEndPosition: {$lte: rightEndPosition}}, 
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
-                        ]}, 
-                        {strand: strand}, 
-                        {objectType: {$in: objectType}}
-                    ]});
-            
-                // When strand is "forward" AND "reverse"
-                else
-                // Return the elements that are completely contained en the selected range
-                    return Data.find({$and:[
-                        {$or:[
-                            {leftEndPosition: {$gte:leftEndPosition}}, 
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}}
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
                         ]}, 
                         {$or:[
-                            {rightEndPosition: {$lte: rightEndPosition}}, 
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
-                        ]}, 
-                        {strand: {$in: ["forward","reverse"]}}, 
+                            {strand: strand},
+                            {strand: {$exists: false}}
+                        ]},
                         {objectType: {$in: objectType}}
                     ]});
-                
             }
             //When covered is false means draw both cases, when elements are contained in the range and those that not.
             else{
@@ -134,26 +121,29 @@ class dttController {
                         ]},
                         // Test for object when positions aren't defined, search in relatedObjects..
                         {$and:[
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}},
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$lte:rightEndPosition}}
                         ]},
                         // Return those elements start outside the selected range but finish inside the range.
                         {$and:[
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$lt:leftEndPosition}},
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$gt:leftEndPosition,$lte:rightEndPosition}}
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$lt:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gt:leftEndPosition,$lte:rightEndPosition}}
                         ]},
                         // Return those elements start inside the selected range but finish outside the range.
                         {$and:[
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$gte:leftEndPosition,$lte:rightEndPosition}},
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$gt:rightEndPosition}}
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition,$lte:rightEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gt:rightEndPosition}}
                         ]},
                         // Return those elements that start and finish outside the range
                         {$and:[
-                            {"linkedObjectsWhenNoPositions.leftEndPosition":{$lte:leftEndPosition}},
-                            {"linkedObjectsWhenNoPositions.rightEndPosition":{$gte:rightEndPosition}}
+                            {"linkedObjectWhenNoPositions.leftEndPosition":{$lte:leftEndPosition}},
+                            {"linkedObjectWhenNoPositions.rightEndPosition":{$gte:rightEndPosition}}
                         ]}
                     ]},
-                    {strand: strand},
+                    {$or:[
+                        {strand: strand},
+                        {strand: {$exists: false}}
+                    ]},
                     {objectType:{$in: objectType}}
                 ]}).exec().
                 // This function add to the position of the element a character "+" wich means if the position is outside the range

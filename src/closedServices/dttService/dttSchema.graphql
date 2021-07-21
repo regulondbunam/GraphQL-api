@@ -82,7 +82,7 @@ type DTTData {
     """
     Objects that don´t have position
     """
-    linkedObjectsWhenNoPositions: [linkedObjectsWhenNoPositionsType]
+    linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsType
 
     """
     Genes related to the elements
@@ -136,7 +136,7 @@ type relatedGenesType {
 """
 linkedObjectsWhenNoPositionsType contains information of those elements without position
 """
-type linkedObjectsWhenNoPositionsType {
+type linkedObjectWhenNoPositionsType {
     """
     id of the gene with no position
     """

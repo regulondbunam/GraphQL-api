@@ -11,7 +11,7 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const linkedObjectsWhenNoPositionsSchema = new _mongoose2.default.Schema({
+const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
     _id: String,
     leftEndPosition: Number,
     name: String,
@@ -73,7 +73,7 @@ const dttDataObject = new _mongoose2.default.Schema({
         strand: String,
         tooltip: String
     }],
-    linkedObjectsWhenNoPositions: [linkedObjectsWhenNoPositionsSchema]
+    linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsSchema
 });
 
 const Data = _mongoose2.default.model('dnafeatures', dttDataObject, 'dnaFeatures');
