@@ -46,6 +46,7 @@ const ConformationsSchema = new _mongoose2.default.Schema({
 });
 
 const transcriptionFactorSchema = new _mongoose2.default.Schema({
+  _id: String,
   name: String,
   synonyms: [String],
   note: String,

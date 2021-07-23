@@ -60,6 +60,10 @@ type TranscriptionFactor {
 	"""
 	_
 	"""
+	_id: String
+	"""
+	_
+	"""
 	name: String
 	"""
 	_
