@@ -34,6 +34,7 @@ const ConformationsSchema = new mongoose.Schema({
 })
 
 const transcriptionFactorSchema = new mongoose.Schema({
+  _id: String,
   name: String,
   synonyms: [String],
   note: String,
