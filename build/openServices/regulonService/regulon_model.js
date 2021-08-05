@@ -68,17 +68,21 @@ const geneOntologySchema = new _mongoose2.default.Schema({
   genes: [GeneTermSchema]
 });
 
+const multifunSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String,
+  genes: [GeneTermSchema]
+});
+
+const GOMainSchema = new _mongoose2.default.Schema({
+  cellularComponent: [geneOntologySchema],
+  molecularFunction: [geneOntologySchema],
+  biologicalProcess: [geneOntologySchema]
+});
+
 const termsSchema = new _mongoose2.default.Schema({
-  multifun: [{
-    id: String,
-    name: String,
-    genes: [GeneTermSchema]
-  }],
-  geneOntology: {
-    cellularComponent: [geneOntologySchema],
-    molecularFunction: [geneOntologySchema],
-    biologicalProcess: [geneOntologySchema]
-  }
+  multifun: [multifunSchema],
+  geneOntology: GOMainSchema
 });
 
 const firstGeneSchema = new _mongoose2.default.Schema({
@@ -91,7 +95,7 @@ const regulatesSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
     function: String,
-    terms: [termsSchema]
+    terms: termsSchema
   }],
   transcriptionFactors: [{
     id: String,
