@@ -54,19 +54,23 @@ const geneOntologySchema = new mongoose.Schema({
   term_id: String,
   name: String,
   genes: [GeneTermSchema]
-})
+});
+
+const multifunSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  genes: [GeneTermSchema]
+});
+
+const GOMainSchema = new mongoose.Schema({
+  cellularComponent: [geneOntologySchema],
+  molecularFunction: [geneOntologySchema],
+  biologicalProcess: [geneOntologySchema],
+});
 
 const termsSchema = new mongoose.Schema({
-  multifun: [{
-    id: String,
-    name: String,
-    genes: [GeneTermSchema]
-  }],
-  geneOntology: {
-    cellularComponent: [geneOntologySchema],
-    molecularFunction: [geneOntologySchema],
-    biologicalProcess: [geneOntologySchema],
-  },
+  multifun: [multifunSchema],
+  geneOntology: GOMainSchema,
 });
 
 const firstGeneSchema = new mongoose.Schema({
@@ -80,7 +84,7 @@ const regulatesSchema = new mongoose.Schema({
       id: String,
       name: String,
       function: String,
-      terms: [termsSchema],
+      terms: termsSchema,
     },
   ],
   transcriptionFactors: [
