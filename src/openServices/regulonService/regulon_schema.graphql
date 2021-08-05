@@ -440,11 +440,11 @@ type RegulonRegulatoryInteractions {
 	"""
 	_
 	"""
-	distanceToFirstGene: Int
+	distanceToFirstGene: Float
 	"""
 	_
 	"""
-	distanceToPromoter: Int
+	distanceToPromoter: Float 
 	"""
 	_
 	"""
@@ -524,7 +524,7 @@ type RegulatoryBindingSites {
 	"""
 	_
 	"""
-	absolutePosition: Int
+	absolutePosition: Float
 	"""
 	_
 	"""
