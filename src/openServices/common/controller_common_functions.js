@@ -80,6 +80,8 @@ __int:__ count
 Contains document count
 **/
 
+import { GraphQLError } from 'graphql';
+
 class commonController {
   static async getAll(collection, limit = 10, page = 0, sortValue) {
     // variable definitions
@@ -91,7 +93,7 @@ class commonController {
 
     // if the limit is greater than 100, the data will not be sorted to
     // reduce the response time; if it is less than or equal to 100 the
-    // data will be ordered alphabetically by Gene.name
+    // data will be ordered alphabetically by sortValue
     if (limit > 100) {
       response = await collection
           .aggregate([
@@ -108,18 +110,26 @@ class commonController {
     // get another data that be in Pagination Type
     const total = await this.countDocumentsIn(collection);
     const showedResult = limit * (page + 1);
+    const lastPage = Math.floor(total / limit);
     if (showedResult < total) hasMore = true;
-    return {
-      data: response,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: Math.floor(total / limit),
-        totalResults: total,
-        hasNextPage: hasMore,
-      },
-    };
+    if (page > lastPage) {
+      const err = new GraphQLError('You must select an available page number');
+      err.status = 'No Content';
+      err.statusCode = 204;
+      throw err;
+    } else {
+      return {
+        data: response,
+        pagination: {
+          limit: limit,
+          currentPage: page,
+          firstPage: 0,
+          lastPage: lastPage,
+          totalResults: total,
+          hasNextPage: hasMore,
+        },
+      };
+    }
   }
 
   static countDocumentsIn(collection, filter = {}) {

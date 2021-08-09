@@ -31,7 +31,12 @@ app.on('ready', function () {
   //Setting up Apollo Federation server
   const server = new ApolloServer({
     gateway,
-    subscriptions: false
+    subscriptions: false,
+    formatError: err => ({
+      message: err.message,
+      status: err.status,
+      statusCode: err.statusCode
+    })
   });
 
   server.applyMiddleware({
