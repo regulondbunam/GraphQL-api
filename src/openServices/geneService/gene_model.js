@@ -10,7 +10,7 @@ const geneOntologyTermsProperties = new mongoose.Schema({
 
 const geneSchema = new mongoose.Schema({
 	bnumber: String,
-	_id: String,
+	id: String,
 	name: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,

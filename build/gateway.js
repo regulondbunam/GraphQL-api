@@ -34,8 +34,8 @@ app.on('ready', function () {
     subscriptions: false,
     formatError: err => ({
       message: err.message,
-      status: err.status,
-      statusCode: err.statusCode
+      status: err.extensions.exception.status,
+      statusCode: err.extensions.exception.statusCode
     })
   });
 
