@@ -22,7 +22,7 @@ const geneOntologyTermsProperties = new _mongoose2.default.Schema({
 
 const geneSchema = new _mongoose2.default.Schema({
 	bnumber: String,
-	_id: String,
+	id: String,
 	name: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
