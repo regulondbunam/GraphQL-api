@@ -14,7 +14,7 @@ type geneDatamart {
   """
   _
   """
-  id: String
+  _id: String
   """
   _
   """

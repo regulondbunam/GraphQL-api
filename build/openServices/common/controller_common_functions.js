@@ -1,34 +1,90 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/**
-# Controller Common Functions
-	
-## Description
+exports.commonController = undefined;
 
-Defines function that resolves the query and responses with all documents of
-the Collection restricted by a limit and pagination
+var _graphql = require('graphql');
 
-## Usage 
+class commonController {
+  static async getAll(collection, limit = 10, page = 0, sortValue) {
+    // variable definitions
+    let hasMore = false;
+    let response;
 
-```javascript
-import {commonController} from '../common/controller_common_functions';
-```
+    // get query response from mongodb through mongoose
+    const offset = page * limit;
 
-## Category
+    // if the limit is greater than 100, the data will not be sorted to
+    // reduce the response time; if it is less than or equal to 100 the
+    // data will be ordered alphabetically by sortValue
+    if (limit > 100) {
+      response = await collection.aggregate([{
+        $limit: limit
+      }, {
+        $skip: offset
+      }]).allowDiskUse(true);
+    } else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 
-RegulonDB datamart web service controller
+    // get another data that be in Pagination Type
+    const total = await this.countDocumentsIn(collection);
+    const showedResult = limit * (page + 1);
+    const lastPage = Math.floor(total / limit);
+    if (showedResult < total) hasMore = true;
+    if (page > lastPage) {
+      const err = new _graphql.GraphQLError('You must select an available page number');
+      err.status = 'No Content';
+      err.statusCode = 204;
+      throw err;
+    } else {
+      return {
+        data: response,
+        pagination: {
+          limit: limit,
+          currentPage: page,
+          firstPage: 0,
+          lastPage: lastPage,
+          totalResults: total,
+          hasNextPage: hasMore
+        }
+      };
+    }
+  }
 
-## License
-
-MIT License
-
-## Author 
-
-RegulonDB Team: Lopez Almazo Andres Gerardo
-**/
+  static countDocumentsIn(collection, filter = {}) {
+    return new Promise((resolve, object) => {
+      collection.countDocuments(filter, (error, count) => {
+        if (error) rejects(error);else resolve(count);
+      });
+    });
+  }
+} /**
+  # Controller Common Functions
+  	
+  ## Description
+  
+  Defines function that resolves the query and responses with all documents of
+  the Collection restricted by a limit and pagination
+  
+  ## Usage 
+  
+  ```javascript
+  import {commonController} from '../common/controller_common_functions';
+  ```
+  
+  ## Category
+  
+  RegulonDB datamart web service controller
+  
+  ## License
+  
+  MIT License
+  
+  ## Author 
+  
+  RegulonDB Team: Lopez Almazo Andres Gerardo
+  **/
 
 /**
 	
@@ -84,51 +140,5 @@ __Return:__
 __int:__ count
 Contains document count
 **/
-
-class commonController {
-  static async getAll(collection, limit = 10, page = 0, sortValue) {
-    // variable definitions
-    let hasMore = false;
-    let response;
-
-    // get query response from mongodb through mongoose
-    const offset = page * limit;
-
-    // if the limit is greater than 100, the data will not be sorted to
-    // reduce the response time; if it is less than or equal to 100 the
-    // data will be ordered alphabetically by Gene.name
-    if (limit > 100) {
-      response = await collection.aggregate([{
-        $limit: limit
-      }, {
-        $skip: offset
-      }]).allowDiskUse(true);
-    } else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
-
-    // get another data that be in Pagination Type
-    const total = await this.countDocumentsIn(collection);
-    const showedResult = limit * (page + 1);
-    if (showedResult < total) hasMore = true;
-    return {
-      data: response,
-      pagination: {
-        limit: limit,
-        currentPage: page,
-        firstPage: 0,
-        lastPage: Math.floor(total / limit),
-        totalResults: total,
-        hasNextPage: hasMore
-      }
-    };
-  }
-
-  static countDocumentsIn(collection, filter = {}) {
-    return new Promise((resolve, object) => {
-      collection.countDocuments(filter, (error, count) => {
-        if (error) rejects(error);else resolve(count);
-      });
-    });
-  }
-}
 
 exports.commonController = commonController;
