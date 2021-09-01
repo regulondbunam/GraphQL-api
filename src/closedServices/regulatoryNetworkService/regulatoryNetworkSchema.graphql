@@ -1,0 +1,97 @@
+"""
+RegulatoryNetwork type is principal type on the service
+"""
+type RegulatoryNetwork {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    type: String
+    """
+    _
+    """
+    indegree: [Node]
+    """
+    _
+    """
+    outdegree: [Node]
+    """
+    _
+    """
+    networkType: String
+}
+
+"""
+_
+"""
+type Node {
+    """
+    _
+    """
+    id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    type: String
+    """
+    _
+    """
+    regulatoryEffect: String
+    """
+    _
+    """
+    citations: [Citations]
+}
+
+type Query {
+    """
+    #### Type
+    Tool
+    #### Service
+    RegulatoryNetwork
+    #### Name
+    getNodesFrom
+    #### Description
+    List all the nodes contained related to defined objects
+    #### Example
+    ```json
+    {
+        getNodesFrom(objects:["MicF"] levels: 1){
+            _id
+            name
+            networkType
+            indegree{
+                id
+                name
+            }
+        }
+    }
+    ```
+    """
+    getNodesFrom(
+        """
+        #### Description
+        Specifies the objects to be query (regulator name or id)
+        #### Required
+        Required
+        """
+        object: String, 
+        """
+        #### Description
+        defines the number of levels to be showed 
+        #### Required
+        Optional
+        """
+        levels: Int = 0): [RegulatoryNetwork]
+}

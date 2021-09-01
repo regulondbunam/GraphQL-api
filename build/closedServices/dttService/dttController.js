@@ -68,7 +68,7 @@ class dttController {
             throw err;
         } else {
             //When objectType is not defined by the user takes all values by default
-            if (objectType == 'all') objectType = ['gene', 'promoter', 'operon', 'tf_binding_site', 'srna', 'riboswitch', 'terminator', 'translational_attenuator', 'transcriptional_attenuator', 'ppGpp'];
+            if (objectType == 'all') objectType = ['gene', 'promoter', 'operon', 'tf_binding_site', 'translational_tf_binding_site', 'srna', 'riboswitch', 'terminator', 'translational_attenuator', 'transcriptional_attenuator', 'ppGpp'];
             // When covered is true means draw only the elements that are contained in the selected range
             if (covered) {
                 // When strand is "forward" OR "reverse"
