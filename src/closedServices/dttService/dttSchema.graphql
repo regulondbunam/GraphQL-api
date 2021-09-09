@@ -213,7 +213,8 @@ type Query {
         strand:String,
         """
         #### Description
-        Defines the elements to display 
+        Defines the elements to display from this list: gene, promoter, operon, tf_binding_site, translational_tf_binding_site,
+        srna, riboswitch, terminator, translational_attenuator, transcriptional_attenuator, ppGpp
         #### Required
         Optional
         """
