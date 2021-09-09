@@ -69,17 +69,17 @@ class dttController {
             //When objectType is not defined by the user takes all values by default
             if(objectType == 'all')
                 objectType = [
-                    'gene',
-                    'promoter',
+                    'gene', //Ready
+                    'promoter', //Ready
                     'operon',
-                    'tf_binding_site',
-                    'translational_tf_binding_site',
-                    'srna',
+                    'tf_binding_site', //Ready
+                    'translational_tf_binding_site', //Ready
+                    'srna', //Ready
                     'riboswitch',
-                    'terminator',
+                    'terminator', //Ready
                     'translational_attenuator',
                     'transcriptional_attenuator',
-                    'ppGpp'
+                    'ppGpp' //Ready
                 ];
             // When covered is true means draw only the elements that are contained in the selected range
             if (covered)
