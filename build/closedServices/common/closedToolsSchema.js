@@ -16,8 +16,12 @@ var _fs2 = _interopRequireDefault(_fs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //Read all graphql schemas
-const Dtt = _apolloServerExpress.gql`${_fs2.default.readFileSync('./src/closedServices/dttService/dttSchema.graphql').toString()}`;
+const Dtt = _apolloServerExpress.gql`${_fs2.default.readFileSync('./src/closedServices/dttService/dttSchema.graphql').toString()}`; // Import all libraries to used
+
+
+const RegNet = _apolloServerExpress.gql`${_fs2.default.readFileSync('./src/closedServices/regulatoryNetworkService/regulatoryNetworkSchema.graphql').toString()}`;
+
+const commonProperties = _apolloServerExpress.gql`${_fs2.default.readFileSync('./src/closedServices/common/common_properties.graphql').toString()}`;
 
 //exports the object that contains all merge schemas
-// Import all libraries to used
-const typeDefsClosed = exports.typeDefsClosed = (0, _mergeGraphqlSchemas.mergeTypes)([Dtt], { all: true });
+const typeDefsClosed = exports.typeDefsClosed = (0, _mergeGraphqlSchemas.mergeTypes)([Dtt, RegNet, commonProperties], { all: true });

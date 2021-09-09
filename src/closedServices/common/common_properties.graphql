@@ -1,0 +1,98 @@
+# This schema contains types that exists in differents datamart
+#
+# About descriptions
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+"""
+_
+"""
+type ExternalCrossReferences {
+	"""
+	_
+	"""
+	externalCrossReferenceId: String
+	"""
+	_
+	"""
+	externalCrossReferenceName: String
+	"""
+	_
+	"""
+	objectId: String
+	"""
+	_
+	"""
+	url: String
+}
+
+"""
+_
+"""
+type Citations {
+	"""
+	_
+	"""
+	evidence: Evidence
+	"""
+	_
+	"""
+	publication: Publication
+}
+
+"""
+_
+"""
+type Evidence {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type Publication {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	authors: [String]
+	"""
+	_
+	"""
+	pmid: String
+	"""
+	_
+	"""
+	citation: String
+	"""
+	_
+	"""
+	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
+}

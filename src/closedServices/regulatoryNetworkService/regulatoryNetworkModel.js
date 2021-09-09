@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { citationsSchema } from '../../openServices/common/general_model';
 
 const nodeSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     name: String,
     type: String,
     regulatoryEffect: String,

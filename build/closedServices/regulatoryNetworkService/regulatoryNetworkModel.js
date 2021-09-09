@@ -14,7 +14,7 @@ var _general_model = require('../../openServices/common/general_model');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const nodeSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     name: String,
     type: String,
     regulatoryEffect: String,

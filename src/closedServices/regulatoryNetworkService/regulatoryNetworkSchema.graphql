@@ -1,7 +1,7 @@
 """
 RegulatoryNetwork type is principal type on the service
 """
-type RegulatoryNetwork {
+type RegulatoryNetwork {
     """
     _
     """
@@ -35,7 +35,7 @@ type Node {
     """
     _
     """
-    id: String
+    _id: String
     """
     _
     """
@@ -67,7 +67,7 @@ type Query {
     #### Example
     ```json
     {
-        getNodesFrom(objects:["MicF"] levels: 1){
+        getNodesOf(objects:["MicF"] levels: 1){
             _id
             name
             networkType
@@ -79,19 +79,26 @@ type Query {
     }
     ```
     """
-    getNodesFrom(
+    getNodesOf(
         """
         #### Description
-        Specifies the objects to be query (regulator name or id)
+        Specifies the object id to be query
         #### Required
         Required
         """
-        object: String, 
+        object_id: [String], 
+        """
+        #### Description
+        Specifies the object name to be query
+        #### Required
+        Required
+        """
+        object_name: [String], 
         """
         #### Description
         defines the number of levels to be showed 
         #### Required
         Optional
         """
-        levels: Int = 0): [RegulatoryNetwork]
+        networkType: [String]): [RegulatoryNetwork]
 }
