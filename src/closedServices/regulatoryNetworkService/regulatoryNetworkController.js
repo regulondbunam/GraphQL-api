@@ -60,19 +60,9 @@ regulatoryNetworkController: [dttData]
  class regulatoryNetworkController {
      static getNodesOf(object_id, object_name, networkType = ["TF-TF", "TF-Gene", "Gene-Gene"]){
          if(object_id != null)
-             return RegulatoryNetwork.find({
-                 $and:[
-                    {_id: object_id},
-                    {networkType: networkType}
-                ]
-            })
+             return RegulatoryNetwork.find({_id: object_id})
          else
-            return RegulatoryNetwork.find({
-                $and:[
-                   {name: object_name},
-                   {networkType: networkType}
-               ]
-           })
+            return RegulatoryNetwork.find({name: object_name})
      }
  }
  export {regulatoryNetworkController}
