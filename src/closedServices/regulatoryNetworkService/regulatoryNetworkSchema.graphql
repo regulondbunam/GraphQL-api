@@ -22,10 +22,6 @@ type RegulatoryNetwork {
     _
     """
     outdegree: [Node]
-    """
-    _
-    """
-    networkType: String
 }
 
 """
@@ -52,6 +48,14 @@ type Node {
     _
     """
     citations: [Citations]
+    """
+    _
+    """
+    networkType: String
+    """
+    _
+    """
+    tooltip: String
 }
 
 type Query {
@@ -96,7 +100,7 @@ type Query {
         object_name: [String], 
         """
         #### Description
-        defines the number of levels to be showed 
+        defines the network type to be showed on results of indegree or outdegree **(Currently not available for use)**
         #### Required
         Optional
         """
