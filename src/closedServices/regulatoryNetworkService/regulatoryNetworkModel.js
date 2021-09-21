@@ -6,7 +6,9 @@ const nodeSchema = new mongoose.Schema({
     name: String,
     type: String,
     regulatoryEffect: String,
-    citations: [citationsSchema]
+    citations: [citationsSchema],
+    networkType: String,
+    tooltip: String
 });
 
 const regulatoryNetworkSchema = new mongoose.Schema({
@@ -14,8 +16,7 @@ const regulatoryNetworkSchema = new mongoose.Schema({
     name: String,
     type: String,
     outdegree: [nodeSchema],
-    indegree: [nodeSchema],
-    networkType: String
+    indegree: [nodeSchema]
 });
 
 const RegulatoryNetwork = mongoose.model('regulatory_network_datamarts', regulatoryNetworkSchema, 'regulatoryNetworkDatamart');

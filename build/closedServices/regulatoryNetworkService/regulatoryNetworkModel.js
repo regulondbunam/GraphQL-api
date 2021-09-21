@@ -18,7 +18,9 @@ const nodeSchema = new _mongoose2.default.Schema({
     name: String,
     type: String,
     regulatoryEffect: String,
-    citations: [_general_model.citationsSchema]
+    citations: [_general_model.citationsSchema],
+    networkType: String,
+    tooltip: String
 });
 
 const regulatoryNetworkSchema = new _mongoose2.default.Schema({
@@ -26,8 +28,7 @@ const regulatoryNetworkSchema = new _mongoose2.default.Schema({
     name: String,
     type: String,
     outdegree: [nodeSchema],
-    indegree: [nodeSchema],
-    networkType: String
+    indegree: [nodeSchema]
 });
 
 const RegulatoryNetwork = _mongoose2.default.model('regulatory_network_datamarts', regulatoryNetworkSchema, 'regulatoryNetworkDatamart');
