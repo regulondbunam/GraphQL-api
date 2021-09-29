@@ -1,0 +1,401 @@
+# This schema represent HT Dataset Samples, principal Type is Dataset.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+""" 
+This is a Dataset type
+"""
+type Dataset {
+    """
+    _
+    """
+    datasetID: String
+    """
+    _
+    """
+    publication: DatasetPublication
+    """
+    _
+    """
+    objectTested: ObjectTested
+    """
+    _
+    """
+    sourceSerie: SourceSerie
+    """
+    _
+    """
+    sample: DatasetSample
+    """
+    _
+    """
+    linkedDataset: [LinkedDataset]
+    """
+    _
+    """
+    referenceGenome: String
+    """
+    _
+    """
+    datasetType: String
+    """
+    _
+    """
+    temporalDatasetID: String
+    """
+    _
+    """
+    peaks: [Peaks]
+    """
+    _
+    """
+    tfBinding: [DatasetTFBinding]
+    """
+    _
+    """
+    tfBindingAuthors: String
+    """
+    _
+    """
+    growthConditions: String
+    """
+    _
+    """
+    releaseDataControl: ReleaseDataControl
+    """
+    _
+    """
+    summary: DatasetSummary
+}
+
+type DatasetPublication {
+    """
+    _
+    """
+    pmid: Int
+    """
+    _
+    """
+    doi: String
+    """
+    _
+    """
+    authors: [String]
+    """
+    _
+    """
+    title: String
+    """
+    _
+    """
+    date: String
+    """
+    _
+    """
+    pmcid: String
+}
+
+type objectTested {
+    """
+    _
+    """
+    id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    synonyms: [String]
+    """
+    _
+    """
+    gene: simpleItemObject
+    """
+    _
+    """
+    DBs: simpleItemObject
+    """
+    _
+    """
+    summary: String
+    """
+    _
+    """
+    activeConformations: [String]
+    """
+    _
+    """
+    externalCrossReferences: [ExternalCrossReferences]
+}
+
+type simpleItemObject{
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+}
+
+type SourceSerie {
+    """
+    _
+    """
+    sourceID: String
+    """
+    _
+    """
+    sourceName: String
+    """
+    _
+    """
+    title: String
+    """
+    _
+    """
+    platformID: String
+    """
+    _
+    """
+    platformTitle: String
+    """
+    _
+    """
+    strategy: String
+    """
+    _
+    """
+    method: String
+}
+
+type DatasetSample {
+    """
+    _
+    """
+    experiment_id: String
+    """
+    _
+    """
+    control_id: String
+    """
+    _
+    """
+    title: String
+}
+
+type LinkedDataset {
+    """
+    _
+    """
+    datasetID: String
+    """
+    _
+    """
+    sampleType: String
+}
+
+type Peaks {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    closerGene: simpleItemObject
+    """
+    _
+    """
+    product: simpleItemObject
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    peakLeftPosition: Int
+    """
+    _
+    """
+    peakRightPosition: Int
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    TFBinding_siteIds: [String]
+}
+
+type DatasetTFBinding {
+    """
+    _
+    """
+    site_id: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    chrLeftPosition: Int
+    """
+    _
+    """
+    chrRightPosition: Int
+    """
+    _
+    """
+    closerGene: simpleItemObject
+    """
+    _
+    """
+    transcriptionUnit: simpleItemObject
+    """
+    _
+    """
+    foundClassicRIs: [RIObjectType]
+    """
+    _
+    """
+    foundDatasetRIs: [RIObjectType]
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    strand: String
+}
+
+type RIObjectType {
+    """
+    _
+    """
+    TFBSLeftPosition: Int
+    """
+    _
+    """
+    TFBSRightPosition: Int
+    """
+    _
+    """
+    relativeGeneDistance: Int
+    """
+    _
+    """
+    relativeTSSDistance: Int
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    sequence: String
+}
+
+type ReleaseDataControl {
+    """
+    _
+    """
+    date: String
+    """
+    _
+    """
+    version: Float
+}
+
+type DatasetSummary {
+    """
+    _
+    """
+    totalOfPeaks: [totalOf]
+    """
+    _
+    """
+    totalOfGenes: [totalOf]
+    """
+    _
+    """
+    totalOfTFBS: [totalOf]
+    """
+    _
+    """
+}
+
+type totalOf {
+    """
+    _
+    """
+    inDataset: Int
+    """
+    _
+    """
+    inRDBClassic: Int
+    """
+    _
+    """
+    sharedItems: Int
+    """
+    _
+    """
+    notInRDB: Int
+    """
+    _
+    """
+    notInDataset: Int
+}
+
+type Query {"""
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetsFromSearch
+    #### Description
+    List the dataset docs obtained by an advancedSearch String
+    #### Example
+    ```json
+    {
+        getDatasetsFromSearch(advancedSearch:"")
+        {
+            datasetID
+            peaks {
+                _id
+                peakLeftPosition
+                peakRightPosition
+                TFBinding_siteIds
+            }
+        }
+    }
+    ```
+    """
+    getDatasetsFromSearch(   
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    Required
+    """
+    advancedSearch: String): [Dataset]
+}

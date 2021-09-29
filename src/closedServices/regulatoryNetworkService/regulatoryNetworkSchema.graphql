@@ -71,13 +71,16 @@ type Query {
     #### Example
     ```json
     {
-        getNodesOf(objects:["MicF"] levels: 1){
+        getNodesOf(object_name:["MicF"]){
             _id
             name
-            networkType
+            type
             indegree{
                 id
                 name
+                type
+                networkType
+                regulatoryEffect
             }
         }
     }
