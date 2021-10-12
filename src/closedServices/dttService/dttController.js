@@ -71,7 +71,7 @@ class dttController {
                 objectType = [
                     'gene', //Ready
                     'promoter', //Ready
-                    'operon',
+                    'operon', // For Second Phase with transcription_unit
                     'tf_binding_site', //Ready
                     'translational_tf_binding_site', //Ready
                     'srna', //Ready
