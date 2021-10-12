@@ -16,6 +16,7 @@
     "services": "concurrently -k npm:service:*",
     "service:closedTools": "node build/closedServices/closedServicesServer.js",
     "service:openTools": "node build/openServices/openServicesServer.js",
+    "service:htServices": "node build/htServices/htServicesServer.js",
     "service:gateway": "node build/gateway.js",
     "build": "babel src -d build",
     "slint": "eslint .",

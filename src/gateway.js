@@ -8,6 +8,7 @@ require('dotenv').config();
 const PORT = process.env.GRAPHQL_GATEWAY_PORT || 4001;
 const CLOSED_SERVICES = process.env.GRAPHQL_CLOSED_SERVICES_PORT || 4002;
 const OPEN_SERVICES = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
+// const HT_SERVICES = process.env.GRAPHQL_HTSERVICES_PORT || 4004;
 
 // Setting up the express app
 const app = express();
@@ -21,6 +22,7 @@ app.on('ready', function(){
       serviceList: [
           {name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql`},
           {name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql`},
+          // {name: "htServices", url: `http://localhost:${HT_SERVICES}/graphql`}
       ]
   });
 
@@ -61,7 +63,7 @@ function test_services() {
   fetch({
     query: `
     query {
-      __type(name:"Gene"){
+      __type(name:"Query"){
         name
         description
       }

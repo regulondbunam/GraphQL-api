@@ -15,6 +15,7 @@ require('dotenv').config();
 const PORT = process.env.GRAPHQL_GATEWAY_PORT || 4001;
 const CLOSED_SERVICES = process.env.GRAPHQL_CLOSED_SERVICES_PORT || 4002;
 const OPEN_SERVICES = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
+// const HT_SERVICES = process.env.GRAPHQL_HTSERVICES_PORT || 4004;
 
 // Setting up the express app
 const app = (0, _express2.default)();
@@ -67,7 +68,7 @@ function test_services() {
   fetch({
     query: `
     query {
-      __type(name:"Gene"){
+      __type(name:"Query"){
         name
         description
       }
