@@ -62,7 +62,7 @@ type Dataset {
     """
     _
     """
-    growthConditions: String
+    growthConditions: HTGrowthCondition
     """
     _
     """
@@ -73,6 +73,9 @@ type Dataset {
     summary: DatasetSummary
 }
 
+"""
+_
+"""
 type DatasetPublication {
     """
     _
@@ -100,6 +103,9 @@ type DatasetPublication {
     pmcid: String
 }
 
+"""
+_
+"""
 type ObjectTested {
     """
     _
@@ -116,11 +122,7 @@ type ObjectTested {
     """
     _
     """
-    gene: simpleItemObject
-    """
-    _
-    """
-    DBs: simpleItemObject
+    genes: [simpleItemObject]
     """
     _
     """
@@ -135,6 +137,9 @@ type ObjectTested {
     externalCrossReferences: [ExternalCrossReferences]
 }
 
+"""
+_
+"""
 type simpleItemObject{
     """
     _
@@ -146,6 +151,9 @@ type simpleItemObject{
     name: String
 }
 
+"""
+_
+"""
 type SourceSerie {
     """
     _
@@ -177,6 +185,9 @@ type SourceSerie {
     method: String
 }
 
+"""
+_
+"""
 type DatasetSample {
     """
     _
@@ -192,6 +203,9 @@ type DatasetSample {
     title: String
 }
 
+"""
+_
+"""
 type LinkedDataset {
     """
     _
@@ -203,6 +217,9 @@ type LinkedDataset {
     sampleType: String
 }
 
+"""
+_
+"""
 type Peaks {
     """
     _
@@ -238,6 +255,9 @@ type Peaks {
     siteIds: [String]
 }
 
+"""
+_
+"""
 type DatasetTFBinding {
     """
     _
@@ -285,15 +305,18 @@ type DatasetTFBinding {
     strand: String
 }
 
+"""
+_
+"""
 type RIObjectType {
     """
     _
     """
-    TFBSLeftPosition: Int
+    tfbsLeftPosition: Int
     """
     _
     """
-    TFBSRightPosition: Int
+    tfbsRightPosition: Int
     """
     _
     """
@@ -312,6 +335,63 @@ type RIObjectType {
     sequence: String
 }
 
+"""
+_
+"""
+type HTGrowthCondition{
+    """
+    _
+    """
+    organism: String
+    """
+    _
+    """
+    geneticBackground: String
+    """
+    _
+    """
+    medium: String
+    """
+    _
+    """
+    aeration: String
+    """
+    _
+    """
+    temperature: String
+    """
+    _
+    """
+    ph: String
+    """
+    _
+    """
+    pressure: String
+    """
+    _
+    """
+    opticalDensity: String
+    """
+    _
+    """
+    growthPhase: String
+    """
+    _
+    """
+    growthRate: String
+    """
+    _
+    """
+    vesselType: String
+    """
+    _
+    """
+    aerationSpeed: String
+}
+
+"""
+_
+"""
 type ReleaseDataControl {
     """
     _
@@ -323,6 +403,9 @@ type ReleaseDataControl {
     version: Float
 }
 
+"""
+_
+"""
 type DatasetSummary {
     """
     _
@@ -338,6 +421,9 @@ type DatasetSummary {
     totalOfTFBS: [totalOf]
 }
 
+"""
+_
+"""
 type totalOf {
     """
     _
@@ -361,6 +447,9 @@ type totalOf {
     notInDataset: Int
 }
 
+"""
+_
+"""
 type Query {
     getDatasetByID(Id: String): Dataset
     """

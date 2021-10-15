@@ -31,8 +31,8 @@ const objectTestedSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
     synonyms: [String],
-    gene: simpleItemSchema,
-    DBs: simpleItemSchema,
+    genes: [simpleItemSchema],
+    dbs: simpleItemSchema,
     summary: String,
     activeConformations: [String],
     externalCrossReferences: [_general_model.externalCrossReferencesSchema]
@@ -67,12 +67,12 @@ const peaksSchema = new _mongoose2.default.Schema({
     peakLeftPosition: Number,
     peakRightPosition: Number,
     score: Number,
-    TFBinding_siteIds: [String]
+    siteIds: [String]
 });
 
 const foundRIsSchema = new _mongoose2.default.Schema({
-    TFBSLeftPosition: Number,
-    TFBSRightPosition: Number,
+    tfbsLeftPosition: Number,
+    tfbsRightPosition: Number,
     relativeGeneDistance: Number,
     relativeTSSDistance: Number,
     strand: String,
@@ -91,6 +91,21 @@ const tfBindingSchema = new _mongoose2.default.Schema({
     name: String,
     score: Number,
     strand: String
+});
+
+const growthConditionsSchema = new _mongoose2.default.Schema({
+    organism: String,
+    geneticBackground: String,
+    medium: String,
+    aeration: String,
+    temperature: String,
+    ph: String,
+    pressure: String,
+    opticalDensity: String,
+    growthPhase: String,
+    growthRate: String,
+    vesselType: String,
+    aerationSpeed: String
 });
 
 const releaseDataControlSchema = new _mongoose2.default.Schema({
@@ -125,7 +140,7 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     peaks: [peaksSchema],
     tfBinding: [tfBindingSchema],
     tfBindingAuthorsData: String,
-    growthConditions: String,
+    growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
     summary: summarySchema
 });
