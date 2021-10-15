@@ -93,19 +93,63 @@ type Query {
         #### Required
         Required
         """
-        object_id: [String], 
+        objectId: [String], 
         """
         #### Description
         Specifies the object name to be query
         #### Required
         Required
         """
-        object_name: [String], 
+        objectName: [String], 
         """
         #### Description
-        defines the network type to be showed on results of indegree or outdegree **(Currently not available for use)**
+        defines the network type to be showed on results of indegree or outdegree
         #### Required
         Optional
         """
         networkType: [String]): [RegulatoryNetwork]
+
+    
+    """
+    #### Type
+    Tool
+    #### Service
+    RegulatoryNetwork
+    #### Name
+    getAllNodes
+    #### Description
+    List all the nodes of RegulatoryNetwork
+    #### Example
+    ```json
+    {
+        getAllNodes(networkType: "TF-TF"){
+            _id
+            name
+            type
+            indegree{
+                id
+                name
+                type
+                networkType
+                regulatoryEffect
+            }
+        }
+    }
+    ```
+    """
+    getAllNodes(
+        """
+        #### Description
+        defines the object type to be obtained
+        #### Required
+        Optional
+        """
+        objectType: String
+        """
+        #### Description
+        defines the network type to be showed on results of indegree or outdegree 
+        #### Required
+        Optional
+        """
+        networkType: String): [RegulatoryNetwork]
 }

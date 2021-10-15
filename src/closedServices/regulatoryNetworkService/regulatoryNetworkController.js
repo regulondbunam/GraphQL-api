@@ -58,11 +58,64 @@ regulatoryNetworkController: [dttData]
  import { GraphQLError } from 'graphql';
 
  class regulatoryNetworkController {
-     static getNodesOf(object_id, object_name, networkType = ["TF-TF", "TF-Gene", "Gene-Gene"]){
-         if(object_id != null)
-             return RegulatoryNetwork.find({_id: object_id})
-         else
-            return RegulatoryNetwork.find({name: object_name})
+     static getNodesOf(object_id, object_name, networkType = null){
+        let search_filter = null
+        if(object_id != null)
+            search_filter = {_id: object_id}
+        else
+            search_filter = {name: object_name}
+
+        if (networkType != null)
+            return RegulatoryNetwork.find(search_filter).exec().then(regNetworkResponse => {
+                let currentItem
+                for(let i=0; i<regNetworkResponse.length; i++){
+                    let indegree = [], outdegree = []
+                    currentItem = regNetworkResponse[i].toJSON()
+                    let itemOutdegree = currentItem.outdegree
+                    for(let j=0; j<itemOutdegree.length; j++){
+                        if(itemOutdegree[j].networkType == networkType)
+                            outdegree.push(itemOutdegree[j])
+                    }
+                    let itemIndegree = currentItem.indegree
+                    for(let j=0; j<itemIndegree.length; j++){
+                        if(itemIndegree[j].networkType == networkType)
+                            indegree.push(itemIndegree[j])
+                    }
+                    currentItem.indegree = indegree
+                    currentItem.outdegree = outdegree
+                    regNetworkResponse[i] = currentItem
+                }
+                return regNetworkResponse
+            });
+        else
+            return RegulatoryNetwork.find(search_filter);
+     }
+
+     static getAllNodes(objectType = null, networkType = null){
+        if (networkType != null)
+            return RegulatoryNetwork.find({type: objectType}).exec().then(regNetworkResponse => {
+                let currentItem
+                for(let i=0; i<regNetworkResponse.length; i++){
+                    let indegree = [], outdegree = []
+                    currentItem = regNetworkResponse[i].toJSON()
+                    let itemOutdegree = currentItem.outdegree
+                    for(let j=0; j<itemOutdegree.length; j++){
+                        if(itemOutdegree[j].networkType == networkType)
+                            outdegree.push(itemOutdegree[j])
+                    }
+                    let itemIndegree = currentItem.indegree
+                    for(let j=0; j<itemIndegree.length; j++){
+                        if(itemIndegree[j].networkType == networkType)
+                            indegree.push(itemIndegree[j])
+                    }
+                    currentItem.indegree = indegree
+                    currentItem.outdegree = outdegree
+                    regNetworkResponse[i] = currentItem
+                }
+                return regNetworkResponse
+            });
+        else
+            return RegulatoryNetwork.find({type: objectType});
      }
  }
  export {regulatoryNetworkController}
