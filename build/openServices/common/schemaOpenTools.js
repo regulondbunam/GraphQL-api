@@ -48,10 +48,6 @@ const Overviews = _apolloServerExpress.gql`
 ${_fs2.default.readFileSync('./src/openServices/overviewsService/overviews_schema.graphql').toString()}
 `;
 
-const HT = _apolloServerExpress.gql`
-${_fs2.default.readFileSync('./src/openServices/htService/ht_search_schema.graphql').toString()}
-`;
-
 const SRNA = _apolloServerExpress.gql`
 ${_fs2.default.readFileSync('./src/openServices/srnaService/srna_schema.graphql').toString()}
 `;

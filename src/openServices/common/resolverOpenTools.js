@@ -8,7 +8,6 @@ import { coexpressionResolver } from '../coexpressionService/coexpressionResolve
 import { overviewsResolver } from '../overviewsService/overviews_resolver'
 import { regulonResolvers } from '../regulonService/regulon_resolver'
 import { sigmulonResolvers } from '../sigmulonService/sigmulon_resolver'
-import { htResolvers } from '../htService/ht_search_resolver'
 import { srnaResolvers } from '../srnaService/srna_resolver'
 
 /** merges all resolver file and exports them to index */

@@ -35,10 +35,6 @@ const Overviews = gql `
 ${fs.readFileSync('./src/openServices/overviewsService/overviews_schema.graphql').toString()}
 `;
 
-const HT = gql `
-${fs.readFileSync('./src/openServices/htService/ht_search_schema.graphql').toString()}
-`;
-
 const SRNA = gql `
 ${fs.readFileSync('./src/openServices/srnaService/srna_schema.graphql').toString()}
 `;

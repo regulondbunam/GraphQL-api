@@ -9,7 +9,8 @@ var _regulatoryNetworkController = require('./regulatoryNetworkController');
 
 const regulatoryNetworkResolver = exports.regulatoryNetworkResolver = {
   Query: {
-    getNodesOf: (root, { object_id, object_name, networkType }) => _regulatoryNetworkController.regulatoryNetworkController.getNodesOf(object_id, object_name, networkType)
+    getNodesOf: (root, { objectId, objectName, networkType }) => _regulatoryNetworkController.regulatoryNetworkController.getNodesOf(objectId, objectName, networkType),
+    getAllNodes: (root, { objectType, networkType }) => _regulatoryNetworkController.regulatoryNetworkController.getAllNodes(objectType, networkType)
   }
 }; /**
     # Regulatory Network service resolver

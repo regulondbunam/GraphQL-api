@@ -1,0 +1,348 @@
+# This schema represent HT Dataset Samples, principal Type is Dataset.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+""" 
+This is a Dataset type
+"""
+type Dataset {
+    """
+    _
+    """
+    datasetID: String
+    """
+    _
+    """
+    publication: DatasetPublication
+    """
+    _
+    """
+    objectTested: ObjectTested
+    """
+    _
+    """
+    sourceSerie: SourceSerie
+    """
+    _
+    """
+    sample: DatasetSample
+    """
+    _
+    """
+    linkedDataset: LinkedDataset
+    """
+    _
+    """
+    referenceGenome: String
+    """
+    _
+    """
+    datasetType: String
+    """
+    _
+    """
+    temporalDatasetID: String
+    """
+    _
+    """
+    growthConditions: HTGrowthCondition
+    """
+    _
+    """
+    releaseDataControl: ReleaseDataControl
+    """
+    _
+    """
+    summary: DatasetSummary
+}
+
+"""
+_
+"""
+type DatasetPublication {
+    """
+    _
+    """
+    pmid: Int
+    """
+    _
+    """
+    doi: String
+    """
+    _
+    """
+    authors: [String]
+    """
+    _
+    """
+    title: String
+    """
+    _
+    """
+    date: String
+    """
+    _
+    """
+    pmcid: String
+}
+
+"""
+_
+"""
+type ObjectTested {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    synonyms: [String]
+    """
+    _
+    """
+    genes: [simpleItemObject]
+    """
+    _
+    """
+    summary: String
+    """
+    _
+    """
+    activeConformations: [String]
+    """
+    _
+    """
+    externalCrossReferences: [ExternalCrossReferences]
+}
+
+"""
+_
+"""
+type SourceSerie {
+    """
+    _
+    """
+    sourceID: String
+    """
+    _
+    """
+    sourceName: String
+    """
+    _
+    """
+    title: String
+    """
+    _
+    """
+    platformID: String
+    """
+    _
+    """
+    platformTitle: String
+    """
+    _
+    """
+    strategy: String
+    """
+    _
+    """
+    method: String
+}
+
+"""
+_
+"""
+type DatasetSample {
+    """
+    _
+    """
+    experimentId: String
+    """
+    _
+    """
+    controlId: String
+    """
+    _
+    """
+    title: String
+}
+
+"""
+_
+"""
+type LinkedDataset {
+    """
+    _
+    """
+    controlId: [String]
+    """
+    _
+    """
+    experimentId: [String]
+    """
+    _
+    """
+    datasetType: String
+}
+
+"""
+_
+"""
+type HTGrowthCondition{
+    """
+    _
+    """
+    organism: String
+    """
+    _
+    """
+    geneticBackground: String
+    """
+    _
+    """
+    medium: String
+    """
+    _
+    """
+    aeration: String
+    """
+    _
+    """
+    temperature: String
+    """
+    _
+    """
+    ph: String
+    """
+    _
+    """
+    pressure: String
+    """
+    _
+    """
+    opticalDensity: String
+    """
+    _
+    """
+    growthPhase: String
+    """
+    _
+    """
+    growthRate: String
+    """
+    _
+    """
+    vesselType: String
+    """
+    _
+    """
+    aerationSpeed: String
+}
+
+"""
+_
+"""
+type ReleaseDataControl {
+    """
+    _
+    """
+    date: String
+    """
+    _
+    """
+    version: Float
+}
+
+"""
+_
+"""
+type DatasetSummary {
+    """
+    _
+    """
+    totalOfPeaks: [totalOf]
+    """
+    _
+    """
+    totalOfGenes: [totalOf]
+    """
+    _
+    """
+    totalOfTFBS: [totalOf]
+}
+
+"""
+_
+"""
+type totalOf {
+    """
+    _
+    """
+    inDataset: Int
+    """
+    _
+    """
+    inRDBClassic: Int
+    """
+    _
+    """
+    sharedItems: Int
+    """
+    _
+    """
+    notInRDB: Int
+    """
+    _
+    """
+    notInDataset: Int
+}
+
+"""
+_
+"""
+type Query {
+    getDatasetByID(Id: String): Dataset
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetsFromSearch
+    #### Description
+    List the dataset docs obtained by an advancedSearch String
+    #### Example
+    ```json
+    {
+        getDatasetsFromSearch(advancedSearch:"")
+        {
+            datasetID
+            objectTested {
+                _id
+                name
+                summary
+            }
+        }
+    }
+    ```
+    """
+    getDatasetsFromSearch(   
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    Required
+    """
+    advancedSearch: String): [Dataset]
+}

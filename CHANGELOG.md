@@ -2,7 +2,40 @@
 
 All notable changes in this project will be documented in this file
 
-## [0.5.0](https://github.com/regulondbunam/GraphQL-api/releases) - 2021-06-11
+## [0.6.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.6.0) - 2021-09-20
+
+## Added
+- Web service for Regulatory Network was added to RegulonDB Web Services API, this service is now available for use in this release
+
+## Fixed 
+
+- Improvement on dnaFeatures service controller, dealing with the queries in a better way
+- Added compatibility with translational_tf_binding_sites for dnaFeatures services
+- Minor bugs were solved in this version
+
+---
+
+## [0.5.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.5.2) - 2021-08-09
+
+## Fixed 
+
+- Regulon model was updated on regulates -> genes -> terms, due an error that returns null even though the property exists in docs
+- Improved error handling on Gateway server, with a specific format of errors (Message, Status, StatusCode)
+- Updated name of id in Gene Datamart to _id to evade null responses
+
+## [0.5.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.5.1) - 2021-07-27
+
+### Updated
+ - The method to start services were updated to use only 1 instructions instead 2. Now is only necessary use "npm start"
+ - .env file were updated to include some details to use RegulonDB-GraphQL-API with Docker
+ - Added a genes object on properties of multifun and geneOntology on Regulon Service. This change can be viewed in this diagram: https://lucid.app/lucidchart/1be8ea06-41c6-4326-b249-aea80f10f2c2/view?page=~1FwrmR_wdzZ# 
+
+
+### Fixed
+ - DnaFeatures query "getGeneticElementsFromInterval" was updated to include genetic objects that doesn't have positions and are linked to another genetic object, also were included instructions to obtain objects with no strand.
+ - Added _id property to transcriptionFactor object property on Regulon Service.
+
+## [0.5.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.5.0) - 2021-06-11
 
 ### Added
 
@@ -62,7 +95,7 @@ All notable changes in this project will be documented in this file
 
 ---
 
-## [0.2.1]([Release RegulonDB-WS-API 0.2.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.1)) - 2021-03-11
+## [0.2.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.1) - 2021-03-11
 
 ### Updated
 
@@ -71,7 +104,7 @@ All notable changes in this project will be documented in this file
   - regulatorBindingSites on transcriptionUnits.genes was updated to support regulatoryInteractions regulated by sRNA's.
   - mechanism property now appears on regulatorBindingSites Object
 
-## [0.2.0]([Release RegulonDB-WS-API 0.2.0 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.0)) - 2021-03-04
+## [0.2.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.2.0) - 2021-03-04
 
 ### Added
 
@@ -85,13 +118,13 @@ All notable changes in this project will be documented in this file
 
 ---
 
-## [0.1.1]([Release RegulonDB-WS-API 0.1.1 · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.1)) - 2021-02-19
+## [0.1.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.1) - 2021-02-19
 
 ### Fixed
 
 - The mongodb connection file was updated to solve connection problems.
 
-## [0.1.0]([Release RegulonDB-WS-API-Federation · regulondbunam/GraphQL-api (github.com)](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.0)) - 2021-02-11
+## [0.1.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.1.0) - 2021-02-11
 
 ### Added
 

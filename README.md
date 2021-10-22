@@ -5,12 +5,14 @@
 
 API web services to connect RegulonDB MongoDB collections. 
 Functional services currently:
-- Gene
-- DrawingTracesTool 
 - Coexpression
-- Phrases
+- DrawingTracesTool (dnaFeatures)
+- Gene
 - Operon
+- Phrases
+- RegulatoryNetwork
 - Regulon
+- Sigumluon
 - SRNA
 
 Services in Development: 

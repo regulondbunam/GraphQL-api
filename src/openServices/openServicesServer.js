@@ -35,7 +35,7 @@ import rateLimit from 'express-rate-limit';
 import {types} from './common/schemaOpenTools';
 import {resolvers} from './common/resolverOpenTools';
 const {buildFederatedSchema} = require("@apollo/federation");
-import {playgroundTabs} from '../config/playground_Options';
+import {playgroundTabs} from '../config/openServicesPlaygroundOptions';
 const conectarDB = require('../config/dbConnection');
 require('dotenv').config();
 

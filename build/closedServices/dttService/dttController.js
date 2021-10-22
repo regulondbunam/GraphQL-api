@@ -70,7 +70,8 @@ class dttController {
             //When objectType is not defined by the user takes all values by default
             if (objectType == 'all') objectType = ['gene', //Ready
             'promoter', //Ready
-            'operon', 'tf_binding_site', //Ready
+            'operon', // For Second Phase with transcription_unit
+            'tf_binding_site', //Ready
             'translational_tf_binding_site', //Ready
             'srna', //Ready
             'riboswitch', 'terminator', //Ready

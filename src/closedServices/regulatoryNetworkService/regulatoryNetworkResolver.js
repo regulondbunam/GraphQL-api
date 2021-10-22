@@ -33,6 +33,7 @@ import {regulatoryNetworkController} from './regulatoryNetworkController';
 
 export const regulatoryNetworkResolver = {
     Query: {
-        getNodesOf: (root, {object_id, object_name, networkType}) => regulatoryNetworkController.getNodesOf(object_id, object_name, networkType)
+        getNodesOf: (root, {objectId, objectName, networkType}) => regulatoryNetworkController.getNodesOf(objectId, objectName, networkType),
+        getAllNodes: (root, {objectType, networkType}) => regulatoryNetworkController.getAllNodes(objectType, networkType)
     }
 }
