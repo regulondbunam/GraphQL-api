@@ -35,6 +35,7 @@ import rateLimit from 'express-rate-limit';
 import {typeDefsClosed} from './common/closedToolsSchema';
 import {resolversClosed} from './common/closedToolsResolver';
 const {buildFederatedSchema} = require("@apollo/federation");
+import {playgroundTabs} from '../config/closedServicesPlaygroundOptions';
 const conectarDB = require('../config/dbConnection');
 require('dotenv').config();
 
@@ -49,7 +50,7 @@ const federatedSchema = buildFederatedSchema([{
 
 // Defining graphql server
 const server = new ApolloServer({
-    playground: false,
+    playground: playgroundTabs,
     schema: federatedSchema,
     introspection: true,
     formatError: (err) => ({
