@@ -42,42 +42,9 @@ const sampleSchema = new mongoose.Schema({
 });
 
 const linkedDatasetSchema = new mongoose.Schema({
-    datasetID: String,
-    sampleType: String
-});
-
-const peaksSchema = new mongoose.Schema({
-    _id: String, 
-    closerGene: simpleItemSchema,
-    product: simpleItemSchema,
-    chromosome: String,
-    peakLeftPosition: Number,
-    peakRightPosition: Number, 
-    score: Number,
-    siteIds: [String]
-});
-
-const foundRIsSchema = new mongoose.Schema({
-    tfbsLeftPosition: Number,
-    tfbsRightPosition: Number,
-    relativeGeneDistance: Number, 
-    relativeTSSDistance: Number,
-    strand: String,
-    sequence: String
-});
-
-const tfBindingSchema = new mongoose.Schema({
-    site_id: String,
-    chromosome: String,
-    chrLeftPosition: Number,
-    chrRightPosition: Number,
-    closerGene: simpleItemSchema,
-    transcriptionUnit: simpleItemSchema,
-    foundClassicRIs: [foundRIsSchema],
-    foundDatasetRIs: [foundRIsSchema],
-    name: String,
-    score: Number,
-    strand: String
+    controlId: [String],
+    experimentId: [String],
+    datasetType: String
 });
 
 const growthConditionsSchema = new mongoose.Schema({
@@ -120,13 +87,10 @@ const htDatasetSchema = new mongoose.Schema({
     objectTested: objectTestedSchema,
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
-    linkedDataset: [linkedDatasetSchema],
+    linkedDataset: linkedDatasetSchema,
     referenceGenome: String,
     datasetType: String,
     temporalDatasetID: String,
-    peaks: [peaksSchema],
-    tfBinding: [tfBindingSchema],
-    tfBindingAuthorsData: String,
     growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
     summary: summarySchema

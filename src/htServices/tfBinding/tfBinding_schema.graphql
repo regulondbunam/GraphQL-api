@@ -1,0 +1,87 @@
+"""
+_
+"""
+type DatasetTFBinding {
+    """
+    _
+    """
+    siteId: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    chrLeftPosition: Int
+    """
+    _
+    """
+    chrRightPosition: Int
+    """
+    _
+    """
+    closestGenes: [ClosestGenes]
+    """
+    _
+    """
+    transcriptionUnit: simpleItemObject
+    """
+    _
+    """
+    foundClassicRIs: [RIObjectType]
+    """
+    _
+    """
+    foundDatasetRIs: [RIObjectType]
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    datasetIds: [String]
+}
+
+"""
+_
+"""
+type RIObjectType {
+    """
+    _
+    """
+    tfbsLeftPosition: Int
+    """
+    _
+    """
+    tfbsRightPosition: Int
+    """
+    _
+    """
+    relativeGeneDistance: Int
+    """
+    _
+    """
+    relativeTSSDistance: Int
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    sequence: String
+}
+
+type Query {
+    getAllTFBindingOfDataset(datasetId: String): [DatasetTFBinding]
+}

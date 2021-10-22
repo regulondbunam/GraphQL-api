@@ -1,0 +1,45 @@
+"""
+_
+"""
+type Peaks {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    closestGenes: [ClosestGenes]
+    """
+    _
+    """
+    product: simpleItemObject
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    peakLeftPosition: Int
+    """
+    _
+    """
+    peakRightPosition: Int
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    siteIds: [String]
+    """
+    –
+    """
+    datasetIds: [String]
+}
+
+type Query {
+    getAllPeaksOfDataset(datasetId: String): [Peaks]
+}

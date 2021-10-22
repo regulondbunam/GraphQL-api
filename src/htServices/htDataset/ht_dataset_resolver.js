@@ -37,13 +37,13 @@ MIT License
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
-/** import the geneController that contains the resolver functions */
+/** import the htDatasetController that contains the resolver functions */
 import { htDatasetController } from './ht_dataset_controller';
 import { commonController } from '../common/controller_common_functions';
 
 export const htDatasetResolvers = {
   Query: {
-    getDatasetsFromSearch: (root, {advSearch}) => htDatasetController.getDatasetsFromSearch(advSearch),
+    getDatasetsFromSearch: (root, {advancedSearch}) => htDatasetController.getDatasetsFromSearch(advancedSearch),
   },
 };
  

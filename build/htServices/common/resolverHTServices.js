@@ -7,9 +7,13 @@ exports.resolvers = undefined;
 
 var _mergeGraphqlSchemas = require('merge-graphql-schemas');
 
-var _ht_search_resolver = require('../htService/ht_search_resolver');
-
 var _ht_dataset_resolver = require('../htDataset/ht_dataset_resolver');
+
+var _peaks_resolver = require('../peaks/peaks_resolver');
+
+var _tfBinding_resolver = require('../tfBinding/tfBinding_resolver');
+
+var _authorsData_resolver = require('../authorsData/authorsData_resolver');
 
 /** merges all resolver file and exports them to index */
 

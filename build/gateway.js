@@ -1,8 +1,10 @@
-"use strict";
+'use strict';
 
-var _express = require("express");
+var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
+
+var _gatewayPlaygroundOptions = require('./config/gatewayPlaygroundOptions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15,7 +17,7 @@ require('dotenv').config();
 const PORT = process.env.GRAPHQL_GATEWAY_PORT || 4001;
 const CLOSED_SERVICES = process.env.GRAPHQL_CLOSED_SERVICES_PORT || 4002;
 const OPEN_SERVICES = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
-// const HT_SERVICES = process.env.GRAPHQL_HTSERVICES_PORT || 4004;
+const HT_SERVICES = process.env.GRAPHQL_HTSERVICES_PORT || 4004;
 
 // Setting up the express app
 const app = (0, _express2.default)();
@@ -26,13 +28,14 @@ app.on('ready', function () {
   clearInterval(conectionTester);
   // Services will be be added to gateway once they are ready to solve queries
   const gateway = new ApolloGateway({
-    serviceList: [{ name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql` }, { name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql` }]
+    serviceList: [{ name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql` }, { name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql` }, { name: "htServices", url: `http://localhost:${HT_SERVICES}/graphql` }]
   });
 
   //Setting up Apollo Federation server
   const server = new ApolloServer({
     gateway,
     subscriptions: false,
+    playground: _gatewayPlaygroundOptions.playgroundTabs,
     formatError: err => ({
       message: err.message,
       status: err.extensions.exception.status,

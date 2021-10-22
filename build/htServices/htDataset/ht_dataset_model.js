@@ -32,7 +32,6 @@ const objectTestedSchema = new _mongoose2.default.Schema({
     name: String,
     synonyms: [String],
     genes: [simpleItemSchema],
-    dbs: simpleItemSchema,
     summary: String,
     activeConformations: [String],
     externalCrossReferences: [_general_model.externalCrossReferencesSchema]
@@ -55,42 +54,9 @@ const sampleSchema = new _mongoose2.default.Schema({
 });
 
 const linkedDatasetSchema = new _mongoose2.default.Schema({
-    datasetID: String,
-    sampleType: String
-});
-
-const peaksSchema = new _mongoose2.default.Schema({
-    _id: String,
-    closerGene: simpleItemSchema,
-    product: simpleItemSchema,
-    chromosome: String,
-    peakLeftPosition: Number,
-    peakRightPosition: Number,
-    score: Number,
-    siteIds: [String]
-});
-
-const foundRIsSchema = new _mongoose2.default.Schema({
-    tfbsLeftPosition: Number,
-    tfbsRightPosition: Number,
-    relativeGeneDistance: Number,
-    relativeTSSDistance: Number,
-    strand: String,
-    sequence: String
-});
-
-const tfBindingSchema = new _mongoose2.default.Schema({
-    site_id: String,
-    chromosome: String,
-    chrLeftPosition: Number,
-    chrRightPosition: Number,
-    closerGene: simpleItemSchema,
-    transcriptionUnit: simpleItemSchema,
-    foundClassicRIs: [foundRIsSchema],
-    foundDatasetRIs: [foundRIsSchema],
-    name: String,
-    score: Number,
-    strand: String
+    controlId: [String],
+    experimentId: [String],
+    datasetType: String
 });
 
 const growthConditionsSchema = new _mongoose2.default.Schema({
@@ -133,13 +99,10 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     objectTested: objectTestedSchema,
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
-    linkedDataset: [linkedDatasetSchema],
+    linkedDataset: linkedDatasetSchema,
     referenceGenome: String,
     datasetType: String,
     temporalDatasetID: String,
-    peaks: [peaksSchema],
-    tfBinding: [tfBindingSchema],
-    tfBindingAuthorsData: String,
     growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
     summary: summarySchema

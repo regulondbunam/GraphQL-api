@@ -14,6 +14,8 @@ var _closedToolsSchema = require('./common/closedToolsSchema');
 
 var _closedToolsResolver = require('./common/closedToolsResolver');
 
+var _closedServicesPlaygroundOptions = require('../config/closedServicesPlaygroundOptions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const { buildFederatedSchema } = require("@apollo/federation"); /** 
@@ -61,7 +63,7 @@ const federatedSchema = buildFederatedSchema([{
 
 // Defining graphql server
 const server = new _apolloServerExpress.ApolloServer({
-    playground: false,
+    playground: _closedServicesPlaygroundOptions.playgroundTabs,
     schema: federatedSchema,
     introspection: true,
     formatError: err => ({

@@ -3,12 +3,20 @@ import { gql } from 'apollo-server-express';
 import fs from 'fs';
 
 /** Reading each graphql schema of all services defined and parsing to String */
-const HT = gql`
-  ${fs.readFileSync('./src/htServices/htService/ht_search_schema.graphql').toString()}
-`;
-
 const HT_Dataset = gql`
   ${fs.readFileSync('./src/htServices/htDataset/ht_dataset_schema.graphql').toString()}
+`;
+
+const HT_Peaks = gql`
+  ${fs.readFileSync('./src/htServices/peaks/peaks_schema.graphql').toString()}
+`;
+
+const HT_TF_Binding = gql`
+  ${fs.readFileSync('./src/htServices/tfBinding/tfBinding_schema.graphql').toString()}
+`;
+
+const AuthorsData = gql`
+  ${fs.readFileSync('./src/htServices/authorsData/authorsData_schema.graphql').toString()}
 `;
 
 const commonProperties = gql`

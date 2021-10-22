@@ -8,6 +8,42 @@
 """
 _
 """
+type ClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Int
+}
+
+"""
+_
+"""
+type simpleItemObject {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Int
+}
+
+"""
+_
+"""
 type ExternalCrossReferences {
 	"""
 	_

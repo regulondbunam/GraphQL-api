@@ -14,7 +14,7 @@ var _schemaHTServices = require('./common/schemaHTServices');
 
 var _resolverHTServices = require('./common/resolverHTServices');
 
-var _playground_Options = require('../config/playground_Options');
+var _htPlaygroundOptions = require('../config/htPlaygroundOptions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65,7 +65,7 @@ const federatedSchema = buildFederatedSchema([{
 const serverOpenTools = new _apolloServerExpress.ApolloServer({
     playground: true,
     schema: federatedSchema,
-    playground: _playground_Options.playgroundTabs,
+    playground: _htPlaygroundOptions.playgroundTabs,
     introspection: true,
     formatError: err => ({
         message: err.message,

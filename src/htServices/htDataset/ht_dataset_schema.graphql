@@ -34,7 +34,7 @@ type Dataset {
     """
     _
     """
-    linkedDataset: [LinkedDataset]
+    linkedDataset: LinkedDataset
     """
     _
     """
@@ -47,18 +47,6 @@ type Dataset {
     _
     """
     temporalDatasetID: String
-    """
-    _
-    """
-    peaks: [Peaks]
-    """
-    _
-    """
-    tfBinding: [DatasetTFBinding]
-    """
-    _
-    """
-    tfBindingAuthors: String
     """
     _
     """
@@ -140,20 +128,6 @@ type ObjectTested {
 """
 _
 """
-type simpleItemObject{
-    """
-    _
-    """
-    _id: String
-    """
-    _
-    """
-    name: String
-}
-
-"""
-_
-"""
 type SourceSerie {
     """
     _
@@ -210,129 +184,15 @@ type LinkedDataset {
     """
     _
     """
-    datasetID: String
+    controlId: [String]
     """
     _
     """
-    sampleType: String
-}
-
-"""
-_
-"""
-type Peaks {
+    experimentId: [String]
     """
     _
     """
-    _id: String
-    """
-    _
-    """
-    closerGene: simpleItemObject
-    """
-    _
-    """
-    product: simpleItemObject
-    """
-    _
-    """
-    chromosome: String
-    """
-    _
-    """
-    peakLeftPosition: Int
-    """
-    _
-    """
-    peakRightPosition: Int
-    """
-    _
-    """
-    score: Float
-    """
-    _
-    """
-    siteIds: [String]
-}
-
-"""
-_
-"""
-type DatasetTFBinding {
-    """
-    _
-    """
-    siteId: String
-    """
-    _
-    """
-    chromosome: String
-    """
-    _
-    """
-    chrLeftPosition: Int
-    """
-    _
-    """
-    chrRightPosition: Int
-    """
-    _
-    """
-    closerGene: simpleItemObject
-    """
-    _
-    """
-    transcriptionUnit: simpleItemObject
-    """
-    _
-    """
-    foundClassicRIs: [RIObjectType]
-    """
-    _
-    """
-    foundDatasetRIs: [RIObjectType]
-    """
-    _
-    """
-    name: String
-    """
-    _
-    """
-    score: Float
-    """
-    _
-    """
-    strand: String
-}
-
-"""
-_
-"""
-type RIObjectType {
-    """
-    _
-    """
-    tfbsLeftPosition: Int
-    """
-    _
-    """
-    tfbsRightPosition: Int
-    """
-    _
-    """
-    relativeGeneDistance: Int
-    """
-    _
-    """
-    relativeTSSDistance: Int
-    """
-    _
-    """
-    strand: String
-    """
-    _
-    """
-    sequence: String
+    datasetType: String
 }
 
 """
@@ -467,11 +327,10 @@ type Query {
         getDatasetsFromSearch(advancedSearch:"")
         {
             datasetID
-            peaks {
+            objectTested {
                 _id
-                peakLeftPosition
-                peakRightPosition
-                siteIds
+                name
+                summary
             }
         }
     }

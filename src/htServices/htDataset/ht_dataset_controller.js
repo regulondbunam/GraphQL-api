@@ -8,4 +8,4 @@ class htDatasetController {
     }
 }
 
-export {htDatasetController}
+export { htDatasetController }

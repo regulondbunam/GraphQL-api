@@ -1,0 +1,17 @@
+"""
+_
+"""
+type authorsData {
+    """
+    _
+    """
+    datasetId: String
+    """
+    _
+    """
+    tfBindingAuthorsData: String
+}
+
+type Query {
+    getAuthorsDataOfDataset(datasetId: String): authorsData
+}
