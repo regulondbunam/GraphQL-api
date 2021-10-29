@@ -2,6 +2,16 @@
 
 All notable changes in this project will be documented in this file
 
+## [0.7.0]() - 2021-10-22
+
+## Added
+- Web service for HT dataset was added to RegulonDB Web Services API, this service is now available for use in this release
+
+## Fixed 
+
+- Added tabs for playground page in open, closed and HT services
+- Fixed bugs related to regulatory network services not allowing full responses due to name mismatch
+
 ## [0.6.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.6.0) - 2021-09-20
 
 ## Added
