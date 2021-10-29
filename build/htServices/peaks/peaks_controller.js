@@ -9,7 +9,7 @@ var _peaks_model = require("./peaks_model");
 
 class peaksController {
     static async getAllPeaksOfDataset(datasetId) {
-        return _peaks_model.Peaks.find({ "datasetId": datasetId });
+        return _peaks_model.Peaks.find({ "datasetIds": datasetId });
     }
 }
 

@@ -41,5 +41,37 @@ type Peaks {
 }
 
 type Query {
-    getAllPeaksOfDataset(datasetId: String): [Peaks]
+    """
+    #### Type
+    Data
+    #### Service
+    HT Peaks
+    #### Name
+    getAllPeaksOfDataset
+    #### Description
+    Gets all peaks docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllPeaksOfDataset(datasetId:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllPeaksOfDataset( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetId: String): [Peaks]
 }

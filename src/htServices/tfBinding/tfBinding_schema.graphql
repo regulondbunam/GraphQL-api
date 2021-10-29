@@ -83,5 +83,37 @@ type RIObjectType {
 }
 
 type Query {
-    getAllTFBindingOfDataset(datasetId: String): [DatasetTFBinding]
+    """
+    #### Type
+    Data
+    #### Service
+    HT TFBinding
+    #### Name
+    getAllPeaksOfDataset
+    #### Description
+    Gets all tfBinding docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTFBindingOfDataset(datasetId:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTFBindingOfDataset(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetId: String): [DatasetTFBinding]
 }

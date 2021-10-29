@@ -311,7 +311,40 @@ type totalOf {
 _
 """
 type Query {
-    getDatasetByID(Id: String): Dataset
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetByID
+    #### Description
+    Gets a specific dataset document by an datasetID 
+    #### Example
+    ```json
+    {
+        getDatasetByID(datasetID:"")
+        {
+            datasetID
+            objectTested {
+                _id
+                name
+                summary
+            }
+        }
+    }
+    ```
+    """
+    getDatasetByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetID: String): Dataset
+
+
     """
     #### Type
     Data

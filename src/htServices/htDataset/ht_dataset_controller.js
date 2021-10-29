@@ -6,6 +6,10 @@ class htDatasetController {
         const filter  = advancedSearchFilter(advSearch)
         return HTDataset.find(filter)
     }
+
+    static getDatasetByID(datasetID) {
+        return HTDataset.findOne({"datasetID": datasetID})
+    }
 }
 
 export { htDatasetController }
