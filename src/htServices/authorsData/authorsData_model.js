@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
 
 const authorsDataSchema = new mongoose.Schema({
-    datasetId: String, 
-    tfBindingAuthorsData: String
+    _id: String, 
+    tfBindingAuthorsData: String,
+    datasetIds: [String]
 });
 
 const AuthorsData = mongoose.model('auhtorsData_ht', authorsDataSchema, 'authorsData');

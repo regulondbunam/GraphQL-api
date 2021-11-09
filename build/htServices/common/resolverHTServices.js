@@ -18,4 +18,4 @@ var _authorsData_resolver = require('../authorsData/authorsData_resolver');
 /** merges all resolver file and exports them to index */
 
 /** import each Resolver file */
-const resolvers = exports.resolvers = (0, _mergeGraphqlSchemas.mergeResolvers)([_ht_dataset_resolver.htDatasetResolvers]);
+const resolvers = exports.resolvers = (0, _mergeGraphqlSchemas.mergeResolvers)([_ht_dataset_resolver.htDatasetResolvers, _peaks_resolver.peaksResolvers, _tfBinding_resolver.tfBindingResolvers, _authorsData_resolver.authorsDataResolvers]);

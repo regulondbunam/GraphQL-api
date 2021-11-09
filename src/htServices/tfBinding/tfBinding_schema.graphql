@@ -5,7 +5,7 @@ type DatasetTFBinding {
     """
     _
     """
-    siteId: String
+    _id: String
     """
     _
     """
@@ -21,7 +21,7 @@ type DatasetTFBinding {
     """
     _
     """
-    closestGenes: [ClosestGenes]
+    closestGenes: [TFClosestGenes]
     """
     _
     """
@@ -49,7 +49,15 @@ type DatasetTFBinding {
     """
     _
     """
+    sequence: String
+    """
+    _
+    """
     datasetIds: [String]
+    """
+    _
+    """
+    temporalID: String
 }
 
 """
@@ -82,6 +90,90 @@ type RIObjectType {
     sequence: String
 }
 
+"""
+_
+"""
+type TFClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Int
+}
+
 type Query {
-    getAllTFBindingOfDataset(datasetId: String): [DatasetTFBinding]
+    """
+    #### Type
+    Data
+    #### Service
+    HT TFBinding
+    #### Name
+    getAllTFBindingOfDataset
+    #### Description
+    Gets all tfBinding docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTFBindingOfDataset(datasetId:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTFBindingOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to TFBinding
+    #### Required
+    Required
+    """
+    datasetId: String): [DatasetTFBinding]
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT TFBinding
+    #### Name
+    getTFBindingById
+    #### Description
+    Gets a peak by and ID
+    #### Example
+    ```json
+    {
+        getTFBindingById(_id:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getTFBindingById( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): DatasetTFBinding
 }

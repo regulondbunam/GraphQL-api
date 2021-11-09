@@ -9,11 +9,11 @@ type Peaks {
     """
     _
     """
-    closestGenes: [ClosestGenes]
+    name: String
     """
     _
     """
-    product: simpleItemObject
+    closestGenes: [PeaksClosestGenes]
     """
     _
     """
@@ -38,8 +38,99 @@ type Peaks {
     –
     """
     datasetIds: [String]
+    """
+    _
+    """
+    temporalID: String
+}
+
+"""
+_
+"""
+type PeaksClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Float
+    """
+    _
+    """
+    productName: String
 }
 
 type Query {
-    getAllPeaksOfDataset(datasetId: String): [Peaks]
+    """
+    #### Type
+    Data
+    #### Service
+    HT Peaks
+    #### Name
+    getAllPeaksOfDataset
+    #### Description
+    Gets all peaks docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllPeaksOfDataset(datasetId:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllPeaksOfDataset( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetId: String): [Peaks]
+    """
+    #### Type
+    Data
+    #### Service
+    HT Peaks
+    #### Name
+    getPeakById
+    #### Description
+    Gets a peak by and ID
+    #### Example
+    ```json
+    {
+        getPeakById(_id:"")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getPeakById( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): Peaks
 }

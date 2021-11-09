@@ -8,24 +8,6 @@
 """
 _
 """
-type ClosestGenes {
-    """
-    _
-    """
-    _id: String
-    """
-    _
-    """
-    name: String
-	"""
-	_
-	"""
-	distanceTo: Int
-}
-
-"""
-_
-"""
 type simpleItemObject {
     """
     _

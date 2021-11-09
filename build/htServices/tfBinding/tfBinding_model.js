@@ -32,7 +32,7 @@ const foundRIsSchema = new _mongoose2.default.Schema({
 });
 
 const tfBindingSchema = new _mongoose2.default.Schema({
-    siteId: String,
+    _id: String,
     chromosome: String,
     chrLeftPosition: Number,
     chrRightPosition: Number,
@@ -43,7 +43,9 @@ const tfBindingSchema = new _mongoose2.default.Schema({
     name: String,
     score: Number,
     strand: String,
-    datasetIds: [String]
+    sequence: String,
+    datasetIds: [String],
+    temporalID: String
 });
 
 const TFBinding = _mongoose2.default.model('tfBinding_ht', tfBindingSchema, 'tfBinding');

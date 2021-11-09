@@ -14,7 +14,7 @@ type Dataset {
     """
     _
     """
-    datasetID: String
+    _id: String
     """
     _
     """
@@ -46,7 +46,7 @@ type Dataset {
     """
     _
     """
-    temporalDatasetID: String
+    temporalID: String
     """
     _
     """
@@ -59,6 +59,14 @@ type Dataset {
     _
     """
     summary: DatasetSummary
+    """
+    _
+    """
+    assemblyGenomeId: String
+    """
+    _
+    """
+    fivePrimeEnrichment: String
 }
 
 """
@@ -89,6 +97,10 @@ type DatasetPublication {
     _
     """
     pmcid: String
+    """
+    _
+    """
+    abstract: String
 }
 
 """
@@ -166,11 +178,11 @@ type DatasetSample {
     """
     _
     """
-    experimentId: String
+    experimentId: [String]
     """
     _
     """
-    controlId: String
+    controlId: [String]
     """
     _
     """
@@ -247,6 +259,10 @@ type HTGrowthCondition{
     _
     """
     aerationSpeed: String
+    """
+    _
+    """
+    mediumSupplements: String
 }
 
 """
@@ -311,7 +327,40 @@ type totalOf {
 _
 """
 type Query {
-    getDatasetByID(Id: String): Dataset
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetByID
+    #### Description
+    Gets a specific dataset document by an datasetID 
+    #### Example
+    ```json
+    {
+        getDatasetByID(datasetID:"")
+        {
+            _id
+            objectTested {
+                _id
+                name
+                summary
+            }
+        }
+    }
+    ```
+    """
+    getDatasetByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetID: String): Dataset
+
+
     """
     #### Type
     Data
@@ -326,7 +375,7 @@ type Query {
     {
         getDatasetsFromSearch(advancedSearch:"")
         {
-            datasetID
+            _id
             objectTested {
                 _id
                 name

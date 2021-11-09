@@ -44,6 +44,7 @@ import { commonController } from '../common/controller_common_functions';
 export const htDatasetResolvers = {
   Query: {
     getDatasetsFromSearch: (root, {advancedSearch}) => htDatasetController.getDatasetsFromSearch(advancedSearch),
+    getDatasetByID: (root, {datasetID}) => htDatasetController.getDatasetByID(datasetID)
   },
 };
  

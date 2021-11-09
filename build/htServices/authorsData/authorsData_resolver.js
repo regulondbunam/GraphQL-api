@@ -9,7 +9,8 @@ var _authorsData_controller = require("./authorsData_controller");
 
 const authorsDataResolvers = exports.authorsDataResolvers = {
     Query: {
-        getAuthorsDataOfDataset: (root, { datasetId }) => _authorsData_controller.authorsDataController.getAuthorsDataOfDataset(datasetId)
+        getAuthorsDataOfDataset: (root, { datasetId }) => _authorsData_controller.authorsDataController.getAuthorsDataOfDataset(datasetId),
+        getAuthorsDataById: (root, { _id }) => _authorsData_controller.authorsDataController.getAuthorsDataById(_id)
     }
 }; /**
    # [HT Authors Data Service Resolver]
