@@ -12,8 +12,9 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const authorsDataSchema = new _mongoose2.default.Schema({
-    datasetId: String,
-    tfBindingAuthorsData: String
+    _id: String,
+    tfBindingAuthorsData: String,
+    datasetIds: [String]
 });
 
 const AuthorsData = _mongoose2.default.model('auhtorsData_ht', authorsDataSchema, 'authorsData');

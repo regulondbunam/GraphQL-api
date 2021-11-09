@@ -15,8 +15,8 @@ class htDatasetController {
         return _ht_dataset_model.HTDataset.find(filter);
     }
 
-    static getDatasetByID(datasetID) {
-        return _ht_dataset_model.HTDataset.findOne({ "datasetID": datasetID });
+    static async getDatasetByID(datasetID) {
+        return await _ht_dataset_model.HTDataset.findOne({ "_id": datasetID });
     }
 }
 

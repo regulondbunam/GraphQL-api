@@ -9,7 +9,8 @@ var _peaks_controller = require("./peaks_controller");
 
 const peaksResolvers = exports.peaksResolvers = {
     Query: {
-        getAllPeaksOfDataset: (root, { datasetId }) => _peaks_controller.peaksController.getAllPeaksOfDataset(datasetId)
+        getAllPeaksOfDataset: (root, { datasetId }) => _peaks_controller.peaksController.getAllPeaksOfDataset(datasetId),
+        getPeakById: (root, { _id }) => _peaks_controller.peaksController.getPeakById(_id)
     }
 }; /**
    # [HT Peaks Service Resolver]

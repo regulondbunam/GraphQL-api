@@ -11,6 +11,9 @@ class peaksController {
     static async getAllPeaksOfDataset(datasetId) {
         return _peaks_model.Peaks.find({ "datasetIds": datasetId });
     }
+    static async getPeakById(_id) {
+        return await _peaks_model.Peaks.findOne({ "_id": _id });
+    }
 }
 
 exports.peaksController = peaksController;

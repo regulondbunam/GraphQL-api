@@ -7,8 +7,8 @@ class htDatasetController {
         return HTDataset.find(filter)
     }
 
-    static getDatasetByID(datasetID) {
-        return HTDataset.findOne({"datasetID": datasetID})
+    static async getDatasetByID(datasetID) {
+        return await HTDataset.findOne({"_id": datasetID})
     }
 }
 

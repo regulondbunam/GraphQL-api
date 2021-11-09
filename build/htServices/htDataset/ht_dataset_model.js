@@ -19,7 +19,8 @@ const publicationSchema = new _mongoose2.default.Schema({
     authors: [String],
     title: String,
     date: String,
-    pmcid: String
+    pmcid: String,
+    abstract: String
 });
 
 const simpleItemSchema = new _mongoose2.default.Schema({
@@ -28,7 +29,7 @@ const simpleItemSchema = new _mongoose2.default.Schema({
 });
 
 const objectTestedSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     name: String,
     synonyms: [String],
     genes: [simpleItemSchema],
@@ -48,8 +49,8 @@ const sourceSerieSchema = new _mongoose2.default.Schema({
 });
 
 const sampleSchema = new _mongoose2.default.Schema({
-    experimentId: String,
-    controlId: String,
+    experimentId: [String],
+    controlId: [String],
     title: String
 });
 
@@ -71,7 +72,8 @@ const growthConditionsSchema = new _mongoose2.default.Schema({
     growthPhase: String,
     growthRate: String,
     vesselType: String,
-    aerationSpeed: String
+    aerationSpeed: String,
+    mediumSupplements: String
 });
 
 const releaseDataControlSchema = new _mongoose2.default.Schema({
@@ -94,7 +96,7 @@ const summarySchema = new _mongoose2.default.Schema({
 });
 
 const htDatasetSchema = new _mongoose2.default.Schema({
-    datasetID: String,
+    _id: String,
     publication: publicationSchema,
     objectTested: objectTestedSchema,
     sourceSerie: sourceSerieSchema,
@@ -102,12 +104,14 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     linkedDataset: linkedDatasetSchema,
     referenceGenome: String,
     datasetType: String,
-    temporalDatasetID: String,
+    temporalID: String,
     growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
-    summary: summarySchema
+    summary: summarySchema,
+    assemblyGenomeId: String,
+    fivePrimeEnrichment: String
 });
 
-const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'datasetDatamart');
+const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 
 exports.HTDataset = HTDataset;

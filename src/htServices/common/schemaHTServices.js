@@ -24,4 +24,4 @@ const commonProperties = gql`
 `;
 
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const types = mergeTypes([HT_Dataset, commonProperties], {all: true});
+export const types = mergeTypes([HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData], {all: true});
