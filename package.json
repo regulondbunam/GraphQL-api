@@ -16,7 +16,6 @@
     "services": "concurrently -k npm:service:*",
     "service:closedTools": "node build/closedServices/closedServicesServer.js",
     "service:openTools": "node build/openServices/openServicesServer.js",
-    "service:htServices": "node build/htServices/htServicesServer.js",
     "service:gateway": "node build/gateway.js",
     "build": "babel src -d build",
     "slint": "eslint .",
@@ -30,7 +29,7 @@
   "contributors": [
     "Andrés Gerardo López Almazo",
     "Daniel Moreno Alonso",
-    "Edgar Enrrique Hernández Marcelo"
+    "Edgar Enrique Hernández Marcelo"
   ],
   "license": "ISC",
   "dependencies": {
@@ -38,7 +37,6 @@
     "@apollo/gateway": "^0.21.4",
     "apollo-fetch": "^0.7.0",
     "apollo-server-express": "^2.21.0",
-    "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
@@ -49,13 +47,13 @@
     "graphql": "^15.5.0",
     "graphql-import": "^1.0.2",
     "merge-graphql-schemas": "^1.7.8",
-    "mongodb-filter-object-parser": "^1.2.5",
+    "mongodb-filter-object-parser": "^1.2.6",
     "mongoose": "^5.11.15"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^25.5.1",
     "braces": "^3.0.2",
