@@ -2,7 +2,23 @@
 
 All notable changes in this project will be documented in this file
 
-## [0.7.0]() - 2021-10-22
+## [0.8.0]() - 2021-11-16
+
+## Update
+- HT Services were removed from RegulonDB-WS-API repository, RegulonDB HT Services are available in the following repository https://github.com/regulondbunam/RegulonDBHT-API
+
+---
+
+## [0.7.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.7.1) - 2021-11-09
+
+## Added
+- New services were added to service list for use (Peaks, TFBinding and AuthorsData)
+
+## Updated 
+- Models of Peaks, TFBinding and AuthorsData were updated
+- The model and schema were updated for Dataset Service
+
+## [0.7.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.7.0) - 2021-10-22
 
 ## Added
 - Web service for HT dataset was added to RegulonDB Web Services API, this service is now available for use in this release
@@ -11,6 +27,8 @@ All notable changes in this project will be documented in this file
 
 - Added tabs for playground page in open, closed and HT services
 - Fixed bugs related to regulatory network services not allowing full responses due to name mismatch
+
+---
 
 ## [0.6.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.6.0) - 2021-09-20
 

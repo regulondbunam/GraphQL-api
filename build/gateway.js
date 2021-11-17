@@ -17,7 +17,7 @@ require('dotenv').config();
 const PORT = process.env.GRAPHQL_GATEWAY_PORT || 4001;
 const CLOSED_SERVICES = process.env.GRAPHQL_CLOSED_SERVICES_PORT || 4002;
 const OPEN_SERVICES = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
-const HT_SERVICES = process.env.GRAPHQL_HTSERVICES_PORT || 4004;
+const HT_SERVICES_URL = process.env.HT_SERVICES_URL;
 
 // Setting up the express app
 const app = (0, _express2.default)();
@@ -28,7 +28,7 @@ app.on('ready', function () {
   clearInterval(conectionTester);
   // Services will be be added to gateway once they are ready to solve queries
   const gateway = new ApolloGateway({
-    serviceList: [{ name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql` }, { name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql` }, { name: "htServices", url: `http://localhost:${HT_SERVICES}/graphql` }]
+    serviceList: [{ name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql` }, { name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql` }, { name: "htServices", url: `${HT_SERVICES_URL}` }]
   });
 
   //Setting up Apollo Federation server
@@ -56,8 +56,13 @@ app.on('ready', function () {
 });
 
 // Creates an apollo-fetch instance for testing connection to Open Services Server
-let fetch = createApolloFetch({
+let localFetch = createApolloFetch({
   uri: `http://localhost:${OPEN_SERVICES}/graphql`
+});
+
+// Creates an apollo-fetch instance for testing connection to Remote HT Services Server
+let htFetch = createApolloFetch({
+  uri: `${HT_SERVICES_URL}`
 });
 
 // Adding an interval for looping testing until services are available
@@ -68,17 +73,28 @@ let conectionTester = setInterval(function () {
 // function that calls Open Services API to obtain an introspection query response,
 // if an error ocurs for no available connection, a message of wait of retry is showed
 function test_services() {
-  fetch({
+  localFetch({
     query: `
     query {
       __type(name:"Query"){
         name
-        description
       }
     }`
   }).then(res => {
-    app.emit("ready");
+    htFetch({
+      query: `
+      query {
+        __type(name:"Query"){
+          name
+        }
+      }`
+    }).then(res => {
+      console.log("HT Services READY");
+      app.emit("ready");
+    }).catch(e => {
+      console.log("HT Services aren't ready, trying again in 5 seconds");
+    });
   }).catch(e => {
-    console.log("Services aren't ready, trying again in 5 seconds");
+    console.log("Local Services aren't ready, trying again in 5 seconds");
   });
 }
