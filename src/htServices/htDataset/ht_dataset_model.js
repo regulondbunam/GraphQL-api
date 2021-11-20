@@ -7,7 +7,8 @@ const publicationSchema = new mongoose.Schema({
     authors: [String],
     title: String,
     date: String,
-    pmcid: String
+    pmcid: String,
+    abstract: String
 });
 
 const simpleItemSchema = new mongoose.Schema({
@@ -16,29 +17,30 @@ const simpleItemSchema = new mongoose.Schema({
 });
 
 const objectTestedSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     name: String,
     synonyms: [String],
     genes: [simpleItemSchema],
-    summary: String,
+    note: String,
     activeConformations: [String],
     externalCrossReferences: [externalCrossReferencesSchema]
 });
 
 const sourceSerieSchema = new mongoose.Schema({
-    sourceID: String,
+    sourceId: String,
     sourceName: String,
     title: String,
-    platformID: String,
-    platformName: String,
+    platformId: String,
+    platformTitle: String,
     strategy: String,
     method: String
 });
 
 const sampleSchema = new mongoose.Schema({
-    experimentId: String,
-    controlId: String,
-    title: String
+    experimentId: [String],
+    controlId: [String],
+    title: String,
+    srrID: String
 });
 
 const linkedDatasetSchema = new mongoose.Schema({
@@ -59,12 +61,13 @@ const growthConditionsSchema = new mongoose.Schema({
     growthPhase: String,
     growthRate: String,
     vesselType: String,
-    aerationSpeed: String
+    aerationSpeed: String,
+    mediumSupplements: String
 });
 
 const releaseDataControlSchema = new mongoose.Schema({
     date: String,
-    version: Number
+    version: String
 });
 
 const totalOfSchema = new mongoose.Schema({
@@ -82,7 +85,7 @@ const summarySchema = new mongoose.Schema({
 });
 
 const htDatasetSchema = new mongoose.Schema({
-    datasetID: String,
+    _id: String,
     publication: publicationSchema,
     objectTested: objectTestedSchema,
     sourceSerie: sourceSerieSchema,
@@ -90,12 +93,16 @@ const htDatasetSchema = new mongoose.Schema({
     linkedDataset: linkedDatasetSchema,
     referenceGenome: String,
     datasetType: String,
-    temporalDatasetID: String,
+    temporalId: String,
     growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
-    summary: summarySchema
+    summary: summarySchema,
+    assemblyGenomeId: String,
+    fivePrimeEnrichment: String,
+    nlpGrowthConditionsId: String,
+    geneExpressionFiltered: String
 });
 
-const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'datasetDatamart');
+const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 
 export { HTDataset };

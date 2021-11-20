@@ -42,6 +42,7 @@ import { authorsDataController } from "./authorsData_controller";
 
 export const authorsDataResolvers = {
     Query: {
-        getAuthorsDataOfDataset: (root, {datasetId}) => authorsDataController.getAuthorsDataOfDataset(datasetId)
+        getAuthorsDataOfDataset: (root, {datasetId}) => authorsDataController.getAuthorsDataOfDataset(datasetId),
+        getAuthorsDataById: (root, {_id}) => authorsDataController.getAuthorsDataById(_id)
     },
 };

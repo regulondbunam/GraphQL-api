@@ -14,6 +14,10 @@ class htDatasetController {
         const filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advSearch);
         return _ht_dataset_model.HTDataset.find(filter);
     }
+
+    static async getDatasetByID(datasetID) {
+        return await _ht_dataset_model.HTDataset.findOne({ "_id": datasetID });
+    }
 }
 
 exports.htDatasetController = htDatasetController;

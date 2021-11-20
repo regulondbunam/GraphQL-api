@@ -5,13 +5,61 @@ type authorsData {
     """
     _
     """
-    datasetId: String
+    _id: String
     """
     _
     """
     tfBindingAuthorsData: String
+    """
+    _
+    """
+    datasetIds: [String]
 }
 
 type Query {
-    getAuthorsDataOfDataset(datasetId: String): authorsData
+    """
+    #### Type
+    Data
+    #### Service
+    HT authorsData
+    #### Name
+    getAuthorsDataOfDataset
+    #### Description
+    Gets an authorsData docs linked to dataset
+    #### Example
+    ```json
+    {
+        getAuthorsDataOfDataset(datasetId:"")
+        {
+            _id
+            tfBindingAuthorsData
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAuthorsDataOfDataset(datasetId: String): [authorsData]
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT authorsData
+    #### Name
+    getAuthorsDataById
+    #### Description
+    Gets an authorsData doc by and ID
+    #### Example
+    ```json
+    {
+        getAuthorsDataOfDataset(_id:"")
+        {
+            _id
+            tfBindingAuthorsData
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAuthorsDataById(_id: String): authorsData
 }

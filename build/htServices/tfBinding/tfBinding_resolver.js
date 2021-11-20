@@ -9,7 +9,8 @@ var _tfBinding_controller = require("./tfBinding_controller");
 
 const tfBindingResolvers = exports.tfBindingResolvers = {
     Query: {
-        getAllTFBindingOfDataset: (root, { datasetId }) => _tfBinding_controller.tfBindingController.getAllTFBindingOfDataset(datasetId)
+        getAllTFBindingOfDataset: (root, { datasetId }) => _tfBinding_controller.tfBindingController.getAllTFBindingOfDataset(datasetId),
+        getTFBindingById: (root, { _id }) => _tfBinding_controller.tfBindingController.getTFBindingById(_id)
     }
 }; /**
    # [HT TF Binding Service Resolver]
@@ -17,7 +18,7 @@ const tfBindingResolvers = exports.tfBindingResolvers = {
    ## Description
    
    [Resolves the GraphQL Query based on controller's response
-   for HT Dataset Service]
+   for HT TF Binding Service]
    
    ## Usage 
    

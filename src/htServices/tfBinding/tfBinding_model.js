@@ -21,7 +21,7 @@ const foundRIsSchema = new mongoose.Schema({
 });
 
 const tfBindingSchema = new mongoose.Schema({
-    siteId: String,
+    _id: String,
     chromosome: String,
     chrLeftPosition: Number,
     chrRightPosition: Number,
@@ -29,10 +29,13 @@ const tfBindingSchema = new mongoose.Schema({
     transcriptionUnit: transcriptionUniteSchema,
     foundClassicRIs: [foundRIsSchema],
     foundDatasetRIs: [foundRIsSchema],
-    name: String,
+    peakId: String,
     score: Number,
     strand: String,
-    datasetIds: [String]
+    sequence: String,
+    datasetIds: [String],
+    temporalId: String,
+    nameCollection: String
 });
 
 const TFBinding = mongoose.model('tfBinding_ht', tfBindingSchema, 'tfBinding');

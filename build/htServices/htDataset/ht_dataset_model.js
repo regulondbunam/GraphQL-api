@@ -19,7 +19,8 @@ const publicationSchema = new _mongoose2.default.Schema({
     authors: [String],
     title: String,
     date: String,
-    pmcid: String
+    pmcid: String,
+    abstract: String
 });
 
 const simpleItemSchema = new _mongoose2.default.Schema({
@@ -28,29 +29,30 @@ const simpleItemSchema = new _mongoose2.default.Schema({
 });
 
 const objectTestedSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     name: String,
     synonyms: [String],
     genes: [simpleItemSchema],
-    summary: String,
+    note: String,
     activeConformations: [String],
     externalCrossReferences: [_general_model.externalCrossReferencesSchema]
 });
 
 const sourceSerieSchema = new _mongoose2.default.Schema({
-    sourceID: String,
+    sourceId: String,
     sourceName: String,
     title: String,
-    platformID: String,
-    platformName: String,
+    platformId: String,
+    platformTitle: String,
     strategy: String,
     method: String
 });
 
 const sampleSchema = new _mongoose2.default.Schema({
-    experimentId: String,
-    controlId: String,
-    title: String
+    experimentId: [String],
+    controlId: [String],
+    title: String,
+    srrID: String
 });
 
 const linkedDatasetSchema = new _mongoose2.default.Schema({
@@ -71,12 +73,13 @@ const growthConditionsSchema = new _mongoose2.default.Schema({
     growthPhase: String,
     growthRate: String,
     vesselType: String,
-    aerationSpeed: String
+    aerationSpeed: String,
+    mediumSupplements: String
 });
 
 const releaseDataControlSchema = new _mongoose2.default.Schema({
     date: String,
-    version: Number
+    version: String
 });
 
 const totalOfSchema = new _mongoose2.default.Schema({
@@ -94,7 +97,7 @@ const summarySchema = new _mongoose2.default.Schema({
 });
 
 const htDatasetSchema = new _mongoose2.default.Schema({
-    datasetID: String,
+    _id: String,
     publication: publicationSchema,
     objectTested: objectTestedSchema,
     sourceSerie: sourceSerieSchema,
@@ -102,12 +105,16 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     linkedDataset: linkedDatasetSchema,
     referenceGenome: String,
     datasetType: String,
-    temporalDatasetID: String,
+    temporalId: String,
     growthConditions: growthConditionsSchema,
     releaseDataControl: releaseDataControlSchema,
-    summary: summarySchema
+    summary: summarySchema,
+    assemblyGenomeId: String,
+    fivePrimeEnrichment: String,
+    nlpGrowthConditionsId: String,
+    geneExpressionFiltered: String
 });
 
-const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'datasetDatamart');
+const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 
 exports.HTDataset = HTDataset;

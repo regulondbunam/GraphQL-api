@@ -51,6 +51,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 /** import the htDatasetController that contains the resolver functions */
 const htDatasetResolvers = exports.htDatasetResolvers = {
   Query: {
-    getDatasetsFromSearch: (root, { advancedSearch }) => _ht_dataset_controller.htDatasetController.getDatasetsFromSearch(advancedSearch)
+    getDatasetsFromSearch: (root, { advancedSearch }) => _ht_dataset_controller.htDatasetController.getDatasetsFromSearch(advancedSearch),
+    getDatasetByID: (root, { datasetID }) => _ht_dataset_controller.htDatasetController.getDatasetByID(datasetID)
   }
 };

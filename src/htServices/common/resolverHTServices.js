@@ -7,5 +7,8 @@ import { authorsDataResolvers } from '../authorsData/authorsData_resolver';
 
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
-    htDatasetResolvers
+    htDatasetResolvers,
+    peaksResolvers,
+    tfBindingResolvers,
+    authorsDataResolvers
 ]);

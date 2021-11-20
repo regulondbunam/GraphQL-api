@@ -14,7 +14,7 @@ type Dataset {
     """
     _
     """
-    datasetID: String
+    _id: String
     """
     _
     """
@@ -46,7 +46,7 @@ type Dataset {
     """
     _
     """
-    temporalDatasetID: String
+    temporalId: String
     """
     _
     """
@@ -59,6 +59,22 @@ type Dataset {
     _
     """
     summary: DatasetSummary
+    """
+    _
+    """
+    assemblyGenomeId: String
+    """
+    _
+    """
+    fivePrimeEnrichment: String
+    """
+    _
+    """
+    nlpGrowthConditionsId: String
+    """
+    _
+    """
+    geneExpressionFiltered: String
 }
 
 """
@@ -89,6 +105,10 @@ type DatasetPublication {
     _
     """
     pmcid: String
+    """
+    _
+    """
+    abstract: String
 }
 
 """
@@ -110,11 +130,11 @@ type ObjectTested {
     """
     _
     """
-    genes: [simpleItemObject]
+    genes: [objectTestedGene]
     """
     _
     """
-    summary: String
+    note: String
     """
     _
     """
@@ -128,11 +148,25 @@ type ObjectTested {
 """
 _
 """
+type objectTestedGene {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+}
+
+"""
+_
+"""
 type SourceSerie {
     """
     _
     """
-    sourceID: String
+    sourceId: String
     """
     _
     """
@@ -144,7 +178,7 @@ type SourceSerie {
     """
     _
     """
-    platformID: String
+    platformId: String
     """
     _
     """
@@ -166,15 +200,19 @@ type DatasetSample {
     """
     _
     """
-    experimentId: String
+    experimentId: [String]
     """
     _
     """
-    controlId: String
+    controlId: [String]
     """
     _
     """
     title: String
+    """
+    _
+    """
+    srrId: String
 }
 
 """
@@ -247,6 +285,10 @@ type HTGrowthCondition{
     _
     """
     aerationSpeed: String
+    """
+    _
+    """
+    mediumSupplements: String
 }
 
 """
@@ -260,7 +302,7 @@ type ReleaseDataControl {
     """
     _
     """
-    version: Float
+    version: String
 }
 
 """
@@ -270,15 +312,15 @@ type DatasetSummary {
     """
     _
     """
-    totalOfPeaks: [totalOf]
+    totalOfPeaks: totalOf
     """
     _
     """
-    totalOfGenes: [totalOf]
+    totalOfGenes: totalOf
     """
     _
     """
-    totalOfTFBS: [totalOf]
+    totalOfTFBS: totalOf
 }
 
 """
@@ -311,7 +353,40 @@ type totalOf {
 _
 """
 type Query {
-    getDatasetByID(Id: String): Dataset
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetByID
+    #### Description
+    Gets a specific dataset document by an datasetID 
+    #### Example
+    ```json
+    {
+        getDatasetByID(datasetID:"")
+        {
+            _id
+            objectTested {
+                _id
+                name
+                summary
+            }
+        }
+    }
+    ```
+    """
+    getDatasetByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetID: String): Dataset
+
+
     """
     #### Type
     Data
@@ -326,7 +401,7 @@ type Query {
     {
         getDatasetsFromSearch(advancedSearch:"")
         {
-            datasetID
+            _id
             objectTested {
                 _id
                 name
