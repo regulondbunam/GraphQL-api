@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.resolvers = undefined;
 
-var _mergeGraphqlSchemas = require('merge-graphql-schemas');
+var _merge = require('@graphql-tools/merge');
 
 var _gene_resolver = require('../geneService/gene_resolver');
 
@@ -26,5 +26,5 @@ var _srna_resolver = require('../srnaService/srna_resolver');
 /** merges all resolver file and exports them to index */
 
 /** import each Resolver file */
-const resolvers = exports.resolvers = (0, _mergeGraphqlSchemas.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _srna_resolver.srnaResolvers]);
+const resolvers = exports.resolvers = (0, _merge.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _srna_resolver.srnaResolvers]);
 //import { regulonResolvers } from '../regulonService/regulon_resolver';

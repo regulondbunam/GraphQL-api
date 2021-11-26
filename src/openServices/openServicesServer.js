@@ -32,7 +32,7 @@ RegulonDB Coexpression web service
 import express from 'express';
 import {ApolloServer, gql} from 'apollo-server-express';
 import rateLimit from 'express-rate-limit';
-import {types} from './common/schemaOpenTools';
+import {typeDefs} from './common/schemaOpenTools';
 import {resolvers} from './common/resolverOpenTools';
 const {buildFederatedSchema} = require("@apollo/federation");
 import {playgroundTabs} from '../config/openServicesPlaygroundOptions';
@@ -43,7 +43,7 @@ require('dotenv').config();
 conectarDB();
 
 const federatedSchema = buildFederatedSchema([{
-    typeDefs: gql`${types}`,
+    typeDefs: typeDefs,
     resolvers: resolvers
 }]);
 

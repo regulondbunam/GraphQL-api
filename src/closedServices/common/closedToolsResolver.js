@@ -1,4 +1,4 @@
-import {mergeResolvers} from 'merge-graphql-schemas';
+import { mergeResolvers } from '@graphql-tools/merge';
 // Import each resolver file
 import {dttResolver} from '../dttService/dttResolver';
 import { regulatoryNetworkResolver } from '../regulatoryNetworkService/regulatoryNetworkResolver';
