@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.resolversClosed = undefined;
 
-var _mergeGraphqlSchemas = require('merge-graphql-schemas');
+var _merge = require('@graphql-tools/merge');
 
 var _dttResolver = require('../dttService/dttResolver');
 
@@ -14,4 +14,4 @@ var _regulatoryNetworkResolver = require('../regulatoryNetworkService/regulatory
 // merge all resolvers files and exports them to index
 
 // Import each resolver file
-const resolversClosed = exports.resolversClosed = (0, _mergeGraphqlSchemas.mergeResolvers)([_dttResolver.dttResolver, _regulatoryNetworkResolver.regulatoryNetworkResolver]);
+const resolversClosed = exports.resolversClosed = (0, _merge.mergeResolvers)([_dttResolver.dttResolver, _regulatoryNetworkResolver.regulatoryNetworkResolver]);

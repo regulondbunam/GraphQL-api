@@ -1,4 +1,4 @@
-import { mergeResolvers } from 'merge-graphql-schemas';
+import { mergeResolvers } from '@graphql-tools/merge';
 /** import each Resolver file */
 import { geneResolvers } from '../geneService/gene_resolver';
 //import { regulonResolvers } from '../regulonService/regulon_resolver';

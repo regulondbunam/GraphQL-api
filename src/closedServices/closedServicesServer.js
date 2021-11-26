@@ -44,7 +44,7 @@ require('dotenv').config();
 conectarDB();
 
 const federatedSchema = buildFederatedSchema([{
-    typeDefs: gql`${typeDefsClosed}`,
+    typeDefs: typeDefsClosed,
     resolvers: resolversClosed
 }]);
 

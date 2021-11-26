@@ -57,7 +57,7 @@ require('dotenv').config();
 conectarDB();
 
 const federatedSchema = buildFederatedSchema([{
-    typeDefs: _apolloServerExpress.gql`${_closedToolsSchema.typeDefsClosed}`,
+    typeDefs: _closedToolsSchema.typeDefsClosed,
     resolvers: _closedToolsResolver.resolversClosed
 }]);
 
