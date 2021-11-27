@@ -31,7 +31,7 @@ describe('regulonService', () => {
         "getAllRegulon": {
             "data": [
                 {
-                  "_id": "RDBECOLITFC00217",
+                  "_id": "RDBECOLITFC00103",
                   "transcriptionFactor": {
                     "name": "AccB",
                     "encodedFrom": {
@@ -49,7 +49,7 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00004",
+                  "_id": "RDBECOLITFC00175",
                   "transcriptionFactor": {
                     "name": "AcrR",
                     "encodedFrom": {
@@ -67,7 +67,7 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00020",
+                  "_id": "RDBECOLITFC00074",
                   "transcriptionFactor": {
                     "name": "Ada",
                     "encodedFrom": {
@@ -85,7 +85,7 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00098",
+                  "_id": "RDBECOLITFC00049",
                   "transcriptionFactor": {
                     "name": "AdiY",
                     "encodedFrom": {
@@ -103,7 +103,7 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00172",
+                  "_id": "RDBECOLITFC00046",
                   "transcriptionFactor": {
                     "name": "AgaR",
                     "encodedFrom": {
@@ -156,7 +156,7 @@ describe('regulonService', () => {
         "getRegulonBy": {
             "data": [
                 {
-                  "_id": "RDBECOLITFC00172",
+                  "_id": "RDBECOLITFC00046",
                   "transcriptionFactor": {
                     "name": "AgaR",
                     "encodedFrom": {
@@ -174,7 +174,7 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00039",
+                  "_id": "RDBECOLITFC00057",
                   "transcriptionFactor": {
                     "name": "AraC",
                     "encodedFrom": {

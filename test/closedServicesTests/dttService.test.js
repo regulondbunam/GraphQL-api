@@ -20,49 +20,44 @@ describe('dttService',()=>{
           "data": {
             "getGeneticElementsFromInterval": [
               {
-                "_id": "RDBECOLIBS00001",
-                "leftEndPosition": "180",
-                "rightEndPosition": "200"
-              },
-              {
-                "_id": "RDBECOLIGN00001",
+                "_id": "RDBECOLIGNC00986",
                 "leftEndPosition": "337",
                 "rightEndPosition": "2799+"
               },
               {
-                "_id": "RDBECOLIPM00001",
-                "leftEndPosition": "683",
-                "rightEndPosition": "683"
-              },
-              {
-                "_id": "RDBECOLIPP00001",
-                "leftEndPosition": "100",
-                "rightEndPosition": "146"
-              },
-              {
-                "_id": "RDBECOLIRB00001",
-                "leftEndPosition": "191",
-                "rightEndPosition": "310"
-              },
-              {
-                "_id": "RDBECOLITA00001",
-                "leftEndPosition": "200",
+                "_id": "RDBECOLIGNC01250",
+                "leftEndPosition": "190",
                 "rightEndPosition": "255"
               },
               {
-                "_id": "RDBECOLITA00002",
-                "leftEndPosition": "276",
-                "rightEndPosition": "311"
+                "_id": "RDBECOLIPMC03497",
+                "leftEndPosition": "148",
+                "rightEndPosition": "148"
               },
               {
-                "_id": "RDBECOLITA00003",
-                "leftEndPosition": "244",
-                "rightEndPosition": "244"
-              },
-              {
-                "_id": "RDBECOLITM00001",
+                "_id": "RDBECOLITMC00051",
                 "leftEndPosition": "274",
                 "rightEndPosition": "310"
+              },
+              {
+                "_id": "RDBECOLIRIC01518",
+                "leftEndPosition": null,
+                "rightEndPosition": null
+              },
+              {
+                "_id": "RDBECOLIRIC01931",
+                "leftEndPosition": "+98",
+                "rightEndPosition": "112"
+              },
+              {
+                "_id": "RDBECOLIRIC02091",
+                "leftEndPosition": "+98",
+                "rightEndPosition": "112"
+              },
+              {
+                "_id": "RDBECOLIRIC02136",
+                "leftEndPosition": "159",
+                "rightEndPosition": "173"
               }
             ]
           }

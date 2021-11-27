@@ -29,66 +29,66 @@ describe('operonService', () => {
             "data": [
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01353",
-                  "name": "C0067",
+                  "id": "RDBECOLIOPC00123",
+                  "name": "C0293",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC00135",
-                    "name": "C0067"
+                    "id": "RDBECOLITUC02309",
+                    "name": "C0293"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01506",
-                  "name": "C0299",
+                  "id": "RDBECOLIOPC00015",
+                  "name": "CsiR",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01477",
-                    "name": "C0299"
+                    "id": "RDBECOLITUC01438",
+                    "name": "CsiR"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC00810",
-                  "name": "C0362",
+                  "id": "RDBECOLIOPC00423",
+                  "name": "aaeR",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01484",
-                    "name": "C0362"
+                    "id": "RDBECOLITUC02936",
+                    "name": "aaeR"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01025",
-                  "name": "C0465",
-                  "strand": "forward"
-                },
-                "transcriptionUnits": [
-                  {
-                    "id": "RDBECOLITUC01411",
-                    "name": "C0465"
-                  }
-                ]
-              },
-              {
-                "operon": {
-                  "id": "RDBECOLIOPC00365",
-                  "name": "C0614",
+                  "id": "RDBECOLIOPC02213",
+                  "name": "aaeXAB",
                   "strand": "reverse"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01406",
-                    "name": "C0614"
+                    "id": "RDBECOLITUC01101",
+                    "name": "aaeXAB"
+                  }
+                ]
+              },
+              {
+                "operon": {
+                  "id": "RDBECOLIOPC00968",
+                  "name": "aas-lplT",
+                  "strand": "reverse"
+                },
+                "transcriptionUnits": [
+                  {
+                    "id": "RDBECOLITUC00961",
+                    "name": "aas-lplT"
                   }
                 ]
               }
@@ -126,30 +126,30 @@ describe('operonService', () => {
             "data": [
               {
                 "operon": {
-                  "id": "RDBECOLIOPC02457",
+                  "id": "RDBECOLIOPC02047",
                   "name": "accBC",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC02090",
+                    "id": "RDBECOLITUC02079",
                     "name": "accBC"
                   },
                   {
-                    "id": "RDBECOLITUC03273",
+                    "id": "RDBECOLITUC03265",
                     "name": "accBC"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC00969",
+                  "id": "RDBECOLIOPC01029",
                   "name": "accD",
                   "strand": "reverse"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC03274",
+                    "id": "RDBECOLITUC03266",
                     "name": "accD"
                   }
                 ]

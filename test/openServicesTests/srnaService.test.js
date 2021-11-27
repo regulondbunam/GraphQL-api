@@ -43,11 +43,11 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC03413",
+                "_id": "RDBECOLIPDC03412",
                 "product": {
                   "name": "CP4-44 prophage; small RNA IsrC",
                   "gene": {
-                    "_id": "RDBECOLIGNC02900",
+                    "_id": "RDBECOLIGNC02905",
                     "name": "isrC",
                     "strand": "forward",
                     "gcContent": 42.56410256410256,
@@ -56,11 +56,11 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC04151",
+                "_id": "RDBECOLIPDC04153",
                 "product": {
                   "name": "CP4-6 prophage; small RNA EyeA",
                   "gene": {
-                    "_id": "RDBECOLIGNC02706",
+                    "_id": "RDBECOLIGNC02705",
                     "name": "eyeA",
                     "strand": "forward",
                     "gcContent": 56,
@@ -82,7 +82,7 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC04181",
+                "_id": "RDBECOLIPDC04188",
                 "product": {
                   "name": "RNase P catalytic RNA component",
                   "gene": {

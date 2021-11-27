@@ -23,5 +23,9 @@ const commonProperties = gql`
   ${fs.readFileSync('./src/htServices/common/common_properties.graphql').toString()}
 `;
 
+const HT_TranscriptionUnit = gql`
+  ${fs.readFileSync('./src/htServices/transcriptionUnit/transcriptionUnit_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-export const types = mergeTypes([ HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData ], {all: true});
+export const types = mergeTypes([ HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData, HT_TranscriptionUnit ], {all: true});
