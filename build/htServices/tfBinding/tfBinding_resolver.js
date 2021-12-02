@@ -23,7 +23,7 @@ const tfBindingResolvers = exports.tfBindingResolvers = {
    ## Usage 
    
    ```javascript
-   import {tfBindingResolvers} from './tfBinding_controller'
+   import {tfBindingResolvers} from './tfBinding_resolver'
    ```
    
    ## Arguments/Parameters
@@ -40,7 +40,7 @@ const tfBindingResolvers = exports.tfBindingResolvers = {
    
    ## Category
    
-   "" web service
+   HT web service
    
    ## License
    

@@ -23,7 +23,7 @@ const transcriptionUnitResolvers = exports.transcriptionUnitResolvers = {
    ## Usage 
    
    ```javascript
-   import { transcriptionUnitController } from './transcriptionUnit_controller'
+   import { transcriptionUnitController } from './transcriptionUnit_resolver'
    ```
    
    ## Arguments/Parameters
@@ -40,7 +40,7 @@ const transcriptionUnitResolvers = exports.transcriptionUnitResolvers = {
    
    ## Category
    
-   "" web service
+   HT web service
    
    ## License
    

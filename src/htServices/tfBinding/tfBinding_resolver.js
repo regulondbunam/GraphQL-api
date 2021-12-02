@@ -9,7 +9,7 @@ for HT TF Binding Service]
 ## Usage 
 
 ```javascript
-import {tfBindingResolvers} from './tfBinding_controller'
+import {tfBindingResolvers} from './tfBinding_resolver'
 ```
 
 ## Arguments/Parameters
@@ -26,7 +26,7 @@ N/A
 
 ## Category
 
-"" web service
+HT web service
 
 ## License
 

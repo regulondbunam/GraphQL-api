@@ -1,14 +1,15 @@
 import mongoose from 'mongoose'
 
-const gene = new mongoose.Schema({
-    _id: String,
-    name: String,
-    distanceTo: Number
-});
-
 const transcriptionUniteSchema = new mongoose.Schema({
     _id: String,
     name: String
+});
+
+const gene = new mongoose.Schema({
+    _id: String,
+    name: String,
+    distanceTo: Number,
+    transcriptionUnits: [transcriptionUniteSchema],
 });
 
 const foundRIsSchema = new mongoose.Schema({
@@ -26,7 +27,6 @@ const tfBindingSchema = new mongoose.Schema({
     chrLeftPosition: Number,
     chrRightPosition: Number,
     closestGenes: [gene],
-    transcriptionUnit: transcriptionUniteSchema,
     foundClassicRIs: [foundRIsSchema],
     foundDatasetRIs: [foundRIsSchema],
     peakId: String,

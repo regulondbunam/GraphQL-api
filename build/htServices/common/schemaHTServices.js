@@ -40,5 +40,13 @@ const HT_TranscriptionUnit = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/htServices/transcriptionUnit/transcriptionUnit_schema.graphql').toString()}
 `;
 
+const HT_TSS = _apolloServerExpress.gql`
+  ${_fs2.default.readFileSync('./src/htServices/transcriptionStartSite/tss_schema.graphql').toString()}
+`;
+
+const HT_TTS = _apolloServerExpress.gql`
+  ${_fs2.default.readFileSync('./src/htServices/transcriptionTerminationSite/tts_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData, HT_TranscriptionUnit], { all: true });
+const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData, HT_TranscriptionUnit, HT_TSS, HT_TTS], { all: true });

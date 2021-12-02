@@ -9,7 +9,7 @@ for HT Transcription Unit Service]
 ## Usage 
 
 ```javascript
-import { transcriptionUnitController } from './transcriptionUnit_controller'
+import { transcriptionUnitController } from './transcriptionUnit_resolver'
 ```
 
 ## Arguments/Parameters
@@ -26,7 +26,7 @@ N/A
 
 ## Category
 
-"" web service
+HT web service
 
 ## License
 

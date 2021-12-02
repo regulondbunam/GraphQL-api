@@ -11,15 +11,16 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const gene = new _mongoose2.default.Schema({
-    _id: String,
-    name: String,
-    distanceTo: Number
-});
-
 const transcriptionUniteSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String
+});
+
+const gene = new _mongoose2.default.Schema({
+    _id: String,
+    name: String,
+    distanceTo: Number,
+    transcriptionUnits: [transcriptionUniteSchema]
 });
 
 const foundRIsSchema = new _mongoose2.default.Schema({
@@ -37,7 +38,6 @@ const tfBindingSchema = new _mongoose2.default.Schema({
     chrLeftPosition: Number,
     chrRightPosition: Number,
     closestGenes: [gene],
-    transcriptionUnit: transcriptionUniteSchema,
     foundClassicRIs: [foundRIsSchema],
     foundDatasetRIs: [foundRIsSchema],
     peakId: String,

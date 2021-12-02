@@ -25,10 +25,6 @@ type DatasetTFBinding {
     """
     _
     """
-    transcriptionUnit: simpleItemObject
-    """
-    _
-    """
     foundClassicRIs: [RIObjectType]
     """
     _
@@ -110,6 +106,10 @@ type TFClosestGenes {
 	_
 	"""
 	distanceTo: Float
+    """
+    _
+    """
+    transcriptionUnits: [simpleItemObject]
 }
 
 type Query {
