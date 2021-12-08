@@ -10,7 +10,7 @@ var _tts_controller = require('./tts_controller');
 const transcriptionTerminationSiteResolvers = exports.transcriptionTerminationSiteResolvers = {
     Query: {
         getTTSByID: (root, { _id }) => _tts_controller.transcriptionTerminationSiteController.getTTSByID(_id),
-        getAllTTSOfDataset: (root, { datasetId }) => _tts_controller.transcriptionTerminationSiteController.getAllTTSOfDataset(datasetId)
+        getAllTTSOfDataset: (root, { datasetId, limit, page }) => _tts_controller.transcriptionTerminationSiteController.getAllTTSOfDataset(datasetId, limit, page)
     }
 }; /**
    # [HT Transcription Termination Site Service Resolver]

@@ -42,6 +42,6 @@ import { transcriptionTerminationSiteController } from './tts_controller'
 export const transcriptionTerminationSiteResolvers = {
     Query: {
         getTTSByID: (root, {_id}) => transcriptionTerminationSiteController.getTTSByID(_id),
-        getAllTTSOfDataset: (root, {datasetId}) => transcriptionTerminationSiteController.getAllTTSOfDataset(datasetId)
+        getAllTTSOfDataset: (root, {datasetId, limit, page}) => transcriptionTerminationSiteController.getAllTTSOfDataset(datasetId, limit, page)
     }
 };

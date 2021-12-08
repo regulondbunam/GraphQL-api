@@ -1,8 +1,9 @@
 import {TFBinding} from './tfBinding_model';
 
 class tfBindingController {
-    static async getAllTFBindingOfDataset(datasetId) {
-        return TFBinding.find({"datasetIds": datasetId})
+    static async getAllTFBindingOfDataset(datasetId, limit, page) {
+        const offset = page * limit;
+        return TFBinding.find({"datasetIds": datasetId}).limit(limit).skip(offset);
     }
 
     static async getTFBindingById(_id) {

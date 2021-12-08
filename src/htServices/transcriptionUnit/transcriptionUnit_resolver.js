@@ -42,6 +42,6 @@ import { transcriptionUnitController } from './transcriptionUnit_controller'
 export const transcriptionUnitResolvers = {
     Query: {
         getTUByID: (root, {_id}) => transcriptionUnitController.getTUByID(_id),
-        getAllTransUnitsOfDataset: (root, {datasetId}) => transcriptionUnitController.getAllTransUnitsOfDataset(datasetId)
+        getAllTransUnitsOfDataset: (root, {datasetId, limit, page}) => transcriptionUnitController.getAllTransUnitsOfDataset(datasetId, limit, page)
     }
 };

@@ -8,8 +8,9 @@ exports.tfBindingController = undefined;
 var _tfBinding_model = require("./tfBinding_model");
 
 class tfBindingController {
-    static async getAllTFBindingOfDataset(datasetId) {
-        return _tfBinding_model.TFBinding.find({ "datasetIds": datasetId });
+    static async getAllTFBindingOfDataset(datasetId, limit, page) {
+        const offset = page * limit;
+        return _tfBinding_model.TFBinding.find({ "datasetIds": datasetId }).limit(limit).skip(offset);
     }
 
     static async getTFBindingById(_id) {

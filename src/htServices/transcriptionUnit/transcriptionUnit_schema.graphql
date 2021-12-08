@@ -141,5 +141,19 @@ type Query {
     #### Required
     Required
     """
-    datasetId: String): [HtTranscriptionUnit]
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [HtTranscriptionUnit]
 }

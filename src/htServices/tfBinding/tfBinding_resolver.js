@@ -42,7 +42,7 @@ import { tfBindingController } from "./tfBinding_controller";
 
 export const tfBindingResolvers = {
     Query: {
-        getAllTFBindingOfDataset: (root, {datasetId}) => tfBindingController.getAllTFBindingOfDataset(datasetId),
+        getAllTFBindingOfDataset: (root, {datasetId, limit, page}) => tfBindingController.getAllTFBindingOfDataset(datasetId, limit, page),
         getTFBindingById: (root, {_id}) => tfBindingController.getTFBindingById(_id)
     },
 };

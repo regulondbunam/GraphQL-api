@@ -42,7 +42,7 @@ import { peaksController } from "./peaks_controller";
 
 export const peaksResolvers = {
     Query: {
-        getAllPeaksOfDataset: (root, {datasetId}) => peaksController.getAllPeaksOfDataset(datasetId),
+        getAllPeaksOfDataset: (root, {datasetId, limit, page}) => peaksController.getAllPeaksOfDataset(datasetId, limit, page),
         getPeakById: (root, {_id}) => peaksController.getPeakById(_id)
     },
 };

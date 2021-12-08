@@ -75,6 +75,10 @@ type Dataset {
     _
     """
     geneExpressionFiltered: String
+    """
+    _
+    """
+    experimentCondition: String
 }
 
 """
@@ -289,6 +293,10 @@ type HTGrowthCondition{
     _
     """
     mediumSupplements: String
+    """
+    _
+    """
+    otherTerms: [String]
 }
 
 """
