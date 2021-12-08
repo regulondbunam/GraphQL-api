@@ -13,10 +13,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const authorsDataSchema = new _mongoose2.default.Schema({
     _id: String,
-    tfBindingAuthorsData: String,
+    authorsData: String,
     datasetIds: [String]
 });
 
-const AuthorsData = _mongoose2.default.model('auhtorsData_ht', authorsDataSchema, 'authorsData');
+const AuthorsData = _mongoose2.default.model('authorsData_ht', authorsDataSchema, 'authorsData');
 
 exports.AuthorsData = AuthorsData;

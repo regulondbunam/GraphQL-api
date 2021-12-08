@@ -9,7 +9,7 @@ type authorsData {
     """
     _
     """
-    tfBindingAuthorsData: String
+    authorsData: String
     """
     _
     """

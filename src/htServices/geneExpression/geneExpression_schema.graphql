@@ -1,49 +1,41 @@
 """
 _
 """
-type HtTSS {
+type GeneExpression {
     """
     _
     """
     _id: String
-    """
-    _
-    """
-    chromosome: String
-    """
-    _
-    """
-    leftEndPosition: Int
-    """
-    _
-    """
-    rightEndPosition: Int
-    """
-    _
-    """
-    pos_1: Int
-    """
-    _
-    """
-    strand: String
-    """
-    _
-    """
-    closestGenes: [TSSClosestGenes]
-    """
-    _
-    """
-    promoter: [TSSPromoter]
     """
     _
     """
     datasetIds: [String]
+    """
+    _
+    """
+    gene: GeneGe
+    """
+    _
+    """
+    count: String
+    """
+    _
+    """
+    tpm: String
+    """
+    _
+    """
+    fpkm: String
+    """
+    _
+    """
+    temporalId: String
 }
 
 """
 _
 """
-type TSSClosestGenes {
+type GeneGe {
     """
     _
     """
@@ -55,37 +47,11 @@ type TSSClosestGenes {
     """
     _
     """
-    distanceTo: Int
-}
-
-"""
-_
-"""
-type TSSPromoter {
+    synonyms: [String]
     """
     _
     """
-    _id: String
-    """
-    _
-    """
-    name: String
-    """
-    _
-    """
-    strand: String
-    """
-    _
-    """
-    pos1: Int
-    """
-    _
-    """
-    sigma: String
-    """
-    _
-    """
-    confidenceLevel: String
+    bnumber: String
 }
 
 type Query {
@@ -93,61 +59,67 @@ type Query {
     #### Type
     Data
     #### Service
-    HT Transcription Start Site
+    HT Gene Expression
     #### Name
-    getTSSByID
+    getGeneExpressionById
     #### Description
-    Get TranscriptionStartSite by an id
+    Get GeneExpression doc by an id
     #### Example
     ```json
     {
-        getTSSByID(_id:"")
+        getGeneExpressionById(_id:"")
         {
             _id
-            chromosome
-            leftEndPosition
-            rightEndPosition
+            gene {
+                _id
+                name
+                bnumber
+            }
+            tpm
             datasetIds
         }
     }
     ```
     """
-    getTSSByID(
+    getGeneExpressionById(
     """
     #### Description
     Id of the required document in the query
     #### Required
     Required
     """
-    _id: String): HtTSS
+    _id: String): GeneExpression
 
     """
     #### Type
     Data
     #### Service
-    HT Transcription Start Site
+    HT Gene Expression
     #### Name
-    getAllTSSOfDataset
+    getAllGeneExpressionOfDataset
     #### Description
-    Gets all TSS docs associated to datasetID
+    Gets all GeneExpression docs associated to datasetID
     #### Example
     ```json
     {
-        getAllTSSOfDataset(datasetId:"RHTECOLITSD00173")
+        getAllGeneExpressionOfDataset(datasetId:"RHTECOLIGED00295")
         {
             _id
-            chromosome
-            leftEndPosition
-            rightEndPosition
+            gene {
+                _id
+                name
+                bnumber
+            }
+            fpkm
             datasetIds
         }
     }
     ```
     """
-    getAllTSSOfDataset(
+    getAllGeneExpressionOfDataset(
     """
     #### Description
-    Id of the dataset associated to Transcription Start Site
+    Id of the dataset associated to Transcription Unit
     #### Required
     Required
     """
@@ -165,5 +137,5 @@ type Query {
     #### Required
     Optional
     """
-    page: Int = 0): [HtTSS]
+    page: Int = 0): [GeneExpression]
 }

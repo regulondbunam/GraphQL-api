@@ -48,5 +48,13 @@ const HT_TTS = _apolloServerExpress.gql`
   ${_fs2.default.readFileSync('./src/htServices/transcriptionTerminationSite/tts_schema.graphql').toString()}
 `;
 
+const GeneExpression = _apolloServerExpress.gql`
+  ${_fs2.default.readFileSync('./src/htServices/geneExpression/geneExpression_schema.graphql').toString()}
+`;
+
+const NLP_GC = _apolloServerExpress.gql`
+  ${_fs2.default.readFileSync('./src/htServices/nlpGrowthConditions/nlpGrowthConditions_schema.graphql').toString()}
+`;
+
 /** Exports the merged Schema to the index to construct the GQL Server */
-const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData, HT_TranscriptionUnit, HT_TSS, HT_TTS], { all: true });
+const types = exports.types = (0, _mergeGraphqlSchemas.mergeTypes)([HT_Dataset, commonProperties, HT_Peaks, HT_TF_Binding, AuthorsData, HT_TranscriptionUnit, HT_TSS, HT_TTS, GeneExpression, NLP_GC], { all: true });

@@ -7,6 +7,8 @@ import { authorsDataResolvers } from '../authorsData/authorsData_resolver';
 import { transcriptionUnitResolvers } from '../transcriptionUnit/transcriptionUnit_resolver';
 import { transcriptionStartSiteResolvers } from '../transcriptionStartSite/tss_resolver';
 import { transcriptionTerminationSiteResolvers} from '../transcriptionTerminationSite/tts_resolver';
+import { geneExpressionResolvers } from '../geneExpression/geneExpression_resolver'
+import { nlpGrowthConditionsResolvers } from '../nlpGrowthConditions/nlpGrowthConditions_resolver'
  
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
@@ -16,5 +18,7 @@ export const resolvers = mergeResolvers([
     authorsDataResolvers,
     transcriptionUnitResolvers,
     transcriptionStartSiteResolvers,
-    transcriptionTerminationSiteResolvers
+    transcriptionTerminationSiteResolvers, 
+    geneExpressionResolvers,
+    nlpGrowthConditionsResolvers
 ]);
