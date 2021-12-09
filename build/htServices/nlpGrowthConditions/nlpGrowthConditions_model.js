@@ -39,7 +39,7 @@ const GrowthConditionsSchema = new _mongoose2.default.Schema({
     aerationSpeed: [nlpGCPropertiesSchema],
     mediumSupplements: [nlpGCPropertiesSchema],
     additionalProperties: [additionalPropertiesSchema],
-    datasetIds: String,
+    datasetIds: [String],
     temporalId: String
 });
 

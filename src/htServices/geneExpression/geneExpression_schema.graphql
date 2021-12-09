@@ -67,7 +67,7 @@ type Query {
     #### Example
     ```json
     {
-        getGeneExpressionById(_id:"")
+        getGeneExpressionById(_id:"SRR057747,b0001")
         {
             _id
             gene {
@@ -102,7 +102,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllGeneExpressionOfDataset(datasetId:"RHTECOLIGED00295")
+        getAllGeneExpressionOfDataset(datasetId:"SRR057747")
         {
             _id
             gene {

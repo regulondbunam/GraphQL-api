@@ -65,7 +65,7 @@ type NLPGrowthConditions {
     """
     _
     """
-    datasetIds: String
+    datasetIds: [String]
     """
     _
     """
@@ -121,10 +121,11 @@ type Query {
     #### Example
     ```json
     {
-        getNLPGrowthConditionById(datasetId:"RHTECOLIGED00295")
+        getNLPGrowthConditionById(datasetId:"SRR057747")
         {
             _id
-            temperature {
+            datasetIds
+            medium {
                 value
                 score
                 associatedPhrase

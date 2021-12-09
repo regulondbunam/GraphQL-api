@@ -373,7 +373,7 @@ type Query {
     #### Example
     ```json
     {
-        getDatasetByID(datasetID:"")
+        getDatasetByID(datasetID:"SRR057747")
         {
             _id
             objectTested {
