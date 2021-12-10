@@ -147,4 +147,39 @@ type Query {
     Required
     """
     datasetId: String): NLPGrowthConditions
+
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT NLP Growth Conditions
+    #### Name
+    getNLPGrowthConditionBySearch
+    #### Description
+    Gets a specific NLP Growth Conditions document by an advancedSearch
+    #### Example
+    ```json
+    {
+        getNLPGrowthConditionBySearch(advancedSearch:"'336 hours'[mediumSupplements.value]")
+        {
+            _id
+            datasetIds
+            mediumSupplements{
+                value
+                score
+                associatedPhrase
+            }
+        }
+    }
+    ```
+    """
+    getNLPGrowthConditionBySearch(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    advancedSearch: String): [NLPGrowthConditions]
 }

@@ -42,6 +42,7 @@ import { nlpGrowthConditionsController } from "./nlpGrowthConditions_controller"
 
 export const nlpGrowthConditionsResolvers = {
     Query: {
-        getNLPGrowthConditionById: (root, {datasetId}) => nlpGrowthConditionsController.getNLPGrowthConditionById(datasetId)
+        getNLPGrowthConditionById: (root, {datasetId}) => nlpGrowthConditionsController.getNLPGrowthConditionById(datasetId),
+        getNLPGrowthConditionBySearch:(root, {advancedSearch}) => nlpGrowthConditionsController.getNLPGrowthConditionBySearch(advancedSearch)
     },
 };
