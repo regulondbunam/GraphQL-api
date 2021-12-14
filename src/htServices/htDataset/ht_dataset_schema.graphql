@@ -413,7 +413,7 @@ type Query {
             objectTested {
                 _id
                 name
-                summary
+                note
             }
         }
     }
