@@ -102,7 +102,7 @@ const htDatasetSchema = new mongoose.Schema({
     fivePrimeEnrichment: String,
     nlpGrowthConditionsId: String,
     geneExpressionFiltered: String,
-    experimentConditions: String
+    experimentCondition: String
 });
 
 const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');

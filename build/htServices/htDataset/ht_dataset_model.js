@@ -114,7 +114,7 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     fivePrimeEnrichment: String,
     nlpGrowthConditionsId: String,
     geneExpressionFiltered: String,
-    experimentConditions: String
+    experimentCondition: String
 });
 
 const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
