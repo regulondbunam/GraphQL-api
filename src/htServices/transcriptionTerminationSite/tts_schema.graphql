@@ -136,7 +136,7 @@ type Query {"""
     #### Example
     ```json
     {
-        getTTSByID(_id:"")
+        getTTSByID(_id:"ECOLITT000000001")
         {
             _id
             chromosome
@@ -168,7 +168,7 @@ type Query {"""
     #### Example
     ```json
     {
-        getAllTTSOfDataset(datasetId:"RHTECOLITTD02082")
+        getAllTTSOfDataset(datasetId:"RHTECOLITTD00433")
         {
             _id
             chromosome

@@ -29,10 +29,10 @@ type Query {
     #### Example
     ```json
     {
-        getAuthorsDataOfDataset(datasetId:"")
+        getAuthorsDataOfDataset(datasetId:"RHTECOLIBSD00189")
         {
             _id
-            tfBindingAuthorsData
+            authorsData
             datasetIds
         }
     }
@@ -52,10 +52,10 @@ type Query {
     #### Example
     ```json
     {
-        getAuthorsDataOfDataset(_id:"")
+        getAuthorsDataById(_id:"ECOLIAD000000001")
         {
             _id
-            tfBindingAuthorsData
+            authorsData
             datasetIds
         }
     }

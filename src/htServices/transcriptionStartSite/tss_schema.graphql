@@ -101,7 +101,7 @@ type Query {
     #### Example
     ```json
     {
-        getTSSByID(_id:"")
+        getTSSByID(_id:"ECOLITS000000001")
         {
             _id
             chromosome

@@ -87,7 +87,7 @@ type Query {
     #### Example
     ```json
     {
-        getTUByID(_id:"")
+        getTUByID(_id:"ECOLITU000000001")
         {
             _id
             genes {
@@ -121,7 +121,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllTransUnitsOfDataset(datasetId:"")
+        getAllTransUnitsOfDataset(datasetId:"RHTECOLITUD00168")
         {
             _id
             genes {

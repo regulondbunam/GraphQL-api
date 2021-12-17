@@ -125,7 +125,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllTFBindingOfDataset(datasetId:"")
+        getAllTFBindingOfDataset(datasetId:"RHTECOLIBSD00422")
         {
             _id
             closestGenes {
@@ -173,7 +173,7 @@ type Query {
     #### Example
     ```json
     {
-        getTFBindingById(_id:"")
+        getTFBindingById(_id:"ECOLIBS000000001")
         {
             _id
             closestGenes {
