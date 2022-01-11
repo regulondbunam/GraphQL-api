@@ -41,7 +41,7 @@ const objectTestedSchema = new _mongoose2.default.Schema({
 const sourceSerieSchema = new _mongoose2.default.Schema({
     sourceId: String,
     sourceName: String,
-    title: String,
+    titles: [String],
     platformId: String,
     platformTitle: String,
     strategy: String,
@@ -99,8 +99,8 @@ const summarySchema = new _mongoose2.default.Schema({
 
 const htDatasetSchema = new _mongoose2.default.Schema({
     _id: String,
-    publication: publicationSchema,
-    objectTested: objectTestedSchema,
+    publications: [publicationSchema],
+    objectsTested: [objectTestedSchema],
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
     linkedDataset: linkedDatasetSchema,

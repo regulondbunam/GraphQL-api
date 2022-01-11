@@ -29,7 +29,7 @@ const objectTestedSchema = new mongoose.Schema({
 const sourceSerieSchema = new mongoose.Schema({
     sourceId: String,
     sourceName: String,
-    title: String,
+    titles: [String],
     platformId: String,
     platformTitle: String,
     strategy: String,
@@ -87,8 +87,8 @@ const summarySchema = new mongoose.Schema({
 
 const htDatasetSchema = new mongoose.Schema({
     _id: String,
-    publication: publicationSchema,
-    objectTested: objectTestedSchema,
+    publications: [publicationSchema],
+    objectsTested: [objectTestedSchema],
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
     linkedDataset: linkedDatasetSchema,

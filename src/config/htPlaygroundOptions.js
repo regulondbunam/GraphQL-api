@@ -15,7 +15,7 @@ export const playgroundTabs = {
 getDatasetsFromSearch(advancedSearch:"")
     {
         datasetID
-        objectTested {
+        objectsTested {
             _id
             name
             summary

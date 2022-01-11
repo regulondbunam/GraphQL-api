@@ -18,11 +18,11 @@ type Dataset {
     """
     _
     """
-    publication: DatasetPublication
+    publications: [DatasetPublication]
     """
     _
     """
-    objectTested: ObjectTested
+    objectsTested: [ObjectTested]
     """
     _
     """
@@ -178,7 +178,7 @@ type SourceSerie {
     """
     _
     """
-    title: String
+    titles: [String]
     """
     _
     """
