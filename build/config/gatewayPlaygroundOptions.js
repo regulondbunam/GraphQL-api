@@ -7,8 +7,9 @@ const playgroundTabs = exports.playgroundTabs = {
   tabs: [{
     endpoint: 'graphql',
     name: 'updates',
-    query: `# 24/11/2021
-# Added HT Services for dataset, peaks, tfBinding and authorsData
+    query: `# 14/01/2022
+# Now services for Datamarts and High Troughput are separated and are no
+# more dependent, if HT services are not available datamart services will start anyway
 # In case of error, report a bug or incorrect response please contact us
 
 # Query sample usage
