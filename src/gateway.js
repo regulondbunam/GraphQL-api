@@ -1,7 +1,8 @@
 import express from 'express';
 import { playgroundTabs } from './config/gatewayPlaygroundOptions';
 import { ApolloServer } from 'apollo-server-express'
-import { ApolloGateway } from '@apollo/gateway';
+import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
+import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { createApolloFetch } from 'apollo-fetch';
 require('dotenv').config();
 
@@ -66,12 +67,16 @@ function test_services() {
     }).then(res => {
       services.push({name: "htServices", url: `${HT_SERVICES_URL}`})
       console.log("HT Services are READY")
-      gateway = new ApolloGateway({serviceList: services});
+      gateway = new ApolloGateway({supergraphSdl: new IntrospectAndCompose({
+        subgraphs: services
+      })});
       app.emit("ready")
     }).catch((e) => {
       count++
       if(count > 5){
-        gateway = new ApolloGateway({serviceList: services});
+        gateway = new ApolloGateway({supergraphSdl: new IntrospectAndCompose({
+          subgraphs: services
+        })});
         console.log("Services are starting without HT services")
         app.emit("ready")
       } else {
@@ -84,11 +89,18 @@ function test_services() {
 }
 
 
-function upGraphQLServer(gateway, app) {
+const upGraphQLServer = async (gateway, app) => {
   //Setting up Apollo Federation server
   const server = new ApolloServer({
     gateway,
     subscriptions: false,
+    plugins: [
+        process.env.NODE_ENV === 'production'
+          ? ApolloServerPluginLandingPageDisabled()
+          : ApolloServerPluginLandingPageGraphQLPlayground(
+            {playground: playgroundTabs}
+          ),
+    ],
     playground: playgroundTabs,
     formatError: (err) => ({
       message: err.message,
@@ -96,6 +108,8 @@ function upGraphQLServer(gateway, app) {
       statusCode: err.extensions.exception.statusCode,
     })
   });
+
+  await server.start()
 
   // Applying express app to gateway
   server.applyMiddleware({
