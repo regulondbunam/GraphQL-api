@@ -30,34 +30,17 @@ Andres Gerardo Lopez Almazo
 
  **/
  
- /**
-# Function description
-
-## getGeneticElementsFromInterval
-
-_Description:_
-This function return nodes defined by id or name with objects regulated by this node and object 
-that regulate this node
-
-_Usage:_
-```javascript
-regulatoryNetworkController.getNodesOf(object_id, object_name, networkType);
-```
-_Input parameters:_
-object_id: id of the element (gene or transcription factor)
-object_name: name of the element (gene or transcription factor)
-networkType: network type of the node (TF-TF, Gene-Gene, TF-Gene)
-
-_Return:_
-regulatoryNetworkController: [dttData]
-
-**/
- 
  // import defined model of the collection to be used
  import {RegulatoryNetwork} from './regulatoryNetworkModel';
  import { GraphQLError } from 'graphql';
 
  class regulatoryNetworkController {
+     /** This function return nodes defined by id or name with objects regulated by this node and object 
+     *  that regulate this node
+     *  @param {String} object_id id of the element (gene or transcription factor)
+     *  @param {String} object_name name of the element (gene or transcription factor)
+     *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
+     */
      static getNodesOf(object_id, object_name, networkType = null){
         let search_filter = null
         if(object_id != null)
@@ -91,6 +74,10 @@ regulatoryNetworkController: [dttData]
             return RegulatoryNetwork.find(search_filter);
      }
 
+     /** This function return all nodes based on it objectType
+     *  @param {String} objectType type of the node object(TF, Gene)
+     *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
+     */
      static getAllNodes(objectType = null, networkType = null){
         if (networkType != null)
             return RegulatoryNetwork.find({type: objectType}).exec().then(regNetworkResponse => {

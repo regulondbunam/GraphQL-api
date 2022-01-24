@@ -8,10 +8,12 @@ exports.overviewsController = undefined;
 var _overviews_model = require("./overviews_model");
 
 class overviewsController {
+    /** Realiza la busqueda de todos los elementos que se encuentren en el modelo de Overviews */
     static getAllObjectInfo() {
         return _overviews_model.Overviews.find({});
     }
 
+    /** Realiza la busqueda de un elemento en especifico que se encuentre en el modelo de Overviews */
     static getOverview(_id) {
         return _overviews_model.Overviews.findOne({ "_id": _id });
     }
@@ -51,20 +53,5 @@ class overviewsController {
   
   RegulonDB Team: EDGAR ENRRIQUE HERNANDEZ MARCELO
   **/
+
 exports.overviewsController = overviewsController;
-
-/**
-	
-# Functions description
-
-## FIND ()
-
-__Description:__ 
-
-Realiza la busqueda de todos los elementos que se encuentren en el modelo de Overviews
-
-## FindOne()
-
-Realiza la busqueda de un elemento en especifico que se encuentre en el modelo de Overviews
-
-**/

@@ -38,46 +38,13 @@ RegulonDB Coexpression web service
 ## Author
 
 **/
-/**
-# Function description
 
-## getTopCoexpressionRanking
-
-_Description:_
-This function return those genes expression in diferents conditions.
-
-_Usage:_
-```javascript
-coexpressionController.getTopCoexpressionRanking(id, gene , limit)
-```
-_Input parameters:_
-_id:_ id of the gene
-_gene:_ name of the gene
-_limit:_ limit of the results (50 by default)
-
-_Return:_
-coexpressionController: [CoexpressionResume]
-
-## getRankFromGeneList
-
-_Description:_
-This function returns a list of genes compare with top 50 of principal gene
-
-_Usage:_
-```javascript
-coexpressionController.getRankFromGeneList(geneId, geneIdList, gene , geneList);
-```
-_Input parameters:_
-_geneId:_ ID of one of the genes to compare with principal gene top 50 in coexpression
-_geneIdList:_ ID list genes of the principal gene top 50  
-_gene:_  Name of one of the genes to compare with principal gene top 50 in coexpression
-_geneList:_ Name list genes of the principal gene top 50
-
-_Return:_
-coexpressionController: [CoexpressionResume]
-
-**/
 class coexpressionController {
+    /** This function return those genes expression in diferents conditions.
+     *  @param {String} id id of the gene
+     *  @param {String} gene name of the gene
+     *  @param {Number} limit limit of the results (50 by default)
+     */
     static getTopCoexpressionRanking(id, gene, limit = 50) {
         //The value of limit must be 50 maximum, when its more it takes the default value (50)
         if (limit > 50) limit = 50;
@@ -123,6 +90,12 @@ class coexpressionController {
         }
     }
 
+    /** This function returns a list of genes compare with top 50 of principal gene
+     *  @param {String} geneId ID of one of the genes to compare with principal gene top 50 in coexpression
+     *  @param {String} geneIdList ID list genes of the principal gene top 50  
+     *  @param {String} gene Name of one of the genes to compare with principal gene top 50 in coexpression
+     *  @param {String} geneList Name list genes of the principal gene top 50
+     */
     static getRankFromGeneList(geneId, geneIdList, gene, geneList) {
         // Both arguments needs to be defined of ID type to work.
         if (geneId !== undefined && geneIdList !== undefined) {
