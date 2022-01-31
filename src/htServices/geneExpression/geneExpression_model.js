@@ -12,9 +12,9 @@ const geneExpressionSchema = new mongoose.Schema({
     datasetIds: [String],
     gene: geneSchema,
     count: String,
-    tpm: String,
-    fpkm: String,
-    temporalId: String
+    tpm: Number,
+    fpkm: Number,
+    temporalId: Number
 });
 
 const GeneExpression = mongoose.model('ht_geneExpression', geneExpressionSchema, "geneExpression");

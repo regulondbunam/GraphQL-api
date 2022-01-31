@@ -21,15 +21,15 @@ type GeneExpression {
     """
     _
     """
-    tpm: String
+    tpm: Float
     """
     _
     """
-    fpkm: String
+    fpkm: Float
     """
     _
     """
-    temporalId: String
+    temporalId: Float
 }
 
 """

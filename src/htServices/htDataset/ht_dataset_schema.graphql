@@ -166,7 +166,7 @@ type objectTestedGene {
 """
 _
 """
-type SourceSerie {
+type Serie {
     """
     _
     """
@@ -175,18 +175,42 @@ type SourceSerie {
     _
     """
     sourceName: String
+}
+
+"""
+_
+"""
+type Platform {
     """
     _
     """
-    titles: [String]
+    _id: String
     """
     _
     """
-    platformId: String
+    source: String
     """
     _
     """
-    platformTitle: String
+    title: String
+}
+
+"""
+_
+"""
+type SourceSerie {
+    """
+    _
+    """
+    series: [Serie]
+    """
+    _
+    """
+    platform: Platform
+    """
+    _
+    """
+    title: String
     """
     _
     """
@@ -195,6 +219,10 @@ type SourceSerie {
     _
     """
     method: String
+    """
+    _
+    """
+    readType: String
 }
 
 """
@@ -373,7 +401,7 @@ type Query {
     #### Example
     ```json
     {
-        getDatasetByID(datasetID:"SRR057747")
+        getDatasetByID(datasetID:"")
         {
             _id
             objectTested {
