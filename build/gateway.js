@@ -10,6 +10,8 @@ var _apolloServerExpress = require('apollo-server-express');
 
 var _gateway = require('@apollo/gateway');
 
+var _apolloServerCore = require('apollo-server-core');
+
 var _apolloFetch = require('apollo-fetch');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -70,12 +72,16 @@ function test_services() {
     }).then(res => {
       services.push({ name: "htServices", url: `${HT_SERVICES_URL}` });
       console.log("HT Services are READY");
-      gateway = new _gateway.ApolloGateway({ serviceList: services });
+      gateway = new _gateway.ApolloGateway({ supergraphSdl: new _gateway.IntrospectAndCompose({
+          subgraphs: services
+        }) });
       app.emit("ready");
     }).catch(e => {
       count++;
       if (count > 5) {
-        gateway = new _gateway.ApolloGateway({ serviceList: services });
+        gateway = new _gateway.ApolloGateway({ supergraphSdl: new _gateway.IntrospectAndCompose({
+            subgraphs: services
+          }) });
         console.log("Services are starting without HT services");
         app.emit("ready");
       } else {
@@ -87,11 +93,12 @@ function test_services() {
   });
 }
 
-function upGraphQLServer(gateway, app) {
+const upGraphQLServer = async (gateway, app) => {
   //Setting up Apollo Federation server
   const server = new _apolloServerExpress.ApolloServer({
     gateway,
     subscriptions: false,
+    plugins: [process.env.NODE_ENV === 'production' ? (0, _apolloServerCore.ApolloServerPluginLandingPageDisabled)() : (0, _apolloServerCore.ApolloServerPluginLandingPageGraphQLPlayground)({ playground: _gatewayPlaygroundOptions.playgroundTabs })],
     playground: _gatewayPlaygroundOptions.playgroundTabs,
     formatError: err => ({
       message: err.message,
@@ -99,6 +106,8 @@ function upGraphQLServer(gateway, app) {
       statusCode: err.extensions.exception.statusCode
     })
   });
+
+  await server.start();
 
   // Applying express app to gateway
   server.applyMiddleware({
@@ -111,4 +120,4 @@ function upGraphQLServer(gateway, app) {
 
   // Starting server on port for listening
   const servExpress = app.listen(PORT, () => console.log(`El servidor esta funcionando en http://localhost:${servExpress.address().port}${server.graphqlPath}`));
-}
+};

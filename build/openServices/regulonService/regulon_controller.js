@@ -52,43 +52,18 @@ MIT License
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
-/**
-	
-# Functions description
-
-## [getRegulonBy]
-
-__Description:__ 
-
-[Retrieve all documents that match with a query]
-
-
-__Usage:__
-
-```javascript
-regulonController.getRegulonBy(args);
-```
-
-__Input arguments/parameters:__ 
-
-__[search]:__ usable for text search on fields defined in "Properties" parameter. **e.g.**:
-    "arad AND arac OR \"biosynthesis of macromolecules\""
-__[advancedSearch]:__ usable for specific query by a "value[field]" syntax
-__[limit]:__ defines the page results showed (10 by default)
-__[page]:__ select the current result page (0 by default)
-__[properties]:__ select the fields to be queried by "search" (by default
-    geneInfo[id, name, synonyms] and products[name])
-__[organismName]:__ usable for specific organismName queries
-__[fullMatchOnly]:__ define if "search" will be Case Sensitive and cannot be a substring
-    (by default "false")
-
-__Return:__ 
-
-__Object:__ Regulon
-Returns an object containing a response that will be sent to GraphQL
-**/
-
 class regulonController {
+  /** Retrieve all documents that match with a query
+   *  @param {String} search usable for text search on fields defined in "Properties" parameter. **e.g.**:
+   *  "arad AND arac OR \"biosynthesis of macromolecules\""
+   *  @param {String} advancedSearch usable for specific query by a "value[field]" syntax
+   *  @param {Number} limit defines the page results showed (10 by default)
+   *  @param {Number} page select the current result page (0 by default)
+   *  @param {String} properties select the fields to be queried by "search" (by default 
+   *  geneInfo[id, name, synonyms] and products[name])
+   *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
+   *  (by default "false")
+   */
   static async getRegulonBy(search, advancedSearch, limit = 0, page = 0, properties = ["transcriptionFactor.id", "transcriptionFactor.name"], fullMatchOnly) {
     const offset = page * limit;
     let filter;

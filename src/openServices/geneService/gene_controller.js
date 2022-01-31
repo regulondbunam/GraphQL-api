@@ -36,42 +36,6 @@ MIT License
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
-/**
-	
-# Functions description
-
-## getGenesBy
-
-__Description:__ 
-
-Retrieve all documents that match with a query
-
-
-__Usage:__
-
-```javascript
-geneController.getGenesBy(args);
-```
-
-__Input arguments/parameters:__ 
-
-__search:__ usable for text search on fields defined in "Properties" parameter. **e.g.**:
-    "arad AND arac OR \"biosynthesis of macromolecules\""
-__advancedSearch]:__ usable for specific query by a "value[field]" syntax
-__limit:__ defines the page results showed (10 by default)
-__page:__ select the current result page (0 by default)
-__properties:__ select the fields to be queried by "search" (by default
-    geneInfo[id, name, synonyms] and products[name])
-__organismName:__ usable for specific organismName queries
-__fullMatchOnly:__ define if "search" will be Case Sensitive and cannot be a substring
-    (by default "false")
-
-__Return:__ 
-
-__Object:__ Genes
-Returns an object containing a response that will be sent to GraphQL
-**/
-
 // import { GraphQLError } from 'graphql';
 import { Gene } from './gene_model';
 import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
@@ -79,6 +43,18 @@ import { commonController } from '../common/controller_common_functions';
 import { GraphQLError } from 'graphql';
 
 class geneController {
+  /** Retrieve all documents that match with a query
+     *  @param {String} search usable for text search on fields defined in "Properties" parameter. **e.g.**:
+     *  "arad AND arac OR \"biosynthesis of macromolecules\""
+     *  @param {String} advancedSearch usable for specific query by a "value[field]" syntax
+     *  @param {Number} limit defines the page results showed (10 by default)
+     *  @param {Number} page select the current result page (0 by default)
+     *  @param {String} properties select the fields to be queried by "search" (by default 
+     *  geneInfo[id, name, synonyms] and products[name])
+     *  @param {String} organismName usable for specific organismName queries
+     *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
+     *  (by default "false")
+     */
   static async getGenesBy(
       search,
       advancedSearch,

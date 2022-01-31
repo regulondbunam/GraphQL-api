@@ -8,6 +8,9 @@ exports.phrasesController = undefined;
 var _phrasesModel = require('./phrasesModel');
 
 class phrasesController {
+  /** Retrieve all phrases for an specified Id
+     *  @param {String} id Tells to function the id of the Gene to get phrases
+     */
   static getPhraseOf(id) {
     const foundPhrases = _phrasesModel.phrases.find({ _id: id });
     return foundPhrases;
@@ -49,32 +52,5 @@ class phrasesController {
   
   RegulonDB Team: Lopez Almazo Andres Gerardo
   **/
-
-/**
-	
-# Functions description
-
-## [getPhraseOf]
-
-__Description:__ 
-
-[Retrieve all phrases for an specified Id]
-
-
-__Usage:__
-
-```javascript
-phrasesController.getPhraseOf(args);
-```
-
-__Input arguments/parameters:__ 
-
-__[id]:__ Tells to function the id of the Gene to get phrases
-
-__Return:__ 
-
-__Object:__ foundPhrases
-Returns an object containing a response that will be sent to GraphQL
-**/
 
 exports.phrasesController = phrasesController;

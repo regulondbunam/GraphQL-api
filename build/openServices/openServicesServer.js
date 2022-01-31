@@ -14,39 +14,41 @@ var _schemaOpenTools = require('./common/schemaOpenTools');
 
 var _resolverOpenTools = require('./common/resolverOpenTools');
 
+var _apolloServerCore = require('apollo-server-core');
+
 var _openServicesPlaygroundOptions = require('../config/openServicesPlaygroundOptions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const { buildFederatedSchema } = require("@apollo/federation"); /** 
-                                                                # openTools.js
-                                                                
-                                                                ## Description
-                                                                Configures Graphql server
-                                                                
-                                                                ## Usage
-                                                                ```shell
-                                                                npm start
-                                                                ```
-                                                                
-                                                                ## Arguments/Parameters
-                                                                N/A
-                                                                
-                                                                ## Examples
-                                                                N/A
-                                                                
-                                                                ## Return 
-                                                                N/A
-                                                                
-                                                                ## Category
-                                                                RegulonDB Coexpression web service
-                                                                
-                                                                ## License
-                                                                
-                                                                ## Author 
-                                                                
-                                                                
-                                                                **/
+const { buildSubgraphSchema } = require("@apollo/federation"); /** 
+                                                               # openTools.js
+                                                               
+                                                               ## Description
+                                                               Configures Graphql server
+                                                               
+                                                               ## Usage
+                                                               ```shell
+                                                               npm start
+                                                               ```
+                                                               
+                                                               ## Arguments/Parameters
+                                                               N/A
+                                                               
+                                                               ## Examples
+                                                               N/A
+                                                               
+                                                               ## Return 
+                                                               N/A
+                                                               
+                                                               ## Category
+                                                               RegulonDB Coexpression web service
+                                                               
+                                                               ## License
+                                                               
+                                                               ## Author 
+                                                               
+                                                               
+                                                               **/
 
 // imports needed libraries
 
@@ -56,51 +58,60 @@ require('dotenv').config();
 //Make the connection to mongoDB
 conectarDB();
 
-const federatedSchema = buildFederatedSchema([{
-    typeDefs: _schemaOpenTools.typeDefs,
-    resolvers: _resolverOpenTools.resolvers
-}]);
+const configApolloServer = async () => {
 
-//Defining graphql server
-const serverOpenTools = new _apolloServerExpress.ApolloServer({
-    playground: true,
-    schema: federatedSchema,
-    playground: _openServicesPlaygroundOptions.playgroundTabs,
-    introspection: true,
-    formatError: err => ({
-        message: err.message,
-        status: err.extensions.exception.status,
-        statusCode: err.extensions.exception.statusCode
-    })
-});
+    const federatedSchema = buildSubgraphSchema([{
+        typeDefs: _schemaOpenTools.typeDefs,
+        resolvers: _resolverOpenTools.resolvers
+    }]);
 
-// create an instance of express to be used with ApolloServer
-const app = (0, _express2.default)();
+    //Defining graphql server
+    const serverOpenTools = new _apolloServerExpress.ApolloServer({
+        schema: federatedSchema,
+        plugins: [process.env.NODE_ENV === 'production' ? (0, _apolloServerCore.ApolloServerPluginLandingPageDisabled)() : (0, _apolloServerCore.ApolloServerPluginLandingPageGraphQLPlayground)()],
+        playground: _openServicesPlaygroundOptions.playgroundTabs,
+        introspection: true,
+        formatError: err => ({
+            message: err.message,
+            status: err.extensions.exception.status,
+            statusCode: err.extensions.exception.statusCode
+        })
+    });
 
-//Set a variable to limit requests
-const limiter = (0, _expressRateLimit2.default)({
-    windowMs: 60000,
-    max: 1000,
-    message: {
-        message: 'Too many requests',
-        statusCode: 429
-    }
-});
-//Assign limit to the API
-app.use(limiter);
+    // create an instance of express to be used with ApolloServer
+    const app = (0, _express2.default)();
 
-// apply express instance to apolloserver
-serverOpenTools.applyMiddleware({
-    app,
-    cors: {
-        origin: '*',
-        methods: "GET, HEAD, PUT, PATCH, POST, DELETE"
-    }
-});
+    //Set a variable to limit requests
+    const limiter = (0, _expressRateLimit2.default)({
+        windowMs: 60000,
+        max: 1000,
+        message: {
+            message: 'Too many requests',
+            statusCode: 429
+        }
+    });
 
-//Set an enviroment variable for the port (4000 by default)
-const PORT = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
+    //Assign limit to the API
+    app.use(limiter);
 
-//Server start
-const servExpress = app.listen(PORT);
-console.log(`El servidor esta funcionando en http://localhost:${servExpress.address().port}${serverOpenTools.graphqlPath}`);
+    //adding an await to start the closedToolsServer
+    await serverOpenTools.start();
+
+    // apply express instance to apolloserver
+    serverOpenTools.applyMiddleware({
+        app,
+        cors: {
+            origin: '*',
+            methods: "GET, HEAD, PUT, PATCH, POST, DELETE"
+        }
+    });
+
+    //Set an enviroment variable for the port (4000 by default)
+    const PORT = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
+
+    //Server start
+    const servExpress = app.listen(PORT);
+    console.log(`El servidor esta funcionando en http://localhost:${servExpress.address().port}${serverOpenTools.graphqlPath}`);
+};
+
+configApolloServer();

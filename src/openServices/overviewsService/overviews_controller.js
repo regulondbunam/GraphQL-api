@@ -34,33 +34,19 @@ MIT License
 
 RegulonDB Team: EDGAR ENRRIQUE HERNANDEZ MARCELO
 **/
+
 import {Overviews} from './overviews_model';
 
 class overviewsController{
+    /** Realiza la busqueda de todos los elementos que se encuentren en el modelo de Overviews */
     static getAllObjectInfo(){
         return Overviews.find({})
     }
 
+    /** Realiza la busqueda de un elemento en especifico que se encuentre en el modelo de Overviews */
     static getOverview(_id){
         return Overviews.findOne({"_id":_id})
     }
 }
 
 export {overviewsController};
-
-/**
-	
-# Functions description
-
-## FIND ()
-
-__Description:__ 
-
-Realiza la busqueda de todos los elementos que se encuentren en el modelo de Overviews
-
-## FindOne()
-
-Realiza la busqueda de un elemento en especifico que se encuentre en el modelo de Overviews
-
-**/
-
