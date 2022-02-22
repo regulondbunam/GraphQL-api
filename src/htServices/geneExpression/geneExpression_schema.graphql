@@ -17,7 +17,7 @@ type GeneExpression {
     """
     _
     """
-    count: String
+    count: Float
     """
     _
     """
@@ -29,7 +29,7 @@ type GeneExpression {
     """
     _
     """
-    temporalId: Float
+    temporalId: String
 }
 
 """
@@ -52,6 +52,14 @@ type GeneGe {
     _
     """
     bnumber: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
 }
 
 type Query {
@@ -130,7 +138,57 @@ type Query {
     #### Required
     Optional
     """
-    limit: Int = 0, 
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [GeneExpression]
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT Gene Expression
+    #### Name
+    getGeneExpressionFromSearch
+    #### Description
+    Get GeneExpression docs by an advancedSearch string (recommended for ranged queries in numerical fields)
+    #### Example
+    ```json
+    {
+        getGeneExpressionFromSearch(advancedSearch:"1000::2000[tpm] and 3500::4000[fpkm]" page: 0 limit: 10)
+        {
+            _id
+            gene {
+                _id
+                name
+                bnumber
+            }
+            tpm
+            datasetIds
+        }
+    }
+    ```
+    """
+    getGeneExpressionFromSearch(
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    Required
+    """
+    advancedSearch: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
     """
     #### Description
     select the current result page
