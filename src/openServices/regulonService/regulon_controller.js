@@ -70,7 +70,7 @@ class regulonController {
         // filter = searchFilter(search);
         filter = textSearchFilter(search, properties, fullMatchOnly);
       }
-      const Regulons = Regulon.find(filter).sort({'transcriptionFactor.name': 1}).limit(limit).skip(offset);
+      const Regulons = await Regulon.find(filter).sort({'transcriptionFactor.name': 1}).limit(limit).skip(offset);
       const total = await commonController.countDocumentsIn(Regulon, filter);
       const lastPage = Math.floor(total / limit);
       if (limit * (page + 1) < total) hasMore = true;

@@ -39,13 +39,13 @@ import {Overviews} from './overviews_model';
 
 class overviewsController{
     /** Realiza la busqueda de todos los elementos que se encuentren en el modelo de Overviews */
-    static getAllObjectInfo(){
-        return Overviews.find({})
+    static async getAllObjectInfo(){
+        return await Overviews.find({})
     }
 
     /** Realiza la busqueda de un elemento en especifico que se encuentre en el modelo de Overviews */
-    static getOverview(_id){
-        return Overviews.findOne({"_id":_id})
+    static async getOverview(_id){
+        return await Overviews.findOne({"_id":_id})
     }
 }
 

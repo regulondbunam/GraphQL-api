@@ -75,7 +75,7 @@ class operonController {
       filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
 
-    const Operons = _operon_model.Operon.find(filter).sort({ 'operon.name': 1 }).limit(limit).skip(offset);
+    const Operons = await _operon_model.Operon.find(filter).sort({ 'operon.name': 1 }).limit(limit).skip(offset);
     const total = await _controller_common_functions.commonController.countDocumentsIn(_operon_model.Operon, filter);
     const lastPage = Math.floor(total / limit);
     if (limit * (page + 1) < total) hasMore = true;

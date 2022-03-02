@@ -74,7 +74,7 @@ class regulonController {
       // filter = searchFilter(search);
       filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
-    const Regulons = _regulon_model.Regulon.find(filter).sort({ 'transcriptionFactor.name': 1 }).limit(limit).skip(offset);
+    const Regulons = await _regulon_model.Regulon.find(filter).sort({ 'transcriptionFactor.name': 1 }).limit(limit).skip(offset);
     const total = await _controller_common_functions.commonController.countDocumentsIn(_regulon_model.Regulon, filter);
     const lastPage = Math.floor(total / limit);
     if (limit * (page + 1) < total) hasMore = true;

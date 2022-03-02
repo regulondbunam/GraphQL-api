@@ -64,7 +64,7 @@ class sigmulonController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-    static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'], fullMatchOnly = false) {
+    static async getSigmulonBy(search, advancedSearch, limit = 10, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'], fullMatchOnly = false) {
         const offset = page * limit;
         let filter;
         let hasMore = false;
@@ -75,7 +75,7 @@ class sigmulonController {
             filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
         }
 
-        const Sigmulons = _sigmulon_model.Sigmulon.find(filter).sort({ 'sigmaFactor.name': 1 }).limit(limit).skip(offset);
+        const Sigmulons = await _sigmulon_model.Sigmulon.find(filter).sort({ 'sigmaFactor.name': 1 }).limit(limit).skip(offset);
         const total = await _controller_common_functions.commonController.countDocumentsIn(_sigmulon_model.Sigmulon, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;

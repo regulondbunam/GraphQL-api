@@ -11,9 +11,9 @@ class phrasesController {
   /** Retrieve all phrases for an specified Id
      *  @param {String} id Tells to function the id of the Gene to get phrases
      */
-  static getPhraseOf(id) {
+  static async getPhraseOf(id) {
     const foundPhrases = _phrasesModel.phrases.find({ _id: id });
-    return foundPhrases;
+    return await foundPhrases;
   }
 } /**
   # [Phrases Service Controller]

@@ -41,7 +41,7 @@ Andres Gerardo Lopez Almazo
      *  @param {String} object_name name of the element (gene or transcription factor)
      *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
      */
-     static getNodesOf(object_id, object_name, networkType = null){
+     static async getNodesOf(object_id, object_name, networkType = null){
         let search_filter = null
         if(object_id != null)
             search_filter = {_id: object_id}
@@ -49,7 +49,7 @@ Andres Gerardo Lopez Almazo
             search_filter = {name: object_name}
 
         if (networkType != null)
-            return RegulatoryNetwork.find(search_filter).exec().then(regNetworkResponse => {
+            return await RegulatoryNetwork.find(search_filter).exec().then(regNetworkResponse => {
                 let currentItem
                 for(let i=0; i<regNetworkResponse.length; i++){
                     let indegree = [], outdegree = []
@@ -78,9 +78,9 @@ Andres Gerardo Lopez Almazo
      *  @param {String} objectType type of the node object(TF, Gene)
      *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
      */
-     static getAllNodes(objectType = null, networkType = null){
+     static async getAllNodes(objectType = null, networkType = null){
         if (networkType != null)
-            return RegulatoryNetwork.find({type: objectType}).exec().then(regNetworkResponse => {
+            return await RegulatoryNetwork.find({type: objectType}).exec().then(regNetworkResponse => {
                 let currentItem
                 for(let i=0; i<regNetworkResponse.length; i++){
                     let indegree = [], outdegree = []
@@ -102,7 +102,7 @@ Andres Gerardo Lopez Almazo
                 return regNetworkResponse
             });
         else
-            return RegulatoryNetwork.find({type: objectType});
+            return await RegulatoryNetwork.find({type: objectType});
      }
  }
  export {regulatoryNetworkController}

@@ -46,6 +46,6 @@ export const sigmulonResolvers = {
   Query: {
     getAllSigmulon: (root, {limit, page}) => commonController.getAll(Sigmulon, limit, page, 'sigmaFactor.name'),
     getSigmulonBy: (root, {search, advancedSearch, limit, page, properties, organismName, fullMatchOnly}) =>
-      sigmulonController.getOperonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
+      sigmulonController.getSigmulonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
   },
 };

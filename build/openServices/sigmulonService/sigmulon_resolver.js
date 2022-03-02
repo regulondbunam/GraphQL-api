@@ -14,7 +14,7 @@ var _controller_common_functions = require('../common/controller_common_function
 const sigmulonResolvers = exports.sigmulonResolvers = {
   Query: {
     getAllSigmulon: (root, { limit, page }) => _controller_common_functions.commonController.getAll(_sigmulon_model.Sigmulon, limit, page, 'sigmaFactor.name'),
-    getSigmulonBy: (root, { search, advancedSearch, limit, page, properties, organismName, fullMatchOnly }) => _sigmulon_controller.sigmulonController.getOperonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly)
+    getSigmulonBy: (root, { search, advancedSearch, limit, page, properties, organismName, fullMatchOnly }) => _sigmulon_controller.sigmulonController.getSigmulonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly)
   }
 }; /**
    # [Sigmulon Service Resolver]
