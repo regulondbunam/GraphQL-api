@@ -2,6 +2,11 @@
 
 All notable changes in this project will be documented in this file
 
+## [1.0.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.0) - 2022-03-07
+
+### Fix
+- A bug related to asynchronous functions for mongoose was solved, now Queries are correctly functional again
+
 ## [1.0.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.0) - 2022-01-31
 
 ### Updated
