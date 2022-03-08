@@ -38,14 +38,14 @@ class coexpressionController {
      *  @param {String} gene name of the gene
      *  @param {Number} limit limit of the results (50 by default)
      */
-    static getTopCoexpressionRanking( id, gene, limit = 50){
+    static async getTopCoexpressionRanking( id, gene, limit = 50){
         //The value of limit must be 50 maximum, when its more it takes the default value (50)
         if(limit > 50) limit = 50;
 
         //When the user make a search by id, the service execute this query by gene id
         if(id !== undefined)
         {
-            return CoexpressionData.find({$or:[{"gene_id1": id},{"gene_id2": id}]}).limit(limit).sort({"rank":1}).exec().then(
+            return await CoexpressionData.find({$or:[{"gene_id1": id},{"gene_id2": id}]}).limit(limit).sort({"rank":1}).exec().then(
                 coexpressionResponse => {
                     let objExtract
                     for(let i = 0; i<coexpressionResponse.length; i++){
@@ -73,7 +73,7 @@ class coexpressionController {
                 let geneCI = RegExp(gene,'i');
                 
                 // When the user make a search by name , the service execute this query by name 
-                return CoexpressionData.find({$or:[{"gene_name1": geneCI},{"gene_name2": geneCI}]}).limit(limit).sort({"rank":1}).exec().then(
+                return await CoexpressionData.find({$or:[{"gene_name1": geneCI},{"gene_name2": geneCI}]}).limit(limit).sort({"rank":1}).exec().then(
                     coexpressionResponse => {
                         let objExtract
                         for(let i = 0; i<coexpressionResponse.length; i++){
@@ -98,11 +98,11 @@ class coexpressionController {
      *  @param {String} gene Name of one of the genes to compare with principal gene top 50 in coexpression
      *  @param {String} geneList Name list genes of the principal gene top 50
      */
-    static getRankFromGeneList(geneId, geneIdList, gene, geneList){
+    static async getRankFromGeneList(geneId, geneIdList, gene, geneList){
         // Both arguments needs to be defined of ID type to work.
         if(geneId !== undefined && geneIdList !== undefined)
         {
-            return CoexpressionData.find({$or:[{$and:[{"gene_id1": geneId},{"gene_id2": {$in: geneIdList}}]},
+            return await CoexpressionData.find({$or:[{$and:[{"gene_id1": geneId},{"gene_id2": {$in: geneIdList}}]},
                                                {$and:[{"gene_id1":{$in: geneIdList}},{"gene_id2": geneId}]}]}).sort({"rank":1}).exec().then(
                                                 //This function is for mapping the response to the elements of the resume type
                                                 coexpressionResponse => {
@@ -127,7 +127,7 @@ class coexpressionController {
             for (let i=0;i<geneList.length; i++){
                 geneListCI[i]= RegExp(geneList[i],'i');
             }
-            return CoexpressionData.find({$or:[{$and:[{"gene_name1":geneCI},{"gene_name2":{$in: geneListCI}}]},
+            return await CoexpressionData.find({$or:[{$and:[{"gene_name1":geneCI},{"gene_name2":{$in: geneListCI}}]},
                                                {$and:[{"gene_name1":{$in:geneListCI}},{"gene_name2":geneCI}]}]}).sort({"rank":1}).exec().then(
                                                 //This function is for mapping the response to the elements of the resume type
                                                 coexpressionResponse => {

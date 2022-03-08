@@ -71,12 +71,12 @@ type Query {
     #### Example
     ```json
     {
-        getNodesOf(object_name:["MicF"]){
+        getNodesOf(objectName:["MalI"]){
             _id
             name
             type
             indegree{
-                id
+                _id
                 name
                 type
                 networkType
@@ -121,18 +121,18 @@ type Query {
     List all the nodes of RegulatoryNetwork
     #### Example
     ```json
-    {
-        getAllNodes(networkType: "TF-TF"){
-            _id
-            name
-            type
-            indegree{
-                id
-                name
-                type
-                networkType
-                regulatoryEffect
-            }
+    { 
+        getAllNodes(networkType: "TF-TF" objectType: "Transcription Factor"){ 
+            _id 
+            name 
+            type 
+            indegree{ 
+            _id 
+            name 
+            type 
+            networkType 
+            regulatoryEffect 
+            } 
         }
     }
     ```

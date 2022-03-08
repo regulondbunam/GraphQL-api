@@ -72,7 +72,7 @@ class operonController {
     filter = textSearchFilter(search, properties, fullMatchOnly);
   }
 
-  const Operons = Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
+  const Operons = await Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
   const total = await commonController.countDocumentsIn(Operon, filter);
   const lastPage = Math.floor(total / limit);
   if (limit * (page + 1) < total) hasMore = true;

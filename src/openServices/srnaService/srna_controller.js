@@ -72,7 +72,7 @@ class srnaController {
         filter = textSearchFilter(search, properties, fullMatchOnly);
         }
         
-        const SRNAS = SRNA.find(filter).sort({'product.name': 1}).limit(limit).skip(offset);
+        const SRNAS = await SRNA.find(filter).sort({'product.name': 1}).limit(limit).skip(offset);
         const total = await commonController.countDocumentsIn(SRNA, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;

@@ -49,7 +49,7 @@ class dttController {
      *  @param {String} objectType type of the genetic element to draw 
      *  @param {String} covered indicate elements that are completely contained in the selected range(true)
      */
-    static getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand = 'both', objectType = 'all', covered = false) {
+    static async getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand = 'both', objectType = 'all', covered = false) {
         if (leftEndPosition > rightEndPosition) {
             const err = new _graphql.GraphQLError('leftEndPosition must be lower than rightEndPosition');
             err.statusCode = 400;
@@ -70,14 +70,14 @@ class dttController {
                 // When strand is "forward" OR "reverse"
                 if (strand == 'both') strand = ["forward", "reverse"];
                 // Return the elements that are completely contained in the selected range
-                return _dttModel.Data.find({ $and: [{ $or: [{ leftEndPosition: { $gte: leftEndPosition } }, { "linkedObjectWhenNoPositions.leftEndPosition": { $gte: leftEndPosition } }] }, { $or: [{ rightEndPosition: { $lte: rightEndPosition } }, { "linkedObjectWhenNoPositions.rightEndPosition": { $lte: rightEndPosition } }] }, { $or: [{ strand: strand }, { strand: { $exists: false } }] }, { objectType: { $in: objectType } }] });
+                return await _dttModel.Data.find({ $and: [{ $or: [{ leftEndPosition: { $gte: leftEndPosition } }, { "linkedObjectWhenNoPositions.leftEndPosition": { $gte: leftEndPosition } }] }, { $or: [{ rightEndPosition: { $lte: rightEndPosition } }, { "linkedObjectWhenNoPositions.rightEndPosition": { $lte: rightEndPosition } }] }, { $or: [{ strand: strand }, { strand: { $exists: false } }] }, { objectType: { $in: objectType } }] });
             }
             //When covered is false means draw both cases, when elements are contained in the range and those that not.
             else {
                     //When strand is "forward" OR "reverse"
                     if (strand == 'both') strand = ["forward", "reverse"];
                     // Return all elements that are contained in the selected range.
-                    return _dttModel.Data.find({ $and: [{ $or: [{ $and: [{ leftEndPosition: { $gte: leftEndPosition } }, { rightEndPosition: { $lte: rightEndPosition } }] },
+                    return await _dttModel.Data.find({ $and: [{ $or: [{ $and: [{ leftEndPosition: { $gte: leftEndPosition } }, { rightEndPosition: { $lte: rightEndPosition } }] },
                             // Return those elements start outside the selected range but finish inside the range.
                             { $and: [{ leftEndPosition: { $lt: leftEndPosition } }, { rightEndPosition: { $gt: leftEndPosition, $lte: rightEndPosition } }] },
                             // Return those elements start inside the selected range but finish outside the range.

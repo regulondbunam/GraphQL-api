@@ -41,7 +41,7 @@ class dttController {
      *  @param {String} objectType type of the genetic element to draw 
      *  @param {String} covered indicate elements that are completely contained in the selected range(true)
      */
-    static getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand='both', objectType = 'all', covered = false){
+    static async getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand='both', objectType = 'all', covered = false){
         if (leftEndPosition > rightEndPosition){
             const err = new GraphQLError('leftEndPosition must be lower than rightEndPosition')
             err.statusCode = 400;
@@ -71,7 +71,7 @@ class dttController {
                 if(strand == 'both')
                     strand = ["forward","reverse"]
                 // Return the elements that are completely contained in the selected range
-                    return Data.find({$and:[
+                    return await Data.find({$and:[
                         {$or:[
                             {leftEndPosition: {$gte:leftEndPosition}}, 
                             {"linkedObjectWhenNoPositions.leftEndPosition":{$gte:leftEndPosition}}
@@ -93,7 +93,7 @@ class dttController {
                 if(strand == 'both')
                     strand = ["forward","reverse"]
                 // Return all elements that are contained in the selected range.
-                return Data.find({$and:[
+                return await Data.find({$and:[
                     {$or:[
                         {$and:[
                             {leftEndPosition:{$gte:leftEndPosition}},

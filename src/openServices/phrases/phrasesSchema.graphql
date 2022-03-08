@@ -35,21 +35,17 @@ type Query {
   gets all the phrases of a gene based on an identifier
   #### Example
   ```json
-  {
-	getPhraseOf(id:"RDBECOLIGN00001"){
-		name
-		objectId
+  { 
+	getPhraseOf(id:"RDBECOLITUC03462"){ 
+		name 
 		objectType
-		properties{
-		pmid
-		name
-		value
-		phrases{
-			phraseID
-			evidence
+		propertyPhrases {
+		associatedProperty {
+			name
+			value
 		}
 		}
-	}
+	} 
   }
   ```
   """

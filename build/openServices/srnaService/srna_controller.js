@@ -75,7 +75,7 @@ class srnaController {
             filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
         }
 
-        const SRNAS = _srna_model.SRNA.find(filter).sort({ 'product.name': 1 }).limit(limit).skip(offset);
+        const SRNAS = await _srna_model.SRNA.find(filter).sort({ 'product.name': 1 }).limit(limit).skip(offset);
         const total = await _controller_common_functions.commonController.countDocumentsIn(_srna_model.SRNA, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;

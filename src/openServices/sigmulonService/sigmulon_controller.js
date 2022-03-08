@@ -54,7 +54,7 @@ class sigmulonController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-  static async getOperonBy(
+  static async getSigmulonBy(
     search,
     advancedSearch,
     limit = 10,
@@ -72,7 +72,7 @@ class sigmulonController {
         filter = textSearchFilter(search, properties, fullMatchOnly);
         }
         
-        const Sigmulons = Sigmulon.find(filter).sort({'sigmaFactor.name': 1}).limit(limit).skip(offset);
+        const Sigmulons = await Sigmulon.find(filter).sort({'sigmaFactor.name': 1}).limit(limit).skip(offset);
         const total = await commonController.countDocumentsIn(Sigmulon, filter);
         const lastPage = Math.floor(total / limit);
         if (limit * (page + 1) < total) hasMore = true;

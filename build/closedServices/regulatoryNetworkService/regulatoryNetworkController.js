@@ -49,11 +49,11 @@ class regulatoryNetworkController {
     *  @param {String} object_name name of the element (gene or transcription factor)
     *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
     */
-    static getNodesOf(object_id, object_name, networkType = null) {
+    static async getNodesOf(object_id, object_name, networkType = null) {
         let search_filter = null;
         if (object_id != null) search_filter = { _id: object_id };else search_filter = { name: object_name };
 
-        if (networkType != null) return _regulatoryNetworkModel.RegulatoryNetwork.find(search_filter).exec().then(regNetworkResponse => {
+        if (networkType != null) return await _regulatoryNetworkModel.RegulatoryNetwork.find(search_filter).exec().then(regNetworkResponse => {
             let currentItem;
             for (let i = 0; i < regNetworkResponse.length; i++) {
                 let indegree = [],
@@ -79,8 +79,8 @@ class regulatoryNetworkController {
     *  @param {String} objectType type of the node object(TF, Gene)
     *  @param {String} networkType network type of the node (TF-TF, Gene-Gene, TF-Gene)
     */
-    static getAllNodes(objectType = null, networkType = null) {
-        if (networkType != null) return _regulatoryNetworkModel.RegulatoryNetwork.find({ type: objectType }).exec().then(regNetworkResponse => {
+    static async getAllNodes(objectType = null, networkType = null) {
+        if (networkType != null) return await _regulatoryNetworkModel.RegulatoryNetwork.find({ type: objectType }).exec().then(regNetworkResponse => {
             let currentItem;
             for (let i = 0; i < regNetworkResponse.length; i++) {
                 let indegree = [],
@@ -99,7 +99,7 @@ class regulatoryNetworkController {
                 regNetworkResponse[i] = currentItem;
             }
             return regNetworkResponse;
-        });else return _regulatoryNetworkModel.RegulatoryNetwork.find({ type: objectType });
+        });else return await _regulatoryNetworkModel.RegulatoryNetwork.find({ type: objectType });
     }
 }
 exports.regulatoryNetworkController = regulatoryNetworkController;

@@ -2,28 +2,50 @@
 
 All notable changes in this project will be documented in this file
 
-## [0.8.0]() - 2021-11-16
+## [1.0.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.0) - 2022-01-31
 
-## Update
+### Updated
+- RegulonDB-WS-API now uses Apollo Server Express
+- Libraries are up to date
+- Added description for functions on controller's files
+
+---
+
+## [0.8.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.8.2) - 2021-11-26
+
+### Fixed
+- Merging schemas and resolvers code were changed due a recent update with GraphQL library (merge-graphql-schemas library is not more used, now @graphql-toolkit module is used)
+
+## [0.8.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.8.1) - 2021-11-24
+
+### Fix
+- Improved function to test additional services in gateway, now if an additional service is unavailable, services will start without them
+
+### Update
+- Updated libraries for RegulonDB Web Services
+
+## [0.8.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.8.0) - 2021-11-16
+
+### Update
 - HT Services were removed from RegulonDB-WS-API repository, RegulonDB HT Services are available in the following repository https://github.com/regulondbunam/RegulonDBHT-API
 
 ---
 
 ## [0.7.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.7.1) - 2021-11-09
 
-## Added
+### Added
 - New services were added to service list for use (Peaks, TFBinding and AuthorsData)
 
-## Updated 
+### Updated 
 - Models of Peaks, TFBinding and AuthorsData were updated
 - The model and schema were updated for Dataset Service
 
 ## [0.7.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.7.0) - 2021-10-22
 
-## Added
+### Added
 - Web service for HT dataset was added to RegulonDB Web Services API, this service is now available for use in this release
 
-## Fixed 
+### Fixed 
 
 - Added tabs for playground page in open, closed and HT services
 - Fixed bugs related to regulatory network services not allowing full responses due to name mismatch
@@ -32,10 +54,10 @@ All notable changes in this project will be documented in this file
 
 ## [0.6.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.6.0) - 2021-09-20
 
-## Added
+### Added
 - Web service for Regulatory Network was added to RegulonDB Web Services API, this service is now available for use in this release
 
-## Fixed 
+### Fixed 
 
 - Improvement on dnaFeatures service controller, dealing with the queries in a better way
 - Added compatibility with translational_tf_binding_sites for dnaFeatures services
@@ -45,7 +67,7 @@ All notable changes in this project will be documented in this file
 
 ## [0.5.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/0.5.2) - 2021-08-09
 
-## Fixed 
+### Fixed 
 
 - Regulon model was updated on regulates -> genes -> terms, due an error that returns null even though the property exists in docs
 - Improved error handling on Gateway server, with a specific format of errors (Message, Status, StatusCode)

@@ -79,7 +79,7 @@ class geneController {
       organismFilter.$and.push(filter);
       filter = organismFilter;
     }
-    const Genes = Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
+    const Genes = await Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
     const total = await commonController.countDocumentsIn(Gene, filter);
     const lastPage = Math.floor(total / limit);
     if (limit * (page + 1) < total) hasMore = true;
