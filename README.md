@@ -15,9 +15,6 @@ Functional services currently:
 - Sigumluon
 - SRNA
 
-Services in Development: 
-- HighTroughput/HT (not available)
-
 # Motivation
 
 With the reengineering of RegulonDB passing from relational model to an documental model, was needed a new web service to connect to the new documental database using GraphQL technology, with this web service  API can be possible to get data from RegulonDB with an application layer using the technology previously mentioned with Javascript. 
@@ -26,8 +23,8 @@ With the reengineering of RegulonDB passing from relational model to an document
 
 Required software
 
-- Node JS ^12.18.4
-- NPM ^6.14.6
+- Node JS ^16.13.0
+- NPM ^8.1.4
 
 # Install
 
