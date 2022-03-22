@@ -61,7 +61,7 @@ type Node {
 type Query {
     """
     #### Type
-    Tool
+    Tools
     #### Service
     RegulatoryNetwork
     #### Name
@@ -112,7 +112,7 @@ type Query {
     
     """
     #### Type
-    Tool
+    Tools
     #### Service
     RegulatoryNetwork
     #### Name
