@@ -46,7 +46,7 @@ class htDatasetController {
      */
     static async getDatasetsFromSearch(advSearch) {
         const filter  = advancedSearchFilter(advSearch)
-        return HTDataset.find(filter)
+        return await HTDataset.find(filter)
     }
 
     /** Get a single document based on its unique ID

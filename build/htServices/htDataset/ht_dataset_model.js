@@ -14,7 +14,7 @@ var _general_model = require('../common/general_model');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const publicationSchema = new _mongoose2.default.Schema({
-    pmid: String,
+    pmid: Number,
     doi: String,
     authors: [String],
     title: String,
@@ -45,7 +45,6 @@ const serieSchema = new _mongoose2.default.Schema({
 
 const platformsSchema = new _mongoose2.default.Schema({
     _id: String,
-    source: String,
     title: String
 });
 
@@ -55,7 +54,8 @@ const sourceSerieSchema = new _mongoose2.default.Schema({
     title: String,
     strategy: String,
     method: String,
-    readType: String
+    readType: String,
+    sourceDB: String
 });
 
 const sampleSchema = new _mongoose2.default.Schema({
@@ -107,6 +107,13 @@ const summarySchema = new _mongoose2.default.Schema({
     totalOfTFBS: totalOfSchema
 });
 
+const externalReferencesSchema = new _mongoose2.default.Schema({
+    name: String,
+    url: String,
+    description: String,
+    note: String
+});
+
 const htDatasetSchema = new _mongoose2.default.Schema({
     _id: String,
     publications: [publicationSchema],
@@ -124,7 +131,10 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     fivePrimeEnrichment: String,
     nlpGrowthConditionsId: String,
     geneExpressionFiltered: String,
-    experimentCondition: String
+    experimentCondition: String,
+    cutOff: Number,
+    notes: String,
+    externalReferences: [externalReferencesSchema]
 });
 
 const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');

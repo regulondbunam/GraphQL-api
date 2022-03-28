@@ -19,7 +19,7 @@ type authorsData {
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT authorsData
     #### Name
@@ -38,11 +38,18 @@ type Query {
     }
     ```
     """
-    getAuthorsDataOfDataset(datasetId: String): [authorsData]
+    getAuthorsDataOfDataset(  
+    """
+    #### Description
+    id of the dataset linket to authorsData
+    #### Required
+    Required
+    """
+    datasetId: String): [authorsData]
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT authorsData
     #### Name
@@ -61,5 +68,13 @@ type Query {
     }
     ```
     """
-    getAuthorsDataById(_id: String): authorsData
+    getAuthorsDataById(
+        
+    """
+    #### Description
+    id of the AuthorsData
+    #### Required
+    Required
+    """
+    _id: String): authorsData
 }

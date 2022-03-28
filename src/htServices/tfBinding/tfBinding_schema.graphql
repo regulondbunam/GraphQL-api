@@ -25,11 +25,7 @@ type DatasetTFBinding {
     """
     _
     """
-    foundClassicRIs: [RIObjectType]
-    """
-    _
-    """
-    foundDatasetRIs: [RIObjectType]
+    foundRIs: [RIObjectType]
     """
     _
     """
@@ -67,6 +63,10 @@ type RIObjectType {
     """
     _
     """
+    _id: String
+    """
+    _
+    """
     tfbsLeftPosition: Int
     """
     _
@@ -88,6 +88,84 @@ type RIObjectType {
     _
     """
     sequence: String
+    """
+    _
+    """
+    citations: [TFBCitations]
+    """
+    _
+    """
+    origin: String
+}
+
+"""
+_
+"""
+type TFBCitations {
+	"""
+	_
+	"""
+	evidence: TFBEvidence
+	"""
+	_
+	"""
+	publication: TFBPublication
+}
+
+"""
+_
+"""
+type TFBEvidence {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type TFBPublication {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	authors: [String]
+	"""
+	_
+	"""
+	pmid: String
+	"""
+	_
+	"""
+	citation: String
+	"""
+	_
+	"""
+	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
 }
 
 """
@@ -115,7 +193,7 @@ type TFClosestGenes {
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT TFBinding
     #### Name
@@ -163,13 +241,13 @@ type Query {
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT TFBinding
     #### Name
     getTFBindingById
     #### Description
-    Gets a peak by and ID
+    Gets a TFBinding doc by an ID
     #### Example
     ```json
     {

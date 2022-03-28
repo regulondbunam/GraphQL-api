@@ -54,7 +54,7 @@ class htDatasetController {
    */
   static async getDatasetsFromSearch(advSearch) {
     const filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advSearch);
-    return _ht_dataset_model.HTDataset.find(filter);
+    return await _ht_dataset_model.HTDataset.find(filter);
   }
 
   /** Get a single document based on its unique ID

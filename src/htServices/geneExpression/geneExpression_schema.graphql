@@ -65,7 +65,7 @@ type GeneGe {
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Gene Expression
     #### Name
@@ -100,7 +100,7 @@ type Query {
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Gene Expression
     #### Name
@@ -127,7 +127,7 @@ type Query {
     getAllGeneExpressionOfDataset(
     """
     #### Description
-    Id of the dataset associated to Transcription Unit
+    Id of the dataset associated to Gene Expression 
     #### Required
     Required
     """
@@ -149,7 +149,7 @@ type Query {
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Gene Expression
     #### Name

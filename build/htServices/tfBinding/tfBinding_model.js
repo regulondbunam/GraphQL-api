@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.TFBinding = undefined;
+exports.TFBinding = exports.citationsSchema = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -23,13 +23,36 @@ const gene = new _mongoose2.default.Schema({
     transcriptionUnits: [transcriptionUniteSchema]
 });
 
+const evidenceSchema = new _mongoose2.default.Schema({
+    id: String,
+    name: String,
+    code: String,
+    type: String
+});
+
+const citationsSchema = exports.citationsSchema = new _mongoose2.default.Schema({
+    evidence: evidenceSchema,
+    publication: {
+        id: String,
+        pmid: String,
+        citation: String,
+        url: String,
+        authors: [String],
+        title: String,
+        year: Number
+    }
+});
+
 const foundRIsSchema = new _mongoose2.default.Schema({
+    _id: String,
     tfbsLeftPosition: Number,
     tfbsRightPosition: Number,
     relativeGeneDistance: Number,
     relativeTSSDistance: Number,
     strand: String,
-    sequence: String
+    sequence: String,
+    citations: [citationsSchema],
+    origin: String
 });
 
 const tfBindingSchema = new _mongoose2.default.Schema({
@@ -38,8 +61,7 @@ const tfBindingSchema = new _mongoose2.default.Schema({
     chrLeftPosition: Number,
     chrRightPosition: Number,
     closestGenes: [gene],
-    foundClassicRIs: [foundRIsSchema],
-    foundDatasetRIs: [foundRIsSchema],
+    foundRIs: [foundRIsSchema],
     peakId: String,
     score: Number,
     strand: String,

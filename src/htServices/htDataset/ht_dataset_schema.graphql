@@ -79,6 +79,18 @@ type Dataset {
     _
     """
     experimentCondition: String
+    """
+    _
+    """
+    cutOff: Float
+    """
+    _
+    """
+    notes: String
+    """
+    _
+    """
+    externalReferences: [ExternalReferences]
 }
 
 """
@@ -188,10 +200,6 @@ type Platform {
     """
     _
     """
-    source: String
-    """
-    _
-    """
     title: String
 }
 
@@ -223,6 +231,10 @@ type SourceSerie {
     _
     """
     readType: String
+    """
+    _
+    """
+    sourceDB: String
 }
 
 """
@@ -388,10 +400,32 @@ type totalOf {
 """
 _
 """
+type ExternalReferences {
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    url: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    note: String
+}
+
+"""
+_
+"""
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Dataset
     #### Name
@@ -425,7 +459,7 @@ type Query {
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Dataset
     #### Name

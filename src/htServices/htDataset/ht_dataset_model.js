@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import { externalCrossReferencesSchema } from '../common/general_model'
 
 const publicationSchema = new mongoose.Schema({
-    pmid: String,
+    pmid: Number,
     doi: String,
     authors: [String],
     title: String,
@@ -33,7 +33,6 @@ const serieSchema = new mongoose.Schema({
 
 const platformsSchema = new mongoose.Schema({
     _id: String,
-    source: String,
     title: String
 });
 
@@ -43,7 +42,8 @@ const sourceSerieSchema = new mongoose.Schema({
     title: String,
     strategy: String,
     method: String,
-    readType: String
+    readType: String,
+    sourceDB: String
 });
 
 const sampleSchema = new mongoose.Schema({
@@ -95,6 +95,13 @@ const summarySchema = new mongoose.Schema({
     totalOfTFBS: totalOfSchema
 });
 
+const externalReferencesSchema = new mongoose.Schema({
+    name: String,
+    url: String,
+    description: String,
+    note: String
+})
+
 const htDatasetSchema = new mongoose.Schema({
     _id: String,
     publications: [publicationSchema],
@@ -112,7 +119,10 @@ const htDatasetSchema = new mongoose.Schema({
     fivePrimeEnrichment: String,
     nlpGrowthConditionsId: String,
     geneExpressionFiltered: String,
-    experimentCondition: String
+    experimentCondition: String,
+    cutOff: Number,
+    notes: String,
+    externalReferences: [externalReferencesSchema]
 });
 
 const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');

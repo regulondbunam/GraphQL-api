@@ -91,7 +91,7 @@ type TSSPromoter {
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Transcription Start Site
     #### Name
@@ -123,7 +123,7 @@ type Query {
 
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Transcription Start Site
     #### Name

@@ -69,7 +69,7 @@ type PeaksClosestGenes {
 type Query {
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Peaks
     #### Name
@@ -116,13 +116,13 @@ type Query {
     page: Int = 0): [Peaks]
     """
     #### Type
-    Data
+    HT Data
     #### Service
     HT Peaks
     #### Name
     getPeakById
     #### Description
-    Gets a peak by and ID
+    Gets a peak doc by an ID
     #### Example
     ```json
     {
