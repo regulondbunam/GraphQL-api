@@ -133,7 +133,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllTSSOfDataset(datasetId:"RHTECOLITSD00173")
+        getAllTSSOfDataset(datasetId:"RHTECOLITSD00001")
         {
             _id
             chromosome

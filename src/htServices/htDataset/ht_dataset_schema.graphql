@@ -435,10 +435,10 @@ type Query {
     #### Example
     ```json
     {
-        getDatasetByID(datasetID:"")
+        getDatasetByID(datasetID:"RHTECOLIBSD00022")
         {
             _id
-            objectTested {
+            objectsTested {
                 _id
                 name
                 note
@@ -469,10 +469,10 @@ type Query {
     #### Example
     ```json
     {
-        getDatasetsFromSearch(advancedSearch:"")
+        getDatasetsFromSearch(advancedSearch:"AraC[objectsTested.name]")
         {
             _id
-            objectTested {
+            objectsTested {
                 _id
                 name
                 note

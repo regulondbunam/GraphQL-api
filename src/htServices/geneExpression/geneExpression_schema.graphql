@@ -110,7 +110,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllGeneExpressionOfDataset(datasetId:"SRR057747")
+        getAllGeneExpressionOfDataset(datasetId:"GENE_EXPRESSION_SRR057747")
         {
             _id
             gene {

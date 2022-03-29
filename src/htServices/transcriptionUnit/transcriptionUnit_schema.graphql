@@ -121,7 +121,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllTransUnitsOfDataset(datasetId:"RHTECOLITUD00168")
+        getAllTransUnitsOfDataset(datasetId:"RHTECOLITUD00237")
         {
             _id
             genes {

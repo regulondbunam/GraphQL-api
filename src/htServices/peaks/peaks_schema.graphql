@@ -79,7 +79,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllPeaksOfDataset(datasetId:"RHTECOLIBSD00422")
+        getAllPeaksOfDataset(datasetId:"RHTECOLIBSD00336")
         {
             _id
             closestGenes {

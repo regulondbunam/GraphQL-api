@@ -203,7 +203,7 @@ type Query {
     #### Example
     ```json
     {
-        getAllTFBindingOfDataset(datasetId:"RHTECOLIBSD00422")
+        getAllTFBindingOfDataset(datasetId:"RHTECOLIBSD00336")
         {
             _id
             closestGenes {

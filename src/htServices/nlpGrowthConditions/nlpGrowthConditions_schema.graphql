@@ -121,7 +121,7 @@ type Query {
     #### Example
     ```json
     {
-        getNLPGrowthConditionById(datasetId:"SRR057747")
+        getNLPGrowthConditionById(datasetId:"GENE_EXPRESSION_SRR057747")
         {
             _id
             datasetIds
@@ -161,7 +161,7 @@ type Query {
     #### Example
     ```json
     {
-        getNLPGrowthConditionBySearch(advancedSearch:"'336 hours'[mediumSupplements.value]")
+        getNLPGrowthConditionBySearch(advancedSearch:"'0.3 % glucose'[mediumSupplements.value]")
         {
             _id
             datasetIds
