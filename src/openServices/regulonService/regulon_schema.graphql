@@ -93,6 +93,24 @@ type TranscriptionFactor {
 	_
 	"""
 	citations: [Citations]
+	"""
+	_
+	"""
+	products: [TFProducts]
+}
+
+"""
+_
+"""
+type TFProducts {
+	"""
+	_
+	"""
+	_id: String
+	"""
+	_
+	"""
+	name: String
 }
 
 """

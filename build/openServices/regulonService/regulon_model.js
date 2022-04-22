@@ -45,6 +45,11 @@ const ConformationsSchema = new _mongoose2.default.Schema({
   functionalType: String
 });
 
+const productsSchema = new _mongoose2.default.Schema({
+  _id: String,
+  name: String
+});
+
 const transcriptionFactorSchema = new _mongoose2.default.Schema({
   _id: String,
   name: String,
@@ -54,7 +59,8 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   encodedFrom: encodedFromSchema,
   sensingClass: String,
   connectivityClass: String,
-  citations: [_general_model.citationsSchema]
+  citations: [_general_model.citationsSchema],
+  products: [productsSchema]
 });
 
 const GeneTermSchema = new _mongoose2.default.Schema({
