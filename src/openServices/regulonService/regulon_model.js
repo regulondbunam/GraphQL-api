@@ -33,6 +33,11 @@ const ConformationsSchema = new mongoose.Schema({
   functionalType: String
 })
 
+const productsSchema = new mongoose.Schema({
+  _id: String,
+  name: String
+})
+
 const transcriptionFactorSchema = new mongoose.Schema({
   _id: String,
   name: String,
@@ -42,7 +47,8 @@ const transcriptionFactorSchema = new mongoose.Schema({
   encodedFrom: encodedFromSchema,
   sensingClass: String,
   connectivityClass: String,
-  citations: [citationsSchema]
+  citations: [citationsSchema],
+  products: [productsSchema]
 });
 
 const GeneTermSchema = new mongoose.Schema({
