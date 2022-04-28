@@ -14,8 +14,8 @@
   "scripts": {
     "start": "npm run build && npm run services",
     "services": "concurrently -k npm:service:*",
-    "service:closedTools": "node build/closedServices/closedServicesServer.js",
-    "service:openTools": "node build/openServices/openServicesServer.js",
+    "service:closedTools": "node build/toolsServices/toolsServicesServer.js",
+    "service:openTools": "node build/dataServices/dataServicesServer.js",
     "service:gateway": "node build/gateway.js",
     "build": "babel src -d build",
     "test": "jest"
