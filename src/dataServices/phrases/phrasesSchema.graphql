@@ -1,0 +1,60 @@
+type Phrases {
+	_id: String
+	sourceId: String
+	objectType: String
+	name: String
+	propertyPhrases: [propertyPhrases]
+}
+
+type propertyPhrases {
+	position: Int
+	associatedProperty: [AssociatedProperty]
+	associatedPhrases: [AssociatedPhrases]
+}
+
+type AssociatedProperty {
+	name: String
+	value: String
+}
+
+type AssociatedPhrases {
+	phraseId: String
+	phrase: String
+	pmid: String
+}
+
+type Query {
+  """
+  #### Type
+  Data
+  #### Service
+  Phrases
+  #### Name
+  getPhraseOf
+  #### Description
+  gets all the phrases of a gene based on an identifier
+  #### Example
+  ```json
+  { 
+	getPhraseOf(id:"RDBECOLIRCC00185"){ 
+		name 
+		objectType
+		propertyPhrases {
+		associatedProperty {
+			name
+			value
+		}
+		}
+	} 
+  }
+  ```
+  """
+	getPhraseOf(
+		"""
+		#### Description
+		array of gene ids to be queried
+		#### Required
+		True
+		"""
+		id: [String]): [Phrases]
+}
