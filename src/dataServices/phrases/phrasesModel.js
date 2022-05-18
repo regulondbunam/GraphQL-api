@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const phraseSchema = new mongoose.Schema({
-  phraseID: String,
+  phraseId: String,
   phrase: String,
   pmid: String,
 });

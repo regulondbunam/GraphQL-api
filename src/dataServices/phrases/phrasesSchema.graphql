@@ -18,7 +18,7 @@ type AssociatedProperty {
 }
 
 type AssociatedPhrases {
-	phraseID: String
+	phraseId: String
 	phrase: String
 	pmid: String
 }
@@ -36,7 +36,7 @@ type Query {
   #### Example
   ```json
   { 
-	getPhraseOf(id:"RDBECOLITUC03462"){ 
+	getPhraseOf(id:"RDBECOLIRCC00185"){ 
 		name 
 		objectType
 		propertyPhrases {
