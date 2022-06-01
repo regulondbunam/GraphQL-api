@@ -184,7 +184,7 @@ type GUResult {
 type Query {
   """
   #### Type
-  Tools
+  Data
   #### Service
   Gensor Unit
   #### Name
@@ -226,7 +226,7 @@ type Query {
   
   """
   #### Type
-  Tools
+  Data
   #### Service
   Gensor Unit
   #### Name

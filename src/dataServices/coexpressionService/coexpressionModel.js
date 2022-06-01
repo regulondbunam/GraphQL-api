@@ -28,18 +28,19 @@ RegulonDB Coexpression web service
  **/
 import mongoose from 'mongoose';
 
+const coexpressedGenesSchema = new mongoose.Schema({
+    _id: String,
+    name: String,
+    locusTag: String
+});
+
 const coexpressionDataObject = new mongoose.Schema({
     _id: String,
-    gene_id1: String,
-    gene_id2: String,
-    locusTag1: String,
-    locusTag2: String,
-    gene_name1: String,
-    gene_name2: String,
+    gene: [coexpressedGenesSchema],
     rank: Number,
     organism: {
-        organism_id: String,
-        organism_name: String
+        _id: String,
+        name: String
     }
 });
 

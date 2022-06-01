@@ -31,27 +31,7 @@ import {coexpressionController} from './coexpressionController';
 
 export const coexpressionResolver = {
     Query:{
-        getTopCoexpressionRanking: (root, {id, gene, limit}) => coexpressionController.getTopCoexpressionRanking(id, gene, limit).then(func1 => {
-            var newObj = func1.map(item =>{
-                return{
-                    coexpressionId: item._id,  
-                    geneId: item.gene_id1, 
-                    geneName: item.gene_name1,
-                    rank: item.rank
-                }
-            });
-            return newObj;
-        }),
-        getRankFromGeneList: (root, {geneId, geneIdList, gene, geneList}) => coexpressionController.getRankFromGeneList(geneId, geneIdList, gene, geneList).then(func2 =>{
-            var newObj = func2.map(item =>{
-                return{
-                    coexpressionId: item._id,  
-                    geneId: item.gene_id1, 
-                    geneName: item.gene_name1,
-                    rank: item.rank
-                }
-            });
-            return newObj
-        })
+        getTopCoexpressionRanking: (root, {id, gene, limit}) => coexpressionController.getTopCoexpressionRanking(id, gene, limit),
+        getRankFromGeneList: (root, {geneId, geneIdList, gene, geneList}) => coexpressionController.getRankFromGeneList(geneId, geneIdList, gene, geneList)
     }
 }

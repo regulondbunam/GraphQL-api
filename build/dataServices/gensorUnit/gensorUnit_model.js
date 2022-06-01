@@ -54,6 +54,6 @@ const gensorUnitSchema = new _mongoose2.default.Schema({
     totalOfComponents: Number
 });
 
-const GensorUnit = _mongoose2.default.model('gensorUnits', gensorUnitSchema, 'gensorUnitDM');
+const GensorUnit = _mongoose2.default.model('gensorUnits', gensorUnitSchema, 'gensorUnitDatamart');
 
 exports.GensorUnit = GensorUnit;
