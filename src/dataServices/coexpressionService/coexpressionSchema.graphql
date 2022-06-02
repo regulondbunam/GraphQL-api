@@ -24,6 +24,10 @@ type CoexpressionData {
     """
     rank: Float
     """
+    rgb code color for coexpression
+    """
+    rgbColor: String
+    """
     organism information
     """
     organism: CoexpressionOrganism

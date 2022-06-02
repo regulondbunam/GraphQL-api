@@ -38,6 +38,7 @@ const coexpressionDataObject = new mongoose.Schema({
     _id: String,
     gene: [coexpressedGenesSchema],
     rank: Number,
+    rgbColor: String,
     organism: {
         _id: String,
         name: String

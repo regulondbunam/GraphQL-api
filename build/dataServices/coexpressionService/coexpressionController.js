@@ -92,19 +92,28 @@ class coexpressionController {
         // Both arguments needs to be defined of ID type to work.
         if (geneId !== undefined && geneIdList !== undefined) {
             return await _coexpressionModel.CoexpressionData.find({ $and: [{ "gene._id": geneId }, { "gene._id": { $in: geneIdList } }] }).exec().then(coexpRes => {
+                let newList = [];
                 for (let i = 0; i < coexpRes.length; i++) {
-                    if (coexpRes[i]["gene"][0]["_id"] == id) {
+                    if (coexpRes[i]["gene"][0]["_id"] == geneId) {
                         coexpRes[i]["gene"] = coexpRes[i]["gene"][1];
                     } else {
                         coexpRes[i]["gene"] = coexpRes[i]["gene"][0];
                     }
                 }
-                return coexpRes;
+                for (let i = 0; i < geneIdList.length; i++) {
+                    for (let j = 0; j < coexpRes.length; j++) {
+                        if (coexpRes[j]["gene"][0]["_id"] == geneIdList[i]) {
+                            newList.push(coexpRes[j]);
+                        }
+                    }
+                }
+                return newList;
             });
         }
         // Otherwise it works with names.
         else if (gene !== undefined && geneList !== undefined) {
                 return await _coexpressionModel.CoexpressionData.find({ $and: [{ "gene.name": gene }, { "gene.name": { $in: geneList } }] }).exec().then(coexpRes => {
+                    let newList = [];
                     for (let i = 0; i < coexpRes.length; i++) {
                         if (coexpRes[i]["gene"][0]["name"] == gene) {
                             coexpRes[i]["gene"] = coexpRes[i]["gene"][1];
@@ -112,7 +121,14 @@ class coexpressionController {
                             coexpRes[i]["gene"] = coexpRes[i]["gene"][0];
                         }
                     }
-                    return coexpRes;
+                    for (let i = 0; i < geneList.length; i++) {
+                        for (let j = 0; j < coexpRes.length; j++) {
+                            if (coexpRes[j]["gene"][0]["name"] == geneList[i]) {
+                                newList.push(coexpRes[j]);
+                            }
+                        }
+                    }
+                    return newList;
                 });
             }
             // When you set a name type with an id type togheter it throws graphql error due consistency
