@@ -43,6 +43,6 @@ const gensorUnitSchema = new mongoose.Schema({
     totalOfComponents: Number
 });
 
-const GensorUnit = mongoose.model('gensorUnits', gensorUnitSchema, 'gensorUnitDM')
+const GensorUnit = mongoose.model('gensorUnits', gensorUnitSchema, 'gensorUnitDatamart')
 
 export {GensorUnit};

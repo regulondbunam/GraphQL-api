@@ -11,19 +11,10 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const coexpressionDataObject = new _mongoose2.default.Schema({
+const coexpressedGenesSchema = new _mongoose2.default.Schema({
     _id: String,
-    gene_id1: String,
-    gene_id2: String,
-    locusTag1: String,
-    locusTag2: String,
-    gene_name1: String,
-    gene_name2: String,
-    rank: Number,
-    organism: {
-        organism_id: String,
-        organism_name: String
-    }
+    name: String,
+    locusTag: String
 }); /**
      # Coexpression service model
     
@@ -53,6 +44,17 @@ const coexpressionDataObject = new _mongoose2.default.Schema({
     
      **/
 
+
+const coexpressionDataObject = new _mongoose2.default.Schema({
+    _id: String,
+    gene: [coexpressedGenesSchema],
+    rank: Number,
+    rgbColor: String,
+    organism: {
+        _id: String,
+        name: String
+    }
+});
 
 const CoexpressionData = _mongoose2.default.model('geneCoexpressions', coexpressionDataObject, 'geneCoexpressions');
 

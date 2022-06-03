@@ -45,21 +45,16 @@ class coexpressionController {
         //When the user make a search by id, the service execute this query by gene id
         if(id !== undefined)
         {
-            return await CoexpressionData.find({$or:[{"gene_id1": id},{"gene_id2": id}]}).limit(limit).sort({"rank":1}).exec().then(
-                coexpressionResponse => {
-                    let objExtract
-                    for(let i = 0; i<coexpressionResponse.length; i++){
-                        objExtract = coexpressionResponse[i].toJSON();
-                        if(id == objExtract.gene_id1){
-                            objExtract.gene_id1 = objExtract.gene_id2;
-                            objExtract.gene_name1 = objExtract.gene_name2;
-                        }
-                        coexpressionResponse[i] = objExtract; 
+            return await CoexpressionData.find({"gene._id": id}).limit(limit).sort({"rank":1}).exec().then(coexpRes => {
+                for(let i = 0; i<coexpRes.length;i++){
+                    if (coexpRes[i]["gene"][0]["_id"] == id){
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][1]
+                    } else {
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][0]
                     }
-                    
-                    return coexpressionResponse
                 }
-            );
+                return coexpRes
+            });
         }
         else
         {
@@ -69,24 +64,17 @@ class coexpressionController {
                 throw err;
             }
             else{
-                 // Defines a variable who make Case Insentive the parameter
-                let geneCI = RegExp(gene,'i');
-                
                 // When the user make a search by name , the service execute this query by name 
-                return await CoexpressionData.find({$or:[{"gene_name1": geneCI},{"gene_name2": geneCI}]}).limit(limit).sort({"rank":1}).exec().then(
-                    coexpressionResponse => {
-                        let objExtract
-                        for(let i = 0; i<coexpressionResponse.length; i++){
-                            objExtract = coexpressionResponse[i].toJSON();
-                            if(objExtract.gene_name1.match(geneCI)){
-                                objExtract.gene_id1 = objExtract.gene_id2;
-                                objExtract.gene_name1 = objExtract.gene_name2;
-                            }
-                            coexpressionResponse[i] = objExtract; 
+                return await CoexpressionData.find({"gene.name": gene}).limit(limit).sort({"rank":1}).exec().then(coexpRes => {
+                    for(let i = 0; i<coexpRes.length;i++){
+                        if (coexpRes[i]["gene"][0]["name"] == gene){
+                            coexpRes[i]["gene"] = coexpRes[i]["gene"][1]
+                        } else {
+                            coexpRes[i]["gene"] = coexpRes[i]["gene"][0]
                         }
-                        return coexpressionResponse
                     }
-                );
+                    return coexpRes
+                });
             }
         }
         
@@ -102,47 +90,45 @@ class coexpressionController {
         // Both arguments needs to be defined of ID type to work.
         if(geneId !== undefined && geneIdList !== undefined)
         {
-            return await CoexpressionData.find({$or:[{$and:[{"gene_id1": geneId},{"gene_id2": {$in: geneIdList}}]},
-                                               {$and:[{"gene_id1":{$in: geneIdList}},{"gene_id2": geneId}]}]}).sort({"rank":1}).exec().then(
-                                                //This function is for mapping the response to the elements of the resume type
-                                                coexpressionResponse => {
-                                                    let objExtract
-                                                    for(let i = 0; i<coexpressionResponse.length; i++){
-                                                        objExtract = coexpressionResponse[i].toJSON();
-                                                        if(geneId == objExtract.gene_id1){
-                                                            objExtract.gene_id1 = objExtract.gene_id2;
-                                                            objExtract.gene_name1 = objExtract.gene_name2;
-                                                        }
-                                                        coexpressionResponse[i] = objExtract; 
-                                                    }
-                                                    return coexpressionResponse
-                                                }
-                                            );
+            return await CoexpressionData.find({$and:[{"gene._id": geneId},{"gene._id": {$in: geneIdList}}]}).exec().then(coexpRes => {
+                let newList = []
+                for(let i = 0; i<coexpRes.length;i++){
+                    if (coexpRes[i]["gene"][0]["_id"] == geneId){
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][1]
+                    } else {
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][0]
+                    }
+                }
+                for(let i = 0; i<geneIdList.length; i++){
+                    for(let j = 0; j<coexpRes.length;j++){
+                        if (coexpRes[j]["gene"][0]["_id"] == geneIdList[i]){
+                            newList.push(coexpRes[j])
+                        } 
+                    }
+                }
+                return newList
+            });
         }
         // Otherwise it works with names.
         else if(gene !== undefined && geneList !== undefined){
-            // This function makes the string as Case Insensitive
-            let geneCI = RegExp(gene,'i');
-            let geneListCI=[];
-            for (let i=0;i<geneList.length; i++){
-                geneListCI[i]= RegExp(geneList[i],'i');
-            }
-            return await CoexpressionData.find({$or:[{$and:[{"gene_name1":geneCI},{"gene_name2":{$in: geneListCI}}]},
-                                               {$and:[{"gene_name1":{$in:geneListCI}},{"gene_name2":geneCI}]}]}).sort({"rank":1}).exec().then(
-                                                //This function is for mapping the response to the elements of the resume type
-                                                coexpressionResponse => {
-                                                    let objExtract
-                                                    for(let i = 0; i<coexpressionResponse.length; i++){
-                                                        objExtract = coexpressionResponse[i].toJSON();
-                                                        if(objExtract.gene_name1.match(geneCI)){
-                                                            objExtract.gene_id1 = objExtract.gene_id2;
-                                                            objExtract.gene_name1 = objExtract.gene_name2;
-                                                        }
-                                                        coexpressionResponse[i] = objExtract; 
-                                                    }
-                                                    return coexpressionResponse
-                                                }
-                                            );
+            return await CoexpressionData.find({$and:[{"gene.name": gene},{"gene.name": {$in: geneList}}]}).exec().then(coexpRes => {
+                let newList = []
+                for(let i = 0; i<coexpRes.length;i++){
+                    if (coexpRes[i]["gene"][0]["name"] == gene){
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][1]
+                    } else {
+                        coexpRes[i]["gene"] = coexpRes[i]["gene"][0]
+                    }
+                }
+                for(let i = 0; i<geneList.length; i++){
+                    for(let j = 0; j<coexpRes.length;j++){
+                        if (coexpRes[j]["gene"][0]["name"] == geneList[i]){
+                            newList.push(coexpRes[j])
+                        } 
+                    }
+                }
+                return newList
+            });
         }
         // When you set a name type with an id type togheter it throws graphql error due consistency
         else {

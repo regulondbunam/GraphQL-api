@@ -16,49 +16,37 @@ type CoexpressionData {
     """
     _id: String
     """
-    id of the first gene 
+    list of genes in the coexpression
     """
-    gene_id1: String
-    """
-    id of the second gene 
-    """
-    gene_id2: String
-    """
-    tag of the first gene
-    """
-    locusTag1: String
-    """
-    tag of the second gene
-    """
-    locusTag2: String
-    """
-    name of the first gene
-    """
-    gene_name1: String
-    """
-    name of the second gene
-    """
-    gene_name2: String
+    gene: [CoexpressedGenes]
     """
     rank of the match between both elements
     """
-    rank: Int
+    rank: Float
+    """
+    rgb code color for coexpression
+    """
+    rgbColor: String
     """
     organism information
     """
     organism: CoexpressionOrganism
 }
-"""
-CoexpressionResume is the type that resumes the documents
-that match with the query but only shows specified data
-to make a short response for the front end.
-"""
 
-type CoexpressionResume {
-    coexpressionId: String
-    geneId: String
-    geneName: String
-    rank: Int
+type CoexpressedGenes{
+
+    """
+    id of the gene 
+    """
+    _id: String
+    """
+    name of the gene
+    """
+    name: String
+    """
+    tag of the gene
+    """
+    locusTag: String
 }
 
 """
@@ -68,11 +56,11 @@ type CoexpressionOrganism {
     """
     id of the organism
     """
-    organism_id: String
+    _id: String
     """
     name of the organism
     """
-    organism_name: String
+    name: String
 }
 
 type Query {
@@ -90,9 +78,10 @@ type Query {
     {
         getTopCoexpressionRanking(gene: "arac")
         {
-            coexpressionId
-            geneId
-            geneName
+            gene {
+                _id
+                name
+            }
             rank
         }
     }
@@ -119,7 +108,7 @@ type Query {
         #### Required
         Optional
         """
-        limit: Int = 50): [CoexpressionResume]
+        limit: Int = 50): [CoexpressionData]
 
     """
     #### Type
@@ -134,9 +123,10 @@ type Query {
     ```json
     {
         getRankFromGeneList(gene:"araC" geneList:["yihX", "cdaR", "topAI"]){
-            geneId
-            geneName
-            coexpressionId
+            gene {
+                _id
+                name
+            }
             rank
         }
     }
@@ -173,5 +163,5 @@ type Query {
         #### Required
         Only if gene is used
         """ 
-        geneList: [String]): [CoexpressionResume]
+        geneList: [String]): [CoexpressionData]
 }
