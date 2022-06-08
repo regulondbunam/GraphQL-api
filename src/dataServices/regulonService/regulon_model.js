@@ -141,10 +141,17 @@ const regSchema = new mongoose.Schema({
   _id: String,
   type: String,
   name: String
+});
+
+const regulatorSchema = new mongoose.Schema({
+  _id: String,
+  type: String,
+  name: String,
+  continuants: [regSchema]
 })
 
 const regulatoryInteractionsSchema = ({
-  regulator: regSchema,
+  regulator: regulatorSchema,
   function: String,
   regulatedEntity: regSchema,
   distanceToFirstGene: Number,

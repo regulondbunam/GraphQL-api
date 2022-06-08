@@ -493,6 +493,28 @@ type RegulonRegulator {
 	_
 	"""
 	name: String
+	"""
+	_
+	"""
+	continuants: [RegulonContinuants]
+}
+
+"""
+_
+"""
+type RegulonContinuants {
+	"""
+	_
+	"""
+	_id: String
+	"""
+	_
+	"""
+	type: String
+	"""
+	_
+	"""
+	name: String
 }
 
 """
