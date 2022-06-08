@@ -145,8 +145,15 @@ const regSchema = new _mongoose2.default.Schema({
   name: String
 });
 
+const regulatorSchema = new _mongoose2.default.Schema({
+  _id: String,
+  type: String,
+  name: String,
+  continuants: [regSchema]
+});
+
 const regulatoryInteractionsSchema = {
-  regulator: regSchema,
+  regulator: regulatorSchema,
   function: String,
   regulatedEntity: regSchema,
   distanceToFirstGene: Number,
