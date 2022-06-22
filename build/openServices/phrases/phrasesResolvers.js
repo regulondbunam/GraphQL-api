@@ -9,7 +9,8 @@ var _phrasesController = require('./phrasesController');
 
 const phrasesResolvers = exports.phrasesResolvers = {
   Query: {
-    getPhraseOf: (root, { id }) => _phrasesController.phrasesController.getPhraseOf(id)
+    getPhraseOf: (root, { objectId }) => _phrasesController.phrasesController.getPhraseOf(objectId),
+    getAllPhrasesInObject: (root, { objectId }) => _phrasesController.phrasesController.getAllPhrasesInObject(objectId)
   }
 }; /**
    # [Phrases Service resolver]
