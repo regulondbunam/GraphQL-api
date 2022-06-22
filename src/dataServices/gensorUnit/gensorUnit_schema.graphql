@@ -1,0 +1,306 @@
+"""
+_
+"""
+type GensorUnitDatamart {
+  """
+  _
+  """
+  _id: String
+  """
+  _
+  """
+  gensorUnit: GensorUnit
+  """
+  _
+  """
+  reactions: [Reactions]
+  """
+  _
+  """
+  totalOfComponents: Int
+}
+
+"""
+_
+"""
+type GensorUnit {
+  """
+  _
+  """
+  _id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  components: [Components]
+  """
+  _
+  """
+  geneOntology: GUGeneOntology
+  """
+  _
+  """
+  description: String
+  """
+  _
+  """
+  signalName: [String]
+  """
+  _
+  """
+  note: String
+  """
+  _
+  """
+  groups: [String]
+}
+
+"""
+_
+"""
+type Reactions {
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  description: String
+  """
+  _
+  """
+  type: String
+  """
+  _
+  """
+  pathwaysComponents: String
+  """
+  _
+  """
+  components: [Components]
+  """
+  _
+  """
+  order: Int
+  """
+  _
+  """
+  number: Int
+}
+
+"""
+_
+"""
+type Components {
+  """
+  _
+  """
+  function: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  type: String
+}
+
+"""
+_
+"""
+type GUGeneOntology {
+    """
+    _
+    """
+    cellularComponent: [GUCellularComponent]
+    """
+    _
+    """
+    molecularFunction: [GUMolecularFunction]
+    """
+    _
+    """
+    biologicalProcess: [GUBiologicalProcess]
+}
+
+"""
+_
+"""
+type GUCellularComponent {
+	"""
+	_
+	"""
+	term_id: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type GUMolecularFunction {
+	"""
+	_
+	"""
+	term_id: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type GUBiologicalProcess {
+	"""
+	_
+	"""
+	term_id: String
+	"""
+	_
+	"""
+	name: String
+}
+
+type GUResult { 
+  """
+  contains server response
+  """
+  data: [GensorUnitDatamart]
+  """
+  contains pagination info
+  """
+  pagination: Pagination
+}
+
+type Query {
+  """
+  #### Type
+  Data
+  #### Service
+  Gensor Unit
+  #### Name
+  getAllGUs
+  #### Description
+  List all the Gensor Unit contained in collection
+  #### Example
+  ```json
+  {
+    getAllGUs(limit:5)
+    {
+      data{
+        gensorUnit{
+          _id
+          name
+          signalName
+        }
+      }
+    }
+  }
+  ```
+  """
+  getAllGUs(
+    """
+    #### Description
+    defines the page results showed 
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page 
+    #### Required
+    Optional
+    """
+    page: Int = 0): GUResult! 
+  
+  
+  """
+  #### Type
+  Data
+  #### Service
+  Gensor Unit
+  #### Name
+  getGUsBy
+  #### Description
+  List the Gensor Units obtained by a search or advancedSearch String
+  #### Example
+  ```json
+  {
+    getGUsBy(advancedSearch:"'Amino acid transport and metabolism'[gensorUnit.groups]")
+    {
+      data{
+        gensorUnit{
+          _id
+          name
+          signalName
+        }
+      }
+    }
+  }
+  ```
+  """
+
+  getGUsBy(
+    """
+    #### Description
+    usable for text search on fields defined in \"Properties\" parameter; syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+    #### Required
+    You must use search or advancedSearch
+    """
+    search: String, 
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    You must use search or advancedSearch
+    """
+    advancedSearch: String, 
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0, 
+    """
+    #### Description
+    select the fields to be queried by \"search\"
+    #### Required
+    Optional
+    """
+    properties: [String] = ["gensorUnit._id", "gensorUnit.name"], 
+    """
+    #### Description
+    usable for specific organismName queries (not available right now)
+    #### Required
+    Optional
+    """
+    organismName: String, 
+    """
+    #### Description
+    define if \"search\" will be Case Sensitive and cannot be a substring
+    #### Required
+    Optional
+    """
+    fullMatchOnly: Boolean = false): GUResult! 
+}
+ 

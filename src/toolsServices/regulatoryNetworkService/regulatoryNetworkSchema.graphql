@@ -1,0 +1,155 @@
+"""
+RegulatoryNetwork type is principal type on the service
+"""
+type RegulatoryNetwork {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    type: String
+    """
+    _
+    """
+    indegree: [Node]
+    """
+    _
+    """
+    outdegree: [Node]
+}
+
+"""
+_
+"""
+type Node {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    type: String
+    """
+    _
+    """
+    regulatoryEffect: String
+    """
+    _
+    """
+    citations: [Citations]
+    """
+    _
+    """
+    networkType: String
+    """
+    _
+    """
+    tooltip: String
+}
+
+type Query {
+    """
+    #### Type
+    Tools
+    #### Service
+    RegulatoryNetwork
+    #### Name
+    getNodesFrom
+    #### Description
+    List all the nodes contained related to defined objects
+    #### Example
+    ```json
+    {
+        getNodesOf(objectName:["MalI"]){
+            _id
+            name
+            type
+            indegree{
+                _id
+                name
+                type
+                networkType
+                regulatoryEffect
+            }
+        }
+    }
+    ```
+    """
+    getNodesOf(
+        """
+        #### Description
+        Specifies the object id to be query
+        #### Required
+        Required
+        """
+        objectId: [String], 
+        """
+        #### Description
+        Specifies the object name to be query
+        #### Required
+        Required
+        """
+        objectName: [String], 
+        """
+        #### Description
+        defines the network type to be showed on results of indegree or outdegree
+        #### Required
+        Optional
+        """
+        networkType: [String]): [RegulatoryNetwork]
+
+    
+    """
+    #### Type
+    Tools
+    #### Service
+    RegulatoryNetwork
+    #### Name
+    getAllNodes
+    #### Description
+    List all the nodes of RegulatoryNetwork
+    #### Example
+    ```json
+    { 
+        getAllNodes(networkType: "TF-TF" objectType: "Transcription Factor"){ 
+            _id 
+            name 
+            type 
+            indegree{ 
+            _id 
+            name 
+            type 
+            networkType 
+            regulatoryEffect 
+            } 
+        }
+    }
+    ```
+    """
+    getAllNodes(
+        """
+        #### Description
+        defines the object type to be obtained
+        #### Required
+        Optional
+        """
+        objectType: String
+        """
+        #### Description
+        defines the network type to be showed on results of indegree or outdegree 
+        #### Required
+        Optional
+        """
+        networkType: String): [RegulatoryNetwork]
+}

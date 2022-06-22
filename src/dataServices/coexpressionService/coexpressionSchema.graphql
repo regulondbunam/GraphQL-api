@@ -1,0 +1,167 @@
+# This schema represent CoexpressionService Datamart, principal Type is CoexpressionData.
+# Types that can exist in differents datamart cannot be found here, 
+# and exists in "Common_properties" Schema in "Common" Folder
+# About descriptions
+# 
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+"""
+CoexpressionData is the principal type on the service
+"""
+type CoexpressionData {
+    """
+    id of the coexpression element
+    """
+    _id: String
+    """
+    list of genes in the coexpression
+    """
+    gene: [CoexpressedGenes]
+    """
+    rank of the match between both elements
+    """
+    rank: Float
+    """
+    rgb code color for coexpression
+    """
+    rgbColor: String
+    """
+    organism information
+    """
+    organism: CoexpressionOrganism
+}
+
+type CoexpressedGenes{
+
+    """
+    id of the gene 
+    """
+    _id: String
+    """
+    name of the gene
+    """
+    name: String
+    """
+    tag of the gene
+    """
+    locusTag: String
+}
+
+"""
+OrganismType contains the information of the organism 
+"""
+type CoexpressionOrganism {
+    """
+    id of the organism
+    """
+    _id: String
+    """
+    name of the organism
+    """
+    name: String
+}
+
+type Query {
+    """
+    #### Type
+    Tools
+    #### Service
+    Coexpression
+    #### Name
+    getTopCoexpressionRanking
+    #### Description
+    Gets the top Coexpression (50 max and default) by a gene ID or name.
+    #### Example
+    ```json
+    {
+        getTopCoexpressionRanking(gene: "arac")
+        {
+            gene {
+                _id
+                name
+            }
+            rank
+        }
+    }
+    ```
+    """
+    getTopCoexpressionRanking(
+        """
+        #### Description
+        Defines the id of the gene to search
+        #### Required
+        You must choose id or gene
+        """
+        id: String, 
+        """
+        #### Description
+        Defines the name of the gene to search
+        #### Required
+        You must choose id or gene
+        """
+        gene: String,
+        """
+        #### Description
+        Defines the limit of the elements to show (max 50)
+        #### Required
+        Optional
+        """
+        limit: Int = 50): [CoexpressionData]
+
+    """
+    #### Type
+    Tools
+    #### Service
+    Coexpression
+    #### Name
+    getRankFromGeneList
+    #### Description
+    Get the coexpression list from a gene compared to the top of other gene. It works with names or ids.
+    #### Example
+    ```json
+    {
+        getRankFromGeneList(gene:"araC" geneList:["yihX", "cdaR", "topAI"]){
+            gene {
+                _id
+                name
+            }
+            rank
+        }
+    }
+    ```
+    """
+    getRankFromGeneList(
+        """
+        #### Description
+        Id of the gene to compare with the principal gene
+        #### Required
+        Optional
+        """
+        geneId: String,
+
+        """
+        #### Description
+        Id list of the top 50 principal gene
+        #### Required
+        Only if geneId is used
+        """ 
+        geneIdList: [String],
+
+        """
+        #### Description
+        Name of the gene to compare with the principal gene
+        #### Required
+        Optional
+        """ 
+        gene: String,
+
+        """
+        #### Description
+        Name list of the top 50 principal gene
+        #### Required
+        Only if gene is used
+        """ 
+        geneList: [String]): [CoexpressionData]
+}
