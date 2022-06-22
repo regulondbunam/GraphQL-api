@@ -52,9 +52,44 @@ type Query {
 	getPhraseOf(
 		"""
 		#### Description
-		array of gene ids to be queried
+		array of object ids to be queried
 		#### Required
 		True
 		"""
-		id: [String]): [Phrases]
+		objectId: [String]): [Phrases]
+
+
+  """
+  #### Type
+  Data
+  #### Service
+  Phrases
+  #### Name
+  getAllPhrasesInObject
+  #### Description
+  gets all the phrases associated to all ids in an object
+  #### Example
+  ```json
+  { 
+	getAllPhrasesInObject(objectId:"RDBECOLITUC03462"){ 
+		name 
+		objectType
+		propertyPhrases {
+		associatedProperty {
+			name
+			value
+		}
+		}
+	} 
+  }
+  ```
+  """
+	getAllPhrasesInObject(
+		"""
+		#### Description
+		id of the object to be queried
+		#### Required
+		True
+		"""
+		objectId: String): [Phrases]
 }

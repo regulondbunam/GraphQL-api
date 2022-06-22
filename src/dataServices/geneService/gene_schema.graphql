@@ -234,7 +234,7 @@ type Products {
   """
   _
   """
-  geneOntologyTerms: [GeneOntologyTerms]
+  geneOntologyTerms: GeneOntologyTerms
 }
 
 """

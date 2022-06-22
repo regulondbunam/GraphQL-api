@@ -40,6 +40,7 @@ import { phrasesController } from './phrasesController';
 
 export const phrasesResolvers = {
   Query: {
-    getPhraseOf: (root, {id}) => phrasesController.getPhraseOf(id),
+    getPhraseOf: (root, {objectId}) => phrasesController.getPhraseOf(objectId),
+    getAllPhrasesInObject: (root, {objectId}) => phrasesController.getAllPhrasesInObject(objectId),
   },
 };
