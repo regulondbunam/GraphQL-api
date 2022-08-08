@@ -12,11 +12,11 @@ Functional services currently:
     - Phrases
     - Sigmulon
     - SRNA
+    - Gensor Unit (**New**, not available for use) 
 - Tools
     - Coexpression
     - DrawingTracesTool (dnaFeatures)
     - RegulatoryNetwork
-    - Gensor Unit (**New**, not available for use) 
 
 
 # Motivation
