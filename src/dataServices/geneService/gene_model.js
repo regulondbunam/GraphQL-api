@@ -43,6 +43,7 @@ const geneSchema = new mongoose.Schema({
 });
 
 const motifsSchema = new mongoose.Schema({
+	id: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
 	sequence: String,

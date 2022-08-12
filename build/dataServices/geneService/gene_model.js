@@ -51,6 +51,7 @@ const geneSchema = new _mongoose2.default.Schema({
 });
 
 const motifsSchema = new _mongoose2.default.Schema({
+	id: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
 	sequence: String,
