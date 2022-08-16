@@ -244,6 +244,10 @@ type Motifs {
   """
   _
   """
+  id: String
+  """
+  _
+  """
   leftEndPosition: Int
   """
   _
