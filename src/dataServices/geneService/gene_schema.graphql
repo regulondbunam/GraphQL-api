@@ -248,6 +248,10 @@ type Motifs {
   """
   _
   """
+  dataSource: String
+  """
+  _
+  """
   leftEndPosition: Int
   """
   _
