@@ -14,6 +14,7 @@ const dbInfoSchema = new mongoose.Schema({
     lcVersion: String,
     releaseDate: String,
     note: String,
+    genomeVersion: String,
     localData: [localDataSchema]
 });
 

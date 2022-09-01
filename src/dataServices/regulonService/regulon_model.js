@@ -48,7 +48,10 @@ const transcriptionFactorSchema = new mongoose.Schema({
   sensingClass: String,
   connectivityClass: String,
   citations: [citationsSchema],
-  products: [productsSchema]
+  products: [productsSchema],
+  symmetry: String,
+  siteLength: String,
+  family: String
 });
 
 const GeneTermSchema = new mongoose.Schema({

@@ -97,6 +97,18 @@ type TranscriptionFactor {
 	_
 	"""
 	products: [TFProducts]
+	"""
+	_
+	"""
+	symmetry: String
+	"""
+	_
+	"""
+	siteLength: String
+	"""
+	_
+	"""
+	family: String
 }
 
 """

@@ -20,5 +20,6 @@ export const resolvers = mergeResolvers([
     overviewsResolver,
     regulonResolvers,
     sigmulonResolvers,
-    srnaResolvers
+    srnaResolvers,
+    dbInfoResolvers
 ]);

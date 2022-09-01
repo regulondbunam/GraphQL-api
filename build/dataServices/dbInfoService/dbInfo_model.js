@@ -25,6 +25,7 @@ const dbInfoSchema = new _mongoose2.default.Schema({
     lcVersion: String,
     releaseDate: String,
     note: String,
+    genomeVersion: String,
     localData: [localDataSchema]
 });
 

@@ -25,6 +25,10 @@ type dbInfo {
     """
     _
     """
+    genomeVersion: String
+    """
+    _
+    """
     localData: [LocalDataType]
 }
 
