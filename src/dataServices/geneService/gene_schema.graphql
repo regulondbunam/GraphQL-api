@@ -273,6 +273,10 @@ type Motifs {
   _
   """
   note: String
+  """
+  _
+  """
+  citations: [Citations]
 }
 
 """

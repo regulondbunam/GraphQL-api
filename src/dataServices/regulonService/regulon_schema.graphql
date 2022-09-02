@@ -97,6 +97,18 @@ type TranscriptionFactor {
 	_
 	"""
 	products: [TFProducts]
+	"""
+	_
+	"""
+	symmetry: String
+	"""
+	_
+	"""
+	siteLength: String
+	"""
+	_
+	"""
+	family: String
 }
 
 """
@@ -819,7 +831,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["transcriptionFactor.id", "transcriptionFactor.name"], 
+    properties: [String] = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], 
     """
     #### Description
     usable for specific organismName queries (not available right now)

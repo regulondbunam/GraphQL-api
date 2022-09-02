@@ -58,7 +58,8 @@ const motifsSchema = new _mongoose2.default.Schema({
 	sequence: String,
 	description: String,
 	type: String,
-	note: String
+	note: String,
+	citations: [_general_model.citationsSchema]
 });
 
 const productSchema = new _mongoose2.default.Schema({

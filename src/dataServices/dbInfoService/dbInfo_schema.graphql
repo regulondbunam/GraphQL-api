@@ -1,0 +1,85 @@
+"""
+_
+"""
+type dbInfo {
+    """
+    _
+    """
+    regulondbVersion: String
+    """
+    _
+    """
+    ecocycVersion: String
+    """
+    _
+    """
+    lcVersion: String
+    """
+    _
+    """
+    releaseDate: String
+    """
+    _
+    """
+    note: String
+    """
+    _
+    """
+    genomeVersion: String
+    """
+    _
+    """
+    localData: [LocalDataType]
+}
+
+"""
+_
+"""
+type LocalDataType {
+    """
+    _
+    """
+    type: String,
+    """
+    _
+    """
+    sourceName: String,
+    """
+    _
+    """
+    version: String,
+    """
+    _
+    """
+    note: String,
+    """
+    _
+    """
+    responsible: [String]
+}
+
+type Query {
+    """
+    #### Type
+    Data
+    #### Service
+    DB Info
+    #### Name
+    getDatabaseInfo
+    #### Description
+    get info of all db releases
+    #### Example
+    ```json
+    {
+    getDatabaseInfo{
+        regulondbVersion
+        ecocycVersion
+        lcVersion
+        releaseDate
+        note
+    }
+    }
+    ```
+    """
+    getDatabaseInfo: [dbInfo]
+}

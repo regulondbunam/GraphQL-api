@@ -60,7 +60,10 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   sensingClass: String,
   connectivityClass: String,
   citations: [_general_model.citationsSchema],
-  products: [productsSchema]
+  products: [productsSchema],
+  symmetry: String,
+  siteLength: String,
+  family: String
 });
 
 const GeneTermSchema = new _mongoose2.default.Schema({

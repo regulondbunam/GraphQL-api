@@ -50,7 +50,8 @@ const motifsSchema = new mongoose.Schema({
 	sequence: String,
 	description: String,
 	type: String,
-	note: String
+	note: String,
+	citations: [citationsSchema]
 });
 
 const productSchema = new mongoose.Schema({
