@@ -831,7 +831,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["transcriptionFactor.id", "transcriptionFactor.name"], 
+    properties: [String] = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], 
     """
     #### Description
     usable for specific organismName queries (not available right now)

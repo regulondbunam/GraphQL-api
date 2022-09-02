@@ -208,7 +208,7 @@ const regulonSchema = new mongoose.Schema({
   evolutionaryConservation: evolutionaryConservationSchema,
   summary: summarySchema,
   organismName: String,
-  allCitations: [citationsSchema],
+  allCitations: [citationsSchema],
 	organism: [ organismSchema ]
 });
 
