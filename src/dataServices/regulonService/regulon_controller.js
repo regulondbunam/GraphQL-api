@@ -57,10 +57,10 @@ class regulonController {
   static async getRegulonBy(
     search, 
     advancedSearch, 
-    limit = 0, 
+    limit = 10, 
     page = 0, 
-    properties = ["transcriptionFactor.id", "transcriptionFactor.name"], 
-    fullMatchOnly) {
+    properties = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], 
+    fullMatchOnly = false) {
       const offset = page * limit;
       let filter;
       let hasMore = false;
