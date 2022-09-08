@@ -20,7 +20,7 @@ const localDataSchema = new _mongoose2.default.Schema({
 });
 
 const dbInfoSchema = new _mongoose2.default.Schema({
-    regulondbVersion: String,
+    regulonDBVersion: String,
     ecocycVersion: String,
     lcVersion: String,
     releaseDate: String,

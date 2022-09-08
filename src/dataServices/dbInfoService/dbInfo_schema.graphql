@@ -5,7 +5,7 @@ type dbInfo {
     """
     _
     """
-    regulondbVersion: String
+    regulonDBVersion: String
     """
     _
     """
