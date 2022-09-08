@@ -9,7 +9,7 @@ const localDataSchema = new mongoose.Schema({
 });
 
 const dbInfoSchema = new mongoose.Schema({
-    regulondbVersion: String,
+    regulonDBVersion: String,
     ecocycVersion: String,
     lcVersion: String,
     releaseDate: String,

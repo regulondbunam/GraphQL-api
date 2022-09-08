@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const geneOntologyProperties = new mongoose.Schema({
-	term_id: String,
+	_id: String,
 	name: String
 });
 
@@ -12,7 +12,7 @@ const componentsSchema = new mongoose.Schema({
 });
 
 const GUSchema = new mongoose.Schema({
-    _id: String,
+    id: String,
     name: String,
     components: [componentsSchema],
     geneOntology: {
@@ -30,8 +30,8 @@ const ReactionsSchema = new mongoose.Schema({
     name: String,
     description: String,
     type: String,
-    pathwatysComponents: String,
-    components: componentsSchema,
+    pathwayComponents: String,
+    components: [componentsSchema],
     order: Number,
     number: Number
 });
