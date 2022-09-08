@@ -20,9 +20,11 @@ const Overviews = fs.readFileSync('./src/dataServices/overviewsService/overviews
 
 const SRNA = fs.readFileSync('./src/dataServices/srnaService/srna_schema.graphql').toString()
 
+const GUs = fs.readFileSync('./src/dataServices/gensorUnit/gensorUnit_schema.graphql').toString()
+
 const dbInfo = fs.readFileSync('./src/dataServices/dbInfoService/dbInfo_schema.graphql').toString()
 
-const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, dbInfo]
+const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo]
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 export const typeDefs = mergeTypeDefs(types);

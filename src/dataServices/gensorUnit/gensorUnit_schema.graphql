@@ -27,7 +27,7 @@ type GensorUnit {
   """
   _
   """
-  _id: String
+  id: String
   """
   _
   """
@@ -77,7 +77,7 @@ type Reactions {
   """
   _
   """
-  pathwaysComponents: String
+  pathwayComponents: String
   """
   _
   """
@@ -135,7 +135,7 @@ type GUCellularComponent {
 	"""
 	_
 	"""
-	term_id: String
+	_id: String
 	"""
 	_
 	"""
@@ -149,7 +149,7 @@ type GUMolecularFunction {
 	"""
 	_
 	"""
-	term_id: String
+	_id: String
 	"""
 	_
 	"""
@@ -163,7 +163,7 @@ type GUBiologicalProcess {
 	"""
 	_
 	"""
-	term_id: String
+	_id: String
 	"""
 	_
 	"""
