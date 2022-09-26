@@ -47,7 +47,7 @@ const transcriptionUnitStatisticsSchema = new _mongoose2.default.Schema({
 });
 
 const operonStatisticsSchema = new _mongoose2.default.Schema({
-    transcriptionUnit: Number,
+    transcriptionUnits: Number,
     promoters: Number,
     genes: Number
 });

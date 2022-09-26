@@ -71,8 +71,17 @@ type Operon {
 _
 """
 type OperonStatistics {
-	transcriptionUnit: Int
+	"""
+	_
+	"""
+	transcriptionUnits: Int
+	"""
+	_
+	"""
 	promoters: Int
+	"""
+	_
+	"""
 	genes: Int
 }
 

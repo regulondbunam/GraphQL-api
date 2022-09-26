@@ -37,7 +37,7 @@ const transcriptionUnitStatisticsSchema = new mongoose.Schema({
 })
 
 const operonStatisticsSchema = new mongoose.Schema({
-    transcriptionUnit: Number,
+    transcriptionUnits: Number,
     promoters: Number,
     genes: Number
 })
