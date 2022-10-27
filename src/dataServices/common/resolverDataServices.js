@@ -11,6 +11,7 @@ import { sigmulonResolvers } from '../sigmulonService/sigmulon_resolver'
 import { srnaResolvers } from '../srnaService/srna_resolver'
 import { gensorUnitResolvers } from '../gensorUnit/gensorUnit_resolver'
 import { dbInfoResolvers } from '../dbInfoService/dbInfo_resolver'
+import { recentUsedQueriesResolver } from '../recentQueriesService/recentQueriesResolver'
 
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
@@ -23,5 +24,6 @@ export const resolvers = mergeResolvers([
     sigmulonResolvers,
     srnaResolvers,
     gensorUnitResolvers,
-    dbInfoResolvers
+    dbInfoResolvers,
+    recentUsedQueriesResolver
 ]);

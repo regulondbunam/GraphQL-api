@@ -1,0 +1,37 @@
+scalar Date
+
+type myType {
+    created: Date
+}
+
+type recentQuery {
+    _id: String
+    querySearchString: String
+    dateOfUse: Date
+    usedTimes: Int
+}
+
+type Query {
+    getAllUsedQueries(
+        """
+        #### Description
+        defines the page results showed
+        #### Required
+        Optional
+        """
+        limit: Int = 10, 
+        """
+        #### Description
+        select the current result page
+        #### Required
+        Optional
+        """
+        page: Int = 0
+    ):[recentQuery]
+}
+
+type Mutation {
+    addUsedQuery(
+        querySearchString: String!
+    ): recentQuery
+}
