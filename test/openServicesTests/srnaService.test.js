@@ -7,11 +7,9 @@ describe('srnaService', () => {
             query{
                 getAllSrnas(limit:5){
                   data{
-                    _id
                     product{
                       name
                       gene{
-                        _id
                         name
                         strand
                         gcContent
@@ -30,11 +28,9 @@ describe('srnaService', () => {
           "getAllSrnas": {
             "data": [
               {
-                "_id": "RDBECOLIPDC00016",
                 "product": {
                   "name": "6S RNA",
                   "gene": {
-                    "_id": "RDBECOLIGNC02536",
                     "name": "ssrS",
                     "strand": "forward",
                     "gcContent": 55.19125683060109,
@@ -43,11 +39,9 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC03413",
                 "product": {
                   "name": "CP4-44 prophage; small RNA IsrC",
                   "gene": {
-                    "_id": "RDBECOLIGNC02900",
                     "name": "isrC",
                     "strand": "forward",
                     "gcContent": 42.56410256410256,
@@ -56,11 +50,9 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC04151",
                 "product": {
                   "name": "CP4-6 prophage; small RNA EyeA",
                   "gene": {
-                    "_id": "RDBECOLIGNC02706",
                     "name": "eyeA",
                     "strand": "forward",
                     "gcContent": 56,
@@ -69,11 +61,9 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC00328",
                 "product": {
                   "name": "Qin prophage; small regulatory RNA DicF",
                   "gene": {
-                    "_id": "RDBECOLIGNC02552",
                     "name": "dicF",
                     "strand": "forward",
                     "gcContent": 54.716981132075475,
@@ -82,11 +72,9 @@ describe('srnaService', () => {
                 }
               },
               {
-                "_id": "RDBECOLIPDC04181",
                 "product": {
                   "name": "RNase P catalytic RNA component",
                   "gene": {
-                    "_id": "RDBECOLIGNC02506",
                     "name": "rnpB",
                     "strand": "reverse",
                     "gcContent": 61.80371352785146,
@@ -106,11 +94,9 @@ describe('srnaService', () => {
             query{
                 getSrnaBy(search:"dicF"){
                   data{
-                    _id
                     product{
                       name
                       gene{
-                        _id
                         name
                         strand
                         gcContent
@@ -129,11 +115,9 @@ describe('srnaService', () => {
           "getSrnaBy": {
             "data": [
               {
-                "_id": "RDBECOLIPDC00328",
                 "product": {
                   "name": "Qin prophage; small regulatory RNA DicF",
                   "gene": {
-                    "_id": "RDBECOLIGNC02552",
                     "name": "dicF",
                     "strand": "forward",
                     "gcContent": 54.716981132075475,

@@ -5,13 +5,13 @@ describe('dttService',()=>{
 
         const response = await axios.post('http://localhost:4001/graphql',{
             query: `
-                query {
-                    getGeneticElementsFromInterval(leftEndPosition:100, rightEndPosition: 1000){
-                        _id
-                        leftEndPosition
-                        rightEndPosition
-                      }
+              query {
+                getGeneticElementsFromInterval(leftEndPosition:100, rightEndPosition: 1000){
+                  labelName
+                  leftEndPosition
+                  rightEndPosition
                 }
+              }
             `
         });
 
@@ -20,49 +20,44 @@ describe('dttService',()=>{
           "data": {
             "getGeneticElementsFromInterval": [
               {
-                "_id": "RDBECOLIBS00001",
-                "leftEndPosition": "180",
-                "rightEndPosition": "200"
-              },
-              {
-                "_id": "RDBECOLIGN00001",
+                "labelName": "thrA",
                 "leftEndPosition": "337",
                 "rightEndPosition": "2799+"
               },
               {
-                "_id": "RDBECOLIPM00001",
-                "leftEndPosition": "683",
-                "rightEndPosition": "683"
-              },
-              {
-                "_id": "RDBECOLIPP00001",
-                "leftEndPosition": "100",
-                "rightEndPosition": "146"
-              },
-              {
-                "_id": "RDBECOLIRB00001",
-                "leftEndPosition": "191",
-                "rightEndPosition": "310"
-              },
-              {
-                "_id": "RDBECOLITA00001",
-                "leftEndPosition": "200",
+                "labelName": "thrL",
+                "leftEndPosition": "190",
                 "rightEndPosition": "255"
               },
               {
-                "_id": "RDBECOLITA00002",
-                "leftEndPosition": "276",
-                "rightEndPosition": "311"
+                "labelName": "thrLp",
+                "leftEndPosition": "148",
+                "rightEndPosition": "148"
               },
               {
-                "_id": "RDBECOLITA00003",
-                "leftEndPosition": "244",
-                "rightEndPosition": "244"
-              },
-              {
-                "_id": "RDBECOLITM00001",
+                "labelName": null,
                 "leftEndPosition": "274",
                 "rightEndPosition": "310"
+              },
+              {
+                "labelName": "ppGpp",
+                "leftEndPosition": null,
+                "rightEndPosition": null
+              },
+              {
+                "labelName": "ArcA",
+                "leftEndPosition": "+98",
+                "rightEndPosition": "112"
+              },
+              {
+                "labelName": "FNR",
+                "leftEndPosition": "+98",
+                "rightEndPosition": "112"
+              },
+              {
+                "labelName": "Lrp",
+                "leftEndPosition": "159",
+                "rightEndPosition": "173"
               }
             ]
           }

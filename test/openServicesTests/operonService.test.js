@@ -8,12 +8,10 @@ describe('operonService', () => {
                 getAllOperon(limit:5){
                   data{
                     operon{
-                      id
                       name
                       strand
                     }
                     transcriptionUnits{
-                      id
                       name
                     }
                   }
@@ -26,69 +24,59 @@ describe('operonService', () => {
     expect(data).toMatchObject({
         "data": {
           "getAllOperon": {
-            "data": [
+            "data":  [
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01353",
-                  "name": "C0067",
+                  "name": "C0293",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC00135",
-                    "name": "C0067"
+                    "name": "C0293"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01506",
-                  "name": "C0299",
+                  "name": "CsiR",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01477",
-                    "name": "C0299"
+                    "name": "CsiR"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC00810",
-                  "name": "C0362",
+                  "name": "aaeR",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01484",
-                    "name": "C0362"
+                    "name": "aaeR"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC01025",
-                  "name": "C0465",
-                  "strand": "forward"
-                },
-                "transcriptionUnits": [
-                  {
-                    "id": "RDBECOLITUC01411",
-                    "name": "C0465"
-                  }
-                ]
-              },
-              {
-                "operon": {
-                  "id": "RDBECOLIOPC00365",
-                  "name": "C0614",
+                  "name": "aaeXAB",
                   "strand": "reverse"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC01406",
-                    "name": "C0614"
+                    "name": "aaeXAB"
+                  }
+                ]
+              },
+              {
+                "operon": {
+                  "name": "aas-lplT",
+                  "strand": "reverse"
+                },
+                "transcriptionUnits": [
+                  {
+                    "name": "aas-lplT"
                   }
                 ]
               }
@@ -105,12 +93,10 @@ describe('operonService', () => {
                 getOperonBy(search: "accD or accBC"){
                   data{
                     operon{
-                      id
                       name
                       strand
                     }
                     transcriptionUnits{
-                      id
                       name
                     }
                   }
@@ -123,33 +109,35 @@ describe('operonService', () => {
     expect(data).toMatchObject({
         "data": {
           "getOperonBy": {
-            "data": [
+            "data":  [
               {
                 "operon": {
-                  "id": "RDBECOLIOPC02457",
                   "name": "accBC",
                   "strand": "forward"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC02090",
                     "name": "accBC"
                   },
                   {
-                    "id": "RDBECOLITUC03273",
                     "name": "accBC"
                   }
                 ]
               },
               {
                 "operon": {
-                  "id": "RDBECOLIOPC00969",
+                  "name": "accBC",
+                  "strand": "forward"
+                },
+                "transcriptionUnits": []
+              },
+              {
+                "operon": {
                   "name": "accD",
                   "strand": "reverse"
                 },
                 "transcriptionUnits": [
                   {
-                    "id": "RDBECOLITUC03274",
                     "name": "accD"
                   }
                 ]
