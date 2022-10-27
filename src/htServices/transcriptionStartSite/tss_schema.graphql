@@ -1,0 +1,169 @@
+"""
+_
+"""
+type HtTSS {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
+    """
+    _
+    """
+    pos_1: Int
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    closestGenes: [TSSClosestGenes]
+    """
+    _
+    """
+    promoter: [TSSPromoter]
+    """
+    _
+    """
+    datasetIds: [String]
+}
+
+"""
+_
+"""
+type TSSClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    distanceTo: Int
+}
+
+"""
+_
+"""
+type TSSPromoter {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    pos1: Int
+    """
+    _
+    """
+    sigma: String
+    """
+    _
+    """
+    confidenceLevel: String
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Start Site
+    #### Name
+    getTSSByID
+    #### Description
+    Get TranscriptionStartSite by an id
+    #### Example
+    ```json
+    {
+        getTSSByID(_id:"ECOLITS000000001")
+        {
+            _id
+            chromosome
+            leftEndPosition
+            rightEndPosition
+            datasetIds
+        }
+    }
+    ```
+    """
+    getTSSByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): HtTSS
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Start Site
+    #### Name
+    getAllTSSOfDataset
+    #### Description
+    Gets all TSS docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTSSOfDataset(datasetId:"RHTECOLITSD00001")
+        {
+            _id
+            chromosome
+            leftEndPosition
+            rightEndPosition
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTSSOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to Transcription Start Site
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [HtTSS]
+}

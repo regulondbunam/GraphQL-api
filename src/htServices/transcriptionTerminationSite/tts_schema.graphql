@@ -1,0 +1,204 @@
+"""
+_
+"""
+type HTtranscriptionTerminationSite {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    closestGenes: [TTSClosestGenes]
+    """
+    _
+    """
+    terminator: [TTSTerminator]
+    """
+    _
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    temporalId: String
+}
+
+"""
+_
+"""
+type TTSClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    distanceTo: Int
+}
+
+"""
+_
+"""
+type TTSTerminator {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    transcriptionUnits: [TTSTransUnit]
+}
+
+"""
+_
+"""
+type TTSTransUnit {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    promoter: TTSPromoter
+}
+
+"""
+_
+"""
+type TTSPromoter {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    sequence: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
+    """
+    _
+    """
+    strand: String
+}
+
+type Query {"""
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Termination Site
+    #### Name
+    getTTSByID
+    #### Description
+    Get TranscriptionTerminationSite by an id
+    #### Example
+    ```json
+    {
+        getTTSByID(_id:"ECOLITT000000001")
+        {
+            _id
+            chromosome
+            leftEndPosition
+            rightEndPosition
+            datasetIds
+        }
+    }
+    ```
+    """
+    getTTSByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): HTtranscriptionTerminationSite
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Termination Site
+    #### Name
+    getAllTTSOfDataset
+    #### Description
+    Gets all TTS docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTTSOfDataset(datasetId:"RHTECOLITTD00017")
+        {
+            _id
+            chromosome
+            leftEndPosition
+            rightEndPosition
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTTSOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to Transcription Termination Site
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [HTtranscriptionTerminationSite]
+}

@@ -1,0 +1,146 @@
+# This schema contains types that exists in differents datamart
+#
+# About descriptions
+# Each Type and Properties must have their own description defined at the 
+# top of it by triple double quotes like """this is a description""" replacing
+# the underscore with the description text
+
+"""
+_
+"""
+type simpleItemObject {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Int
+}
+
+"""
+_
+"""
+type ExternalCrossReferences {
+	"""
+	_
+	"""
+	externalCrossReferenceId: String
+	"""
+	_
+	"""
+	externalCrossReferenceName: String
+	"""
+	_
+	"""
+	objectId: String
+	"""
+	_
+	"""
+	url: String
+}
+
+"""
+_
+"""
+type Citations {
+	"""
+	_
+	"""
+	evidence: Evidence
+	"""
+	_
+	"""
+	publication: Publication
+}
+
+"""
+_
+"""
+type Evidence {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type Publication {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	authors: [String]
+	"""
+	_
+	"""
+	pmid: String
+	"""
+	_
+	"""
+	citation: String
+	"""
+	_
+	"""
+	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
+}
+
+"""
+Contans info about Pagination for better control in responses
+"""
+type Pagination {
+	"""
+	Indicates limit that query has made it
+	"""
+	limit: Int
+	"""
+	Is the current page of showed results
+	"""
+	currentPage: Int
+	"""
+	Indicates to user which is the first page of results (0 by default)
+	"""
+	firstPage: Int
+	"""
+	Indicates to uer which is the last page of results
+	"""
+	lastPage: Int
+	"""
+	Indicates the total results got by the query
+	"""
+	totalResults: Int
+	"""
+	Tells to user if there is another page of results
+	"""
+	hasNextPage: Boolean
+}

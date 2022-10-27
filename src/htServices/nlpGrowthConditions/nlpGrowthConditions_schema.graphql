@@ -1,0 +1,185 @@
+"""
+_
+"""
+type NLPGrowthConditions {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    organism: [nlpGCProperties]
+    """
+    _
+    """
+    geneticBackground: [nlpGCProperties]
+    """
+    _
+    """
+    medium: [nlpGCProperties]
+    """
+    _
+    """
+    aeration: [nlpGCProperties]
+    """
+    _
+    """
+    temperature: [nlpGCProperties]
+    """
+    _
+    """
+    ph: [nlpGCProperties]
+    """
+    _
+    """
+    pressure: [nlpGCProperties]
+    """
+    _
+    """
+    opticalDensity: [nlpGCProperties]
+    """
+    _
+    """
+    growthPhase: [nlpGCProperties]
+    """
+    _
+    """
+    growthRate: [nlpGCProperties]
+    """
+    _
+    """
+    vesselType: [nlpGCProperties]
+    """
+    _
+    """
+    aerationSpeed: [nlpGCProperties]
+    """
+    _
+    """
+    mediumSupplements: [nlpGCProperties]
+    """
+    _
+    """
+    additionalProperties: [nlpGCAdditionalProperties]
+    """
+    _
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    temporalId: String
+}
+
+"""
+_
+"""
+type nlpGCProperties {
+    """
+    _
+    """
+    value: String
+    """
+    _
+    """
+    score: Int
+    """
+    _
+    """
+    associatedPhrase: String
+    """
+    _
+    """
+    nameField: String
+}
+
+"""
+_
+"""
+type nlpGCAdditionalProperties {
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    value: [nlpGCProperties]
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT NLP Growth Conditions
+    #### Name
+    getNLPGrowthConditionById
+    #### Description
+    Gets a specific NLP Growth Conditions document by an datasetID 
+    #### Example
+    ```json
+    {
+        getNLPGrowthConditionById(datasetId:"GENE_EXPRESSION_SRR057747")
+        {
+            _id
+            datasetIds
+            medium {
+                value
+                score
+                associatedPhrase
+            }
+            mediumSupplements{
+                value
+                score
+                associatedPhrase
+            }
+        }
+    }
+    ```
+    """
+    getNLPGrowthConditionById(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetId: String): NLPGrowthConditions
+
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT NLP Growth Conditions
+    #### Name
+    getNLPGrowthConditionBySearch
+    #### Description
+    Gets a specific NLP Growth Conditions document by an advancedSearch
+    #### Example
+    ```json
+    {
+        getNLPGrowthConditionBySearch(advancedSearch:"'0.3 % glucose'[mediumSupplements.value]")
+        {
+            _id
+            datasetIds
+            mediumSupplements{
+                value
+                score
+                associatedPhrase
+            }
+        }
+    }
+    ```
+    """
+    getNLPGrowthConditionBySearch(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    advancedSearch: String): [NLPGrowthConditions]
+}

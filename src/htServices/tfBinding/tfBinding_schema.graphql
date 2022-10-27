@@ -1,0 +1,275 @@
+"""
+_
+"""
+type DatasetTFBinding {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    chrLeftPosition: Int
+    """
+    _
+    """
+    chrRightPosition: Int
+    """
+    _
+    """
+    closestGenes: [TFClosestGenes]
+    """
+    _
+    """
+    foundRIs: [RIObjectType]
+    """
+    _
+    """
+    peakId: String
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    sequence: String
+    """
+    _
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    temporalId: String
+    """
+    _
+    """
+    nameCollection: String
+}
+
+"""
+_
+"""
+type RIObjectType {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    tfbsLeftPosition: Int
+    """
+    _
+    """
+    tfbsRightPosition: Int
+    """
+    _
+    """
+    relativeGeneDistance: Int
+    """
+    _
+    """
+    relativeTSSDistance: Int
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    sequence: String
+    """
+    _
+    """
+    citations: [TFBCitations]
+    """
+    _
+    """
+    origin: String
+}
+
+"""
+_
+"""
+type TFBCitations {
+	"""
+	_
+	"""
+	evidence: TFBEvidence
+	"""
+	_
+	"""
+	publication: TFBPublication
+}
+
+"""
+_
+"""
+type TFBEvidence {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
+}
+
+"""
+_
+"""
+type TFBPublication {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	authors: [String]
+	"""
+	_
+	"""
+	pmid: String
+	"""
+	_
+	"""
+	citation: String
+	"""
+	_
+	"""
+	url: String
+	"""
+	_
+	"""
+	title: String
+	"""
+	_
+	"""
+	year: Int
+}
+
+"""
+_
+"""
+type TFClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Float
+    """
+    _
+    """
+    transcriptionUnits: [simpleItemObject]
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT TFBinding
+    #### Name
+    getAllTFBindingOfDataset
+    #### Description
+    Gets all tfBinding docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTFBindingOfDataset(datasetId:"RHTECOLIBSD00336")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTFBindingOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to TFBinding
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [DatasetTFBinding]
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT TFBinding
+    #### Name
+    getTFBindingById
+    #### Description
+    Gets a TFBinding doc by an ID
+    #### Example
+    ```json
+    {
+        getTFBindingById(_id:"ECOLIBS000000001")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getTFBindingById( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): DatasetTFBinding
+}

@@ -1,0 +1,80 @@
+"""
+_
+"""
+type authorsData {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    authorsData: String
+    """
+    _
+    """
+    datasetIds: [String]
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT authorsData
+    #### Name
+    getAuthorsDataOfDataset
+    #### Description
+    Gets an authorsData docs linked to dataset
+    #### Example
+    ```json
+    {
+        getAuthorsDataOfDataset(datasetId:"RHTECOLIBSD00189")
+        {
+            _id
+            authorsData
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAuthorsDataOfDataset(  
+    """
+    #### Description
+    id of the dataset linket to authorsData
+    #### Required
+    Required
+    """
+    datasetId: String): [authorsData]
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT authorsData
+    #### Name
+    getAuthorsDataById
+    #### Description
+    Gets an authorsData doc by and ID
+    #### Example
+    ```json
+    {
+        getAuthorsDataById(_id:"ECOLIAD000000001")
+        {
+            _id
+            authorsData
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAuthorsDataById(
+        
+    """
+    #### Description
+    id of the AuthorsData
+    #### Required
+    Required
+    """
+    _id: String): authorsData
+}

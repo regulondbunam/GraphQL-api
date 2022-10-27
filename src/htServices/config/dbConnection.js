@@ -6,7 +6,7 @@ require('dotenv').config();
 //Connection to mongodb with .env credentials on .env file
 const conectarDB = async ()=>{
     try{
-        await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL_DATAMARTS}`,{
+        await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL_HT}`,{
             useUnifiedTopology: true,
             useNewUrlParser: true
         }); 

@@ -1,0 +1,199 @@
+"""
+_
+"""
+type GeneExpression {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    gene: GeneGe
+    """
+    _
+    """
+    count: Float
+    """
+    _
+    """
+    tpm: Float
+    """
+    _
+    """
+    fpkm: Float
+    """
+    _
+    """
+    temporalId: String
+}
+
+"""
+_
+"""
+type GeneGe {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    synonyms: [String]
+    """
+    _
+    """
+    bnumber: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Gene Expression
+    #### Name
+    getGeneExpressionById
+    #### Description
+    Get GeneExpression doc by an id
+    #### Example
+    ```json
+    {
+        getGeneExpressionById(_id:"SRR057747,b0001")
+        {
+            _id
+            gene {
+                _id
+                name
+                bnumber
+            }
+            tpm
+            datasetIds
+        }
+    }
+    ```
+    """
+    getGeneExpressionById(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): GeneExpression
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Gene Expression
+    #### Name
+    getAllGeneExpressionOfDataset
+    #### Description
+    Gets all GeneExpression docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllGeneExpressionOfDataset(datasetId:"GENE_EXPRESSION_SRR057747")
+        {
+            _id
+            gene {
+                _id
+                name
+                bnumber
+            }
+            fpkm
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllGeneExpressionOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to Gene Expression 
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [GeneExpression]
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Gene Expression
+    #### Name
+    getGeneExpressionFromSearch
+    #### Description
+    Get GeneExpression docs by an advancedSearch string (recommended for ranged queries in numerical fields)
+    #### Example
+    ```json
+    {
+        getGeneExpressionFromSearch(advancedSearch:"1000::2000[tpm] and 3500::4000[fpkm]" page: 0 limit: 10)
+        {
+            _id
+            gene {
+                _id
+                name
+                bnumber
+            }
+            tpm
+            datasetIds
+        }
+    }
+    ```
+    """
+    getGeneExpressionFromSearch(
+    """
+    #### Description
+    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+    #### Required
+    Required
+    """
+    advancedSearch: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 10, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [GeneExpression]
+}
