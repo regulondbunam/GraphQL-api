@@ -581,7 +581,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["gene.id", "gene.name", "gene.synonyms", "gene.type", "products.name"], 
+    properties: [String] = ["gene.id", "gene.name", "gene.synonyms", "gene.type", "gene.bnumber", "products.name"], 
     """
     #### Description
     usable for specific organismName queries (not available right now)
