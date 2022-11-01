@@ -1,0 +1,86 @@
+scalar Date
+
+type myType {
+    created: Date
+}
+
+type recentQuery {
+    _id: String
+    querySearchString: String
+    dateOfUse: Date
+    usedTimes: Int
+}
+
+type Query {
+    """
+    #### Type
+    Data
+    #### Service
+    Recent Queries
+    #### Name
+    getAllUsedQueries
+    #### Description
+    List all the previously used queries
+    #### Example
+    ```json
+    {
+        getAllUsedQueries
+        {
+            _id
+            querySearchString
+            dateOfUse
+            usedTimes
+        }
+    }
+    ```
+    """
+    getAllUsedQueries(
+        """
+        #### Description
+        defines the page results showed
+        #### Required
+        Optional
+        """
+        limit: Int = 10, 
+        """
+        #### Description
+        select the current result page
+        #### Required
+        Optional
+        """
+        page: Int = 0
+    ):[recentQuery]
+}
+
+type Mutation {"""
+    #### Type
+    Data
+    #### Service
+    Recent Queries
+    #### Name
+    addUsedQuery
+    #### Description
+    Add a new string of used query to collection, if query was used previously, increases usedTimes property
+    #### Example
+    ```json
+    {
+        addUsedQuery(querySearchString="usedString")
+        {
+            _id
+            querySearchString
+            dateOfUse
+            usedTimes
+        }
+    }
+    ```
+    """
+    addUsedQuery(
+        """
+        #### Description
+        Indicates string to be inserted in collection
+        #### Required
+        Required
+        """
+        querySearchString: String!
+    ): recentQuery
+}

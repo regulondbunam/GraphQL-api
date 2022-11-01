@@ -1,0 +1,159 @@
+"""
+_
+"""
+type HtTranscriptionUnit {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    leftEndPosition: Int
+    """
+    _
+    """
+    rightEndPosition: Int
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    strand: String
+    """
+    _
+    """
+    length: Int
+    """
+    _
+    """
+    termType: String
+    """
+    _
+    """
+    genes: [TUGenes]
+    """
+    _
+    """
+    phantom: Int
+    """
+    _
+    """
+    pseudo: Int
+    """
+    _
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    temporalId: String
+}
+
+"""
+_
+"""
+type TUGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    bnumber: String
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Unit
+    #### Name
+    getTUByID
+    #### Description
+    Get TranscriptionUnit by an id
+    #### Example
+    ```json
+    {
+        getTUByID(_id:"ECOLITU000000001")
+        {
+            _id
+            genes {
+                _id
+                name
+                bnumber
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getTUByID(
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): HtTranscriptionUnit
+    
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Transcription Unit
+    #### Name
+    getAllTransUnitsOfDataset
+    #### Description
+    Gets all Transcription Units docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllTransUnitsOfDataset(datasetId:"RHTECOLITUD00237")
+        {
+            _id
+            genes {
+                _id
+                name
+                bnumber
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllTransUnitsOfDataset(
+    """
+    #### Description
+    Id of the dataset associated to Transcription Unit
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [HtTranscriptionUnit]
+}

@@ -1,0 +1,150 @@
+"""
+_
+"""
+type Peaks {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    closestGenes: [PeaksClosestGenes]
+    """
+    _
+    """
+    chromosome: String
+    """
+    _
+    """
+    peakLeftPosition: Int
+    """
+    _
+    """
+    peakRightPosition: Int
+    """
+    _
+    """
+    score: Float
+    """
+    _
+    """
+    siteIds: [String]
+    """
+    –
+    """
+    datasetIds: [String]
+    """
+    _
+    """
+    temporalId: String
+}
+
+"""
+_
+"""
+type PeaksClosestGenes {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+	"""
+	_
+	"""
+	distanceTo: Float
+    """
+    _
+    """
+    productName: [String]
+}
+
+type Query {
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Peaks
+    #### Name
+    getAllPeaksOfDataset
+    #### Description
+    Gets all peaks docs associated to datasetID
+    #### Example
+    ```json
+    {
+        getAllPeaksOfDataset(datasetId:"RHTECOLIBSD00336")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getAllPeaksOfDataset( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    datasetId: String,
+    """
+    #### Description
+    defines the page results showed
+    #### Required
+    Optional
+    """
+    limit: Int = 0, 
+    """
+    #### Description
+    select the current result page
+    #### Required
+    Optional
+    """
+    page: Int = 0): [Peaks]
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Peaks
+    #### Name
+    getPeakById
+    #### Description
+    Gets a peak doc by an ID
+    #### Example
+    ```json
+    {
+        getPeakById(_id:"ECOLIPK000000001")
+        {
+            _id
+            closestGenes {
+                _id
+                name
+                distanceTo
+            }
+            datasetIds
+        }
+    }
+    ```
+    """
+    getPeakById( 
+    """
+    #### Description
+    Id of the required document in the query
+    #### Required
+    Required
+    """
+    _id: String): Peaks
+}

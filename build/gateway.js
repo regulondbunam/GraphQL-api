@@ -20,16 +20,16 @@ require('dotenv').config();
 
 // Getting env variables
 const PORT = process.env.GRAPHQL_GATEWAY_PORT || 4001;
-const CLOSED_SERVICES = process.env.GRAPHQL_CLOSED_SERVICES_PORT || 4002;
-const OPEN_SERVICES = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
-const HT_SERVICES_URL = process.env.HT_SERVICES_URL;
+const TOOLS_SERVICES = process.env.GRAPHQL_TOOLS_SERVICES_PORT || 4002;
+const DATA_SERVICES = process.env.GRAPHQL_DATA_SERVICES_PORT || 4003;
+const HT_SERVICES = process.env.GRAPHQL_HT_SERVICES_PORT || 4004;
 
 // Setting up the express app
 const app = (0, _express2.default)();
 
 // A first list with local services is defined, additional services will be be added to gateway once they are ready to solve queries
 var gateway;
-var services = [{ name: "openTools", url: `http://localhost:${OPEN_SERVICES}/graphql` }, { name: "closedTools", url: `http://localhost:${CLOSED_SERVICES}/graphql` }];
+var services = [{ name: "dataServices", url: `http://localhost:${DATA_SERVICES}/graphql` }, { name: "toolsServices", url: `http://localhost:${TOOLS_SERVICES}/graphql` }, { name: "htServices", url: `http://localhost:${HT_SERVICES}/graphql` }];
 
 // app is an instance of EventEmitter, in this case is added a event when emit sends "ready"
 app.on('ready', function () {
@@ -41,11 +41,7 @@ app.on('ready', function () {
 
 // Creates an apollo-fetch instance for testing connection to Open and HT Services Server
 let localFetch = (0, _apolloFetch.createApolloFetch)({
-  uri: `http://localhost:${OPEN_SERVICES}/graphql`
-});
-
-let htFetch = (0, _apolloFetch.createApolloFetch)({
-  uri: `${HT_SERVICES_URL}`
+  uri: `http://localhost:${DATA_SERVICES}/graphql`
 });
 
 // Defining a count
@@ -67,27 +63,10 @@ function test_services() {
   localFetch({
     query: queryExample
   }).then(res => {
-    htFetch({
-      query: queryExample
-    }).then(res => {
-      services.push({ name: "htServices", url: `${HT_SERVICES_URL}` });
-      console.log("HT Services are READY");
-      gateway = new _gateway.ApolloGateway({ supergraphSdl: new _gateway.IntrospectAndCompose({
-          subgraphs: services
-        }) });
-      app.emit("ready");
-    }).catch(e => {
-      count++;
-      if (count > 5) {
-        gateway = new _gateway.ApolloGateway({ supergraphSdl: new _gateway.IntrospectAndCompose({
-            subgraphs: services
-          }) });
-        console.log("Services are starting without HT services");
-        app.emit("ready");
-      } else {
-        console.log(`HT Services aren't ready, trying again in 5 seconds, ${count}/5`);
-      }
-    });
+    gateway = new _gateway.ApolloGateway({ supergraphSdl: new _gateway.IntrospectAndCompose({
+        subgraphs: services
+      }) });
+    app.emit("ready");
   }).catch(e => {
     console.log("Local Services aren't ready, trying again in 5 seconds");
   });

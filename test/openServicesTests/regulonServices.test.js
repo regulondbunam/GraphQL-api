@@ -7,7 +7,6 @@ describe('regulonService', () => {
             query{
                 getAllRegulon(limit: 5){
                     data{
-                    _id
                     transcriptionFactor{
                         name
                         encodedFrom{
@@ -31,7 +30,6 @@ describe('regulonService', () => {
         "getAllRegulon": {
             "data": [
                 {
-                  "_id": "RDBECOLITFC00217",
                   "transcriptionFactor": {
                     "name": "AccB",
                     "encodedFrom": {
@@ -49,7 +47,6 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00004",
                   "transcriptionFactor": {
                     "name": "AcrR",
                     "encodedFrom": {
@@ -67,7 +64,6 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00020",
                   "transcriptionFactor": {
                     "name": "Ada",
                     "encodedFrom": {
@@ -85,7 +81,6 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00098",
                   "transcriptionFactor": {
                     "name": "AdiY",
                     "encodedFrom": {
@@ -103,7 +98,6 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00172",
                   "transcriptionFactor": {
                     "name": "AgaR",
                     "encodedFrom": {
@@ -132,7 +126,6 @@ describe('regulonService', () => {
             query{
                 getRegulonBy(search: "agaR or araC"){
                     data{
-                    _id
                     transcriptionFactor{
                         name
                         encodedFrom{
@@ -156,7 +149,6 @@ describe('regulonService', () => {
         "getRegulonBy": {
             "data": [
                 {
-                  "_id": "RDBECOLITFC00172",
                   "transcriptionFactor": {
                     "name": "AgaR",
                     "encodedFrom": {
@@ -174,7 +166,6 @@ describe('regulonService', () => {
                   }
                 },
                 {
-                  "_id": "RDBECOLITFC00039",
                   "transcriptionFactor": {
                     "name": "AraC",
                     "encodedFrom": {
