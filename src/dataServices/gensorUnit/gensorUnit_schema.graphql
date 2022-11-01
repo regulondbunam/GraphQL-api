@@ -287,7 +287,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["gensorUnit._id", "gensorUnit.name"], 
+    properties: [String] = ["gensorUnit.id", "gensorUnit.name"], 
     """
     #### Description
     usable for specific organismName queries (not available right now)
