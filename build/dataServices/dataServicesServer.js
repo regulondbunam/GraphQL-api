@@ -107,7 +107,7 @@ const configApolloServer = async () => {
     });
 
     //Set an enviroment variable for the port (4000 by default)
-    const PORT = process.env.GRAPHQL_OPEN_SERVICES_PORT || 4003;
+    const PORT = process.env.GRAPHQL_DATA_SERVICES_PORT || 4003;
 
     //Server start
     const servExpress = app.listen(PORT);
