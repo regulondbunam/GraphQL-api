@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { citationsSchema, organismSchema } from '../common/general_model';
+import { citationsSchema, organismSchema, aditiveEvidencesSchema } from '../common/general_model';
 
 const tusEncodingRegulatorSchema = new mongoose.Schema({
   transcriptionUnitName: String, 
@@ -30,7 +30,9 @@ const ConformationsSchema = new mongoose.Schema({
   type: String,
   effectorInteractionType: String,
   citations: [citationsSchema],
-  functionalType: String
+  functionalType: String,
+  additiveEvidences: [aditiveEvidencesSchema],
+  confidenceLevel: String
 })
 
 const productsSchema = new mongoose.Schema({
@@ -51,7 +53,9 @@ const transcriptionFactorSchema = new mongoose.Schema({
   products: [productsSchema],
   symmetry: String,
   siteLength: String,
-  family: String
+  family: String,
+  additiveEvidences: [aditiveEvidencesSchema],
+  confidenceLevel: String
 });
 
 const GeneTermSchema = new mongoose.Schema({
@@ -164,7 +168,9 @@ const regulatoryInteractionsSchema = ({
     name: String
   }],
   regulatoryBindingSites: regulatoryBindingSitesSchema,
-  citations: [citationsSchema]
+  citations: [citationsSchema],
+  additiveEvidences: [aditiveEvidencesSchema],
+  confidenceLevel: String
 });
 
 const aligmentMatrixSchema = ({

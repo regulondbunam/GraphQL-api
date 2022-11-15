@@ -109,6 +109,14 @@ type TranscriptionFactor {
 	_
 	"""
 	family: String
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """
@@ -167,6 +175,14 @@ type Conformations {
 	_
 	"""
 	functionalType: String
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """
@@ -487,6 +503,14 @@ type RegulonRegulatoryInteractions {
 	_
 	"""
 	citations: [Citations]
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """

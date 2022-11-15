@@ -1,10 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 
 const evidenceSchema = new mongoose.Schema({
 	id: String,
 	name: String,
 	code: String,
-	type: String
+	type: String,
+	additiveEvidenceCodeRule: Number
 });
 
 export const citationsSchema = new mongoose.Schema({
@@ -30,4 +31,10 @@ export const externalCrossReferencesSchema = new mongoose.Schema({
 export const organismSchema = new mongoose.Schema({
 	id: String,
 	name: String
+});
+
+export const aditiveEvidencesSchema = new mongoose.Schema({
+	category: String,
+	code: String,
+	type: String
 });
