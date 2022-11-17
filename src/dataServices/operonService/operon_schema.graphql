@@ -147,6 +147,14 @@ type TranscriptionUnits {
 	_
 	"""
 	statistics: TranscriptionUnitStatistics
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 """
 _
@@ -241,6 +249,14 @@ type Promoter {
 	_
 	"""
 	transcriptionStartSite: TranscriptionStartSite
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 
@@ -438,6 +454,14 @@ type Terminators {
 	_
 	"""
 	transcriptionTerminationSite: TranscriptionTerminationSite
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """

@@ -92,7 +92,9 @@ const promotersSchema = new _mongoose2.default.Schema({
     sequence: String,
     synonyms: [String],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    transcriptionStartSite: tssSchema
+    transcriptionStartSite: tssSchema,
+    additiveEvidences: [_general_model.aditiveEvidencesSchema],
+    confidenceLevel: String
 });
 
 const transcriptionTerminationSiteSchema = new _mongoose2.default.Schema({
@@ -123,10 +125,14 @@ const transcriptionUnitsSchema = new _mongoose2.default.Schema({
         class: String,
         citations: [_general_model.citationsSchema],
         sequence: String,
-        transcriptionTerminationSite: transcriptionTerminationSiteSchema
+        transcriptionTerminationSite: transcriptionTerminationSiteSchema,
+        additiveEvidences: [_general_model.aditiveEvidencesSchema],
+        confidenceLevel: String
     }],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    statistics: transcriptionUnitStatisticsSchema
+    statistics: transcriptionUnitStatisticsSchema,
+    additiveEvidences: [_general_model.aditiveEvidencesSchema],
+    confidenceLevel: String
 });
 
 const operonServiceSchema = new _mongoose2.default.Schema({
