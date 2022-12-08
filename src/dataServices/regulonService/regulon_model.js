@@ -91,20 +91,22 @@ const firstGeneSchema = new mongoose.Schema({
   name: String,
 });
 
+const regulatedGenesSchema = new mongoose.Schema(
+  {
+    id: String,
+    name: String,
+    function: String,
+    terms: termsSchema,
+  });
+
 const regulatesSchema = new mongoose.Schema({
-  genes: [
-    {
-      id: String,
-      name: String,
-      function: String,
-      terms: termsSchema,
-    },
-  ],
+  genes: [regulatedGenesSchema],
   transcriptionFactors: [
     {
       id: String,
       name: String,
       function: String,
+      genes: [regulatedGenesSchema]
     },
   ],
   transcriptionUnits: [
@@ -113,6 +115,10 @@ const regulatesSchema = new mongoose.Schema({
       name: String,
       function: String,
       firstGene: firstGeneSchema,
+      promoter: {
+        id: String,
+        name: String,
+      }
     },
   ],
   operons: [
@@ -128,7 +134,7 @@ const regulatesSchema = new mongoose.Schema({
       id: String,
       name: String,
       function: String,
-      firstGene: firstGeneSchema,
+      gene: firstGeneSchema,
     },
   ],
 });

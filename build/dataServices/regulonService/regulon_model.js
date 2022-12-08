@@ -103,23 +103,30 @@ const firstGeneSchema = new _mongoose2.default.Schema({
   name: String
 });
 
+const regulatedGenesSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String,
+  function: String,
+  terms: termsSchema
+});
+
 const regulatesSchema = new _mongoose2.default.Schema({
-  genes: [{
-    id: String,
-    name: String,
-    function: String,
-    terms: termsSchema
-  }],
+  genes: [regulatedGenesSchema],
   transcriptionFactors: [{
     id: String,
     name: String,
-    function: String
+    function: String,
+    genes: [regulatedGenesSchema]
   }],
   transcriptionUnits: [{
     id: String,
     name: String,
     function: String,
-    firstGene: firstGeneSchema
+    firstGene: firstGeneSchema,
+    promoter: {
+      id: String,
+      name: String
+    }
   }],
   operons: [{
     id: String,
@@ -131,7 +138,7 @@ const regulatesSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
     function: String,
-    firstGene: firstGeneSchema
+    gene: firstGeneSchema
   }]
 });
 
