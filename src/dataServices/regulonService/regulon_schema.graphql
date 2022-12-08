@@ -109,6 +109,14 @@ type TranscriptionFactor {
 	_
 	"""
 	family: String
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """
@@ -167,6 +175,14 @@ type Conformations {
 	_
 	"""
 	functionalType: String
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """
@@ -369,6 +385,10 @@ type RegulatedTranscriptionFactors {
 	_
 	"""
 	function: String
+	"""
+	_
+	"""
+	genes: [RegulatedGenes]
 }
 
 """
@@ -391,6 +411,10 @@ type RegulatedTranscriptionUnits {
 	_
 	"""
 	firstGene: RegulatedFirstGene
+	"""
+	_
+	"""
+	promoter: RegTUPromoter
 }
 
 """
@@ -434,13 +458,27 @@ type RegulatedSigmaFactors {
 	"""
 	_
 	"""
-	firstGene: RegulatedFirstGene
+	gene: RegulatedFirstGene
 }
 
 """
 _
 """
 type RegulatedFirstGene {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+}
+
+"""
+_
+"""
+type RegTUPromoter {
 	"""
 	_
 	"""
@@ -487,6 +525,14 @@ type RegulonRegulatoryInteractions {
 	_
 	"""
 	citations: [Citations]
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
+	"""
+	_
+	"""
+	confidenceLevel: String
 }
 
 """

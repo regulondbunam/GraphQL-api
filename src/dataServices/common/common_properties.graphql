@@ -61,6 +61,10 @@ type Evidence {
 	_
 	"""
 	type: String
+	"""
+	_
+	"""
+	additiveEvidenceCodeRule: Int
 }
 
 """
@@ -255,4 +259,20 @@ type Pagination {
 	Tells to user if there is another page of results
 	"""
 	hasNextPage: Boolean
+}
+
+
+type AdditiveEvidences {
+	"""
+	_
+	"""
+	category: String
+	"""
+	_
+	"""
+	code: String
+	"""
+	_
+	"""
+	type: String
 }

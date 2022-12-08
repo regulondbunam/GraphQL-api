@@ -79,6 +79,10 @@ type Evidence {
 	_
 	"""
 	type: String
+	"""
+	_
+	"""
+	additiveEvidenceCodeRule: Int
 }
 
 """

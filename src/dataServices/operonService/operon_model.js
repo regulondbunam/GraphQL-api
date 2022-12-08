@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { citationsSchema, organismSchema} from '../common/general_model';
+import { citationsSchema, organismSchema, aditiveEvidencesSchema} from '../common/general_model';
 
 const RegulatorBindingSitesSchema = new mongoose.Schema({
     regulator: {
@@ -82,7 +82,9 @@ const promotersSchema = new mongoose.Schema({
     sequence: String,
     synonyms: [String],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    transcriptionStartSite: tssSchema
+    transcriptionStartSite: tssSchema,
+    additiveEvidences: [aditiveEvidencesSchema],
+    confidenceLevel: String
 });
 
 const transcriptionTerminationSiteSchema = new mongoose.Schema ({
@@ -116,11 +118,15 @@ const transcriptionUnitsSchema = new mongoose.Schema({
             class: String,
             citations: [citationsSchema],
             sequence: String,
-            transcriptionTerminationSite: transcriptionTerminationSiteSchema
+            transcriptionTerminationSite: transcriptionTerminationSiteSchema,
+            additiveEvidences: [aditiveEvidencesSchema],
+            confidenceLevel: String
         }
     ],
     regulatorBindingSites: [RegulatorBindingSitesSchema],
-    statistics: transcriptionUnitStatisticsSchema
+    statistics: transcriptionUnitStatisticsSchema,
+    additiveEvidences: [aditiveEvidencesSchema],
+    confidenceLevel: String
 });
 
 const operonServiceSchema = new mongoose.Schema({

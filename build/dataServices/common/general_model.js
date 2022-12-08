@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.organismSchema = exports.externalCrossReferencesSchema = exports.citationsSchema = undefined;
+exports.aditiveEvidencesSchema = exports.organismSchema = exports.externalCrossReferencesSchema = exports.citationsSchema = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -15,7 +15,8 @@ const evidenceSchema = new _mongoose2.default.Schema({
 	id: String,
 	name: String,
 	code: String,
-	type: String
+	type: String,
+	additiveEvidenceCodeRule: Number
 });
 
 const citationsSchema = exports.citationsSchema = new _mongoose2.default.Schema({
@@ -41,4 +42,10 @@ const externalCrossReferencesSchema = exports.externalCrossReferencesSchema = ne
 const organismSchema = exports.organismSchema = new _mongoose2.default.Schema({
 	id: String,
 	name: String
+});
+
+const aditiveEvidencesSchema = exports.aditiveEvidencesSchema = new _mongoose2.default.Schema({
+	category: String,
+	code: String,
+	type: String
 });

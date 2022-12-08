@@ -42,7 +42,9 @@ const ConformationsSchema = new _mongoose2.default.Schema({
   type: String,
   effectorInteractionType: String,
   citations: [_general_model.citationsSchema],
-  functionalType: String
+  functionalType: String,
+  additiveEvidences: [_general_model.aditiveEvidencesSchema],
+  confidenceLevel: String
 });
 
 const productsSchema = new _mongoose2.default.Schema({
@@ -63,7 +65,9 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   products: [productsSchema],
   symmetry: String,
   siteLength: String,
-  family: String
+  family: String,
+  additiveEvidences: [_general_model.aditiveEvidencesSchema],
+  confidenceLevel: String
 });
 
 const GeneTermSchema = new _mongoose2.default.Schema({
@@ -99,23 +103,30 @@ const firstGeneSchema = new _mongoose2.default.Schema({
   name: String
 });
 
+const regulatedGenesSchema = new _mongoose2.default.Schema({
+  id: String,
+  name: String,
+  function: String,
+  terms: termsSchema
+});
+
 const regulatesSchema = new _mongoose2.default.Schema({
-  genes: [{
-    id: String,
-    name: String,
-    function: String,
-    terms: termsSchema
-  }],
+  genes: [regulatedGenesSchema],
   transcriptionFactors: [{
     id: String,
     name: String,
-    function: String
+    function: String,
+    genes: [regulatedGenesSchema]
   }],
   transcriptionUnits: [{
     id: String,
     name: String,
     function: String,
-    firstGene: firstGeneSchema
+    firstGene: firstGeneSchema,
+    promoter: {
+      id: String,
+      name: String
+    }
   }],
   operons: [{
     id: String,
@@ -127,7 +138,7 @@ const regulatesSchema = new _mongoose2.default.Schema({
     id: String,
     name: String,
     function: String,
-    firstGene: firstGeneSchema
+    gene: firstGeneSchema
   }]
 });
 
@@ -166,7 +177,9 @@ const regulatoryInteractionsSchema = {
     name: String
   }],
   regulatoryBindingSites: regulatoryBindingSitesSchema,
-  citations: [_general_model.citationsSchema]
+  citations: [_general_model.citationsSchema],
+  additiveEvidences: [_general_model.aditiveEvidencesSchema],
+  confidenceLevel: String
 };
 
 const aligmentMatrixSchema = {
