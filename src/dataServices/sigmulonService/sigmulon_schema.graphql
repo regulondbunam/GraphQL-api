@@ -47,49 +47,21 @@ type SigmaFactor {
 	"""
 	_
 	"""
-    gene: SigmaFactorGene
+    gene: SimpleTypeSigma
 	"""
 	_
 	"""
-    sigmulonRegulators:[SigmulonRegulators]
+    sigmulonRegulators:[SimpleTypeSigma]
 	"""
 	_
 	"""
-    sigmulonGenes: [SigmulonGenes]
+    sigmulonGenes: [SimpleTypeSigma]
 }
 
 """
 _
 """
-type SigmaFactorGene {
-	"""
-	_
-	"""
-    _id: String
-	"""
-	_
-	"""
-    name: String
-}
-
-"""
-_
-"""
-type SigmulonRegulators {
-	"""
-	_
-	"""
-    _id: String
-	"""
-	_
-	"""
-    name: String
-}
-
-"""
-_
-"""
-type SigmulonGenes {
+type SimpleTypeSigma {
 	"""
 	_
 	"""

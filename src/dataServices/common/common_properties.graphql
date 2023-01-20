@@ -217,18 +217,29 @@ type BiologicalProcess {
 	productsIds: [String]
 }
 
+type simpleType {
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
+}
+
 """
 _
 """
 type Organism {
-  """
-  _
-  """
-  id: String
-  """
-  _
-  """
-  name: String
+	"""
+	_
+	"""
+	id: String
+	"""
+	_
+	"""
+	name: String
 }
 
 """

@@ -410,11 +410,11 @@ type RegulatedTranscriptionUnits {
 	"""
 	_
 	"""
-	firstGene: RegulatedFirstGene
+	firstGene: simpleType
 	"""
 	_
 	"""
-	promoter: RegTUPromoter
+	promoter: simpleType
 }
 
 """
@@ -436,7 +436,7 @@ type RegulatedOperons {
 	"""
 	_
 	"""
-	firstGene: RegulatedFirstGene
+	firstGene: simpleType
 }
 
 """
@@ -458,35 +458,7 @@ type RegulatedSigmaFactors {
 	"""
 	_
 	"""
-	gene: RegulatedFirstGene
-}
-
-"""
-_
-"""
-type RegulatedFirstGene {
-	"""
-	_
-	"""
-	id: String
-	"""
-	_
-	"""
-	name: String
-}
-
-"""
-_
-"""
-type RegTUPromoter {
-	"""
-	_
-	"""
-	id: String
-	"""
-	_
-	"""
-	name: String
+	gene: simpleType
 }
 
 """
@@ -516,7 +488,7 @@ type RegulonRegulatoryInteractions {
 	"""
 	_
 	"""
-	regulatedGenes: [RegulatedGenesByRegulator]
+	regulatedGenes: [simpleType]
 	"""
 	_
 	"""
@@ -587,20 +559,6 @@ type RegulatedEntity {
 	_
 	"""
 	type: String
-	"""
-	_
-	"""
-	name: String
-}
-
-"""
-_
-"""
-type RegulatedGenesByRegulator {
-	"""
-	_
-	"""
-	id: String, 
 	"""
 	_
 	"""
