@@ -38,7 +38,9 @@ const dbInfo = _fs2.default.readFileSync('./src/dataServices/dbInfoService/dbInf
 
 const recentQueries = _fs2.default.readFileSync('./src/dataServices/recentQueriesService/recentQueriesSchema.graphql').toString();
 
-const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries];
+const listPage = _fs2.default.readFileSync('./src/dataServices/listPageService/listPageSchema.graphql').toString();
+
+const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries, listPage];
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 const typeDefs = exports.typeDefs = (0, _merge.mergeTypeDefs)(types);
