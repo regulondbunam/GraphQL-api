@@ -30,7 +30,7 @@ type CoexpressionData {
     """
     organism information
     """
-    organism: CoexpressionOrganism
+    organism: Organism
 }
 
 type CoexpressedGenes{
@@ -47,20 +47,6 @@ type CoexpressedGenes{
     tag of the gene
     """
     locusTag: String
-}
-
-"""
-OrganismType contains the information of the organism 
-"""
-type CoexpressionOrganism {
-    """
-    id of the organism
-    """
-    _id: String
-    """
-    name of the organism
-    """
-    name: String
 }
 
 type Query {

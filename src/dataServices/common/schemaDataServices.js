@@ -26,7 +26,9 @@ const dbInfo = fs.readFileSync('./src/dataServices/dbInfoService/dbInfo_schema.g
 
 const recentQueries = fs.readFileSync('./src/dataServices/recentQueriesService/recentQueriesSchema.graphql').toString()
 
-const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries]
+const listPage = fs.readFileSync('./src/dataServices/listPageService/listPageSchema.graphql').toString()
+
+const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries, listPage]
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 export const typeDefs = mergeTypeDefs(types);

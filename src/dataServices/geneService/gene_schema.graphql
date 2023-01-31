@@ -352,15 +352,15 @@ type Arrangement {
   """
   _
   """
-  regulator: [Regulators]
+  regulators: [Regulators]
   """
   _
   """
-  promoters: [Promoter]
+  promoters: [simpleType]
   """
   _
   """
-  transcriptionUnit: TranscriptionUnit
+  transcriptionUnit: simpleType
 }
 
   """
@@ -383,34 +383,6 @@ type Regulators {
   _
   """
   function: String
-}
-
-  """
-  _
-  """
-type Promoter {
-  """
-  _
-  """
-  id: String
-  """
-  _
-  """
-  name: String
-}
-
-  """
-  _
-  """
-type TranscriptionUnit {
-  """
-  _
-  """
-  id: String
-  """
-  _
-  """
-  name: String
 }
 
 """

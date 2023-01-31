@@ -117,57 +117,15 @@ type GUGeneOntology {
     """
     _
     """
-    cellularComponent: [GUCellularComponent]
+    cellularComponent: [simpleType]
     """
     _
     """
-    molecularFunction: [GUMolecularFunction]
+    molecularFunction: [simpleType]
     """
     _
     """
-    biologicalProcess: [GUBiologicalProcess]
-}
-
-"""
-_
-"""
-type GUCellularComponent {
-	"""
-	_
-	"""
-	_id: String
-	"""
-	_
-	"""
-	name: String
-}
-
-"""
-_
-"""
-type GUMolecularFunction {
-	"""
-	_
-	"""
-	_id: String
-	"""
-	_
-	"""
-	name: String
-}
-
-"""
-_
-"""
-type GUBiologicalProcess {
-	"""
-	_
-	"""
-	_id: String
-	"""
-	_
-	"""
-	name: String
+    biologicalProcess: [simpleType]
 }
 
 type GUResult { 

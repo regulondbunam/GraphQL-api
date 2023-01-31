@@ -106,8 +106,8 @@ const regulationSchema = new _mongoose2.default.Schema({
 		id: String,
 		name: String,
 		arrangement: [{
-			regulator: [regulatorsSchema],
-			promoter: [{
+			regulators: [regulatorsSchema],
+			promoters: [{
 				id: String,
 				name: String
 			}],

@@ -120,7 +120,7 @@ type srnaRegulatoryInteractions {
 	"""
 	_
 	"""
-    distanceToGene: Int
+    distanceToGene: Float
 	"""
 	_
 	"""

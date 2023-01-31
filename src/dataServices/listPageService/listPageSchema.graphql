@@ -1,0 +1,69 @@
+type regulonList {
+	"""
+	_
+	"""
+    _id: String
+	"""
+	_
+	"""
+    name: String
+	"""
+	_
+	"""
+    synonyms: [String]
+	"""
+	_
+	"""
+    productsName: [String]
+	"""
+	_
+	"""
+    encodedGenes: [String]
+	"""
+	_
+	"""
+    statistics: ListServiceStatistics
+	"""
+	_
+	"""
+    sigmulonGeneName: String
+	"""
+	_
+	"""
+    datamartType: String
+}
+
+type ListServiceStatistics {
+	"""
+	_
+	"""
+    genes: Int
+	"""
+	_
+	"""
+    transcriptionFactors: Int
+	"""
+	_
+	"""
+    promoters: Int
+	"""
+	_
+	"""
+    transcriptionUnits: Int
+	"""
+	_
+	"""
+    cotranscriptionFactors: Int
+	"""
+	_
+	"""
+    sigmaFactors: Int
+	"""
+	_
+	"""
+    sites: Int
+}
+
+type Query {
+    getObjectList(datamartType: String!): [regulonList]
+}
