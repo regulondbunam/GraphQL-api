@@ -42,7 +42,7 @@ import { listPageController } from './listPageController';
 
 export const listPageResolver = {
   Query: {
-    getPageList: (root, {datamartType}) => listPageController.getPageList(datamartType),
+    getObjectList: (root, {datamartType}) => listPageController.getObjectList(datamartType),
   },
 };
  

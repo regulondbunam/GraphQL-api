@@ -65,5 +65,5 @@ type ListServiceStatistics {
 }
 
 type Query {
-    getPageList(datamartType: String!): [regulonList]
+    getObjectList(datamartType: String!): [regulonList]
 }

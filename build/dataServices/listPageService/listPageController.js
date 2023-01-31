@@ -8,7 +8,7 @@ exports.listPageController = undefined;
 var _listPageModel = require("./listPageModel");
 
 class listPageController {
-    static async getPageList(datamartType) {
+    static async getObjectList(datamartType) {
         return _listPageModel.ListPage.find({ "datamartType": datamartType }).sort({ 'name': 1 });
     }
 }

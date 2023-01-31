@@ -9,7 +9,7 @@ var _listPageController = require('./listPageController');
 
 const listPageResolver = exports.listPageResolver = {
   Query: {
-    getPageList: (root, { datamartType }) => _listPageController.listPageController.getPageList(datamartType)
+    getObjectList: (root, { datamartType }) => _listPageController.listPageController.getObjectList(datamartType)
   }
 }; /**
    # ["" Service Resolver]
