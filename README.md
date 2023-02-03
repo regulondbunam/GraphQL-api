@@ -1,5 +1,8 @@
 # RegulonDB-WS GraphQL API
 
+![License](https://img.shields.io/badge/license-ISC-brightgreen?style=plastic)
+![RegulonDBVersion](https://img.shields.io/badge/RegulonDB_version-11.1-blue?style=plastic&link=https://regulondb.ccg.unam.mx/)
+![Status](https://img.shields.io/badge/status-in_development-yellowgreen?style=plastic)
 
 # Description
 
@@ -12,7 +15,8 @@ Functional services currently:
     - Phrases
     - Sigmulon
     - SRNA
-    - Gensor Unit (**New**, not available for use) 
+    - Gensor Unit
+    - List Object (**New**) 
 - Tools
     - Coexpression
     - DrawingTracesTool (dnaFeatures)
