@@ -31,6 +31,10 @@ type regulonList {
 	_
 	"""
     datamartType: String
+	"""
+	_
+	"""
+    summary: SrnaSummary
 }
 
 type ListServiceStatistics {

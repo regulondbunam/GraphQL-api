@@ -134,36 +134,6 @@ type srnaRegulatoryInteractions {
 """
 _
 """
-type SrnaSummary {
-	"""
-	_
-	"""
-	genes: SummaryObject
-	"""
-	_
-	"""
-	transcriptionFactors: SummaryObject
-	"""
-	_
-	"""
-	transcriptionUnits: SummaryObject
-	"""
-	_
-	"""
-	sigmaFactors: SummaryObject
-	"""
-	_
-	"""
-	bindingSites: SummaryObject
-	"""
-	_
-	"""
-	regulatoryInteractions: SummaryObject
-}
-
-"""
-_
-"""
 type srnaDatamart { 
   """
   contains server response
