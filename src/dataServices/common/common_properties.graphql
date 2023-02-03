@@ -231,6 +231,36 @@ type simpleType {
 """
 _
 """
+type SrnaSummary {
+	"""
+	_
+	"""
+	genes: SummaryObject
+	"""
+	_
+	"""
+	transcriptionFactors: SummaryObject
+	"""
+	_
+	"""
+	transcriptionUnits: SummaryObject
+	"""
+	_
+	"""
+	sigmaFactors: SummaryObject
+	"""
+	_
+	"""
+	bindingSites: SummaryObject
+	"""
+	_
+	"""
+	regulatoryInteractions: SummaryObject
+}
+
+"""
+_
+"""
 type Organism {
 	"""
 	_
