@@ -2,6 +2,111 @@
 
 All notable changes in this project will be documented in this file
 
+## [1.5.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.5.2) - 2023-02-14
+
+### Updated
+- Added a type property on overview service in data.objectsRelated
+
+## [1.5.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.5.1) - 2023-02-02
+
+### Updated
+- Added capability of retrieve srna objets for list
+
+### Fix
+- Minor bugs solved
+
+## [1.5.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.5.0) - 2023-01-30
+
+### New 
+- A service to list a resume of docs in all datamarts were added as listPage Service, the query is named getObjectList and retrives a list of docs of specific datamart in alphabetical order with the necessary info for list
+
+### Update
+- Some types were dupplicated in most datamarts, this dupplicated were optimized to few types for definition in schemas to improve code maintenance
+
+## [1.4.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.4.0) - 2022-12-08
+
+### New
+- Added a first version of additive Evidences in Regulon and Operon services.
+
+### Update
+- Added new properties on Regulon Service that previously versions doesn't contains.
+
+## [1.3.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.3.0) - 2022-11-01
+
+### New 
+- Merge with [RegulonDBHT API Services](https://github.com/regulondbunam/RegulonDBHT-API)
+- Added services to insert and query the previously used queries strings.
+
+### Updated
+- Added bnumber to gene service to be queried by text search
+
+### Fix
+- Solved a bug related to Gensor Unite Services
+
+## [1.2.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.2.2) - 2022-09-26
+
+### Fix
+- Solved a bug related to an incorrectly named property
+
+### Update
+- Updated mongodb-filter-object-parser library
+
+## [1.2.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.2.1) - 2022-09-02
+
+### Update
+- Added Gensor Unit services in list as available service.
+
+### Fix
+- Solved some properties with a wrong name in dbInfo Services
+- Minor bugs fixed
+
+## [1.2.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.2.0) - 2022-09-02
+
+### New
+- Added a first version of databaseInfo services, this services allows to user to known the metadata of the Regulon Datamarts data and all sources used to contain it.
+
+### Update
+- Some models as Gene and Regulon were updated to allow new properties used in new requiriments of RegulonDB Web App
+- Libraries updated
+
+### Fix
+- Some bugs related to wrong data of responses were fixed
+- Minor bugs fixed
+
+## [1.1.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.1.2) - 2022-06-21
+
+### Fix 
+- Solved a bug related to incorrect type of property in Gene Service
+
+### Update
+- Added a new service to obtain all phrases associated to all Id's in object
+
+## [1.1.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.1.1) - 2022-06-08
+
+### Update
+- Added continuants property on Regulon Service in regulatoryInteraction.regulator
+- Bug fixes
+
+## [1.1.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.1.0) - 2022-06-03
+
+### Update
+- OpenServices and ClosedServices folders were renamed to Data and Tools respectively for better understanding of folder structure
+- Schema and model of coexpression were updated, services are now correctly functional for deploy
+- Moved Gensor Unit services from tools to data
+
+### Fix
+- Minor bugs were solved
+
+## [1.0.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.2) - 2022-04-21
+
+### Update
+- Added products objects of Transcription Factor on Regulon Datamart
+
+## [1.0.1](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.1) - 2022-03-07
+
+### Fix
+- A bug related to asynchronous functions for mongoose was solved, now Queries are correctly functional again
+
 ## [1.0.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.0.0) - 2022-03-07
 
 ### Fix
