@@ -105,6 +105,10 @@ type objectsRelatedType {
   name contiene el nombre de cada elemento que ha sido agrupado
   """
   name: String
+  """
+  Indicates the object type (gene, product, etc.)
+  """
+  type: String
 }
 
 type Query {

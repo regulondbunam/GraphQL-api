@@ -55,6 +55,7 @@ const overviewInformationObject = new mongoose.Schema({
           {
             _id: String,
             name: String,
+            type: String
           },
         ],
       },
