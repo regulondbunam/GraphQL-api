@@ -34,6 +34,12 @@ RegulonDB Team: EDGAR ENRRIQUE HERNANDEZ MARCELO
 import mongoose from 'mongoose';
 //Importamos el modulo de mongoose para poder crear un schema 
 
+const objectsRelatedSchema = new mongoose.Schema({
+  _id: String,
+  name: String,
+  type: String
+});
+
 //Generamos el schema con los mismos campos, tipos de datos y nombre de las variables definidas en nuestro .graphql
 const overviewInformationObject = new mongoose.Schema({
     _id: String,
@@ -51,13 +57,7 @@ const overviewInformationObject = new mongoose.Schema({
       {
         xAxis: Number,
         yAxis: Number,
-        objectsRelated: [
-          {
-            _id: String,
-            name: String,
-            type: String
-          },
-        ],
+        objectsRelated: [objectsRelatedSchema],
       },
     ],
   });
