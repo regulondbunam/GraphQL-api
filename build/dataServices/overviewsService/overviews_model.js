@@ -31,7 +31,8 @@ const overviewInformationObject = new _mongoose2.default.Schema({
     yAxis: Number,
     objectsRelated: [{
       _id: String,
-      name: String
+      name: String,
+      type: String
     }]
   }]
 });
