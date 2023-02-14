@@ -13,32 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //Importamos el modulo de mongoose para poder crear un schema 
 
-//Generamos el schema con los mismos campos, tipos de datos y nombre de las variables definidas en nuestro .graphql
-const overviewInformationObject = new _mongoose2.default.Schema({
+const objectsRelatedSchema = new _mongoose2.default.Schema({
   _id: String,
-  queryName: String,
-  objectType: String,
-  graph: {
-    title: String,
-    description: String,
-    labelX: String,
-    labelY: String,
-    footGraph: String,
-    graphType: String
-  },
-  data: [{
-    xAxis: Number,
-    yAxis: Number,
-    objectsRelated: [{
-      _id: String,
-      name: String,
-      type: String
-    }]
-  }]
+  name: String,
+  type: String
 });
 
-//Creamos un modelo de nuestro schema, con el modulo mongoo.model y agregando el nombre de la base de datos a la cual se conectará
-//y enviandole nuestro Schema generado anteriormente, ya que deberá existir esa misma coleccion en mongo y podrémos obtener todos esos datos
+//Generamos el schema con los mismos campos, tipos de datos y nombre de las variables definidas en nuestro .graphql
 /**
 # Overviews Model
 
@@ -72,6 +53,27 @@ MIT License
 
 RegulonDB Team: EDGAR ENRRIQUE HERNANDEZ MARCELO
 **/
+const overviewInformationObject = new _mongoose2.default.Schema({
+  _id: String,
+  queryName: String,
+  objectType: String,
+  graph: {
+    title: String,
+    description: String,
+    labelX: String,
+    labelY: String,
+    footGraph: String,
+    graphType: String
+  },
+  data: [{
+    xAxis: Number,
+    yAxis: Number,
+    objectsRelated: [objectsRelatedSchema]
+  }]
+});
+
+//Creamos un modelo de nuestro schema, con el modulo mongoo.model y agregando el nombre de la base de datos a la cual se conectará
+//y enviandole nuestro Schema generado anteriormente, ya que deberá existir esa misma coleccion en mongo y podrémos obtener todos esos datos
 const Overviews = _mongoose2.default.model('overviews', overviewInformationObject); //Cambiar geneDatamarts por la variable
 exports.Overviews = Overviews;
 
