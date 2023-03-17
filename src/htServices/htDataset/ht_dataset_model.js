@@ -125,6 +125,17 @@ const htDatasetSchema = new mongoose.Schema({
     externalReferences: [externalReferencesSchema]
 });
 
+const metadataSchema = new mongoose.Schema({
+    _id: String,
+    datasetType: String,
+    metadataContent: String,
+    status: String
+})
+
 const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 
 export { HTDataset };
+
+const MetadataCollection = mongoose.model('dataset_metadata', metadataSchema, "metadata");
+
+export { MetadataCollection };

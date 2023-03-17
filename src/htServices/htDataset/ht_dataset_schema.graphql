@@ -7,6 +7,42 @@
 # top of it by triple double quotes like """this is a description""" replacing
 # the underscore with the description text
 
+"""
+_
+"""
+type htDatasets {
+    """
+    _
+    """
+    datasets: [Dataset]
+    """
+    _
+    """
+    metadata: MetadataType
+}
+
+"""
+_
+"""
+type MetadataType {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    datasetType: String
+    """
+    _
+    """
+    metadataContent: String
+    """
+    _
+    """
+    status: String
+}
+
 """ 
 This is a Dataset type
 """
@@ -490,4 +526,41 @@ type Query {
     Required
     """
     advancedSearch: String): [Dataset]
+
+    """
+    #### Type
+    HT Data
+    #### Service
+    HT Dataset
+    #### Name
+    getDatasetsWithMetadata
+    #### Description
+    Gets a specific dataset document by an datasetID 
+    #### Example
+    ```json
+    {
+        getDatasetsWithMetadata
+        {
+            datasets{
+                _id
+                objectsTested {
+                    _id
+                    name
+                    note
+                }
+            }
+            metadata
+        }
+    }
+    ```
+    """
+    getDatasetsWithMetadata( 
+    """
+    #### Description
+    Indicates to query the datasetType to retrieve
+    #### Required
+    Required
+    """
+    datasetType: String
+    ): htDatasets
 }

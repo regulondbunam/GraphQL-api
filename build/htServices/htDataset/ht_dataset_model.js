@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.HTDataset = undefined;
+exports.MetadataCollection = exports.HTDataset = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -137,6 +137,18 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     externalReferences: [externalReferencesSchema]
 });
 
+const metadataSchema = new _mongoose2.default.Schema({
+    _id: String,
+    datasetType: String,
+    metadataContent: String,
+    status: String
+});
+
 const HTDataset = _mongoose2.default.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 
 exports.HTDataset = HTDataset;
+
+
+const MetadataCollection = _mongoose2.default.model('dataset_metadata', metadataSchema, "metadata");
+
+exports.MetadataCollection = MetadataCollection;
