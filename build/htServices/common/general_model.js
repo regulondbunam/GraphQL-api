@@ -12,7 +12,7 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const evidenceSchema = new _mongoose2.default.Schema({
-	id: String,
+	_id: String,
 	name: String,
 	code: String,
 	type: String
@@ -21,7 +21,7 @@ const evidenceSchema = new _mongoose2.default.Schema({
 const citationsSchema = exports.citationsSchema = new _mongoose2.default.Schema({
 	evidence: evidenceSchema,
 	publication: {
-		id: String,
+		_id: String,
 		pmid: String,
 		citation: String,
 		url: String,

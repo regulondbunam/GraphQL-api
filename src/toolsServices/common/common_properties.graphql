@@ -48,7 +48,7 @@ type Evidence {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -74,7 +74,7 @@ type Publication {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""

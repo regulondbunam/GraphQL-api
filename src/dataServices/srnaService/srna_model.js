@@ -10,6 +10,7 @@ const geneSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
+    _id: String,
     name: String,
     gene: geneSchema,
     synonyms: [String],
@@ -66,7 +67,7 @@ const SrnaSchema = new mongoose.Schema({
     regulatoryInteractions: [RegulatoryInteractionsSchema],
     summary: summarySchema,
     allCitations: [citationsSchema],
-	organism: [ organismSchema ]
+	organism: organismSchema 
 })
 
 const SRNA = mongoose.model('srna_datamarts', SrnaSchema, 'srnaDatamart')

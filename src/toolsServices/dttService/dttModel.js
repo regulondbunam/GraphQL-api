@@ -36,7 +36,12 @@ const linkedObjectWhenNoPositionsSchema = new mongoose.Schema({
     rightEndPosition: Number,
     strand: String,
     type: String
-})
+});
+
+const organismSchema = new mongoose.Schema({
+	_id: String,
+	name: String
+});
 
 const dttDataObject = new mongoose.Schema({
     _id: String,
@@ -53,12 +58,9 @@ const dttDataObject = new mongoose.Schema({
     labelSize: Number,
     tooltip: String,
     lineRGBColor: String,
-    organism: {
-        organism_id: String,
-        organism_name: String
-    },
+    organism: organismSchema,
     relatedGenes: [{
-        gene_id: String,
+        _id: String,
         effect: String,
         objectRGBColor: String,
         strand: String,

@@ -22,6 +22,7 @@ const geneSchema = new _mongoose2.default.Schema({
 });
 
 const productSchema = new _mongoose2.default.Schema({
+    _id: String,
     name: String,
     gene: geneSchema,
     synonyms: [String],
@@ -78,7 +79,7 @@ const SrnaSchema = new _mongoose2.default.Schema({
     regulatoryInteractions: [RegulatoryInteractionsSchema],
     summary: summarySchema,
     allCitations: [_general_model.citationsSchema],
-    organism: [_general_model.organismSchema]
+    organism: _general_model.organismSchema
 });
 
 const SRNA = _mongoose2.default.model('srna_datamarts', SrnaSchema, 'srnaDatamart');

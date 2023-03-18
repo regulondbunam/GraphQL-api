@@ -7,14 +7,14 @@ const tusEncodingRegulatorSchema = new mongoose.Schema({
 });
 
 const encodedFromGenes = new mongoose.Schema({
-  gene_id: String,
-  gene_name: String,
+  _id: String,
+  name: String,
   genomePosition: String,
   length: Number
 })
 
 const encodedFromOperons = new mongoose.Schema({
-  operon_id: String,
+  _id: String,
   name: String,
   tusEncodingRegulator: [tusEncodingRegulatorSchema]
 })
@@ -25,7 +25,7 @@ const encodedFromSchema = new mongoose.Schema({
 });
 
 const ConformationsSchema = new mongoose.Schema({
-  id: String,
+  _id: String,
   name: String,
   type: String,
   effectorInteractionType: String,
@@ -59,18 +59,18 @@ const transcriptionFactorSchema = new mongoose.Schema({
 });
 
 const GeneTermSchema = new mongoose.Schema({
-  gene_id: String,
-  gene_name: String
+  _id: String,
+  name: String
 })
 
 const geneOntologySchema = new mongoose.Schema({
-  term_id: String,
+  _id: String,
   name: String,
   genes: [GeneTermSchema]
 });
 
 const multifunSchema = new mongoose.Schema({
-  id: String,
+  _id: String,
   name: String,
   genes: [GeneTermSchema]
 });
@@ -87,13 +87,13 @@ const termsSchema = new mongoose.Schema({
 });
 
 const firstGeneSchema = new mongoose.Schema({
-  id: String,
+  _id: String,
   name: String,
 });
 
 const regulatedGenesSchema = new mongoose.Schema(
   {
-    id: String,
+    _id: String,
     name: String,
     function: String,
     terms: termsSchema,
@@ -103,7 +103,7 @@ const regulatesSchema = new mongoose.Schema({
   genes: [regulatedGenesSchema],
   transcriptionFactors: [
     {
-      id: String,
+      _id: String,
       name: String,
       function: String,
       genes: [regulatedGenesSchema]
@@ -111,19 +111,19 @@ const regulatesSchema = new mongoose.Schema({
   ],
   transcriptionUnits: [
     {
-      id: String,
+      _id: String,
       name: String,
       function: String,
       firstGene: firstGeneSchema,
       promoter: {
-        id: String,
+        _id: String,
         name: String,
       }
     },
   ],
   operons: [
     {
-      id: String,
+      _id: String,
       name: String,
       function: String,
       firstGene: firstGeneSchema,
@@ -131,7 +131,7 @@ const regulatesSchema = new mongoose.Schema({
   ],
   sigmaFactors: [
     {
-      id: String,
+      _id: String,
       name: String,
       function: String,
       gene: firstGeneSchema,
@@ -140,7 +140,7 @@ const regulatesSchema = new mongoose.Schema({
 });
 
 const regulatoryBindingSitesSchema = ({
-  id: String,
+  _id: String,
   function: String,
   absolutePosition: Number, 
   leftEndPosition: Number,
@@ -170,7 +170,7 @@ const regulatoryInteractionsSchema = ({
   distanceToFirstGene: Number,
   distanceToPromoter: Number,
   regulatedGenes: [{
-    id: String,
+    _id: String,
     name: String
   }],
   regulatoryBindingSites: regulatoryBindingSitesSchema,
@@ -221,7 +221,7 @@ const regulonSchema = new mongoose.Schema({
   summary: summarySchema,
   organismName: String,
   allCitations: [citationsSchema],
-	organism: [ organismSchema ]
+	organism: organismSchema
 });
 
 const Regulon = mongoose.model('regulon_datamarts', regulonSchema, "regulonDatamart");

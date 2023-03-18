@@ -15,14 +15,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const geneOntologyTermsProperties = new _mongoose2.default.Schema({
 	citations: [_general_model.citationsSchema],
-	id: String,
+	_id: String,
 	name: String,
 	productsId: [String]
 });
 
 const geneSchema = new _mongoose2.default.Schema({
 	bnumber: String,
-	id: String,
+	_id: String,
 	name: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -34,12 +34,12 @@ const geneSchema = new _mongoose2.default.Schema({
 	type: String,
 	synonyms: [String],
 	multifunTerms: [{
-		id: String,
+		_id: String,
 		label: String,
 		name: String
 	}],
 	fragments: [{
-		id: String,
+		_id: String,
 		name: String,
 		leftEndPosition: Number,
 		rightEndPosition: Number,
@@ -51,7 +51,7 @@ const geneSchema = new _mongoose2.default.Schema({
 });
 
 const motifsSchema = new _mongoose2.default.Schema({
-	id: String,
+	_id: String,
 	dataSource: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -63,8 +63,8 @@ const motifsSchema = new _mongoose2.default.Schema({
 });
 
 const productSchema = new _mongoose2.default.Schema({
-	id: String,
-	regulon_id: String,
+	_id: String,
+	regulonId: String,
 	name: String,
 	molecularWeight: Number,
 	isoelectricPoint: Number,
@@ -86,7 +86,7 @@ const productSchema = new _mongoose2.default.Schema({
 });
 
 const shineDalgarnoSchema = new _mongoose2.default.Schema({
-	id: String,
+	_id: String,
 	distanceToGene: Number,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -95,7 +95,7 @@ const shineDalgarnoSchema = new _mongoose2.default.Schema({
 });
 
 const regulatorsSchema = new _mongoose2.default.Schema({
-	id: String,
+	_id: String,
 	name: String,
 	type: String,
 	function: String
@@ -103,16 +103,16 @@ const regulatorsSchema = new _mongoose2.default.Schema({
 
 const regulationSchema = new _mongoose2.default.Schema({
 	operon: {
-		id: String,
+		_id: String,
 		name: String,
 		arrangement: [{
 			regulators: [regulatorsSchema],
 			promoters: [{
-				id: String,
+				_id: String,
 				name: String
 			}],
 			transcriptionUnit: {
-				id: String,
+				_id: String,
 				name: String
 			}
 		}]
@@ -126,7 +126,7 @@ const regulationSchema = new _mongoose2.default.Schema({
 });
 
 const growthConditionsSchema = new _mongoose2.default.Schema({
-	id: String,
+	_id: String,
 	controlCondition: String,
 	experimentalCondition: String,
 	effect: String,

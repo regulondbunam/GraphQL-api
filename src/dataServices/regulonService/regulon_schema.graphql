@@ -42,7 +42,7 @@ type RegulonDatamart {
 	"""
 	_
 	"""
-	organism: String
+	organism: Organism
 	"""
 	_
 	"""
@@ -154,7 +154,7 @@ type Conformations {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -192,11 +192,11 @@ type EncodedGenes {
 	"""
 	_
 	"""
-	gene_id: String
+	_id: String
 	"""
 	_
 	"""
-	gene_name: String
+	name: String
 	"""
 	_
 	"""
@@ -214,7 +214,7 @@ type EncodedOperon {
 	"""
 	_
 	"""
-	operon_id: String
+	_id: String
 	"""
 	_
 	"""
@@ -278,7 +278,7 @@ type RegulonGeneOntologyItem {
 	"""
 	_
 	"""
-	term_id: String
+	_id: String
 	"""
 	_
 	"""
@@ -296,7 +296,7 @@ type RegulonMultifun {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -314,11 +314,11 @@ type GeneTermsObject {
 	"""
 	_
 	"""
-	gene_id: String
+	_id: String
 	"""
 	_
 	"""
-	gene_name: String
+	name: String
 }
 
 """
@@ -354,7 +354,7 @@ type RegulatedGenes {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -376,7 +376,7 @@ type RegulatedTranscriptionFactors {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -398,7 +398,7 @@ type RegulatedTranscriptionUnits {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -424,7 +424,7 @@ type RegulatedOperons {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -446,7 +446,7 @@ type RegulatedSigmaFactors {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -465,6 +465,10 @@ type RegulatedSigmaFactors {
 _
 """
 type RegulonRegulatoryInteractions {
+	"""
+	_
+	"""
+	_id: String
 	"""
 	_
 	"""
@@ -572,7 +576,7 @@ type RegulatoryBindingSites {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""

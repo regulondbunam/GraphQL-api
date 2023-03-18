@@ -43,7 +43,7 @@ const operonStatisticsSchema = new mongoose.Schema({
 })
 
 const operonSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     citations: [citationsSchema],
     name: String,
     regulationPositions: {
@@ -71,9 +71,9 @@ const tssSchema = new mongoose.Schema({
 const promotersSchema = new mongoose.Schema({
     _id: String,
     bindsSigmaFactor: {
-        sigmaFactor_id: String,
+        _id: String,
         citations: [citationsSchema],
-        sigmaFactor_name: String
+        name: String
     },
     citations: [citationsSchema],
     name: String,
@@ -94,17 +94,17 @@ const transcriptionTerminationSiteSchema = new mongoose.Schema ({
 });
 
 const transcriptionUnitsSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     name: String,
     citations: [citationsSchema],
     firstGene: {
         distanceToPromoter: Number,
-        gene_id: String,
-        gene_name: String
+        _id: String,
+        name: String
     },
     genes: [
         {
-            id: String,
+            _id: String,
             name: String,
             regulatorBindingSites: [RegulatorBindingSitesSchema]
         }
@@ -133,13 +133,9 @@ const operonServiceSchema = new mongoose.Schema({
     _id: String,
     operon: operonSchema,
     transcriptionUnits: [transcriptionUnitsSchema],
-    organism: {
-        id: String,
-        name: String
-    },
     allCitations: [citationsSchema],
     schemaVersion: Number,
-	organism: [ organismSchema ]
+	organism: organismSchema
 })
 
 const Operon = mongoose.model('operon_datamarts', operonServiceSchema, 'operonDatamart')

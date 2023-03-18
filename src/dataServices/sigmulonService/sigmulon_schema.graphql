@@ -91,7 +91,7 @@ type TranscribedPromoters {
 	"""
 	_
 	"""
-    operon_id: String
+    operonId: String
 	"""
 	_
 	"""
