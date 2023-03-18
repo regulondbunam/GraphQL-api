@@ -11,7 +11,7 @@ describe('regulonService', () => {
                         name
                         encodedFrom{
                         genes{
-                            gene_name
+                            name
                         }
                         operon{
                             name
@@ -35,7 +35,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "accB"
+                          "name": "accB"
                         }
                       ],
                       "operon": [
@@ -52,7 +52,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "acrR"
+                          "name": "acrR"
                         }
                       ],
                       "operon": [
@@ -69,7 +69,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "ada"
+                          "name": "ada"
                         }
                       ],
                       "operon": [
@@ -86,7 +86,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "adiY"
+                          "name": "adiY"
                         }
                       ],
                       "operon": [
@@ -103,7 +103,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "agaR"
+                          "name": "agaR"
                         }
                       ],
                       "operon": [
@@ -130,7 +130,7 @@ describe('regulonService', () => {
                         name
                         encodedFrom{
                         genes{
-                            gene_name
+                            name
                         }
                         operon{
                             name
@@ -154,7 +154,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "agaR"
+                          "name": "agaR"
                         }
                       ],
                       "operon": [
@@ -171,7 +171,7 @@ describe('regulonService', () => {
                     "encodedFrom": {
                       "genes": [
                         {
-                          "gene_name": "araC"
+                          "name": "araC"
                         }
                       ],
                       "operon": [

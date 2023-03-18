@@ -109,40 +109,31 @@ describe('operonService', () => {
     expect(data).toMatchObject({
         "data": {
           "getOperonBy": {
-            "data":  [
-              {
-                "operon": {
-                  "name": "accBC",
-                  "strand": "forward"
-                },
-                "transcriptionUnits": [
-                  {
-                    "name": "accBC"
-                  },
-                  {
-                    "name": "accBC"
-                  }
-                ]
+            "data":  [{
+              "operon": {
+                "name": "accBC",
+                "strand": "forward"
               },
-              {
-                "operon": {
-                  "name": "accBC",
-                  "strand": "forward"
+              "transcriptionUnits": [
+                {
+                  "name": "accBC"
                 },
-                "transcriptionUnits": []
+                {
+                  "name": "accBC"
+                }
+              ]
+            },
+            {
+              "operon": {
+                "name": "accD",
+                "strand": "reverse"
               },
-              {
-                "operon": {
-                  "name": "accD",
-                  "strand": "reverse"
-                },
-                "transcriptionUnits": [
-                  {
-                    "name": "accD"
-                  }
-                ]
-              }
-            ]
+              "transcriptionUnits": [
+                {
+                  "name": "accD"
+                }
+              ]
+            }]
           }
         }
       });
