@@ -53,7 +53,7 @@ const operonStatisticsSchema = new _mongoose2.default.Schema({
 });
 
 const operonSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     citations: [_general_model.citationsSchema],
     name: String,
     regulationPositions: {
@@ -81,9 +81,9 @@ const tssSchema = new _mongoose2.default.Schema({
 const promotersSchema = new _mongoose2.default.Schema({
     _id: String,
     bindsSigmaFactor: {
-        sigmaFactor_id: String,
+        _id: String,
         citations: [_general_model.citationsSchema],
-        sigmaFactor_name: String
+        name: String
     },
     citations: [_general_model.citationsSchema],
     name: String,
@@ -104,16 +104,16 @@ const transcriptionTerminationSiteSchema = new _mongoose2.default.Schema({
 });
 
 const transcriptionUnitsSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     name: String,
     citations: [_general_model.citationsSchema],
     firstGene: {
         distanceToPromoter: Number,
-        gene_id: String,
-        gene_name: String
+        _id: String,
+        name: String
     },
     genes: [{
-        id: String,
+        _id: String,
         name: String,
         regulatorBindingSites: [RegulatorBindingSitesSchema]
     }],
@@ -139,13 +139,9 @@ const operonServiceSchema = new _mongoose2.default.Schema({
     _id: String,
     operon: operonSchema,
     transcriptionUnits: [transcriptionUnitsSchema],
-    organism: {
-        id: String,
-        name: String
-    },
     allCitations: [_general_model.citationsSchema],
     schemaVersion: Number,
-    organism: [_general_model.organismSchema]
+    organism: _general_model.organismSchema
 });
 
 const Operon = _mongoose2.default.model('operon_datamarts', operonServiceSchema, 'operonDatamart');

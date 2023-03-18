@@ -44,7 +44,7 @@ type Operon {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -106,7 +106,7 @@ type TranscriptionUnits {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -176,11 +176,11 @@ type FirstGene {
 	"""
 	_
 	"""
-	gene_id: String
+	_id: String
 	"""
 	_
 	"""
-	gene_name: String
+	name: String
 }
 
 """
@@ -190,7 +190,7 @@ type Genes {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -208,7 +208,7 @@ type Promoter {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -267,7 +267,7 @@ type BindsSigmaFactor {
 	"""
 	_
 	"""
-	sigmaFactor_id: String
+	_id: String
 	"""
 	_
 	"""
@@ -275,7 +275,7 @@ type BindsSigmaFactor {
 	"""
 	_
 	"""
-	sigmaFactor_name: String
+	name: String
 }
 
 """
@@ -513,12 +513,12 @@ type Query {
     getAllOperon(limit:5){
       data{
         operon{
-          id
+          _id
           name
           strand
         }
         transcriptionUnits{
-          id
+          _id
           name
         }
       }
@@ -558,12 +558,12 @@ type Query {
     getOperonBy(search: "accD or accBC"){
       data{
         operon{
-          id
+          _id
           name
           strand
         }
         transcriptionUnits{
-          id
+          _id
           name
         }
       }
@@ -608,7 +608,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["operon.id", "operon.name"],
+    properties: [String] = ["operon._id", "operon.name"],
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring

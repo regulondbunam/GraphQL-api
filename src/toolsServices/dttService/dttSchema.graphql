@@ -80,7 +80,7 @@ type DTTData {
     organism: organismType
 
     """
-    Objects that don´t have position
+    Objects that don't have position
     """
     linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsType
 
@@ -97,12 +97,12 @@ type organismType {
     """
     id of the organism type
     """
-    organism_id: String
+    _id: String
 
     """
     Name of the organism type
     """
-    organism_name:String
+    name:String
 }
 
 """
@@ -112,7 +112,7 @@ type relatedGenesType {
     """
     id of the related gene
     """
-    gene_id: String
+    _id: String
     """
     efect of the gene
     """

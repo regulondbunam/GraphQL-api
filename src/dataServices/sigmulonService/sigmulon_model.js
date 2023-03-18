@@ -32,7 +32,7 @@ const transcribedPromotersSchema = new mongoose.Schema({
     _id: String,
     name: String,
     transcribedGenes: [transcribedGenesSchema],
-    operon_id: String,
+    operonId: String,
     sequence: String,
     boxes: [boxesSchema],
     citations: [citationsSchema]
@@ -53,7 +53,7 @@ const SigmulonSchema = new mongoose.Schema({
     transcribedPromoters: [transcribedPromotersSchema],
     statistics: statisticsSchema,
     allCitations: [citationsSchema],
-	organism: [ organismSchema ]
+	organism: organismSchema
 });
 
 const Sigmulon = mongoose.model('sigmulon_datamarts', SigmulonSchema, 'sigmulonDatamart');

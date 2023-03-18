@@ -48,7 +48,7 @@ type Evidence {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -74,7 +74,7 @@ type Publication {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -104,25 +104,11 @@ type Publication {
 """
 _
 """
-type Operon {
-	"""
-	_
-	"""
-	id: String
-	"""
-	_
-	"""
-	name: String
-}
-
-"""
-_
-"""
 type Multifun {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -130,7 +116,7 @@ type Multifun {
 	"""
 	_
 	"""
-	gene_ids: [String]
+	geneIds: [String]
 }
 
 """
@@ -162,7 +148,7 @@ type CellularComponent {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -184,7 +170,7 @@ type MolecularFunction {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -206,7 +192,7 @@ type BiologicalProcess {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -221,7 +207,7 @@ type simpleType {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""
@@ -265,7 +251,7 @@ type Organism {
 	"""
 	_
 	"""
-	id: String
+	_id: String
 	"""
 	_
 	"""

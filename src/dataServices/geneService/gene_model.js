@@ -3,14 +3,14 @@ import { citationsSchema, externalCrossReferencesSchema, organismSchema } from '
 
 const geneOntologyTermsProperties = new mongoose.Schema({
 	citations: [ citationsSchema ],
-	id: String,
+	_id: String,
 	name: String,
 	productsId: [ String ]
 });
 
 const geneSchema = new mongoose.Schema({
 	bnumber: String,
-	id: String,
+	_id: String,
 	name: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -23,14 +23,14 @@ const geneSchema = new mongoose.Schema({
 	synonyms: [ String ],
 	multifunTerms: [
 		{
-			id: String,
+			_id: String,
 			label: String,
 			name: String
 		}
 	],
 	fragments:[
 		{
-			id: String,
+			_id: String,
 			name: String,
 			leftEndPosition: Number,
 			rightEndPosition: Number,
@@ -43,7 +43,7 @@ const geneSchema = new mongoose.Schema({
 });
 
 const motifsSchema = new mongoose.Schema({
-	id: String,
+	_id: String,
 	dataSource: String,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -55,8 +55,8 @@ const motifsSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
-	id: String,
-	regulon_id: String,
+	_id: String,
+	regulonId: String,
 	name: String,
 	molecularWeight: Number,
 	isoelectricPoint: Number,
@@ -78,7 +78,7 @@ const productSchema = new mongoose.Schema({
 });
 
 const shineDalgarnoSchema = new mongoose.Schema({
-	id: String,
+	_id: String,
 	distanceToGene: Number,
 	leftEndPosition: Number,
 	rightEndPosition: Number,
@@ -87,7 +87,7 @@ const shineDalgarnoSchema = new mongoose.Schema({
 });
 
 const regulatorsSchema = new mongoose.Schema({
-	id: String,
+	_id: String,
 	name: String,
 	type: String,
 	function: String
@@ -95,19 +95,19 @@ const regulatorsSchema = new mongoose.Schema({
 
 const regulationSchema = new mongoose.Schema({
 	operon: {
-		id: String,
+		_id: String,
 		name: String,
 		arrangement: [
 			{
 				regulators: [ regulatorsSchema ],
 				promoters: [
 					{
-						id: String,
+						_id: String,
 						name: String
 					}
 				],
 				transcriptionUnit: {
-					id: String,
+					_id: String,
 					name: String
 				}
 			}
@@ -122,7 +122,7 @@ const regulationSchema = new mongoose.Schema({
 });
 
 const growthConditionsSchema = new mongoose.Schema({
-	id: String,
+	_id: String,
 	controlCondition: String,
 	experimentalCondition: String,
 	effect: String,

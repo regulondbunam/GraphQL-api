@@ -47,6 +47,11 @@ const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
     
      **/
 
+const organismSchema = new _mongoose2.default.Schema({
+    _id: String,
+    name: String
+});
+
 const dttDataObject = new _mongoose2.default.Schema({
     _id: String,
     objectType: String,
@@ -62,12 +67,9 @@ const dttDataObject = new _mongoose2.default.Schema({
     labelSize: Number,
     tooltip: String,
     lineRGBColor: String,
-    organism: {
-        organism_id: String,
-        organism_name: String
-    },
+    organism: organismSchema,
     relatedGenes: [{
-        gene_id: String,
+        _id: String,
         effect: String,
         objectRGBColor: String,
         strand: String,

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const evidenceSchema = new mongoose.Schema({
-	id: String,
+	_id: String,
 	name: String,
 	code: String,
 	type: String
@@ -10,7 +10,7 @@ const evidenceSchema = new mongoose.Schema({
 export const citationsSchema = new mongoose.Schema({
 	evidence: evidenceSchema,
 	publication: {
-		id: String,
+		_id: String,
 		pmid: String,
 		citation: String,
 		url: String,

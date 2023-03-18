@@ -37,6 +37,7 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
 import {HTDataset} from "./ht_dataset_model"
+import { MetadataCollection } from "./ht_dataset_model"
 import {advancedSearchFilter} from 'mongodb-filter-object-parser'
 
 class htDatasetController {
@@ -54,6 +55,17 @@ class htDatasetController {
      */
     static async getDatasetByID(datasetID) {
         return await HTDataset.findOne({"_id": datasetID})
+    }
+
+    static async getDatasetsWithMetadata(datasetType){
+        // TODO: Esto se debe hacer sobre el collectionName en lugar del datasetType, porque buscará el archivo metadata asociado al tipo de colección 
+        // requerido
+        const Datasets = await HTDataset.find({"datasetType":datasetType})
+        const Metadata = await MetadataCollection.findOne({"$and":[{"datasetType": datasetType}, {"status": "latest"}]})
+        return {
+            datasets: Datasets,
+            metadata: Metadata
+        };
     }
 }
 

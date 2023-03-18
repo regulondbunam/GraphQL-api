@@ -44,7 +44,7 @@ const transcribedPromotersSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String,
     transcribedGenes: [transcribedGenesSchema],
-    operon_id: String,
+    operonId: String,
     sequence: String,
     boxes: [boxesSchema],
     citations: [_general_model.citationsSchema]
@@ -65,7 +65,7 @@ const SigmulonSchema = new _mongoose2.default.Schema({
     transcribedPromoters: [transcribedPromotersSchema],
     statistics: statisticsSchema,
     allCitations: [_general_model.citationsSchema],
-    organism: [_general_model.organismSchema]
+    organism: _general_model.organismSchema
 });
 
 const Sigmulon = _mongoose2.default.model('sigmulon_datamarts', SigmulonSchema, 'sigmulonDatamart');

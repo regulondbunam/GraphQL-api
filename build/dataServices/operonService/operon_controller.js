@@ -64,7 +64,7 @@ class operonController {
    *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
    *  (by default "false")
    */
-  static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['operon.id', 'operon.name'], fullMatchOnly = false) {
+  static async getOperonBy(search, advancedSearch, limit = 10, page = 0, properties = ['operon._id', 'operon.name'], fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;

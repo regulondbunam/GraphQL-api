@@ -32,7 +32,7 @@ describe('dataset', () => {
               ]
             }
           ],
-          "referenceGenome": "NC_000913.3"
+          "referenceGenome": "E.coli.MG1655"
         }
       }
     });
