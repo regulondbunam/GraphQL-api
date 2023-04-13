@@ -12,7 +12,7 @@ const componentsSchema = new mongoose.Schema({
 });
 
 const GUSchema = new mongoose.Schema({
-    id: String,
+    _id: String,
     name: String,
     components: [componentsSchema],
     geneOntology: {

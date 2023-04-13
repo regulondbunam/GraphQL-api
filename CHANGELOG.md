@@ -2,6 +2,25 @@
 
 All notable changes in this project will be documented in this file
 
+## [1.6.0](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.6.0) - 2023-03-17
+
+## New
+
+- Added a new previous level for HT Datasets services in order to retrieve its metadata.
+
+## Docs
+- Updated test cases files to this new datamart model.
+
+## Update
+- All "id" properties were updated to "_id".
+- Some property's name definitions were updated from snake_case to camelCase. 
+- A resume of changes can be seen on release page.
+
+## [1.5.3](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.5.3) - 2023-02-14
+
+## Fix
+- Solved a bug related to latest property added in overviews service
+
 ## [1.5.2](https://github.com/regulondbunam/GraphQL-api/releases/tag/1.5.2) - 2023-02-14
 
 ### Updated
