@@ -27,7 +27,7 @@ type GensorUnit {
   """
   _
   """
-  id: String
+  _id: String
   """
   _
   """

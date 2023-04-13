@@ -744,7 +744,7 @@ type Query {
 			name
 			encodedFrom{
 			genes{
-				gene_name
+				name
 			}
 			operon{
 				name
@@ -790,7 +790,7 @@ type Query {
 			name
 			encodedFrom{
 			genes{
-				gene_name
+				name
 			}
 			operon{
 				name

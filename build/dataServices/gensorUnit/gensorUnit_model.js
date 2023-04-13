@@ -23,7 +23,7 @@ const componentsSchema = new _mongoose2.default.Schema({
 });
 
 const GUSchema = new _mongoose2.default.Schema({
-    id: String,
+    _id: String,
     name: String,
     components: [componentsSchema],
     geneOntology: {

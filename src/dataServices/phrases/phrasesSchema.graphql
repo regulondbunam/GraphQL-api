@@ -36,7 +36,7 @@ type Query {
   #### Example
   ```json
   { 
-	getPhraseOf(id:"RDBECOLIRCC00185"){ 
+	getPhraseOf(objectId:"RDBECOLIRCC00185"){ 
 		name 
 		objectType
 		propertyPhrases {
@@ -71,7 +71,7 @@ type Query {
   #### Example
   ```json
   { 
-	getAllPhrasesInObject(objectId:"RDBECOLITUC03462"){ 
+	getAllPhrasesInObject(objectId:"RDBECOLIOPC01500"){ 
 		name 
 		objectType
 		propertyPhrases {
