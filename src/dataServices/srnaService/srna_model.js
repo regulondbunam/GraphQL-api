@@ -4,7 +4,8 @@ import { citationsSchema, externalCrossReferencesSchema, organismSchema } from '
 const geneSchema = new mongoose.Schema({
     _id: String,
     name: String,
-    genomePosition: String,
+    leftEndPosition: Number,
+    rightEndPosition: Number,
     strand: String,
     gcContent: Number
 });
