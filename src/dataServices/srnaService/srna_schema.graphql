@@ -86,11 +86,15 @@ type srnaGene {
 	"""
 	_
 	"""
-    name: String,
+    name: String
 	"""
 	_
 	"""
-    genomePosition: String
+    leftEndPosition: Int
+	"""
+	_
+	"""
+    rightEndPosition: Int
 	"""
 	_
 	"""
@@ -215,7 +219,8 @@ type Query {
                         _id
                         name
                         gcContent
-                        genomePosition
+                        leftEndPosition
+                        rightEndPosition
                     }
                 }
             }

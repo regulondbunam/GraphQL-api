@@ -16,7 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const geneSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String,
-    genomePosition: String,
+    leftEndPosition: Number,
+    rightEndPosition: Number,
     strand: String,
     gcContent: Number
 });
