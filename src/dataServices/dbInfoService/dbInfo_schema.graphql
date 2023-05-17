@@ -47,6 +47,10 @@ type StatisticsDBType {
     """
     _
     """
+    operon: detailedStatistics
+    """
+    _
+    """
     regulatoryInteractions: detailedStatistics
     """
     _
@@ -99,7 +103,11 @@ type StatisticsDBType {
     """
     _
     """
-    product: productsDBInfoType
+    functionalClasses: detailedStatistics
+    """
+    _
+    """
+    gensorUnits: detailedStatistics
     """
     _
     """
@@ -107,11 +115,7 @@ type StatisticsDBType {
     """
     _
     """
-    functionalClasses: detailedStatistics
-    """
-    _
-    """
-    gensorUnits: detailedStatistics
+    product: productsDBInfoType
     """
     _
     """

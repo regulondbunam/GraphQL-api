@@ -35,6 +35,7 @@ const detailedExtReferences = new mongoose.Schema({
 
 const StatisticsSchema = new mongoose.Schema({
     regulons: regulonsSchema,
+    operon: detailedStatisticsSchema,
     regulatoryInteractions: detailedStatisticsSchema,
     srnaInteractions: detailedStatisticsSchema,
     functConfTF: detailedStatisticsSchema,
@@ -48,14 +49,14 @@ const StatisticsSchema = new mongoose.Schema({
     shineDalgarnos: detailedStatisticsSchema,
     attenuators: detailedStatisticsSchema,
     riboswitches: detailedStatisticsSchema,
+    functionalClasses: detailedStatisticsSchema,
+    gensorUnits: detailedStatisticsSchema,
+    synonyms: detailedStatisticsSchema,
     product: {
         srna: detailedStatisticsSchema,
         rnas: detailedStatisticsSchema,
         polypeptides: detailedStatisticsSchema
     },
-    synonyms: detailedStatisticsSchema,
-    functionalClasses: detailedStatisticsSchema,
-    gensorUnits: detailedStatisticsSchema,
     externalReferences: {
         total: Number,
         origin: detailedExtReferences
