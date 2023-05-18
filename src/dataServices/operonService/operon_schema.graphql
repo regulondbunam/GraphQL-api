@@ -401,7 +401,7 @@ type RegulatorySite {
 	"""
 	_
 	"""
-	rightEndPosition: String
+	rightEndPosition: Int
 	"""
 	_
 	"""

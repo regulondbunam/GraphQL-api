@@ -30,6 +30,207 @@ type dbInfo {
     _
     """
     localData: [LocalDataType]
+    """
+    _
+    """
+    statistics: StatisticsDBType
+}
+
+"""
+_
+"""
+type StatisticsDBType {
+    """
+    _
+    """
+    regulons: dbInfoRegulons
+    """
+    _
+    """
+    operon: detailedStatistics
+    """
+    _
+    """
+    regulatoryInteractions: detailedStatistics
+    """
+    _
+    """
+    srnaInteractions: detailedStatistics
+    """
+    _
+    """
+    functConfTF: detailedStatistics
+    """
+    _
+    """
+    effectors: detailedStatistics
+    """
+    _
+    """
+    transcriptionFactors: detailedStatistics
+    """
+    _
+    """
+    regulatorBindingSites: detailedStatistics
+    """
+    _
+    """
+    promoters: detailedStatistics
+    """
+    _
+    """
+    genes: detailedStatistics
+    """
+    _
+    """
+    transcriptionUnits: detailedStatistics
+    """
+    _
+    """
+    terminators: detailedStatistics
+    """
+    _
+    """
+    shineDalgarnos: detailedStatistics
+    """
+    _
+    """
+    attenuators: detailedStatistics
+    """
+    _
+    """
+    riboswitches: detailedStatistics
+    """
+    _
+    """
+    functionalClasses: detailedStatistics
+    """
+    _
+    """
+    gensorUnits: detailedStatistics
+    """
+    _
+    """
+    synonyms: detailedStatistics
+    """
+    _
+    """
+    product: productsDBInfoType
+    """
+    _
+    """
+    externalReferences: dbInfoExternalReferencesType
+}
+
+"""
+_
+"""
+type dbInfoRegulons {
+    """
+    _
+    """
+    total: Int
+    """
+    _
+    """
+    simpleRegulons: detailedStatistics
+    """
+    _
+    """
+    complexRegulons: detailedStatistics
+}
+
+"""
+_
+"""
+type detailedStatistics {
+    """
+    _
+    """
+    total: Int
+    """
+    _
+    """
+    weak: Int
+    """
+    _
+    """
+    strong: Int
+    """
+    _
+    """
+    confirmed: Int
+    """
+    _
+    """
+    withoutEvidences: Int
+}
+
+type productsDBInfoType {
+    """
+    _
+    """
+    srna: detailedStatistics
+    """
+    _
+    """
+    rnas: detailedStatistics
+    """
+    _
+    """
+    polypeptides: detailedStatistics
+}
+
+"""
+_
+"""
+type dbInfoExternalReferencesType {
+    """
+    _
+    """
+    total: Int
+    """
+    _
+    """
+    origin: detailedExtReferences
+}
+
+"""
+_
+"""
+type detailedExtReferences {
+    """
+    _
+    """
+    medline: Int
+    """
+    _
+    """
+    genbank: Int
+    """
+    _
+    """
+    swissprot: Int
+    """
+    _
+    """
+    expasy: Int
+    """
+    _
+    """
+    geneprotec: Int
+    """
+    _
+    """
+    ouMicroArray: Int
+    """
+    _
+    """
+    pdb: Int
+    """
+    _
+    """
+    pir: Int
 }
 
 """
