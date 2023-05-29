@@ -164,6 +164,7 @@ const regulatorSchema = new mongoose.Schema({
 })
 
 const regulatoryInteractionsSchema = ({
+  _id: String,
   regulator: regulatorSchema,
   function: String,
   regulatedEntity: regSchema,

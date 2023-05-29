@@ -90,7 +90,7 @@ class regulonController {
           limit: limit,
           currentPage: page,
           firstPage: 0,
-          lastPage: lastPage,
+          lastPage: lastPage || 0,
           totalResults: total,
           hasNextPage: hasMore
         }

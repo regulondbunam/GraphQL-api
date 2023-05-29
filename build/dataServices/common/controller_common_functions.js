@@ -43,7 +43,7 @@ class commonController {
      *  @param {Number} page select the current result page (0 by default)
      *  @param {String} sortValue tells the function the field by which the results will be sorted
      */
-  static async getAll(collection, limit = 10, page = 0, sortValue) {
+  static async getAll(collection, limit, page = 0, sortValue) {
     // variable definitions
     let hasMore = false;
     let response;
@@ -79,7 +79,7 @@ class commonController {
           limit: limit,
           currentPage: page,
           firstPage: 0,
-          lastPage: lastPage,
+          lastPage: lastPage || 0,
           totalResults: total,
           hasNextPage: hasMore
         }

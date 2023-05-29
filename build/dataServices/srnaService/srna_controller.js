@@ -89,7 +89,7 @@ class srnaController {
                 data: SRNAS,
                 pagination: {
                     limit: limit,
-                    currentPage: page,
+                    currentPage: page || 0,
                     firstPage: 0,
                     lastPage: lastPage,
                     totalResults: total,
