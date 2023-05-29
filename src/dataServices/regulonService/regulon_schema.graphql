@@ -763,7 +763,7 @@ type Query {
     #### Required
     Optional
     """
-	limit: Int = 10, 
+	limit: Int, 
     """
     #### Description
     select the current result page 
@@ -825,7 +825,7 @@ type Query {
     #### Required
     Optional
     """
-    limit: Int = 10, 
+    limit: Int, 
     """
     #### Description
     select the current result page

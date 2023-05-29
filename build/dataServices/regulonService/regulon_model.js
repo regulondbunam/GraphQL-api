@@ -167,6 +167,7 @@ const regulatorSchema = new _mongoose2.default.Schema({
 });
 
 const regulatoryInteractionsSchema = {
+  _id: String,
   regulator: regulatorSchema,
   function: String,
   regulatedEntity: regSchema,
