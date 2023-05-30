@@ -65,7 +65,7 @@ class gensorUnitController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-  static async getGUsBy(search, advancedSearch, limit = 10, page = 0, properties = ['gensorUnit._id', 'gensorUnit.name'], organismName, fullMatchOnly = false) {
+  static async getGUsBy(search, advancedSearch, limit = 0, page = 0, properties = ['gensorUnit._id', 'gensorUnit.name'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;

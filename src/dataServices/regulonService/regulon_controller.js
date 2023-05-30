@@ -57,7 +57,7 @@ class regulonController {
   static async getRegulonBy(
     search, 
     advancedSearch, 
-    limit = 10, 
+    limit = 0, 
     page = 0, 
     properties = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], 
     fullMatchOnly = false) {

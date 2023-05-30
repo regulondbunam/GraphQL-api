@@ -64,7 +64,7 @@ class srnaController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-    static async getSrnaBy(search, advancedSearch, limit = 10, page = 0, properties = ["_id", "product.name", "product.synonyms"], fullMatchOnly = false) {
+    static async getSrnaBy(search, advancedSearch, limit = 0, page = 0, properties = ["_id", "product.name", "product.synonyms"], fullMatchOnly = false) {
         const offset = page * limit;
         let filter;
         let hasMore = false;

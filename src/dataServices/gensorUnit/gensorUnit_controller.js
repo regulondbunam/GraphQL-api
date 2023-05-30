@@ -58,7 +58,7 @@ class gensorUnitController {
   static async getGUsBy(
       search,
       advancedSearch,
-      limit = 10,
+      limit = 0,
       page = 0,
       properties = ['gensorUnit._id', 'gensorUnit.name'],
       organismName,

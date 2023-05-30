@@ -57,7 +57,7 @@ class srnaController {
   static async getSrnaBy(
     search,
     advancedSearch,
-    limit = 10,
+    limit = 0,
     page = 0,
     properties = ["_id", "product.name", "product.synonyms"],
     fullMatchOnly = false

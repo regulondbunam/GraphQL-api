@@ -57,7 +57,7 @@ class operonController {
   static async getOperonBy(
     search,
     advancedSearch,
-    limit = 10,
+    limit = 0,
     page = 0,
     properties = ['operon._id', 'operon.name'],
     fullMatchOnly = false

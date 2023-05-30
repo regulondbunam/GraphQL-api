@@ -57,7 +57,7 @@ class sigmulonController {
   static async getSigmulonBy(
     search,
     advancedSearch,
-    limit = 10,
+    limit = 0,
     page = 0,
     properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'],
     fullMatchOnly = false
