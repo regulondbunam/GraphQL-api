@@ -58,7 +58,7 @@ class geneController {
   static async getGenesBy(
       search,
       advancedSearch,
-      limit = 10,
+      limit = 0,
       page = 0,
       properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name'],
       organismName,
