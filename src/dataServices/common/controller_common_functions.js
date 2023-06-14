@@ -62,7 +62,11 @@ class commonController {
     // get another data that be in Pagination Type
     const total = await this.countDocumentsIn(collection);
     const showedResult = limit * (page + 1);
-    const lastPage = Math.floor(total / limit);
+    const lastPage = 0
+    //check this later
+    if (limit > 0){
+      lastPage = Math.floor(total / limit);
+    }
     if (showedResult < total) hasMore = true;
     if (page > lastPage) {
       const err = new GraphQLError('You must select an available page number');

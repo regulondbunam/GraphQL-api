@@ -59,7 +59,7 @@ class regulonController {
     advancedSearch, 
     limit = 0, 
     page = 0, 
-    properties = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], 
+    properties = ["_id", "regulator.name", "regulator.conformations.name"], 
     fullMatchOnly = false) {
       const offset = page * limit;
       let filter;
@@ -70,7 +70,7 @@ class regulonController {
         // filter = searchFilter(search);
         filter = textSearchFilter(search, properties, fullMatchOnly);
       }
-      const Regulons = await Regulon.find(filter).sort({'transcriptionFactor.name': 1}).limit(limit).skip(offset);
+      const Regulons = await Regulon.find(filter).sort({'regulator.name': 1}).limit(limit).skip(offset);
       const total = await commonController.countDocumentsIn(Regulon, filter);
       const lastPage = Math.floor(total / limit);
       if (limit * (page + 1) < total) hasMore = true;

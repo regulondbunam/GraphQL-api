@@ -64,7 +64,7 @@ class regulonController {
    *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
    *  (by default "false")
    */
-  static async getRegulonBy(search, advancedSearch, limit = 0, page = 0, properties = ["_id", "transcriptionFactor.name", "transcriptionFactor.conformations.name"], fullMatchOnly = false) {
+  static async getRegulonBy(search, advancedSearch, limit = 0, page = 0, properties = ["_id", "regulator.name", "regulator.conformations.name"], fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;
@@ -74,7 +74,7 @@ class regulonController {
       // filter = searchFilter(search);
       filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
     }
-    const Regulons = await _regulon_model.Regulon.find(filter).sort({ 'transcriptionFactor.name': 1 }).limit(limit).skip(offset);
+    const Regulons = await _regulon_model.Regulon.find(filter).sort({ 'regulator.name': 1 }).limit(limit).skip(offset);
     const total = await _controller_common_functions.commonController.countDocumentsIn(_regulon_model.Regulon, filter);
     const lastPage = Math.floor(total / limit);
     if (limit * (page + 1) < total) hasMore = true;
