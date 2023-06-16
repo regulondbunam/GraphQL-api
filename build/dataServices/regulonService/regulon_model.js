@@ -230,6 +230,6 @@ const regulonSchema = new _mongoose2.default.Schema({
   organism: _general_model.organismSchema
 });
 
-const Regulon = _mongoose2.default.model('regulon_datamarts', regulonSchema, "regulon_v2");
+const Regulon = _mongoose2.default.model('regulon_datamarts', regulonSchema, "regulonDatamart");
 
 exports.Regulon = Regulon;

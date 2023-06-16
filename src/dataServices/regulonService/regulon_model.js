@@ -227,6 +227,6 @@ const regulonSchema = new mongoose.Schema({
 	organism: organismSchema
 });
 
-const Regulon = mongoose.model('regulon_datamarts', regulonSchema, "regulon_v2");
+const Regulon = mongoose.model('regulon_datamarts', regulonSchema, "regulonDatamart");
 
 export {Regulon};
