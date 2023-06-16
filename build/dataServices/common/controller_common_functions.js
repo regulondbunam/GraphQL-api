@@ -48,8 +48,7 @@ class commonController {
     // get another data that be in Pagination Type
     const total = await this.countDocumentsIn(collection);
     const showedResult = limit * (page + 1);
-    const lastPage = 0;
-    //check this later
+    let lastPage = 0;
     if (limit > 0) {
       lastPage = Math.floor(total / limit);
     }

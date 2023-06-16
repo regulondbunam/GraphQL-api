@@ -535,10 +535,7 @@ type ActiveConformation {
 	_
 	"""
 	name: String
-	"""
-	_
-	"""
-	continuants: [RegulonContinuants]
+	# continuants: [RegulonContinuants]
 }
 
 """
