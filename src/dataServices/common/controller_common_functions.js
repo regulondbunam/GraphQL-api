@@ -27,8 +27,13 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 
 import { GraphQLError } from 'graphql';
 import { Model } from 'mongoose';
+import { Gene } from '../geneService/gene_model';
+import { Regulon } from '../regulonService/regulon_model';
+import { Operon } from '../operonService/operon_model';
+import { SRNA } from '../srnaService/srna_model';
+import { Sigmulon } from '../sigmulonService/sigmulon_model';
 
-class commonController {
+export class commonController {
   /** Retrieve a object with all the documents containing in selected collection
      *  @param {Model} collection tells to function the mongoose model to be used
      *  @param {Number} limit defines the page results showed (10 by default)
@@ -101,6 +106,58 @@ class commonController {
       });
     });
   }
+
+  /** Get all fields contained in a specific datamart
+   * @param {String} collection name of the collection that you want to get all fields
+  */
+  static async getProperties(collection){
+    let response
+    let doc
+    switch (collection) {
+      case "gene":
+        response = await Gene.findOne().lean()
+        doc = JSON.parse(JSON.stringify(response))
+        return getDeepKeys(doc)
+      case "regulon":
+        response = await Regulon.findOne().lean()
+        doc = JSON.parse(JSON.stringify(response))
+        return getDeepKeys(doc)
+      case "operon":
+        response = await Operon.findOne().lean()
+        doc = JSON.parse(JSON.stringify(response))
+        return getDeepKeys(doc)
+      case "srna":
+        response = await SRNA.findOne().lean()
+        doc = JSON.parse(JSON.stringify(response))
+        return getDeepKeys(doc)
+      case "sigmulon":
+        response = await Sigmulon.findOne().lean()
+        doc = JSON.parse(JSON.stringify(response))
+        return getDeepKeys(doc)
+      default:
+        return ["Select a valid collection from this list: gene, regulon, operon, srna, sigmulon"];
+    }
+    
+  }
 }
 
-export {commonController};
+/** Gets all keys in a object */
+function getDeepKeys(obj) {
+  var keys = [];
+  for (var key in obj) {
+      keys.push(key);
+      if (typeof obj[key] === "object") {
+          var subkeys = getDeepKeys(obj[key]);
+          keys = keys.concat(subkeys.map(function (subkey) {
+              return key + "." + subkey;
+          }));
+      }
+  }
+  for(var i=0; i < keys.length; i++) {
+    keys[i] = keys[i].replace(/\.[0-9]/gm, '');
+    keys[i] = keys[i].replace(/[0-9]/gm, '');
+    keys[i] = keys[i].replace(/\.\./gm, '.');
+    keys[i] = keys[i].replace(/\.$/gm, '');
+  }
+  return [... new Set(keys)];
+} 
