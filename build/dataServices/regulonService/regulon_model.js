@@ -21,8 +21,9 @@ const tusEncodingRegulatorSchema = new _mongoose2.default.Schema({
 const encodedFromGenes = new _mongoose2.default.Schema({
   _id: String,
   name: String,
-  genomePosition: String,
-  length: Number
+  leftEndPosition: Number,
+  length: Number,
+  rightEndPosition: Number
 });
 
 const encodedFromOperons = new _mongoose2.default.Schema({
@@ -52,7 +53,7 @@ const productsSchema = new _mongoose2.default.Schema({
   name: String
 });
 
-const transcriptionFactorSchema = new _mongoose2.default.Schema({
+const mainRegulatorSchema = new _mongoose2.default.Schema({
   _id: String,
   name: String,
   synonyms: [String],
@@ -67,7 +68,8 @@ const transcriptionFactorSchema = new _mongoose2.default.Schema({
   siteLength: String,
   family: String,
   additiveEvidences: [_general_model.aditiveEvidencesSchema],
-  confidenceLevel: String
+  confidenceLevel: String,
+  type: String
 });
 
 const GeneTermSchema = new _mongoose2.default.Schema({
@@ -159,7 +161,7 @@ const regSchema = new _mongoose2.default.Schema({
   name: String
 });
 
-const regulatorSchema = new _mongoose2.default.Schema({
+const activeConformationSchema = new _mongoose2.default.Schema({
   _id: String,
   type: String,
   name: String,
@@ -168,7 +170,7 @@ const regulatorSchema = new _mongoose2.default.Schema({
 
 const regulatoryInteractionsSchema = {
   _id: String,
-  regulator: regulatorSchema,
+  activeConformation: activeConformationSchema,
   function: String,
   regulatedEntity: regSchema,
   distanceToFirstGene: Number,
@@ -216,7 +218,7 @@ const summarySchema = new _mongoose2.default.Schema({
 
 const regulonSchema = new _mongoose2.default.Schema({
   _id: String,
-  transcriptionFactor: transcriptionFactorSchema,
+  regulator: mainRegulatorSchema,
   terms: termsSchema,
   regulates: regulatesSchema,
   regulatoryInteractions: [regulatoryInteractionsSchema],

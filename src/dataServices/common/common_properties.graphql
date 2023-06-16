@@ -303,3 +303,30 @@ type AdditiveEvidences {
 	"""
 	type: String
 }
+
+type Query {
+	"""
+	#### Type
+	Data
+	#### Service
+	All Data
+	#### Name
+	getProperties
+	#### Description
+	List all the properties defined in a collection
+	#### Example
+	```json
+	{
+		getProperties(collection:"gene")
+	}
+	```
+	"""
+	getProperties(
+    """
+    #### Description
+    defines the collection to get the properties 
+    #### Required
+    Always
+    """
+	collection: String!): [String]
+}

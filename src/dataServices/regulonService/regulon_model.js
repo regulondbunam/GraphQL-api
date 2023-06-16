@@ -9,8 +9,9 @@ const tusEncodingRegulatorSchema = new mongoose.Schema({
 const encodedFromGenes = new mongoose.Schema({
   _id: String,
   name: String,
-  genomePosition: String,
-  length: Number
+  leftEndPosition: Number,
+  length: Number,
+  rightEndPosition: Number
 })
 
 const encodedFromOperons = new mongoose.Schema({
@@ -40,7 +41,7 @@ const productsSchema = new mongoose.Schema({
   name: String
 })
 
-const transcriptionFactorSchema = new mongoose.Schema({
+const mainRegulatorSchema = new mongoose.Schema({
   _id: String,
   name: String,
   synonyms: [String],
@@ -55,7 +56,8 @@ const transcriptionFactorSchema = new mongoose.Schema({
   siteLength: String,
   family: String,
   additiveEvidences: [aditiveEvidencesSchema],
-  confidenceLevel: String
+  confidenceLevel: String,
+  type: String
 });
 
 const GeneTermSchema = new mongoose.Schema({
@@ -156,7 +158,7 @@ const regSchema = new mongoose.Schema({
   name: String
 });
 
-const regulatorSchema = new mongoose.Schema({
+const activeConformationSchema = new mongoose.Schema({
   _id: String,
   type: String,
   name: String,
@@ -165,7 +167,7 @@ const regulatorSchema = new mongoose.Schema({
 
 const regulatoryInteractionsSchema = ({
   _id: String,
-  regulator: regulatorSchema,
+  activeConformation: activeConformationSchema,
   function: String,
   regulatedEntity: regSchema,
   distanceToFirstGene: Number,
@@ -213,7 +215,7 @@ const summarySchema = new mongoose.Schema({
 
 const regulonSchema = new mongoose.Schema({
   _id: String,
-  transcriptionFactor: transcriptionFactorSchema,
+  regulator: mainRegulatorSchema,
   terms: termsSchema,
   regulates: regulatesSchema,
   regulatoryInteractions: [regulatoryInteractionsSchema],

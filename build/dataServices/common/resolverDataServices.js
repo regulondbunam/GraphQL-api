@@ -31,8 +31,10 @@ var _recentQueriesResolver = require('../recentQueriesService/recentQueriesResol
 
 var _listPageResolver = require('../listPageService/listPageResolver');
 
+var _common_resolver = require('./common_resolver');
+
 /** merges all resolver file and exports them to index */
 
-/** import each Resolver file */
-const resolvers = exports.resolvers = (0, _merge.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _srna_resolver.srnaResolvers, _gensorUnit_resolver.gensorUnitResolvers, _dbInfo_resolver.dbInfoResolvers, _recentQueriesResolver.recentUsedQueriesResolver, _listPageResolver.listPageResolver]);
 //import { regulonResolvers } from '../regulonService/regulon_resolver';
+const resolvers = exports.resolvers = (0, _merge.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _srna_resolver.srnaResolvers, _gensorUnit_resolver.gensorUnitResolvers, _dbInfo_resolver.dbInfoResolvers, _recentQueriesResolver.recentUsedQueriesResolver, _listPageResolver.listPageResolver, _common_resolver.commonResolvers]);
+/** import each Resolver file */
