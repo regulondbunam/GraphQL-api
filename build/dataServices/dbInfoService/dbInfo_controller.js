@@ -9,7 +9,7 @@ var _dbInfo_model = require("./dbInfo_model");
 
 class dbInfoController {
     static async getDatabaseInfo() {
-        return _dbInfo_model.DBInfo.find({});
+        return _dbInfo_model.DBInfo.find({}).sort({ releaseDate: -1 });
     }
 }
 
