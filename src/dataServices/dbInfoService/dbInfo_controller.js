@@ -2,7 +2,7 @@ import {DBInfo} from "./dbInfo_model"
 
 class dbInfoController {
     static async getDatabaseInfo() {
-        return DBInfo.find({})
+        return DBInfo.find({}).sort({releaseDate:-1})
     }
 }
 
