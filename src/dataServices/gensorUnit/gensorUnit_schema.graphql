@@ -107,6 +107,10 @@ type Components {
   """
   _
   """
+  function: String
+  """
+  _
+  """
   name: String
   """
   _
