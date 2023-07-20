@@ -17,6 +17,7 @@ const geneOntologyProperties = new _mongoose2.default.Schema({
 });
 
 const componentsSchema = new _mongoose2.default.Schema({
+    function: String,
     name: String,
     type: String
 });

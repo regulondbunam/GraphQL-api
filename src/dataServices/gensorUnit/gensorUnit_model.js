@@ -6,6 +6,7 @@ const geneOntologyProperties = new mongoose.Schema({
 });
 
 const componentsSchema = new mongoose.Schema({
+    function: String,
     name: String,
     type: String
 });
