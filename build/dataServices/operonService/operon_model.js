@@ -35,7 +35,8 @@ const RegulatorBindingSitesSchema = new _mongoose2.default.Schema({
             rightEndPosition: Number,
             sequence: String
         },
-        mechanism: String
+        mechanism: String,
+        additiveEvidences: [_general_model.aditiveEvidencesSchema]
     }],
     function: String
 });

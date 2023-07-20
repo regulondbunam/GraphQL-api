@@ -24,7 +24,8 @@ const RegulatorBindingSitesSchema = new mongoose.Schema({
                 rightEndPosition: Number,
                 sequence: String
             },
-            mechanism: String
+            mechanism: String,
+            additiveEvidences: [aditiveEvidencesSchema],
         }
     ],
     function: String

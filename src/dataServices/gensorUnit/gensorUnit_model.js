@@ -6,7 +6,6 @@ const geneOntologyProperties = new mongoose.Schema({
 });
 
 const componentsSchema = new mongoose.Schema({
-    function: String,
     name: String,
     type: String
 });
@@ -40,7 +39,9 @@ const gensorUnitSchema = new mongoose.Schema({
     _id: String,
     gensorUnit: GUSchema,
     reactions: [ReactionsSchema],
-    totalOfComponents: Number
+    totalOfComponents: Number,
+    schemaVersion: String,
+    totalOfReactions: Number
 });
 
 const GensorUnit = mongoose.model('gensorUnits', gensorUnitSchema, 'gensorUnitDatamart')

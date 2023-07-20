@@ -368,6 +368,10 @@ type RegulatoryInteractions {
 	_
 	"""
 	mechanism: String
+	"""
+	_
+	"""
+	additiveEvidences: [AdditiveEvidences]
 }
 
 """
