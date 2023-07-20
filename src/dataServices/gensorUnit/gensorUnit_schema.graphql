@@ -18,6 +18,14 @@ type GensorUnitDatamart {
   _
   """
   totalOfComponents: Int
+  """
+  _
+  """
+  schemaVersion: String
+  """
+  _
+  """
+  totalOfReactions: Int
 }
 
 """
@@ -96,10 +104,6 @@ type Reactions {
 _
 """
 type Components {
-  """
-  _
-  """
-  function: String
   """
   _
   """

@@ -71,9 +71,11 @@ const dbInfoSchema = new mongoose.Schema({
     note: String,
     genomeVersion: String,
     localData: [localDataSchema],
-    statistics: StatisticsSchema
+    statistics: StatisticsSchema,
+    route: String,
+    regulondbPMID: String
 });
 
-const DBInfo = mongoose.model('dbInfoTest', dbInfoSchema, 'dbInfoTest');
+const DBInfo = mongoose.model('databaseInfo', dbInfoSchema, 'databaseInfo');
 
 export {DBInfo};

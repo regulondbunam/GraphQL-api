@@ -82,9 +82,11 @@ const dbInfoSchema = new _mongoose2.default.Schema({
     note: String,
     genomeVersion: String,
     localData: [localDataSchema],
-    statistics: StatisticsSchema
+    statistics: StatisticsSchema,
+    route: String,
+    regulondbPMID: String
 });
 
-const DBInfo = _mongoose2.default.model('dbInfoTest', dbInfoSchema, 'dbInfoTest');
+const DBInfo = _mongoose2.default.model('databaseInfo', dbInfoSchema, 'databaseInfo');
 
 exports.DBInfo = DBInfo;

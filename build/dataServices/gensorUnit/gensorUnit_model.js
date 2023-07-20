@@ -17,7 +17,6 @@ const geneOntologyProperties = new _mongoose2.default.Schema({
 });
 
 const componentsSchema = new _mongoose2.default.Schema({
-    function: String,
     name: String,
     type: String
 });
@@ -51,7 +50,9 @@ const gensorUnitSchema = new _mongoose2.default.Schema({
     _id: String,
     gensorUnit: GUSchema,
     reactions: [ReactionsSchema],
-    totalOfComponents: Number
+    totalOfComponents: Number,
+    schemaVersion: String,
+    totalOfReactions: Number
 });
 
 const GensorUnit = _mongoose2.default.model('gensorUnits', gensorUnitSchema, 'gensorUnitDatamart');
