@@ -316,6 +316,10 @@ type RegulatorBindingSites {
 	_
 	"""
 	function: String
+	"""
+	_
+	"""
+	mechanism: [String]
 }
 
 """
@@ -347,7 +351,7 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
-	centerPosition: Float
+	relativeCenterPosition: Float
 	"""
 	_
 	"""
@@ -367,7 +371,7 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
-	mechanism: String
+	mechanism: [String]
 	"""
 	_
 	"""
@@ -385,7 +389,7 @@ type RegulatorySite {
 	"""
 	_
 	"""
-	absolutePosition: Float
+	centerEndPosition: Float
 	"""
 	_
 	"""

@@ -30,6 +30,11 @@ const ConformationsSchema = new mongoose.Schema({
   name: String,
   type: String,
   effectorInteractionType: String,
+  effector: {
+    _id: String,
+    name: String
+  },
+  note: String,
   citations: [citationsSchema],
   functionalType: String,
   additiveEvidences: [aditiveEvidencesSchema],

@@ -21,13 +21,13 @@ const RegulatorBindingSitesSchema = new _mongoose2.default.Schema({
     },
     regulatoryInteractions: [{
         _id: String,
-        centerPosition: Number,
+        relativeCenterPosition: Number,
         citations: [_general_model.citationsSchema],
         function: String,
         note: String,
         regulatorySite: {
             _id: String,
-            absolutePosition: Number,
+            centerEndPosition: Number,
             citations: [_general_model.citationsSchema],
             leftEndPosition: Number,
             length: Number,
@@ -35,10 +35,11 @@ const RegulatorBindingSitesSchema = new _mongoose2.default.Schema({
             rightEndPosition: Number,
             sequence: String
         },
-        mechanism: String,
+        mechanism: [String],
         additiveEvidences: [_general_model.aditiveEvidencesSchema]
     }],
-    function: String
+    function: String,
+    mechanism: [String]
 });
 
 const transcriptionUnitStatisticsSchema = new _mongoose2.default.Schema({
