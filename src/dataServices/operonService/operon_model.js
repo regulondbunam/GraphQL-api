@@ -10,13 +10,13 @@ const RegulatorBindingSitesSchema = new mongoose.Schema({
     regulatoryInteractions: [
         {
             _id: String,
-            centerPosition: Number,
+            relativeCenterPosition: Number,
             citations: [citationsSchema],
             function: String,
             note: String,
             regulatorySite: {
                 _id: String,
-                absolutePosition: Number,
+                centerEndPosition: Number,
                 citations: [citationsSchema],
                 leftEndPosition: Number,
                 length: Number,
@@ -24,11 +24,12 @@ const RegulatorBindingSitesSchema = new mongoose.Schema({
                 rightEndPosition: Number,
                 sequence: String
             },
-            mechanism: String,
+            mechanism: [String],
             additiveEvidences: [aditiveEvidencesSchema],
         }
     ],
-    function: String
+    function: String,
+    mechanism: [String]
 })
 
 const transcriptionUnitStatisticsSchema = new mongoose.Schema({
