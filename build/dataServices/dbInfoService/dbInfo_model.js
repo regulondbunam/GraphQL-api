@@ -24,7 +24,10 @@ const detailedStatisticsSchema = new _mongoose2.default.Schema({
     weak: Number,
     strong: Number,
     confirmed: Number,
-    withoutEvidences: Number
+    withoutEvidences: Number,
+    withwithConfidenceLevel: Number,
+    withPublications: Number,
+    withEvidences: Number
 });
 
 const regulonsSchema = new _mongoose2.default.Schema({

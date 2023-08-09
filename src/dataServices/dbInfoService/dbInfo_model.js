@@ -13,7 +13,10 @@ const detailedStatisticsSchema = new mongoose.Schema({
     weak: Number,
     strong: Number,
     confirmed: Number,
-    withoutEvidences: Number
+    withoutEvidences: Number,
+    withwithConfidenceLevel: Number,
+    withPublications: Number,
+    withEvidences: Number
 });
 
 const regulonsSchema = new mongoose.Schema({

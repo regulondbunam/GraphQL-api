@@ -172,6 +172,18 @@ type detailedStatistics {
     _
     """
     withoutEvidences: Int
+    """
+    _
+    """
+    withwithConfidenceLevel: Int
+    """
+    _
+    """
+    withPublications: Int
+    """
+    _
+    """
+    withEvidences: Int
 }
 
 type productsDBInfoType {
