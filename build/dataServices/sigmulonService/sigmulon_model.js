@@ -18,13 +18,30 @@ const sigmulonBasicPropertiesSchema = new _mongoose2.default.Schema({
     name: String
 });
 
+const geneOntologyTermsProperties = new _mongoose2.default.Schema({
+    citations: [_general_model.citationsSchema],
+    _id: String,
+    name: String,
+    productsId: [String]
+});
+
+const sigmulonGenes = new _mongoose2.default.Schema({
+    _id: String,
+    name: String,
+    geneOntologyTerms: {
+        cellularComponent: [geneOntologyTermsProperties],
+        molecularFunction: [geneOntologyTermsProperties],
+        biologicalProcess: [geneOntologyTermsProperties]
+    }
+});
+
 const sigmaFactorSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String,
     synonyms: [String],
     gene: sigmulonBasicPropertiesSchema,
     sigmulonRegulators: [sigmulonBasicPropertiesSchema],
-    sigmulonGenes: [sigmulonBasicPropertiesSchema]
+    sigmulonGenes: [sigmulonGenes]
 });
 
 const transcribedGenesSchema = new _mongoose2.default.Schema({
@@ -44,6 +61,7 @@ const transcribedPromotersSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String,
     transcribedGenes: [transcribedGenesSchema],
+    TSSPosition: Number,
     operonId: String,
     sequence: String,
     boxes: [boxesSchema],
