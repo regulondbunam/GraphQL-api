@@ -6,13 +6,30 @@ const sigmulonBasicPropertiesSchema = new mongoose.Schema({
     name: String
 });
 
+const geneOntologyTermsProperties = new mongoose.Schema({
+	citations: [ citationsSchema ],
+	_id: String,
+	name: String,
+	productsId: [ String ]
+});
+
+const sigmulonGenes = new mongoose.Schema({
+    _id: String,
+    name: String,
+    geneOntologyTerms: {
+		cellularComponent: [ geneOntologyTermsProperties ],
+		molecularFunction: [ geneOntologyTermsProperties ],
+		biologicalProcess: [ geneOntologyTermsProperties ]
+	}
+});
+
 const sigmaFactorSchema = new mongoose.Schema({
     _id: String,
     name: String,
     synonyms: [String],
     gene: sigmulonBasicPropertiesSchema,
     sigmulonRegulators: [sigmulonBasicPropertiesSchema],
-    sigmulonGenes: [sigmulonBasicPropertiesSchema]
+    sigmulonGenes: [sigmulonGenes]
 });
 
 const transcribedGenesSchema = new mongoose.Schema({
@@ -32,6 +49,7 @@ const transcribedPromotersSchema = new mongoose.Schema({
     _id: String,
     name: String,
     transcribedGenes: [transcribedGenesSchema],
+    TSSPosition: Number,
     operonId: String,
     sequence: String,
     boxes: [boxesSchema],

@@ -55,7 +55,7 @@ type SigmaFactor {
 	"""
 	_
 	"""
-    sigmulonGenes: [SimpleTypeSigma]
+    sigmulonGenes: [SigmulonGenes]
 }
 
 """
@@ -75,6 +75,24 @@ type SimpleTypeSigma {
 """
 _
 """
+type SigmulonGenes {
+	"""
+	_
+	"""
+    _id: String
+	"""
+	_
+	"""
+    name: String
+    """
+    _
+    """
+    geneOntologyTerms: GeneOntologyTerms
+}
+
+"""
+_
+"""
 type TranscribedPromoters {
 	"""
 	_
@@ -88,6 +106,10 @@ type TranscribedPromoters {
 	_
 	"""
     transcribedGenes: [TranscribedGenes]
+	"""
+	_
+	"""
+    TSSPosition: Int
 	"""
 	_
 	"""
