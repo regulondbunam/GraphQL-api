@@ -65,7 +65,8 @@ const transcribedPromotersSchema = new _mongoose2.default.Schema({
     operonId: String,
     sequence: String,
     boxes: [boxesSchema],
-    citations: [_general_model.citationsSchema]
+    citations: [_general_model.citationsSchema],
+    strand: String
 });
 
 const statisticsSchema = new _mongoose2.default.Schema({
