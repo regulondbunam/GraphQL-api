@@ -13,6 +13,7 @@ import { gensorUnitResolvers } from '../gensorUnit/gensorUnit_resolver'
 import { dbInfoResolvers } from '../dbInfoService/dbInfo_resolver'
 import { recentUsedQueriesResolver } from '../recentQueriesService/recentQueriesResolver'
 import { listPageResolver } from '../listPageService/listPageResolver';
+import { downloadableFilesResolver } from '../downloadableFilesService/downloadableFiles_resolver';
 import { commonResolvers } from './common_resolver';
 
 /** merges all resolver file and exports them to index */
@@ -29,5 +30,6 @@ export const resolvers = mergeResolvers([
     dbInfoResolvers,
     recentUsedQueriesResolver,
     listPageResolver,
+    downloadableFilesResolver,
     commonResolvers
 ]);

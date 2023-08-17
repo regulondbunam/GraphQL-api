@@ -28,7 +28,9 @@ const recentQueries = fs.readFileSync('./src/dataServices/recentQueriesService/r
 
 const listPage = fs.readFileSync('./src/dataServices/listPageService/listPageSchema.graphql').toString()
 
-const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries, listPage]
+const downloadableFiles = fs.readFileSync('./src/dataServices/downloadableFilesService/downloadableFiles_schema.graphql').toString()
+
+const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries, listPage, downloadableFiles]
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 export const typeDefs = mergeTypeDefs(types);

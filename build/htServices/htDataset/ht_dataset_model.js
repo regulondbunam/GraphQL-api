@@ -134,6 +134,7 @@ const htDatasetSchema = new _mongoose2.default.Schema({
     experimentCondition: String,
     cutOff: Number,
     notes: String,
+    sourceReferenceGenome: String,
     externalReferences: [externalReferencesSchema]
 });
 
