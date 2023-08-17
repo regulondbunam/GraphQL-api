@@ -122,6 +122,7 @@ const htDatasetSchema = new mongoose.Schema({
     experimentCondition: String,
     cutOff: Number,
     notes: String,
+    sourceReferenceGenome: String,
     externalReferences: [externalReferencesSchema]
 });
 

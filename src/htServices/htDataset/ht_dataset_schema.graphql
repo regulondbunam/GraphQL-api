@@ -127,6 +127,10 @@ type Dataset {
     _
     """
     externalReferences: [ExternalReferences]
+    """
+    _
+    """
+    sourceReferenceGenome: String
 }
 
 """

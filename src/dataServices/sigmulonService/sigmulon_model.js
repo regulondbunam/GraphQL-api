@@ -53,7 +53,8 @@ const transcribedPromotersSchema = new mongoose.Schema({
     operonId: String,
     sequence: String,
     boxes: [boxesSchema],
-    citations: [citationsSchema]
+    citations: [citationsSchema],
+    strand: String
 });
 
 const statisticsSchema = new mongoose.Schema({

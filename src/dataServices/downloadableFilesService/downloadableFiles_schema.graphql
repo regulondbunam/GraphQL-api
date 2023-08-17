@@ -1,0 +1,61 @@
+type DownloadableFile {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    fileName: String
+    """
+    _
+    """
+    fileFormat: String
+    """
+    _
+    """
+    license: String
+    """
+    _
+    """
+    citation: String
+    """
+    _
+    """
+    contact: ContactType
+    """
+    _
+    """
+    version: String
+    """
+    _
+    """
+    creationDate: String
+    """
+    _
+    """
+    columnsDetails: String
+    """
+    _
+    """
+    content: String
+}
+
+type ContactType {
+    """
+    _
+    """
+    personName: String
+    """
+    _
+    """
+    webPage: String
+    """
+    _
+    """
+    email: String
+}
+
+type Query {
+    getDataOfFile(fileName: String): DownloadableFile!
+}

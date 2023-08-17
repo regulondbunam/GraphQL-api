@@ -126,6 +126,10 @@ type TranscribedPromoters {
 	_
 	"""
     citations: [Citations]
+	"""
+	_
+	"""
+    strand: String
 }
 
 """
