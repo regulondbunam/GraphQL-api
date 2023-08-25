@@ -64,7 +64,7 @@ class sigmulonController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-    static async getSigmulonBy(search, advancedSearch, limit = 0, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'], fullMatchOnly = false) {
+    static async getSigmulonBy(search, advancedSearch, limit = 0, page = 0, properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms'], fullMatchOnly = false) {
         const offset = page * limit;
         let filter;
         let hasMore = false;
