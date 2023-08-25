@@ -59,7 +59,7 @@ class sigmulonController {
     advancedSearch,
     limit = 0,
     page = 0,
-    properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms', 'transcribedPromoters.name'],
+    properties = ['sigmaFactor._id', 'sigmaFactor.name', 'sigmaFactor.synonyms'],
     fullMatchOnly = false
 )   {
         const offset = page * limit;
