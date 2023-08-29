@@ -616,7 +616,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["operon._id", "operon.name"],
+    properties: [String] = ["operon._id", "operon.name", "transcriptionUnits.name", "transcriptionUnits.promoter.name"],
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring
