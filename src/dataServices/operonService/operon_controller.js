@@ -59,7 +59,7 @@ class operonController {
     advancedSearch,
     limit = 0,
     page = 0,
-    properties = ['operon._id', 'operon.name'],
+    properties = ['operon._id', 'operon.name', "transcriptionUnits.name", "transcriptionUnits.promoter.name"],
     fullMatchOnly = false
 ) {
   const offset = page * limit;
