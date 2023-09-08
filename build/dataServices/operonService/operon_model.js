@@ -85,7 +85,8 @@ const promotersSchema = new _mongoose2.default.Schema({
     bindsSigmaFactor: {
         _id: String,
         citations: [_general_model.citationsSchema],
-        name: String
+        name: String,
+        abbreviatedName: String
     },
     citations: [_general_model.citationsSchema],
     name: String,

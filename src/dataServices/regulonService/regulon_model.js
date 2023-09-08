@@ -6,7 +6,7 @@ const tusEncodingRegulatorSchema = new mongoose.Schema({
   promoterName: String
 });
 
-const encodedFromGenes = new mongoose.Schema({
+const encodedByGenes = new mongoose.Schema({
   _id: String,
   name: String,
   leftEndPosition: Number,
@@ -14,15 +14,15 @@ const encodedFromGenes = new mongoose.Schema({
   rightEndPosition: Number
 })
 
-const encodedFromOperons = new mongoose.Schema({
+const encodedByOperons = new mongoose.Schema({
   _id: String,
   name: String,
   tusEncodingRegulator: [tusEncodingRegulatorSchema]
 })
 
-const encodedFromSchema = new mongoose.Schema({
-  genes: [encodedFromGenes],
-  operon: [encodedFromOperons]
+const encodedBySchema = new mongoose.Schema({
+  genes: [encodedByGenes],
+  operon: [encodedByOperons]
 });
 
 const ConformationsSchema = new mongoose.Schema({
@@ -43,16 +43,18 @@ const ConformationsSchema = new mongoose.Schema({
 
 const productsSchema = new mongoose.Schema({
   _id: String,
-  name: String
+  name: String,
+	abbreviatedName: String,
 })
 
 const mainRegulatorSchema = new mongoose.Schema({
   _id: String,
   name: String,
+	abbreviatedName: String,
   synonyms: [String],
   note: String,
   conformations: [ConformationsSchema],
-  encodedFrom: encodedFromSchema,
+  encodedBy: encodedBySchema,
   sensingClass: String,
   connectivityClass: String,
   citations: [citationsSchema],

@@ -66,6 +66,7 @@ const productSchema = new _mongoose2.default.Schema({
 	_id: String,
 	regulonId: String,
 	name: String,
+	abbreviatedName: String,
 	molecularWeight: Number,
 	isoelectricPoint: Number,
 	cellularLocations: [String],

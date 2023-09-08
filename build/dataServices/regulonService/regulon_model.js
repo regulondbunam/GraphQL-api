@@ -18,7 +18,7 @@ const tusEncodingRegulatorSchema = new _mongoose2.default.Schema({
   promoterName: String
 });
 
-const encodedFromGenes = new _mongoose2.default.Schema({
+const encodedByGenes = new _mongoose2.default.Schema({
   _id: String,
   name: String,
   leftEndPosition: Number,
@@ -26,15 +26,15 @@ const encodedFromGenes = new _mongoose2.default.Schema({
   rightEndPosition: Number
 });
 
-const encodedFromOperons = new _mongoose2.default.Schema({
+const encodedByOperons = new _mongoose2.default.Schema({
   _id: String,
   name: String,
   tusEncodingRegulator: [tusEncodingRegulatorSchema]
 });
 
-const encodedFromSchema = new _mongoose2.default.Schema({
-  genes: [encodedFromGenes],
-  operon: [encodedFromOperons]
+const encodedBySchema = new _mongoose2.default.Schema({
+  genes: [encodedByGenes],
+  operon: [encodedByOperons]
 });
 
 const ConformationsSchema = new _mongoose2.default.Schema({
@@ -55,16 +55,18 @@ const ConformationsSchema = new _mongoose2.default.Schema({
 
 const productsSchema = new _mongoose2.default.Schema({
   _id: String,
-  name: String
+  name: String,
+  abbreviatedName: String
 });
 
 const mainRegulatorSchema = new _mongoose2.default.Schema({
   _id: String,
   name: String,
+  abbreviatedName: String,
   synonyms: [String],
   note: String,
   conformations: [ConformationsSchema],
-  encodedFrom: encodedFromSchema,
+  encodedBy: encodedBySchema,
   sensingClass: String,
   connectivityClass: String,
   citations: [_general_model.citationsSchema],
