@@ -276,6 +276,10 @@ type BindsSigmaFactor {
 	_
 	"""
 	name: String
+	"""
+	_
+	"""
+	abbreviatedName: String
 }
 
 """

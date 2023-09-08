@@ -58,6 +58,7 @@ const productSchema = new mongoose.Schema({
 	_id: String,
 	regulonId: String,
 	name: String,
+	abbreviatedName: String,
 	molecularWeight: Number,
 	isoelectricPoint: Number,
 	cellularLocations: [ String ],

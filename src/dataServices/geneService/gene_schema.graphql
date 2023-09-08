@@ -182,6 +182,10 @@ type Products {
   """
   _
   """
+  abbreviatedName: String
+  """
+  _
+  """
   type: String
   """
   _

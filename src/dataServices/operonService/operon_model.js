@@ -75,7 +75,8 @@ const promotersSchema = new mongoose.Schema({
     bindsSigmaFactor: {
         _id: String,
         citations: [citationsSchema],
-        name: String
+        name: String,
+        abbreviatedName: String,
     },
     citations: [citationsSchema],
     name: String,

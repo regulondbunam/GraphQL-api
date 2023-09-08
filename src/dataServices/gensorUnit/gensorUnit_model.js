@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const geneOntologyProperties = new mongoose.Schema({
-	id: String,
+	_id: String,
 	name: String
 });
 
