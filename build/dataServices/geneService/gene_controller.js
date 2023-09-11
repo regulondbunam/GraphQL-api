@@ -65,7 +65,7 @@ class geneController {
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
-  static async getGenesBy(search, advancedSearch, limit = 0, page = 0, properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name'], organismName, fullMatchOnly = false) {
+  static async getGenesBy(search, advancedSearch, limit = 0, page = 0, properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name', 'products.abbreviatedName'], organismName, fullMatchOnly = false) {
     const offset = page * limit;
     let filter;
     let hasMore = false;
