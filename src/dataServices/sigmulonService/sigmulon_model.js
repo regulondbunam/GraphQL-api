@@ -29,7 +29,8 @@ const sigmaFactorSchema = new mongoose.Schema({
     synonyms: [String],
     gene: sigmulonBasicPropertiesSchema,
     sigmulonRegulators: [sigmulonBasicPropertiesSchema],
-    sigmulonGenes: [sigmulonGenes]
+    sigmulonGenes: [sigmulonGenes],
+    abbreviatedName: String,
 });
 
 const transcribedGenesSchema = new mongoose.Schema({

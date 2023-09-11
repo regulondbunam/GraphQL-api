@@ -56,6 +56,10 @@ type SigmaFactor {
 	_
 	"""
     sigmulonGenes: [SigmulonGenes]
+	"""
+	_
+	"""
+	abbreviatedName: String
 }
 
 """
@@ -298,7 +302,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["sigmaFactor._id", "sigmaFactor.name", "sigmaFactor.synonyms", "sigmaFactor.gene.name"],
+    properties: [String] = ["sigmaFactor._id", "sigmaFactor.name", "sigmaFactor.abbreviatedName", "sigmaFactor.synonyms", "sigmaFactor.gene.name"],
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring

@@ -60,7 +60,7 @@ class geneController {
       advancedSearch,
       limit = 0,
       page = 0,
-      properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name'],
+      properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name', 'products.abbreviatedName'],
       organismName,
       fullMatchOnly = false
   ) {

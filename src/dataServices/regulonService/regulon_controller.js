@@ -59,7 +59,7 @@ class regulonController {
     advancedSearch, 
     limit = 0, 
     page = 0, 
-    properties = ["_id", "regulator.name", "regulator.conformations.name"], 
+    properties = ["_id", "regulator.name", "regulator.conformations.name", "regulator.abbreviatedName"], 
     fullMatchOnly = false) {
       const offset = page * limit;
       let filter;

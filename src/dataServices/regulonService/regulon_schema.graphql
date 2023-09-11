@@ -860,7 +860,7 @@ type Query {
     #### Required
     Optional
     """
-    properties: [String] = ["_id", "regulator.name", "regulator.conformations.name"], 
+    properties: [String] = ["_id", "regulator.name", "regulator.abbreviatedName", "regulator.conformations.name"], 
     """
     #### Description
     usable for specific organismName queries (not available right now)
