@@ -9,7 +9,38 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
+var _general_model = require('../../dataServices/common/general_model');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ # Drawing Traces Tool service model
+
+ ## Description
+ This model object is used to access to DB of RegulonDB through mongoose
+
+## Usage
+```javascript
+import {Data} from './dttModel';
+```
+
+##Arguments/parameters
+N/A
+
+## Examples
+N/A
+
+## Return 
+N/A
+
+## Category
+RegulonDB drawing traces tool web service
+
+## License 
+
+## Author 
+
+ **/
 
 const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
     _id: String,
@@ -18,34 +49,7 @@ const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
     rightEndPosition: Number,
     strand: String,
     type: String
-}); /**
-     # Drawing Traces Tool service model
-    
-     ## Description
-     This model object is used to access to DB of RegulonDB through mongoose
-    
-    ## Usage
-    ```javascript
-    import {Data} from './dttModel';
-    ```
-    
-    ##Arguments/parameters
-    N/A
-    
-    ## Examples
-    N/A
-    
-    ## Return 
-    N/A
-    
-    ## Category
-    RegulonDB drawing traces tool web service
-    
-    ## License 
-    
-    ## Author 
-    
-     **/
+});
 
 const organismSchema = new _mongoose2.default.Schema({
     _id: String,
@@ -55,6 +59,7 @@ const organismSchema = new _mongoose2.default.Schema({
 const dttDataObject = new _mongoose2.default.Schema({
     _id: String,
     objectType: String,
+    citations: [_general_model.citationsSchema],
     leftEndPosition: Number,
     rightEndPosition: Number,
     strand: String,
