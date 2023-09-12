@@ -88,6 +88,10 @@ type DTTData {
     Genes related to the elements
     """
     relatedGenes: [relatedGenesType]
+    """
+    _
+    """
+    citations: [Citations]
 }
 
 """

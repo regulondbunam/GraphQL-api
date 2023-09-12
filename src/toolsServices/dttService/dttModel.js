@@ -28,6 +28,7 @@ RegulonDB drawing traces tool web service
  **/
 
 import mongoose from 'mongoose';
+import { citationsSchema } from '../../dataServices/common/general_model';
 
 const linkedObjectWhenNoPositionsSchema = new mongoose.Schema({
     _id: String,
@@ -46,6 +47,7 @@ const organismSchema = new mongoose.Schema({
 const dttDataObject = new mongoose.Schema({
     _id: String,
     objectType: String,
+    citations: [citationsSchema],
     leftEndPosition: Number,
     rightEndPosition: Number,
     strand: String,
