@@ -45,7 +45,7 @@ type ContactType {
     """
     _
     """
-    personName: String
+    person: String
     """
     _
     """
@@ -57,5 +57,52 @@ type ContactType {
 }
 
 type Query {
-    getDataOfFile(fileName: String): DownloadableFile!
+    """
+    #### Type
+    Data
+    #### Service
+    DownloadableFile
+    #### Name
+    getDataOfFile
+    #### Description
+    Gets the data of the specified file name
+    #### Example
+    ```json
+    {
+        getDataOfFile(fileName:"TFSet")
+        {
+            _id
+            fileName
+            content
+            columnsDetails
+        }
+    }
+    ```
+    """
+    getDataOfFile(
+    """
+    #### Description
+    Indicates the name of the file which data is required
+    #### Required
+    You must give this parameter
+    """
+    fileName: String): DownloadableFile!
+
+    """
+    #### Type
+    Data
+    #### Service
+    DownloadableFile
+    #### Name
+    listAllFileNames
+    #### Description
+    List all the names of the available files
+    #### Example
+    ```json
+    {
+        listAllFileNames
+    }
+    ```
+    """
+    listAllFileNames: [String]!
 }
