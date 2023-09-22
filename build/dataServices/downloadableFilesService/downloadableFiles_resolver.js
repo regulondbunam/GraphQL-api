@@ -13,7 +13,8 @@ var _controller_common_functions = require('../common/controller_common_function
 
 const downloadableFilesResolver = exports.downloadableFilesResolver = {
   Query: {
-    getDataOfFile: (root, { fileName }) => _downloadableFiles_controller.downloadableFilesController.getDataOfFile(fileName)
+    getDataOfFile: (root, { fileName }) => _downloadableFiles_controller.downloadableFilesController.getDataOfFile(fileName),
+    listAllFileNames: (root, {}) => _downloadableFiles_controller.downloadableFilesController.listAllFileNames()
   }
 }; /**
    # ["" Service Resolver]

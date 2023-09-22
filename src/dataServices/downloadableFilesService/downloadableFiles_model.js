@@ -4,10 +4,11 @@ const DownloadableFilesSchema = new mongoose.Schema({
     _id: String,
     title: String,
     fileName: String,
+    fileFormat: String,
     license: String,
     citation: String,
     contact: {
-        personName: String,
+        person: String,
         webPage: String,
         email: String
     },

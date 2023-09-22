@@ -11,6 +11,11 @@ class downloadableFilesController {
     static async getDataOfFile(fileName) {
         return _downloadableFiles_model.DownloadableFiles.findOne({ "fileName": fileName });
     }
+
+    static async listAllFileNames() {
+        const files = await _downloadableFiles_model.DownloadableFiles.find({}, 'fileName').exec();
+        return files.map(resultado => resultado.fileName);
+    }
 }
 
 exports.downloadableFilesController = downloadableFilesController;

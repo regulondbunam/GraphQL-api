@@ -45,6 +45,7 @@ import { commonController } from '../common/controller_common_functions';
 export const downloadableFilesResolver = {
   Query: {
     getDataOfFile: (root, {fileName}) => downloadableFilesController.getDataOfFile(fileName),
+    listAllFileNames: (root, {}) => downloadableFilesController.listAllFileNames(),
   },
 };
  
