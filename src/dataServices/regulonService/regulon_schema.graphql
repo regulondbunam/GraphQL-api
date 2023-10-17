@@ -182,7 +182,11 @@ type Conformations {
 	"""
 	_
 	"""
-	effector: simpleType
+	class: String
+	"""
+	_
+	"""
+	effector: [simpleType]
 	"""
 	_
 	"""
