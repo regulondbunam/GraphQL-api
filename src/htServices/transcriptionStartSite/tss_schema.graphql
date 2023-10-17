@@ -55,7 +55,7 @@ type TSSClosestGenes {
     """
     _
     """
-    distanceTo: Int
+    distanceTo: Float
 }
 
 """
