@@ -24,6 +24,7 @@ const DownloadableFilesSchema = new _mongoose2.default.Schema({
         email: String
     },
     version: String,
+    rdbVersion: String,
     creationDate: String,
     columnsDetails: String,
     content: String

@@ -13,6 +13,7 @@ const DownloadableFilesSchema = new mongoose.Schema({
         email: String
     },
     version: String,
+    rdbVersion: String,
     creationDate: String,
     columnsDetails: String,
     content: String
