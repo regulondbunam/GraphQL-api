@@ -29,11 +29,12 @@ const ConformationsSchema = new mongoose.Schema({
   _id: String,
   name: String,
   type: String,
+  class: String,
   effectorInteractionType: String,
-  effector: {
+  effector: [{
     _id: String,
     name: String
-  },
+  }],
   note: String,
   citations: [citationsSchema],
   functionalType: String,

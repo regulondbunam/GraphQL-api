@@ -41,11 +41,12 @@ const ConformationsSchema = new _mongoose2.default.Schema({
   _id: String,
   name: String,
   type: String,
+  class: String,
   effectorInteractionType: String,
-  effector: {
+  effector: [{
     _id: String,
     name: String
-  },
+  }],
   note: String,
   citations: [_general_model.citationsSchema],
   functionalType: String,
