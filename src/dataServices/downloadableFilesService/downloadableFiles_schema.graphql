@@ -30,6 +30,10 @@ type DownloadableFile {
     """
     _
     """
+    rdbVersion: String
+    """
+    _
+    """
     creationDate: String
     """
     _
