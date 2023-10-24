@@ -293,7 +293,7 @@ type Query {
     ```json
     {
     getDatabaseInfo{
-        regulondbVersion
+        regulonDBVersion
         ecocycVersion
         lcVersion
         releaseDate
