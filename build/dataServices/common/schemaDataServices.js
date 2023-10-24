@@ -30,8 +30,6 @@ const Coexpression = _fs2.default.readFileSync('./src/dataServices/coexpressionS
 
 const Overviews = _fs2.default.readFileSync('./src/dataServices/overviewsService/overviews_schema.graphql').toString();
 
-const SRNA = _fs2.default.readFileSync('./src/dataServices/srnaService/srna_schema.graphql').toString();
-
 const GUs = _fs2.default.readFileSync('./src/dataServices/gensorUnit/gensorUnit_schema.graphql').toString();
 
 const dbInfo = _fs2.default.readFileSync('./src/dataServices/dbInfoService/dbInfo_schema.graphql').toString();
@@ -42,7 +40,7 @@ const listPage = _fs2.default.readFileSync('./src/dataServices/listPageService/l
 
 const downloadableFiles = _fs2.default.readFileSync('./src/dataServices/downloadableFilesService/downloadableFiles_schema.graphql').toString();
 
-const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, SRNA, GUs, dbInfo, recentQueries, listPage, downloadableFiles];
+const types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, GUs, dbInfo, recentQueries, listPage, downloadableFiles];
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 const typeDefs = exports.typeDefs = (0, _merge.mergeTypeDefs)(types);

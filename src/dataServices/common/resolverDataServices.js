@@ -8,7 +8,6 @@ import { coexpressionResolver } from '../coexpressionService/coexpressionResolve
 import { overviewsResolver } from '../overviewsService/overviews_resolver'
 import { regulonResolvers } from '../regulonService/regulon_resolver'
 import { sigmulonResolvers } from '../sigmulonService/sigmulon_resolver'
-import { srnaResolvers } from '../srnaService/srna_resolver'
 import { gensorUnitResolvers } from '../gensorUnit/gensorUnit_resolver'
 import { dbInfoResolvers } from '../dbInfoService/dbInfo_resolver'
 import { recentUsedQueriesResolver } from '../recentQueriesService/recentQueriesResolver'
@@ -25,7 +24,6 @@ export const resolvers = mergeResolvers([
     overviewsResolver,
     regulonResolvers,
     sigmulonResolvers,
-    srnaResolvers,
     gensorUnitResolvers,
     dbInfoResolvers,
     recentUsedQueriesResolver,

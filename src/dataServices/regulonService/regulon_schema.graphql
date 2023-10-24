@@ -765,7 +765,7 @@ type Query {
 	getAllRegulon(limit: 5){
 		data{
 		_id
-		transcriptionFactor{
+		regulator{
 			name
 			encodedBy{
 			genes{
@@ -811,7 +811,7 @@ type Query {
 	getRegulonBy(search: "agaR or araC"){
 		data{
 		_id
-		transcriptionFactor{
+		regulator{
 			name
 			encodedBy{
 			genes{
