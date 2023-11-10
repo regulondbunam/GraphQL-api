@@ -51,7 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
-    "axios": "^0.25.0",
+    "axios": "^1.6.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.4.6",
     "braces": "^3.0.2",
