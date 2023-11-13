@@ -31,6 +31,7 @@ const simpleItemSchema = new _mongoose2.default.Schema({
 const objectTestedSchema = new _mongoose2.default.Schema({
     _id: String,
     name: String,
+    abbreviatedName: String,
     synonyms: [String],
     genes: [simpleItemSchema],
     note: String,

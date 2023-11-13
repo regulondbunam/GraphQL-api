@@ -19,6 +19,7 @@ const simpleItemSchema = new mongoose.Schema({
 const objectTestedSchema = new mongoose.Schema({
     _id: String,
     name: String,
+    abbreviatedName: String,
     synonyms: [String],
     genes: [simpleItemSchema],
     note: String,
