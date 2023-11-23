@@ -8,8 +8,9 @@ const conectarDB = async ()=>{
     try{
         await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL_DATAMARTS}`,{
             useUnifiedTopology: true,
-            useNewUrlParser: true
-        }); 
+            useNewUrlParser: true,
+            authSource: "admin"
+        });
     }catch(error){
         console.log(error)
         process.exit(1);

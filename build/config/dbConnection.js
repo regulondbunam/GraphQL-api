@@ -15,7 +15,8 @@ const conectarDB = async () => {
     try {
         await _mongoose2.default.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL_DATAMARTS}`, {
             useUnifiedTopology: true,
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            authSource: "admin"
         });
     } catch (error) {
         console.log(error);
