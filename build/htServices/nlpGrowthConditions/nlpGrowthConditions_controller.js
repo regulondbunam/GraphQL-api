@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.nlpGrowthConditionsController = undefined;
 
@@ -48,21 +48,21 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
 class nlpGrowthConditionsController {
-  /** Get all NLP Growth Conditions that are linked to a specific Dataset
-   *  @param {String} datasetId the ID of the Dataset that is linked to the document
-   */
-  static async getNLPGrowthConditionById(datasetId) {
-    return await _nlpGrowthConditions_model.NLPGrowthConditions.findOne({ "datasetIds": datasetId });
-  }
+    /** Get all NLP Growth Conditions that are linked to a specific Dataset
+     *  @param {String} datasetId the ID of the Dataset that is linked to the document
+     */
+    static async getNLPGrowthConditionById(datasetId) {
+        return await _nlpGrowthConditions_model.NLPGrowthConditions.findOne({ "datasetIds": datasetId });
+    }
 
-  /** Makes a advancedSearch Query in collection
-   *  @param {String} advancedSearch the string that need to be parsed to valid BSON format 
-   *  for MongoDB Query, must have a format like key[value]
-   */
-  static async getNLPGrowthConditionBySearch(advancedSearch) {
-    let filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
-    return await _nlpGrowthConditions_model.NLPGrowthConditions.find(filter);
-  }
+    /** Makes a advancedSearch Query in collection
+     *  @param {String} advancedSearch the string that need to be parsed to valid BSON format 
+     *  for MongoDB Query, must have a format like key[value]
+     */
+    static async getNLPGrowthConditionBySearch(advancedSearch) {
+        let filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
+        return await _nlpGrowthConditions_model.NLPGrowthConditions.find(filter);
+    }
 }
 
 exports.nlpGrowthConditionsController = nlpGrowthConditionsController;

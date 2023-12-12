@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.Data = undefined;
 
@@ -43,44 +43,44 @@ RegulonDB drawing traces tool web service
  **/
 
 const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
-    _id: String,
-    leftEndPosition: Number,
-    name: String,
-    rightEndPosition: Number,
-    strand: String,
-    type: String
+  _id: String,
+  leftEndPosition: Number,
+  name: String,
+  rightEndPosition: Number,
+  strand: String,
+  type: String
 });
 
 const organismSchema = new _mongoose2.default.Schema({
-    _id: String,
-    name: String
+  _id: String,
+  name: String
 });
 
 const dttDataObject = new _mongoose2.default.Schema({
+  _id: String,
+  objectType: String,
+  citations: [_general_model.citationsSchema],
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  strand: String,
+  objectRGBColor: String,
+  lineWidth: Number,
+  lineType: Number,
+  labelName: String,
+  labelFont: String,
+  labelRGBColor: String,
+  labelSize: Number,
+  tooltip: String,
+  lineRGBColor: String,
+  organism: organismSchema,
+  relatedGenes: [{
     _id: String,
-    objectType: String,
-    citations: [_general_model.citationsSchema],
-    leftEndPosition: Number,
-    rightEndPosition: Number,
-    strand: String,
+    effect: String,
     objectRGBColor: String,
-    lineWidth: Number,
-    lineType: Number,
-    labelName: String,
-    labelFont: String,
-    labelRGBColor: String,
-    labelSize: Number,
-    tooltip: String,
-    lineRGBColor: String,
-    organism: organismSchema,
-    relatedGenes: [{
-        _id: String,
-        effect: String,
-        objectRGBColor: String,
-        strand: String,
-        tooltip: String
-    }],
-    linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsSchema
+    strand: String,
+    tooltip: String
+  }],
+  linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsSchema
 });
 
 const Data = _mongoose2.default.model('dnafeatures', dttDataObject, 'dnaFeatures');

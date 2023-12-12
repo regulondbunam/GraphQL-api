@@ -26,11 +26,11 @@ type DTTData {
 
     """
     Direction of the genetic element
-    """ 
+    """
     strand: String
 
     """
-    RGB value to paint the element 
+    RGB value to paint the element
     """
     objectRGBColor: String
 
@@ -95,7 +95,7 @@ type DTTData {
 }
 
 """
-OrganismType contains the information of the organism 
+OrganismType contains the information of the organism
 """
 type organismType {
     """
@@ -150,17 +150,17 @@ type linkedObjectWhenNoPositionsType {
     Position of the gen
     """
     leftEndPosition: String
-    
+
     """
     Name of the gene
     """
     name: String
-    
+
     """
     Position of the gene
     """
     rightEndPosition: String
-    
+
     """
     Direction of the element to draw
     """
