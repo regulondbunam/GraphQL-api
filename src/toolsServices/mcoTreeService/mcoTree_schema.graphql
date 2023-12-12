@@ -1,0 +1,108 @@
+"""
+First Level of the collection
+"""
+type McoTree {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    genes: [geneMembers]
+    """
+    _
+    """
+    ontologyId: String
+    """
+    _
+    """
+    subclasses: [String]
+    """
+    _
+    """
+    subclassOf: [String]
+}
+
+
+"""
+_
+"""
+type geneMembers {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    productName: String
+}
+
+type Query {
+    """
+    #### Type
+    Tools
+    #### Service
+    McoTree
+    #### Name
+    getGoTerms
+    #### Description
+    Obtain the principal classes of the Gene Ontology (Cellular Component, Biological Process, Molecular Function)
+    #### Example
+    ```json
+        {
+            getGoTerms {
+                _id
+                name
+                ontologyId
+            }
+        }
+    ```
+    """
+    getGoTerms: [McoTree]
+    """
+    #### Type
+    Tools
+    #### Service
+    McoTree
+    #### Name
+    getSubclassesOfTermId
+    #### Description
+    Obtain the subclasses of the selected term id
+    #### Example
+    ```json
+        {
+            getSubclassesOfTermId(_id: "RDBONTOLGON01836") {
+                _id
+                name
+                ontologyId
+                genes {
+                    name
+                    productName
+                }
+            }
+        }
+    ```
+    """
+    getSubclassesOfTermId(
+        """
+        #### Description
+        Id of the term to obtain its subclasses
+        #### Required
+        Required
+        """
+        _id: String): [McoTree]
+}
