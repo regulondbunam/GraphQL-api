@@ -528,7 +528,7 @@ type Query {
     #### Required
     You must use search or advancedSearch
     """
-    search: String, 
+    search: String,
     """
     #### Description
     usable for queries that require advanced control, uses a \"value[field]\" syntax; 
@@ -536,21 +536,21 @@ type Query {
     #### Required
     You must use search or advancedSearch
     """
-    advancedSearch: String, 
+    advancedSearch: String,
     """
     #### Description
     defines the page results showed
     #### Required
     Optional
     """
-    limit: Int, 
+    limit: Int,
     """
     #### Description
     select the current result page
     #### Required
     Optional
     """
-    page: Int = 0, 
+    page: Int = 0,
     """
     #### Description
     select the fields to be queried by \"search\"
@@ -564,13 +564,12 @@ type Query {
     #### Required
     Optional
     """
-    organismName: String, 
+    organismName: String,
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring
     #### Required
     Optional
     """
-    fullMatchOnly: Boolean = false): GenesResult! 
+    fullMatchOnly: Boolean = false): GenesResult!
 }
- 
