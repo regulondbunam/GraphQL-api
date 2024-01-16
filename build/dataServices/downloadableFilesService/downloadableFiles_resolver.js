@@ -14,17 +14,18 @@ var _controller_common_functions = require('../common/controller_common_function
 const downloadableFilesResolver = exports.downloadableFilesResolver = {
   Query: {
     getDataOfFile: (root, { fileName }) => _downloadableFiles_controller.downloadableFilesController.getDataOfFile(fileName),
-    listAllFileNames: (root, {}) => _downloadableFiles_controller.downloadableFilesController.listAllFileNames()
+    listAllFileNames: (root, {}) => _downloadableFiles_controller.downloadableFilesController.listAllFileNames(),
+    listAllDownloadableFiles: (root, {}) => _downloadableFiles_controller.downloadableFilesController.listAllDownloadableFiles()
   }
 }; /**
    # ["" Service Resolver]
-   	
+   
    ## Description
    
    [Resolves the GraphQL Query based on controller's response
    for "" Service]
    
-   ## Usage 
+   ## Usage
    
    ```javascript
    import {} from './'
@@ -38,7 +39,7 @@ const downloadableFilesResolver = exports.downloadableFilesResolver = {
    
    N/A
    
-   ## Return 
+   ## Return
    
    N/A
    
@@ -50,7 +51,7 @@ const downloadableFilesResolver = exports.downloadableFilesResolver = {
    
    MIT License
    
-   ## Author 
+   ## Author
    
    RegulonDB Team: Lopez Almazo Andres Gerardo
    **/

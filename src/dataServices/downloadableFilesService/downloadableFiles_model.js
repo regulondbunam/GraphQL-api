@@ -16,7 +16,8 @@ const DownloadableFilesSchema = new mongoose.Schema({
     rdbVersion: String,
     creationDate: String,
     columnsDetails: String,
-    content: String
+    content: String,
+    description: String
 })
 
 const DownloadableFiles = mongoose.model('downloadableFilesDatamart', DownloadableFilesSchema, 'downloadableFilesDatamart')
