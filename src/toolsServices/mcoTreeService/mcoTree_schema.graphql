@@ -1,7 +1,7 @@
 """
 First Level of the collection
 """
-type McoTree {
+type GOTree {
     """
     _
     """
@@ -56,7 +56,7 @@ type Query {
     #### Type
     Tools
     #### Service
-    McoTree
+    GOTree
     #### Name
     getGoTerms
     #### Description
@@ -72,12 +72,12 @@ type Query {
         }
     ```
     """
-    getGoTerms: [McoTree]
+    getGoTerms: [GOTree]
     """
     #### Type
     Tools
     #### Service
-    McoTree
+    GOTree
     #### Name
     getSubclassesOfTermId
     #### Description
@@ -104,5 +104,61 @@ type Query {
         #### Required
         Required
         """
-        _id: String): [McoTree]
+        _id: String): [GOTree]
+
+    """
+    #### Type
+    Tools
+    #### Service
+    GOTree
+    #### Name
+    getTermBy
+    #### Description
+    Obtain an specific term
+    #### Example
+    ```json
+        {
+            getTermBy(search: "RDBONTOLGON01836") {
+                _id
+                name
+                ontologyId
+                genes {
+                    name
+                    productName
+                }
+            }
+        }
+    ```
+    """
+    getTermBy(
+        """
+        #### Description
+        usable for text search on fields defined in \"Properties\" parameter; syntax;
+        supports logic operators (AND,OR,NOT). **eg**: \"arad AND arac OR \"biosynthesis of macromolecules\"\"
+        #### Required
+        You must use search or advancedSearch
+        """
+        search: String,
+        """
+        #### Description
+        usable for queries that require advanced control, uses a \"value[field]\" syntax;
+        supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
+        #### Required
+        You must use search or advancedSearch
+        """
+        advancedSearch: String
+        """
+        #### Description
+        select the fields to be queried by \"search\"
+        #### Required
+        Optional
+        """
+        properties: [String] = ["_id", "name", "ontologyId"]
+        """
+        #### Description
+        define if \"search\" will be Case Sensitive and cannot be a substring
+        #### Required
+        Optional
+        """
+        fullMatchOnly: Boolean = false): [GOTree]
 }

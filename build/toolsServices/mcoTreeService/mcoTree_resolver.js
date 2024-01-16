@@ -10,7 +10,8 @@ var _mcoTree_controller = require('./mcoTree_controller');
 const mcoTreeResolver = exports.mcoTreeResolver = {
   Query: {
     getGoTerms: (root, {}) => _mcoTree_controller.mcoTreeController.getGoTerms(),
-    getSubclassesOfTermId: (root, { _id, name }) => _mcoTree_controller.mcoTreeController.getSubclassesOfTermId(_id, name)
+    getSubclassesOfTermId: (root, { _id }) => _mcoTree_controller.mcoTreeController.getSubclassesOfTermId(_id),
+    getTermBy: (root, { search, advancedSearch, properties, fullMatchOnly }) => _mcoTree_controller.mcoTreeController.getTermBy(search, advancedSearch, properties, fullMatchOnly)
   }
 }; /**
    # ["" Service Resolver]

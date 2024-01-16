@@ -43,6 +43,7 @@ import { mcoTreeController } from './mcoTree_controller';
 export const mcoTreeResolver = {
   Query: {
     getGoTerms: (root, {}) => mcoTreeController.getGoTerms(),
-    getSubclassesOfTermId: (root, {_id, name}) => mcoTreeController.getSubclassesOfTermId(_id, name),
+    getSubclassesOfTermId: (root, {_id}) => mcoTreeController.getSubclassesOfTermId(_id),
+    getTermBy: (root, {search, advancedSearch, properties, fullMatchOnly}) => mcoTreeController.getTermBy(search, advancedSearch, properties, fullMatchOnly),
   },
 };
