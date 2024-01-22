@@ -1,11 +1,11 @@
 /**
 # [Gene Service Controller]
-	
+
 ## Description
 
 [Defines functions to resolve GraphQL queries of Gene Service]
 
-## Usage 
+## Usage
 
 ```javascript
 import {geneController} from './gene_controller';
@@ -19,7 +19,7 @@ N/A
 
 N/A
 
-## Return 
+## Return
 
 N/A
 
@@ -31,7 +31,7 @@ RegulonDB datamart web service
 
 MIT License
 
-## Author 
+## Author
 
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/

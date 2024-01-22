@@ -16,6 +16,10 @@ class downloadableFilesController {
         const files = await _downloadableFiles_model.DownloadableFiles.find({}, 'fileName').exec();
         return files.map(resultado => resultado.fileName);
     }
+
+    static async listAllDownloadableFiles() {
+        return _downloadableFiles_model.DownloadableFiles.find();
+    }
 }
 
 exports.downloadableFilesController = downloadableFilesController;

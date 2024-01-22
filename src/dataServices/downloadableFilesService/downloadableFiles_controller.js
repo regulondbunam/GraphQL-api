@@ -9,6 +9,10 @@ class downloadableFilesController {
         const files = await DownloadableFiles.find({}, 'fileName').exec();
         return files.map(resultado => resultado.fileName)
     }
+
+    static async listAllDownloadableFiles() {
+        return DownloadableFiles.find()
+    }
 }
 
 export {downloadableFilesController}

@@ -1,4 +1,5 @@
 import {MCOTree} from "./mcoTree_model"
+import { advancedSearchFilter, textSearchFilter } from 'mongodb-filter-object-parser';
 
 class mcoTreeController {
   static async getGoTerms() {
@@ -10,6 +11,16 @@ class mcoTreeController {
   /*static async getAllTerms(depth) {
       return result = await MCOTree.find({}, { projection: depthLimitProjection(depth) }).toArray();
   }*/
+  static async getTermBy(search, advancedSearch, properties, fullMatchOnly) {
+    let filter;
+    if (advancedSearch !== undefined) {
+      filter = advancedSearchFilter(advancedSearch);
+    } else if (search !== undefined) {
+      // filter = searchFilter(search);
+      filter = textSearchFilter(search, properties, fullMatchOnly);
+    }
+    return MCOTree.find(filter)
+  }
 }
 
 function depthLimitProjection(depth) {

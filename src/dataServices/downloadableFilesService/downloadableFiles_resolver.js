@@ -1,12 +1,12 @@
 /**
 # ["" Service Resolver]
-	
+
 ## Description
 
 [Resolves the GraphQL Query based on controller's response
 for "" Service]
 
-## Usage 
+## Usage
 
 ```javascript
 import {} from './'
@@ -20,7 +20,7 @@ N/A
 
 N/A
 
-## Return 
+## Return
 
 N/A
 
@@ -32,7 +32,7 @@ N/A
 
 MIT License
 
-## Author 
+## Author
 
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
@@ -46,6 +46,6 @@ export const downloadableFilesResolver = {
   Query: {
     getDataOfFile: (root, {fileName}) => downloadableFilesController.getDataOfFile(fileName),
     listAllFileNames: (root, {}) => downloadableFilesController.listAllFileNames(),
+    listAllDownloadableFiles: (root, {}) => downloadableFilesController.listAllDownloadableFiles(),
   },
 };
- 

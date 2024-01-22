@@ -43,6 +43,14 @@ type DownloadableFile {
     _
     """
     content: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    group: String
 }
 
 type ContactType {
@@ -109,4 +117,29 @@ type Query {
     ```
     """
     listAllFileNames: [String]!
+
+    """
+    #### Type
+    Data
+    #### Service
+    DownloadableFile
+    #### Name
+    listAllDownloadableFiles
+    #### Description
+    List all files with its data
+    #### Example
+    ```json
+    {
+        listAllDownloadableFiles
+        {
+            _id
+            fileName
+            description
+            content
+            columnsDetails
+        }
+    }
+    ```
+    """
+    listAllDownloadableFiles: [DownloadableFile]!
 }
