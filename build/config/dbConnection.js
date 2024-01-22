@@ -13,6 +13,7 @@ require('dotenv').config();
 // Imports to be used
 const conectarDB = async () => {
     try {
+        _mongoose2.default.set('strictQuery', false);
         await _mongoose2.default.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL_DATAMARTS}`, {
             useUnifiedTopology: true,
             useNewUrlParser: true,

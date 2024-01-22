@@ -28,7 +28,8 @@ const DownloadableFilesSchema = new _mongoose2.default.Schema({
     creationDate: String,
     columnsDetails: String,
     content: String,
-    description: String
+    description: String,
+    group: String
 });
 
 const DownloadableFiles = _mongoose2.default.model('downloadableFilesDatamart', DownloadableFilesSchema, 'downloadableFilesDatamart');

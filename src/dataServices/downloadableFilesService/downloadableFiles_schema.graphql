@@ -47,6 +47,10 @@ type DownloadableFile {
     _
     """
     description: String
+    """
+    _
+    """
+    group: String
 }
 
 type ContactType {
