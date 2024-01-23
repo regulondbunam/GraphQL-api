@@ -112,6 +112,39 @@ type Query {
     #### Service
     GOTree
     #### Name
+    getSuperclassesOfTermId
+    #### Description
+    Obtain the superclasses of the selected term id
+    #### Example
+    ```json
+        {
+            getSuperclassesOfTermId(_id: "RDBONTOLGON01836") {
+                _id
+                name
+                ontologyId
+                genes {
+                    name
+                    productName
+                }
+            }
+        }
+    ```
+    """
+    getSuperclassesOfTermId(
+        """
+        #### Description
+        Id of the term to obtain its subclasses
+        #### Required
+        Required
+        """
+        _id: String): [GOTree]
+
+    """
+    #### Type
+    Tools
+    #### Service
+    GOTree
+    #### Name
     getTermBy
     #### Description
     Obtain an specific term
