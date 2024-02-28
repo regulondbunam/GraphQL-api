@@ -28,7 +28,7 @@ describe('transcriptionUnit', () => {
             "name": "thrL",
             "length": 162,
             "strand": "+",
-            "termType": null
+            "termType": "TTS"
           }
         }
       });

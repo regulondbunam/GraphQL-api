@@ -7,9 +7,9 @@ describe('regulonService', () => {
             query{
                 getAllRegulon(limit: 5){
                     data{
-                    transcriptionFactor{
+                    regulator{
                         name
-                        encodedFrom{
+                        encodedBy{
                         genes{
                             name
                         }
@@ -28,93 +28,62 @@ describe('regulonService', () => {
     expect(data).toMatchObject({
       "data": {
         "getAllRegulon": {
-            "data": [
-                {
-                  "transcriptionFactor": {
-                    "name": "AccB",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "accB"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "accBC"
-                        }
-                      ]
+          "data": [
+            {
+              "regulator": {
+                "name": "small regulatory RNA GcvB",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "gcvB"
                     }
-                  }
-                },
-                {
-                  "transcriptionFactor": {
-                    "name": "AcrR",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "acrR"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "acrR"
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "transcriptionFactor": {
-                    "name": "Ada",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "ada"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "ada-alkB"
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "transcriptionFactor": {
-                    "name": "AdiY",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "adiY"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "adiY"
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "transcriptionFactor": {
-                    "name": "AgaR",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "agaR"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "agaR"
-                        }
-                      ]
-                    }
-                  }
+                  ]
                 }
-            ]
+              }
+            },
+            {
+              "regulator": {
+                "name": "small regulatory RNA McaS",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "mcaS"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "regulator": {
+                "name": "Qin prophage; small regulatory RNA DicF",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "dicF"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "regulator": {
+                "name": "ppGpp",
+                "encodedBy": null
+              }
+            },
+            {
+              "regulator": {
+                "name": "small regulatory RNA DsrA",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "dsrA"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
         }
       }
     });
@@ -126,9 +95,9 @@ describe('regulonService', () => {
             query{
                 getRegulonBy(search: "agaR or araC"){
                     data{
-                    transcriptionFactor{
+                    regulator{
                         name
-                        encodedFrom{
+                        encodedBy{
                         genes{
                             name
                         }
@@ -147,42 +116,42 @@ describe('regulonService', () => {
     expect(data).toMatchObject({
       "data": {
         "getRegulonBy": {
-            "data": [
-                {
-                  "transcriptionFactor": {
-                    "name": "AgaR",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "agaR"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "agaR"
-                        }
-                      ]
+          "data": [
+            {
+              "regulator": {
+                "name": "AraC",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "araC"
                     }
-                  }
-                },
-                {
-                  "transcriptionFactor": {
-                    "name": "AraC",
-                    "encodedFrom": {
-                      "genes": [
-                        {
-                          "name": "araC"
-                        }
-                      ],
-                      "operon": [
-                        {
-                          "name": "araC"
-                        }
-                      ]
+                  ],
+                  "operon": [
+                    {
+                      "name": "araC"
                     }
-                  }
+                  ]
                 }
-            ]
+              }
+            },
+            {
+              "regulator": {
+                "name": "DNA-binding transcriptional repressor AgaR",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "agaR"
+                    }
+                  ],
+                  "operon": [
+                    {
+                      "name": "agaR"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
         }
       }
     });

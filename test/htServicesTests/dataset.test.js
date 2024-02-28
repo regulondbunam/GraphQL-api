@@ -24,7 +24,7 @@ describe('dataset', () => {
         "getDatasetByID": {
           "objectsTested": [
             {
-              "name": "AscG",
+              "name": "DNA-binding transcriptional repressor AscG",
               "genes": [
                 {
                   "name": "ascG"
@@ -32,7 +32,7 @@ describe('dataset', () => {
               ]
             }
           ],
-          "referenceGenome": "E.coli.MG1655"
+          "referenceGenome": "U00096.3"
         }
       }
     });
