@@ -68,7 +68,7 @@ describe('geneService', () => {
     const response = await axios.post('http://localhost:4001/graphql', {
       query: `
             query{
-                getGenesBy(advancedSearch:"((forward[geneInfo.strand]) and ppk[geneInfo.name]) or 'Lon protease'[products.name]")
+                getGenesBy(advancedSearch:"((forward[gene.strand]) and ppk[gene.name]) or 'Lon protease'[products.name]")
                 {
                   data{
                     gene{
@@ -86,90 +86,34 @@ describe('geneService', () => {
 
     const {data} = response;
     expect(data).toMatchObject({
-      "data": {
-        "getGenesBy": {
-          "data":  [
+  "data": {
+    "getGenesBy": {
+      "data": [
+        {
+          "gene": {
+            "name": "lon",
+            "strand": "forward"
+          },
+          "products": [
             {
-              "gene": {
-                "name": "3'ETS-<i>leuZ</i>",
-                "strand": "reverse"
-              },
-              "products": [
-                {
-                  "name": "small regulatory RNA 3'ETS<sup><i>leuZ</i></sup>"
-                }
-              ]
-            },
+              "name": "Lon protease"
+            }
+          ]
+        },
+        {
+          "gene": {
+            "name": "ppk",
+            "strand": "forward"
+          },
+          "products": [
             {
-              "gene": {
-                "name": "C0067",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0293",
-                "strand": "forward"
-              },
-              "products": [
-                {
-                  "name": "e14 prophage; small regulatory RNA C0293"
-                }
-              ]
-            },
-            {
-              "gene": {
-                "name": "C0299",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0362",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0465",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0614",
-                "strand": "reverse"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0664",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "C0719",
-                "strand": "forward"
-              },
-              "products": []
-            },
-            {
-              "gene": {
-                "name": "G0-10697",
-                "strand": "forward"
-              },
-              "products": []
+              "name": "polyphosphate kinase"
             }
           ]
         }
-      }
-    });
+      ]
+    }
+  }
+});
   });
 });

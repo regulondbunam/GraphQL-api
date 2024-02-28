@@ -137,7 +137,7 @@ const geneServiceSchema = new mongoose.Schema({
 	shineDalgarnos: [ shineDalgarnoSchema ],
 	regulation: regulationSchema,
 	growthConditions: [ growthConditionsSchema ],
-	organism: [ organismSchema ],
+	organism: organismSchema,
 	allCitations: [ citationsSchema ],
 	schemaVersion: Number
 });

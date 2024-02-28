@@ -12,6 +12,7 @@ const RegulatorBindingSitesSchema = new mongoose.Schema({
             _id: String,
             relativeCenterPosition: Number,
             citations: [citationsSchema],
+            confidenceLevel: String,
             function: String,
             note: String,
             regulatorySite: {
