@@ -141,7 +141,7 @@ const geneServiceSchema = new _mongoose2.default.Schema({
 	shineDalgarnos: [shineDalgarnoSchema],
 	regulation: regulationSchema,
 	growthConditions: [growthConditionsSchema],
-	organism: [_general_model.organismSchema],
+	organism: _general_model.organismSchema,
 	allCitations: [_general_model.citationsSchema],
 	schemaVersion: Number
 });

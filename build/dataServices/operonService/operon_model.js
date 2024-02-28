@@ -23,6 +23,7 @@ const RegulatorBindingSitesSchema = new _mongoose2.default.Schema({
         _id: String,
         relativeCenterPosition: Number,
         citations: [_general_model.citationsSchema],
+        confidenceLevel: String,
         function: String,
         note: String,
         regulatorySite: {

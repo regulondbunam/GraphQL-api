@@ -363,6 +363,10 @@ type RegulatoryInteractions {
 	"""
 	_
 	"""
+	confidenceLevel: String
+	"""
+	_
+	"""
 	function: String
 	"""
 	_
