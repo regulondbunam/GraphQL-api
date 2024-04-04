@@ -88,7 +88,8 @@ const GeneTermSchema = new _mongoose2.default.Schema({
 const geneOntologySchema = new _mongoose2.default.Schema({
   _id: String,
   name: String,
-  genes: [GeneTermSchema]
+  genes: [GeneTermSchema],
+  citations: [_general_model.citationsSchema]
 });
 
 const multifunSchema = new _mongoose2.default.Schema({
@@ -185,7 +186,9 @@ const regulatoryInteractionsSchema = {
   distanceToPromoter: Number,
   regulatedGenes: [{
     _id: String,
-    name: String
+    name: String,
+    leftEndPosition: Number,
+    rightEndPosition: Number
   }],
   regulatoryBindingSites: regulatoryBindingSitesSchema,
   citations: [_general_model.citationsSchema],

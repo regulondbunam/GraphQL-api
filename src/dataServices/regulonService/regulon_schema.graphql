@@ -315,6 +315,10 @@ type RegulonGeneOntologyItem {
 	_
 	"""
 	genes: [GeneTermsObject]
+	"""
+	_
+	"""
+	citations: [Citations]
 }
 
 """
@@ -516,11 +520,11 @@ type RegulonRegulatoryInteractions {
 	"""
 	_
 	"""
-	distanceToPromoter: Float 
+	distanceToPromoter: Float
 	"""
 	_
 	"""
-	regulatedGenes: [simpleType]
+	regulatedGenes: [RiRegulatedGenes]
 	"""
 	_
 	"""
@@ -537,6 +541,28 @@ type RegulonRegulatoryInteractions {
 	_
 	"""
 	confidenceLevel: String
+}
+
+"""
+_
+"""
+type RiRegulatedGenes {
+	"""
+	_
+	"""
+	_id: String
+	"""
+	_
+	"""
+	name: String
+	"""
+	_
+	"""
+	leftEndPosition: Int
+	"""
+	_
+	"""
+	rightEndPosition: Int
 }
 
 """

@@ -76,7 +76,8 @@ const GeneTermSchema = new mongoose.Schema({
 const geneOntologySchema = new mongoose.Schema({
   _id: String,
   name: String,
-  genes: [GeneTermSchema]
+  genes: [GeneTermSchema],
+  citations: [citationsSchema]
 });
 
 const multifunSchema = new mongoose.Schema({
@@ -182,7 +183,9 @@ const regulatoryInteractionsSchema = ({
   distanceToPromoter: Number,
   regulatedGenes: [{
     _id: String,
-    name: String
+    name: String,
+    leftEndPosition: Number,
+    rightEndPosition: Number
   }],
   regulatoryBindingSites: regulatoryBindingSitesSchema,
   citations: [citationsSchema],
