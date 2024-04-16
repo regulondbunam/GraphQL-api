@@ -1,36 +1,26 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.RegulatoryNetwork = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _general_model = require('../../dataServices/common/general_model');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const nodeSchema = new _mongoose2.default.Schema({
-    _id: String,
-    name: String,
-    type: String,
-    regulatoryEffect: String,
-    citations: [_general_model.citationsSchema],
-    networkType: String,
-    tooltip: String
+exports.RegulatoryNetwork = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+var _general_model = require("../../dataServices/common/general_model");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var nodeSchema = new _mongoose["default"].Schema({
+  _id: String,
+  name: String,
+  type: String,
+  regulatoryEffect: String,
+  citations: [_general_model.citationsSchema],
+  networkType: String,
+  tooltip: String
 });
-
-const regulatoryNetworkSchema = new _mongoose2.default.Schema({
-    _id: String,
-    name: String,
-    type: String,
-    outdegree: [nodeSchema],
-    indegree: [nodeSchema]
+var regulatoryNetworkSchema = new _mongoose["default"].Schema({
+  _id: String,
+  name: String,
+  type: String,
+  outdegree: [nodeSchema],
+  indegree: [nodeSchema]
 });
-
-const RegulatoryNetwork = _mongoose2.default.model('regulatory_network_datamarts', regulatoryNetworkSchema, 'regulatoryNetworkDatamart');
-
-exports.RegulatoryNetwork = RegulatoryNetwork;
+var RegulatoryNetwork = exports.RegulatoryNetwork = _mongoose["default"].model('regulatory_network_datamarts', regulatoryNetworkSchema, 'regulatoryNetworkDatamart');

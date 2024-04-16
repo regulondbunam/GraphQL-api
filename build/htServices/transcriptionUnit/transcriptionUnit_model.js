@@ -1,38 +1,29 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.TranscriptionUnit = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const geneSchema = new _mongoose2.default.Schema({
-    _id: String,
-    name: String,
-    bnumber: String
+exports.TranscriptionUnit = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var geneSchema = new _mongoose["default"].Schema({
+  _id: String,
+  name: String,
+  bnumber: String
 });
-
-const transcriptionUnitSchema = new _mongoose2.default.Schema({
-    _id: String,
-    chromosome: String,
-    leftEndPosition: Number,
-    rightEndPosition: Number,
-    name: String,
-    strand: String,
-    length: Number,
-    termType: String,
-    genes: [geneSchema],
-    phantom: Number,
-    pseudo: Number,
-    datasetIds: [String],
-    temporalId: String
+var transcriptionUnitSchema = new _mongoose["default"].Schema({
+  _id: String,
+  chromosome: String,
+  leftEndPosition: Number,
+  rightEndPosition: Number,
+  name: String,
+  strand: String,
+  length: Number,
+  termType: String,
+  genes: [geneSchema],
+  phantom: Number,
+  pseudo: Number,
+  datasetIds: [String],
+  temporalId: String
 });
-
-const TranscriptionUnit = _mongoose2.default.model('transcriptionUnits', transcriptionUnitSchema, 'transcriptionUnit');
-
-exports.TranscriptionUnit = TranscriptionUnit;
+var TranscriptionUnit = exports.TranscriptionUnit = _mongoose["default"].model('transcriptionUnits', transcriptionUnitSchema, 'transcriptionUnit');

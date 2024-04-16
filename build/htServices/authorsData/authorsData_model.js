@@ -1,22 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.AuthorsData = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const authorsDataSchema = new _mongoose2.default.Schema({
-    _id: String,
-    authorsData: String,
-    datasetIds: [String]
+exports.AuthorsData = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var authorsDataSchema = new _mongoose["default"].Schema({
+  _id: String,
+  authorsData: String,
+  datasetIds: [String]
 });
-
-const AuthorsData = _mongoose2.default.model('authorsData_ht', authorsDataSchema, 'authorsData');
-
-exports.AuthorsData = AuthorsData;
+var AuthorsData = exports.AuthorsData = _mongoose["default"].model('authorsData_ht', authorsDataSchema, 'authorsData');

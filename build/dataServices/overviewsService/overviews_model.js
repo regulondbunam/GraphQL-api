@@ -1,25 +1,11 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Overviews = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//Importamos el modulo de mongoose para poder crear un schema 
-
-const objectsRelatedSchema = new _mongoose2.default.Schema({
-  _id: String,
-  name: String,
-  type: String
-});
-
-//Generamos el schema con los mismos campos, tipos de datos y nombre de las variables definidas en nuestro .graphql
+exports.Overviews = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 /**
 # Overviews Model
 
@@ -53,7 +39,17 @@ MIT License
 
 RegulonDB Team: EDGAR ENRRIQUE HERNANDEZ MARCELO
 **/
-const overviewInformationObject = new _mongoose2.default.Schema({
+
+//Importamos el modulo de mongoose para poder crear un schema 
+
+var objectsRelatedSchema = new _mongoose["default"].Schema({
+  _id: String,
+  name: String,
+  type: String
+});
+
+//Generamos el schema con los mismos campos, tipos de datos y nombre de las variables definidas en nuestro .graphql
+var overviewInformationObject = new _mongoose["default"].Schema({
   _id: String,
   queryName: String,
   objectType: String,
@@ -74,8 +70,7 @@ const overviewInformationObject = new _mongoose2.default.Schema({
 
 //Creamos un modelo de nuestro schema, con el modulo mongoo.model y agregando el nombre de la base de datos a la cual se conectará
 //y enviandole nuestro Schema generado anteriormente, ya que deberá existir esa misma coleccion en mongo y podrémos obtener todos esos datos
-const Overviews = _mongoose2.default.model('overviews', overviewInformationObject); //Cambiar geneDatamarts por la variable
-exports.Overviews = Overviews;
+var Overviews = exports.Overviews = _mongoose["default"].model('overviews', overviewInformationObject); //Cambiar geneDatamarts por la variable
 
 /**
 	

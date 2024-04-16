@@ -1,41 +1,30 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.phrases = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const phraseSchema = new _mongoose2.default.Schema({
+exports.phrases = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var phraseSchema = new _mongoose["default"].Schema({
   phraseId: String,
   phrase: String,
   pmid: String
 });
-
-const associatedPropertySchema = new _mongoose2.default.Schema({
+var associatedPropertySchema = new _mongoose["default"].Schema({
   name: String,
   value: String
 });
-
-const propertiesSchema = new _mongoose2.default.Schema({
+var propertiesSchema = new _mongoose["default"].Schema({
   position: Number,
   associatedProperty: [associatedPropertySchema],
   associatedPhrases: [phraseSchema]
 });
-
-const phrasesSchema = new _mongoose2.default.Schema({
+var phrasesSchema = new _mongoose["default"].Schema({
   _id: String,
   sourceId: String,
   objectType: String,
   name: String,
   propertyPhrases: [propertiesSchema]
 });
-
-const phrases = _mongoose2.default.model('phrases', phrasesSchema);
-
-exports.phrases = phrases;
+var phrases = exports.phrases = _mongoose["default"].model('phrases', phrasesSchema);

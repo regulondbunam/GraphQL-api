@@ -1,18 +1,13 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resolverMap = exports.recentUsedQueriesResolver = undefined;
-
-var _recentQueriesController = require('./recentQueriesController');
-
-var _graphql = require('graphql');
-
-var _controller_common_functions = require('../common/controller_common_functions');
-
-var _recentQueriesModel = require('./recentQueriesModel');
-
+exports.resolverMap = exports.recentUsedQueriesResolver = void 0;
+var _recentQueriesController = require("./recentQueriesController");
+var _graphql = require("graphql");
+var _controller_common_functions = require("../common/controller_common_functions");
+var _recentQueriesModel = require("./recentQueriesModel");
 /**
 # ["" Service Resolver]
 	
@@ -53,26 +48,33 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
 
 /** import the geneController that contains the resolver functions */
-const recentUsedQueriesResolver = exports.recentUsedQueriesResolver = {
+
+var recentUsedQueriesResolver = exports.recentUsedQueriesResolver = {
   Query: {
-    getAllUsedQueries: (root, { limit, page }) => _recentQueriesController.UsedQueriesController.getAllUsedQueries(limit, page)
+    getAllUsedQueries: function getAllUsedQueries(root, _ref) {
+      var limit = _ref.limit,
+        page = _ref.page;
+      return _recentQueriesController.UsedQueriesController.getAllUsedQueries(limit, page);
+    }
   },
   Mutation: {
-    addUsedQuery: (root, { querySearchString }) => _recentQueriesController.UsedQueriesController.addUsedQuery(querySearchString)
+    addUsedQuery: function addUsedQuery(root, _ref2) {
+      var querySearchString = _ref2.querySearchString;
+      return _recentQueriesController.UsedQueriesController.addUsedQuery(querySearchString);
+    }
   }
 };
-
-const resolverMap = exports.resolverMap = {
+var resolverMap = exports.resolverMap = {
   Date: new _graphql.GraphQLScalarType({
     name: 'Date',
     description: 'Date custom scalar type',
-    parseValue(value) {
+    parseValue: function parseValue(value) {
       return new Date(value); // value from the client
     },
-    serialize(value) {
+    serialize: function serialize(value) {
       return value.getTime(); // value sent to the client
     },
-    parseLiteral(ast) {
+    parseLiteral: function parseLiteral(ast) {
       if (ast.kind === _graphql.Kind.INT) {
         return new Date(+ast.value); // ast value is always in string format
       }

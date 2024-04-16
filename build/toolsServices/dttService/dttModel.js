@@ -1,18 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Data = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _general_model = require('../../dataServices/common/general_model');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+exports.Data = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+var _general_model = require("../../dataServices/common/general_model");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 /**
  # Drawing Traces Tool service model
 
@@ -42,7 +36,7 @@ RegulonDB drawing traces tool web service
 
  **/
 
-const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
+var linkedObjectWhenNoPositionsSchema = new _mongoose["default"].Schema({
   _id: String,
   leftEndPosition: Number,
   name: String,
@@ -50,13 +44,11 @@ const linkedObjectWhenNoPositionsSchema = new _mongoose2.default.Schema({
   strand: String,
   type: String
 });
-
-const organismSchema = new _mongoose2.default.Schema({
+var organismSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String
 });
-
-const dttDataObject = new _mongoose2.default.Schema({
+var dttDataObject = new _mongoose["default"].Schema({
   _id: String,
   objectType: String,
   citations: [_general_model.citationsSchema],
@@ -82,7 +74,4 @@ const dttDataObject = new _mongoose2.default.Schema({
   }],
   linkedObjectWhenNoPositions: linkedObjectWhenNoPositionsSchema
 });
-
-const Data = _mongoose2.default.model('dnafeatures', dttDataObject, 'dnaFeatures');
-
-exports.Data = Data;
+var Data = exports.Data = _mongoose["default"].model('dnafeatures', dttDataObject, 'dnaFeatures');

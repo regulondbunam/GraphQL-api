@@ -34,7 +34,7 @@ import {ApolloServer, gql} from 'apollo-server-express';
 import rateLimit from 'express-rate-limit';
 import {typeDefsClosed} from './common/toolServicesSchema';
 import {resolversClosed} from './common/toolsServicesResolver';
-const {buildSubgraphSchema} = require("@apollo/federation");
+const {buildSubgraphSchema} = require("@apollo/subgraph");
 import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import {playgroundTabs} from '../config/toolsServicesPlaygroundOptions';
 const conectarDB = require('../config/dbConnection');

@@ -35,7 +35,7 @@ import rateLimit from 'express-rate-limit';
 import {typeDefs} from './common/schemaHTServices';
 import {resolvers} from './common/resolverHTServices';
 import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
-const {buildSubgraphSchema} = require("@apollo/federation");
+const {buildSubgraphSchema} = require("@apollo/subgraph");
 import {playgroundTabs} from './config/htPlaygroundOptions';
 const conectarDB = require('./config/dbConnection');
 require('dotenv').config();
