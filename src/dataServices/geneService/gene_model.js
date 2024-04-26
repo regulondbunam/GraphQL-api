@@ -104,7 +104,11 @@ const regulationSchema = new mongoose.Schema({
 				promoters: [
 					{
 						_id: String,
-						name: String
+						name: String,
+						sigmaFactor: {
+							_id: String,
+							name: String
+						}
 					}
 				],
 				transcriptionUnit: {
@@ -118,7 +122,8 @@ const regulationSchema = new mongoose.Schema({
 	statistics: {
 		regulators: Number,
 		regulatoryInteractions: Number,
-		promoters: Number
+		promoters: Number,
+		sigmaFactors: Number
 	}
 });
 
