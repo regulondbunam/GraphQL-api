@@ -98,7 +98,11 @@ var regulationSchema = new _mongoose["default"].Schema({
       regulators: [regulatorsSchema],
       promoters: [{
         _id: String,
-        name: String
+        name: String,
+        sigmaFactor: {
+          _id: String,
+          name: String
+        }
       }],
       transcriptionUnit: {
         _id: String,
@@ -110,7 +114,8 @@ var regulationSchema = new _mongoose["default"].Schema({
   statistics: {
     regulators: Number,
     regulatoryInteractions: Number,
-    promoters: Number
+    promoters: Number,
+    sigmaFactors: Number
   }
 });
 var growthConditionsSchema = new _mongoose["default"].Schema({
