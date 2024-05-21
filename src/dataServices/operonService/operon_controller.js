@@ -74,7 +74,7 @@ class operonController {
 
   const Operons = await Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
   const total = await commonController.countDocumentsIn(Operon, filter);
-  const lastPage = 0
+  let lastPage = 0
   if (limit > 0) {
     lastPage = Math.floor(total / limit);
   }

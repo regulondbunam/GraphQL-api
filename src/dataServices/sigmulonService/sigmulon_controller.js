@@ -74,7 +74,7 @@ class sigmulonController {
 
         const Sigmulons = await Sigmulon.find(filter).sort({'sigmaFactor.name': 1}).limit(limit).skip(offset);
         const total = await commonController.countDocumentsIn(Sigmulon, filter);
-        const lastPage = 0
+        let lastPage = 0
         if (limit > 0) {
             lastPage = Math.floor(total / limit);
         }

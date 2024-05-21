@@ -81,7 +81,7 @@ class geneController {
     }
     const Genes = await Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
     const total = await commonController.countDocumentsIn(Gene, filter);
-    const lastPage = 0
+    let lastPage = 0
     if (limit > 0) {
       lastPage = Math.floor(total / limit);
     }

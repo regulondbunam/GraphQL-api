@@ -72,7 +72,7 @@ class regulonController {
       }
       const Regulons = await Regulon.find(filter).sort({'regulator.name': 1}).limit(limit).skip(offset);
       const total = await commonController.countDocumentsIn(Regulon, filter);
-      const lastPage = 0
+      let lastPage = 0
       if (limit > 0) {
         lastPage = Math.floor(total / limit);
       }
