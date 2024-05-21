@@ -137,7 +137,6 @@ export class commonController {
       default:
         return ["Select a valid collection from this list: gene, regulon, operon, srna, sigmulon"];
     }
-    
   }
 }
 
@@ -160,4 +159,4 @@ function getDeepKeys(obj) {
     keys[i] = keys[i].replace(/\.$/gm, '');
   }
   return [... new Set(keys)];
-} 
+}
