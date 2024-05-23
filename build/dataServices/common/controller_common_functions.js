@@ -89,30 +89,34 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               offset = page * limit; // if the limit is greater than 100, the data will not be sorted to
               // reduce the response time; if it is less than or equal to 100 the
               // data will be ordered alphabetically by sortValue
+              // get another data that be in Pagination Type
+              _context.next = 7;
+              return this.countDocumentsIn(collection);
+            case 7:
+              total = _context.sent;
+              if (limit == 0) {
+                limit = total;
+              }
               if (!(limit > 100)) {
-                _context.next = 11;
+                _context.next = 15;
                 break;
               }
-              _context.next = 8;
+              _context.next = 12;
               return collection.aggregate([{
                 $limit: limit
               }, {
                 $skip: offset
               }]).allowDiskUse(true);
-            case 8:
+            case 12:
               response = _context.sent;
-              _context.next = 14;
+              _context.next = 18;
               break;
-            case 11:
-              _context.next = 13;
+            case 15:
+              _context.next = 17;
               return collection.find({}).sort(sortValue).limit(limit).skip(offset);
-            case 13:
+            case 17:
               response = _context.sent;
-            case 14:
-              _context.next = 16;
-              return this.countDocumentsIn(collection);
-            case 16:
-              total = _context.sent;
+            case 18:
               showedResult = limit * (page + 1);
               lastPage = 0;
               if (limit > 0) {
@@ -120,14 +124,14 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               }
               if (showedResult < total) hasMore = true;
               if (!(page > lastPage)) {
-                _context.next = 28;
+                _context.next = 29;
                 break;
               }
               err = new _graphql.GraphQLError('You must select an available page number');
               err.status = 'No Content';
               err.statusCode = 204;
               throw err;
-            case 28:
+            case 29:
               return _context.abrupt("return", {
                 data: response,
                 pagination: {
@@ -139,7 +143,7 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
                   hasNextPage: hasMore
                 }
               });
-            case 29:
+            case 30:
             case "end":
               return _context.stop();
           }

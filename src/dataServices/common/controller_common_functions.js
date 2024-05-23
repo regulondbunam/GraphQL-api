@@ -51,6 +51,14 @@ export class commonController {
     // if the limit is greater than 100, the data will not be sorted to
     // reduce the response time; if it is less than or equal to 100 the
     // data will be ordered alphabetically by sortValue
+
+    // get another data that be in Pagination Type
+    const total = await this.countDocumentsIn(collection);
+
+    if (limit == 0){
+      limit = total
+    }
+    
     if (limit > 100) {
       response = await collection
           .aggregate([
@@ -64,8 +72,6 @@ export class commonController {
           .allowDiskUse(true);
     } else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 
-    // get another data that be in Pagination Type
-    const total = await this.countDocumentsIn(collection);
     const showedResult = limit * (page + 1);
     let lastPage = 0
     if (limit > 0){
