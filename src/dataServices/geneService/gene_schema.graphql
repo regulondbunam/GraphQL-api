@@ -360,11 +360,29 @@ type Arrangement {
   """
   _
   """
-  promoters: [simpleType]
+  promoters: [PromoterSigmaFactor]
   """
   _
   """
   transcriptionUnit: simpleType
+}
+
+  """
+  _
+  """
+type PromoterSigmaFactor {
+  """
+  _
+  """
+  _id: String
+  """
+  _
+  """
+  name: String
+  """
+  _
+  """
+  sigmaFactor: simpleType
 }
 
   """
@@ -405,6 +423,10 @@ type Statistics {
   _
   """
   promoters: Int
+  """
+  _
+  """
+  sigmaFactors: Int
 }
 
 """

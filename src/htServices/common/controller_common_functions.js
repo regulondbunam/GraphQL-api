@@ -132,13 +132,14 @@ class commonController {
     }
   }
 
-  static countDocumentsIn(collection, filter = {}) {
-    return new Promise((resolve, object) => {
-      collection.countDocuments(filter, (error, count) => {
-        if (error) rejects(error);
-        else resolve(count);
-      });
-    });
+  static async countDocumentsIn(collection, filter = {}) {
+    try {
+      const numeroDocumentos = await collection.countDocuments(filter);
+      return numeroDocumentos;
+    } catch (error) {
+      console.error("Error al contar documentos:", error);
+      throw error;
+    }
   }
 }
 

@@ -1,47 +1,37 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Regulon = undefined;
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _general_model = require('../common/general_model');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const tusEncodingRegulatorSchema = new _mongoose2.default.Schema({
+exports.Regulon = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+var _general_model = require("../common/general_model");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var tusEncodingRegulatorSchema = new _mongoose["default"].Schema({
   transcriptionUnitName: String,
   promoterName: String
 });
-
-const encodedByGenes = new _mongoose2.default.Schema({
+var encodedByGenes = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   leftEndPosition: Number,
   length: Number,
   rightEndPosition: Number
 });
-
-const encodedByOperons = new _mongoose2.default.Schema({
+var encodedByOperons = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   tusEncodingRegulator: [tusEncodingRegulatorSchema]
 });
-
-const encodedBySchema = new _mongoose2.default.Schema({
+var encodedBySchema = new _mongoose["default"].Schema({
   genes: [encodedByGenes],
   operon: [encodedByOperons]
 });
-
-const ConformationsSchema = new _mongoose2.default.Schema({
+var ConformationsSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   type: String,
-  class: String,
+  "class": String,
   effectorInteractionType: String,
   effector: [{
     _id: String,
@@ -53,14 +43,12 @@ const ConformationsSchema = new _mongoose2.default.Schema({
   additiveEvidences: [_general_model.aditiveEvidencesSchema],
   confidenceLevel: String
 });
-
-const productsSchema = new _mongoose2.default.Schema({
+var productsSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   abbreviatedName: String
 });
-
-const mainRegulatorSchema = new _mongoose2.default.Schema({
+var mainRegulatorSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   abbreviatedName: String,
@@ -79,60 +67,52 @@ const mainRegulatorSchema = new _mongoose2.default.Schema({
   confidenceLevel: String,
   type: String
 });
-
-const GeneTermSchema = new _mongoose2.default.Schema({
+var GeneTermSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String
 });
-
-const geneOntologySchema = new _mongoose2.default.Schema({
+var geneOntologySchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   genes: [GeneTermSchema],
   citations: [_general_model.citationsSchema]
 });
-
-const multifunSchema = new _mongoose2.default.Schema({
+var multifunSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
   genes: [GeneTermSchema]
 });
-
-const GOMainSchema = new _mongoose2.default.Schema({
+var GOMainSchema = new _mongoose["default"].Schema({
   cellularComponent: [geneOntologySchema],
   molecularFunction: [geneOntologySchema],
   biologicalProcess: [geneOntologySchema]
 });
-
-const termsSchema = new _mongoose2.default.Schema({
+var termsSchema = new _mongoose["default"].Schema({
   multifun: [multifunSchema],
   geneOntology: GOMainSchema
 });
-
-const firstGeneSchema = new _mongoose2.default.Schema({
+var firstGeneSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String
 });
-
-const regulatedGenesSchema = new _mongoose2.default.Schema({
+var regulatedGenesSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
-  function: String,
+  "function": String,
   terms: termsSchema
 });
-
-const regulatesSchema = new _mongoose2.default.Schema({
+var regulatesSchema = new _mongoose["default"].Schema({
   genes: [regulatedGenesSchema],
   transcriptionFactors: [{
     _id: String,
     name: String,
-    function: String,
+    "function": String,
     genes: [regulatedGenesSchema]
   }],
   transcriptionUnits: [{
     _id: String,
     name: String,
-    function: String,
+    "function": String,
     firstGene: firstGeneSchema,
     promoter: {
       _id: String,
@@ -142,20 +122,19 @@ const regulatesSchema = new _mongoose2.default.Schema({
   operons: [{
     _id: String,
     name: String,
-    function: String,
+    "function": String,
     firstGene: firstGeneSchema
   }],
   sigmaFactors: [{
     _id: String,
     name: String,
-    function: String,
+    "function": String,
     gene: firstGeneSchema
   }]
 });
-
-const regulatoryBindingSitesSchema = {
+var regulatoryBindingSitesSchema = {
   _id: String,
-  function: String,
+  "function": String,
   absolutePosition: Number,
   leftEndPosition: Number,
   rightEndPosition: Number,
@@ -163,24 +142,21 @@ const regulatoryBindingSitesSchema = {
   strand: String,
   citations: [_general_model.citationsSchema]
 };
-
-const regSchema = new _mongoose2.default.Schema({
+var regSchema = new _mongoose["default"].Schema({
   _id: String,
   type: String,
   name: String
 });
-
-const activeConformationSchema = new _mongoose2.default.Schema({
+var activeConformationSchema = new _mongoose["default"].Schema({
   _id: String,
   type: String,
   name: String,
   continuants: [regSchema]
 });
-
-const regulatoryInteractionsSchema = {
+var regulatoryInteractionsSchema = {
   _id: String,
   activeConformation: activeConformationSchema,
-  function: String,
+  "function": String,
   regulatedEntity: regSchema,
   distanceToFirstGene: Number,
   distanceToPromoter: Number,
@@ -195,29 +171,25 @@ const regulatoryInteractionsSchema = {
   additiveEvidences: [_general_model.aditiveEvidencesSchema],
   confidenceLevel: String
 };
-
-const aligmentMatrixSchema = {
+var aligmentMatrixSchema = {
   aligment: String,
   matrix: String,
   consensus: String,
   urlPWMLogo: String,
   urlMatrixQualityResult: String
 };
-
-const evolutionaryConservationSchema = {
+var evolutionaryConservationSchema = {
   urlRegulatorTargetGene: String,
   urlPromoterTargetGene: String
 };
-
-const summaryValuesSchema = new _mongoose2.default.Schema({
+var summaryValuesSchema = new _mongoose["default"].Schema({
   repressed: Number,
   activated: Number,
   dual: Number,
   unknown: Number,
   total: Number
 });
-
-const summarySchema = new _mongoose2.default.Schema({
+var summarySchema = new _mongoose["default"].Schema({
   genes: summaryValuesSchema,
   transcriptionFactors: summaryValuesSchema,
   transcriptionUnits: summaryValuesSchema,
@@ -226,8 +198,7 @@ const summarySchema = new _mongoose2.default.Schema({
   regulatoryInteractions: summaryValuesSchema,
   bindingSites: summaryValuesSchema
 });
-
-const regulonSchema = new _mongoose2.default.Schema({
+var regulonSchema = new _mongoose["default"].Schema({
   _id: String,
   regulator: mainRegulatorSchema,
   terms: termsSchema,
@@ -240,7 +211,4 @@ const regulonSchema = new _mongoose2.default.Schema({
   allCitations: [_general_model.citationsSchema],
   organism: _general_model.organismSchema
 });
-
-const Regulon = _mongoose2.default.model('regulon_datamarts', regulonSchema, "regulonDatamart");
-
-exports.Regulon = Regulon;
+var Regulon = exports.Regulon = _mongoose["default"].model('regulon_datamarts', regulonSchema, "regulonDatamart");

@@ -51,6 +51,14 @@ export class commonController {
     // if the limit is greater than 100, the data will not be sorted to
     // reduce the response time; if it is less than or equal to 100 the
     // data will be ordered alphabetically by sortValue
+
+    // get another data that be in Pagination Type
+    const total = await this.countDocumentsIn(collection);
+
+    if (limit == 0){
+      limit = total
+    }
+    
     if (limit > 100) {
       response = await collection
           .aggregate([
@@ -64,8 +72,6 @@ export class commonController {
           .allowDiskUse(true);
     } else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
 
-    // get another data that be in Pagination Type
-    const total = await this.countDocumentsIn(collection);
     const showedResult = limit * (page + 1);
     let lastPage = 0
     if (limit > 0){
@@ -97,13 +103,14 @@ export class commonController {
      *  @param {String} filter needs the filter used by the query to get the count (by default is 
      *  empty {} por getAll count)
      */
-  static countDocumentsIn(collection, filter = {}) {
-    return new Promise((resolve, object) => {
-      collection.countDocuments(filter, (error, count) => {
-        if (error) rejects(error);
-        else resolve(count);
-      });
-    });
+  static async countDocumentsIn(collection, filter = {}) {
+    try {
+      const numeroDocumentos = await collection.countDocuments(filter);
+      return numeroDocumentos;
+    } catch (error) {
+      console.error("Error al contar documentos:", error);
+      throw error;
+    }
   }
 
   /** Get all fields contained in a specific datamart
@@ -136,7 +143,6 @@ export class commonController {
       default:
         return ["Select a valid collection from this list: gene, regulon, operon, srna, sigmulon"];
     }
-    
   }
 }
 
@@ -159,4 +165,4 @@ function getDeepKeys(obj) {
     keys[i] = keys[i].replace(/\.$/gm, '');
   }
   return [... new Set(keys)];
-} 
+}

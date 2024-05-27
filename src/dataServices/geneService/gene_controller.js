@@ -81,7 +81,10 @@ class geneController {
     }
     const Genes = await Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
     const total = await commonController.countDocumentsIn(Gene, filter);
-    const lastPage = Math.floor(total / limit);
+    let lastPage = 0
+    if (limit > 0) {
+      lastPage = Math.floor(total / limit);
+    }
     if (limit * (page + 1) < total) hasMore = true;
     if (page > lastPage) {
       const err = new GraphQLError('You must select an available page number');
