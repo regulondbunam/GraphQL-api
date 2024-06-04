@@ -137,15 +137,15 @@ type dbInfoRegulons {
     """
     _
     """
-    total: Int
+    regulatoryContinuant: detailedStatistics
     """
     _
     """
-    simpleRegulons: detailedStatistics
+    srna: detailedStatistics
     """
     _
     """
-    complexRegulons: detailedStatistics
+    transcriptionFactor: detailedStatistics
 }
 
 """

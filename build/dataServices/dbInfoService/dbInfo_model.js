@@ -24,9 +24,9 @@ var detailedStatisticsSchema = new _mongoose["default"].Schema({
   withEvidences: Number
 });
 var regulonsSchema = new _mongoose["default"].Schema({
-  total: Number,
-  simpleRegulons: detailedStatisticsSchema,
-  complexRegulons: detailedStatisticsSchema
+  regulatoryContinuant: detailedStatisticsSchema,
+  srna: detailedStatisticsSchema,
+  transcriptionFactor: detailedStatisticsSchema
 });
 var detailedExtReferences = new _mongoose["default"].Schema({
   medline: Number,

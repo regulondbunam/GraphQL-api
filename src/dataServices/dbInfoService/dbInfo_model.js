@@ -20,9 +20,9 @@ const detailedStatisticsSchema = new mongoose.Schema({
 });
 
 const regulonsSchema = new mongoose.Schema({
-    total: Number,
-    simpleRegulons: detailedStatisticsSchema,
-    complexRegulons: detailedStatisticsSchema
+    regulatoryContinuant: detailedStatisticsSchema,
+    srna: detailedStatisticsSchema,
+    transcriptionFactor: detailedStatisticsSchema
 })
 
 const detailedExtReferences = new mongoose.Schema({
