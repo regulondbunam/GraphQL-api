@@ -19,7 +19,7 @@ var detailedStatisticsSchema = new _mongoose["default"].Schema({
   strong: Number,
   confirmed: Number,
   withoutEvidences: Number,
-  withwithConfidenceLevel: Number,
+  withConfidenceLevel: Number,
   withPublications: Number,
   withEvidences: Number
 });

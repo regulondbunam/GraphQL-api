@@ -14,7 +14,7 @@ const detailedStatisticsSchema = new mongoose.Schema({
     strong: Number,
     confirmed: Number,
     withoutEvidences: Number,
-    withwithConfidenceLevel: Number,
+    withConfidenceLevel: Number,
     withPublications: Number,
     withEvidences: Number
 });
