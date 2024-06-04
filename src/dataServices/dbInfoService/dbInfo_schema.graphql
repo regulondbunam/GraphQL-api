@@ -175,7 +175,7 @@ type detailedStatistics {
     """
     _
     """
-    withwithConfidenceLevel: Int
+    withConfidenceLevel: Int
     """
     _
     """
