@@ -103,6 +103,11 @@ const externalReferencesSchema = new mongoose.Schema({
     note: String
 })
 
+const CollectionDataSchema = new mongoose.Schema({
+    source: String,
+    type: String
+})
+
 const htDatasetSchema = new mongoose.Schema({
     _id: String,
     publications: [publicationSchema],
@@ -124,14 +129,18 @@ const htDatasetSchema = new mongoose.Schema({
     cutOff: Number,
     notes: String,
     sourceReferenceGenome: String,
-    externalReferences: [externalReferencesSchema]
+    externalReferences: [externalReferencesSchema],
+    collectionData: CollectionDataSchema
 });
 
 const metadataSchema = new mongoose.Schema({
     _id: String,
     datasetType: String,
+    source: String,
     metadataContent: String,
-    status: String
+    status: String,
+    releaseDate: String,
+    reference: [String]
 })
 
 const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');

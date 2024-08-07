@@ -5,7 +5,7 @@ describe('dataset', () => {
     const response = await axios.post('http://localhost:4004/graphql', {
       query: `
             query {
-                getTTSByID(_id:"ECOLITT000000001")
+                getTTSByID(_id:"ECOLITT000005328")
                 {
                     chromosome
                     leftEndPosition

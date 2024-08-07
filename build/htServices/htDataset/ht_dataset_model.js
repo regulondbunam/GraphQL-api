@@ -96,6 +96,10 @@ var externalReferencesSchema = new _mongoose["default"].Schema({
   description: String,
   note: String
 });
+var CollectionDataSchema = new _mongoose["default"].Schema({
+  source: String,
+  type: String
+});
 var htDatasetSchema = new _mongoose["default"].Schema({
   _id: String,
   publications: [publicationSchema],
@@ -117,13 +121,17 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   cutOff: Number,
   notes: String,
   sourceReferenceGenome: String,
-  externalReferences: [externalReferencesSchema]
+  externalReferences: [externalReferencesSchema],
+  collectionData: CollectionDataSchema
 });
 var metadataSchema = new _mongoose["default"].Schema({
   _id: String,
   datasetType: String,
+  source: String,
   metadataContent: String,
-  status: String
+  status: String,
+  releaseDate: String,
+  reference: [String]
 });
 var HTDataset = exports.HTDataset = _mongoose["default"].model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 var MetadataCollection = exports.MetadataCollection = _mongoose["default"].model('dataset_metadata', metadataSchema, "metadata");

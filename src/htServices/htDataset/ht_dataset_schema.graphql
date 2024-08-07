@@ -19,6 +19,10 @@ type htDatasets {
     _
     """
     metadata: MetadataType
+    """
+    _
+    """
+    collectionName: String
 }
 
 """
@@ -32,6 +36,10 @@ type MetadataType {
     """
     _
     """
+    source: String
+    """
+    _
+    """
     datasetType: String
     """
     _
@@ -41,9 +49,17 @@ type MetadataType {
     _
     """
     status: String
+    """
+    _
+    """
+    releaseDate: String
+    """
+    _
+    """
+    reference: [String]
 }
 
-""" 
+"""
 This is a Dataset type
 """
 type Dataset {
@@ -131,6 +147,24 @@ type Dataset {
     _
     """
     sourceReferenceGenome: String
+    """
+    _
+    """
+    collectionData: CollectionData
+}
+
+"""
+_
+"""
+type CollectionData{
+    """
+    _
+    """
+    source: String
+    """
+    _
+    """
+    type: String
 }
 
 """
@@ -525,10 +559,10 @@ type Query {
     }
     ```
     """
-    getDatasetsFromSearch(   
+    getDatasetsFromSearch(
     """
     #### Description
-    usable for queries that require advanced control, uses a \"value[field]\" syntax; 
+    usable for queries that require advanced control, uses a \"value[field]\" syntax;
     supports logic operators (AND,OR,NOT). **eg**: \"(arac|arad[geneInfo.name] AND reverse[gene.strand])\"
     #### Required
     Required
@@ -543,11 +577,11 @@ type Query {
     #### Name
     getDatasetsWithMetadata
     #### Description
-    Gets a specific dataset document by an datasetID 
+    Gets a specific dataset document by an datasetID
     #### Example
     ```json
     {
-        getDatasetsWithMetadata
+        getDatasetsWithMetadata(datasetType: "TTS" source:"REGULONDB")
         {
             datasets{
                 _id
@@ -562,13 +596,38 @@ type Query {
     }
     ```
     """
-    getDatasetsWithMetadata( 
+    getDatasetsWithMetadata(
     """
     #### Description
-    Indicates to query the datasetType to retrieve
+    Indicates to query the datasetType to retrieve (e.g. TTS)
     #### Required
     Required
     """
-    datasetType: String
+    datasetType: String!
+    """
+    #### Description
+    Indicates to query the source of the Data (e.g. REGULONDB)
+    #### Required
+    Required
+    """
+    source: String!
     ): htDatasets
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    listAllSources
+    #### Description
+    List all the sources for RegulonDB HT data
+    #### Example
+    ```json
+    {
+        listAllHTSources
+    }
+    ```
+    """
+    listAllHTSources: [String]!
 }

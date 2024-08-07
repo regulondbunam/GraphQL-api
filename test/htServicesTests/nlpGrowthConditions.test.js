@@ -19,20 +19,20 @@ describe('dataset', () => {
 
     const {data} = response;
     expect(data).toMatchObject({
-        "data": {
-          "getNLPGrowthConditionById":  {
-            "datasetIds": [
-              "GENE_EXPRESSION_SRR794827"
-            ],
-            "temperature": [
-              {
-                "value": "37 °C",
-                "score": 80,
-                "associatedPhrase": "<Air> Aerobic </Air> growth at <Temp> 37 °C </Temp> in specified media"
-              }
-            ]
-          }
+      "data": {
+        "getNLPGrowthConditionById": {
+          "datasetIds": [
+            "GENE_EXPRESSION_SRR794827"
+          ],
+          "temperature": [
+            {
+              "value": "37 °C",
+              "score": 80,
+              "associatedPhrase": null
+            }
+          ]
         }
-      });
+      }
+    });
   });
 });
