@@ -70,7 +70,7 @@ describe('dataset', () => {
               "30201986",
               "31308523"
             ],
-            "releaseDate": "30/07/2024",
+            "releaseDate": "07/08/2024",
             "source": "REGULONDB",
             "status": "CURRENT"
           },

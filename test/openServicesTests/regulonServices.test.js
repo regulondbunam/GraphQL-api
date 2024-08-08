@@ -31,13 +31,14 @@ describe('regulonService', () => {
           "data": [
             {
               "regulator": {
-                "name": "small regulatory RNA GcvB",
+                "name": "small regulatory RNA DsrA",
                 "encodedBy": {
                   "genes": [
                     {
-                      "name": "gcvB"
+                      "name": "dsrA"
                     }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             },
@@ -49,19 +50,8 @@ describe('regulonService', () => {
                     {
                       "name": "mcaS"
                     }
-                  ]
-                }
-              }
-            },
-            {
-              "regulator": {
-                "name": "Qin prophage; small regulatory RNA DicF",
-                "encodedBy": {
-                  "genes": [
-                    {
-                      "name": "dicF"
-                    }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             },
@@ -73,13 +63,27 @@ describe('regulonService', () => {
             },
             {
               "regulator": {
-                "name": "small regulatory RNA DsrA",
+                "name": "Qin prophage; small regulatory RNA DicF",
                 "encodedBy": {
                   "genes": [
                     {
-                      "name": "dsrA"
+                      "name": "dicF"
                     }
-                  ]
+                  ],
+                  "operon": []
+                }
+              }
+            },
+            {
+              "regulator": {
+                "name": "small regulatory RNA GcvB",
+                "encodedBy": {
+                  "genes": [
+                    {
+                      "name": "gcvB"
+                    }
+                  ],
+                  "operon": []
                 }
               }
             }
