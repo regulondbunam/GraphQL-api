@@ -619,7 +619,7 @@ type Query {
     #### Service
     HT Dataset
     #### Name
-    listAllSources
+    listAllHTSources
     #### Description
     List all the sources for RegulonDB HT data
     #### Example
@@ -630,4 +630,22 @@ type Query {
     ```
     """
     listAllHTSources: [String]!
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    listAllDatasetTypes
+    #### Description
+    List all the dataset types for RegulonDB HT
+    #### Example
+    ```json
+    {
+        listAllDatasetTypes
+    }
+    ```
+    """
+    listAllDatasetTypes: [String]!
 }

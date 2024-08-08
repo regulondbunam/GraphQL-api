@@ -81,6 +81,13 @@ class htDatasetController {
         const uniqueSources = [...new Set(sources)];
         return uniqueSources;
     }
+
+    static async listAllDatasetTypes() {
+        const files = await HTDataset.find({}, 'collectionData.type').exec();
+        const datasetTypes = files.map(result => result.collectionData.type);
+        const uniqueSources = [...new Set(datasetTypes)];
+        return uniqueSources;
+    }
 }
 
 export { htDatasetController }

@@ -62,6 +62,10 @@ var htDatasetResolvers = exports.htDatasetResolvers = {
     listAllHTSources: function listAllHTSources(root, _ref4) {
       _objectDestructuringEmpty(_ref4);
       return _ht_dataset_controller.htDatasetController.listAllHTSources();
+    },
+    listAllDatasetTypes: function listAllDatasetTypes(root, _ref5) {
+      _objectDestructuringEmpty(_ref5);
+      return _ht_dataset_controller.htDatasetController.listAllDatasetTypes();
     }
   }
 };

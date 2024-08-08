@@ -196,5 +196,33 @@ var htDatasetController = exports.htDatasetController = /*#__PURE__*/function ()
       }
       return listAllHTSources;
     }()
+  }, {
+    key: "listAllDatasetTypes",
+    value: function () {
+      var _listAllDatasetTypes = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var files, datasetTypes, uniqueSources;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return _ht_dataset_model.HTDataset.find({}, 'collectionData.type').exec();
+            case 2:
+              files = _context5.sent;
+              datasetTypes = files.map(function (result) {
+                return result.collectionData.type;
+              });
+              uniqueSources = _toConsumableArray(new Set(datasetTypes));
+              return _context5.abrupt("return", uniqueSources);
+            case 6:
+            case "end":
+              return _context5.stop();
+          }
+        }, _callee5);
+      }));
+      function listAllDatasetTypes() {
+        return _listAllDatasetTypes.apply(this, arguments);
+      }
+      return listAllDatasetTypes;
+    }()
   }]);
 }();
