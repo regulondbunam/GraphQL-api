@@ -32,7 +32,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@apollo/gateway": "^2.7.2",
+    "@apollo/gateway": "^2.9.0",
     "@apollo/subgraph": "^2.7.2",
     "@babel/eslint-parser": "^7.24.1",
     "@graphql-tools/load-files": "^6.5.2",
