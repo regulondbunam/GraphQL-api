@@ -1,9 +1,9 @@
 # This schema represent HT Dataset Samples, principal Type is Dataset.
-# Types that can exist in differents datamart cannot be found here, 
+# Types that can exist in differents datamart cannot be found here,
 # and exists in "Common_properties" Schema in "Common" Folder
 # About descriptions
-# 
-# Each Type and Properties must have their own description defined at the 
+#
+# Each Type and Properties must have their own description defined at the
 # top of it by triple double quotes like """this is a description""" replacing
 # the underscore with the description text
 
@@ -90,19 +90,11 @@ type Dataset {
     """
     _
     """
-    referenceGenome: String
-    """
-    _
-    """
-    datasetType: String
-    """
-    _
-    """
-    temporalId: String
-    """
-    _
-    """
     growthConditions: HTGrowthCondition
+    """
+    _
+    """
+    summary: DatasetSummary
     """
     _
     """
@@ -110,7 +102,19 @@ type Dataset {
     """
     _
     """
-    summary: DatasetSummary
+    externalReferences: [ExternalReferences]
+    """
+    _
+    """
+    collectionData: CollectionData
+    """
+    _
+    """
+    referenceGenome: String
+    """
+    _
+    """
+    temporalId: String
     """
     _
     """
@@ -119,10 +123,6 @@ type Dataset {
     _
     """
     fivePrimeEnrichment: String
-    """
-    _
-    """
-    nlpGrowthConditionsId: String
     """
     _
     """
@@ -140,17 +140,13 @@ type Dataset {
     """
     notes: String
     """
-    _
+    CHECAR
     """
-    externalReferences: [ExternalReferences]
+    nlpGrowthConditionsId: [String]
     """
-    _
+    CHECAR
     """
     sourceReferenceGenome: String
-    """
-    _
-    """
-    collectionData: CollectionData
 }
 
 """
@@ -479,6 +475,10 @@ type totalOf {
 _
 """
 type ExternalReferences {
+    """
+    _
+    """
+    _id: String
     """
     _
     """

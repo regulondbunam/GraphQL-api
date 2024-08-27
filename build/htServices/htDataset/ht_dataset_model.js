@@ -91,6 +91,7 @@ var summarySchema = new _mongoose["default"].Schema({
   totalOfTFBS: totalOfSchema
 });
 var externalReferencesSchema = new _mongoose["default"].Schema({
+  _id: String,
   name: String,
   url: String,
   description: String,
@@ -107,22 +108,21 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   sourceSerie: sourceSerieSchema,
   sample: sampleSchema,
   linkedDataset: linkedDatasetSchema,
-  referenceGenome: String,
-  datasetType: String,
-  temporalId: String,
   growthConditions: growthConditionsSchema,
-  releaseDataControl: releaseDataControlSchema,
   summary: summarySchema,
+  releaseDataControl: releaseDataControlSchema,
+  externalReferences: [externalReferencesSchema],
+  collectionData: CollectionDataSchema,
+  referenceGenome: String,
+  temporalId: String,
   assemblyGenomeId: String,
   fivePrimeEnrichment: String,
-  nlpGrowthConditionsId: String,
   geneExpressionFiltered: String,
   experimentCondition: String,
   cutOff: Number,
   notes: String,
-  sourceReferenceGenome: String,
-  externalReferences: [externalReferencesSchema],
-  collectionData: CollectionDataSchema
+  nlpGrowthConditionsId: String,
+  sourceReferenceGenome: [String]
 });
 var metadataSchema = new _mongoose["default"].Schema({
   _id: String,
