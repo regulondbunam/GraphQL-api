@@ -122,7 +122,7 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   cutOff: Number,
   notes: String,
   nlpGrowthConditionsId: String,
-  sourceReferenceGenome: [String]
+  sourceReferenceGenome: String
 });
 var metadataSchema = new _mongoose["default"].Schema({
   _id: String,
