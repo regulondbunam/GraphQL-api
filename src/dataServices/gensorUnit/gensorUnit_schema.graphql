@@ -64,6 +64,38 @@ type GensorUnit {
   _
   """
   groups: [String]
+  """
+  _
+  """
+  summary: GUSummary
+}
+
+"""
+_
+"""
+type GUSummary {
+  """
+  _
+  """
+  molecularBiologyLevel: GUSummaryItem
+  """
+  _
+  """
+  physiologyLevel: GUSummaryItem
+}
+
+"""
+_
+"""
+type GUSummaryItem {
+  """
+  _
+  """
+  detailed: String
+  """
+  _
+  """
+  general: String
 }
 
 """
