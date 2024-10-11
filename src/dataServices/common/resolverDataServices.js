@@ -14,12 +14,13 @@ import { recentUsedQueriesResolver } from '../recentQueriesService/recentQueries
 import { listPageResolver } from '../listPageService/listPageResolver';
 import { downloadableFilesResolver } from '../downloadableFilesService/downloadableFiles_resolver';
 import { commonResolvers } from './common_resolver';
+import { growthConditionResolvers } from '../growthConditionsService/growthConditions_resolver';
 
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
-    geneResolvers, 
-    phrasesResolvers, 
-    operonResolvers, 
+    geneResolvers,
+    phrasesResolvers,
+    operonResolvers,
     coexpressionResolver,
     overviewsResolver,
     regulonResolvers,
@@ -29,5 +30,6 @@ export const resolvers = mergeResolvers([
     recentUsedQueriesResolver,
     listPageResolver,
     downloadableFilesResolver,
-    commonResolvers
+    commonResolvers,
+    growthConditionResolvers
 ]);

@@ -1,0 +1,82 @@
+"""
+GrowthCondition data schema
+"""
+type GrowthCondition {
+    """
+    Unique identifier for the growth condition
+    """
+    _id: String
+    """
+    Phrase describing the growth condition
+    """
+    gcPhrase: String
+    """
+    Array of terms related to the growth condition
+    """
+    terms: [GrowthConditionTerm]
+    """
+    Citations related to the growth condition
+    """
+    citations: [Citations]
+    """
+    Summary of the growth condition
+    """
+    summary: String
+}
+
+"""
+Details of each growth condition term
+"""
+type GrowthConditionTerm {
+    """
+    Unique identifier for the term
+    """
+    _id: String
+    """
+    Type of the term
+    """
+    type: String
+    """
+    Name of the term
+    """
+    name: String
+    """
+    Score associated with the term
+    """
+    score: String
+    """
+    Field name for the term
+    """
+    nameField: String
+    """
+    Associated phrase for the term
+    """
+    associatedPhrase: String
+}
+
+type Query {
+    """
+    Retrieves all growth conditions with optional pagination
+    """
+    getAllGrowthCondition(limit: Int, page: Int = 0): GrowthConditionResult!
+
+    """
+    Retrieves growth conditions by search criteria or advanced search
+    """
+    getGrowthConditionBy(
+        search: String,
+        advancedSearch: String,
+        limit: Int,
+        page: Int = 0,
+        properties: [String],
+        fullMatchOnly: Boolean = false
+    ): GrowthConditionResult!
+}
+
+"""
+Result type for paging growth condition data
+"""
+type GrowthConditionResult {
+    data: [GrowthCondition]
+    pagination: Pagination
+}
