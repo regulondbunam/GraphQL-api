@@ -11,6 +11,16 @@ const componentsSchema = new mongoose.Schema({
     type: String
 });
 
+const SummaryItems = new mongoose.Schema({
+    detailed: String,
+    general: String
+})
+
+const SummarySchema = new mongoose.Schema({
+    molecularBiologyLevel: SummaryItems,
+    physiologyLevel: SummaryItems
+})
+
 const GUSchema = new mongoose.Schema({
     _id: String,
     name: String,
@@ -23,7 +33,8 @@ const GUSchema = new mongoose.Schema({
     description: String,
     signalName: [String],
     note: String,
-    groups: [String]
+    groups: [String],
+    summary: SummarySchema
 });
 
 const ReactionsSchema = new mongoose.Schema({

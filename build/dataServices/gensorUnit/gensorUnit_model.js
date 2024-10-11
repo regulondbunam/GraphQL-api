@@ -15,6 +15,14 @@ var componentsSchema = new _mongoose["default"].Schema({
   name: String,
   type: String
 });
+var SummaryItems = new _mongoose["default"].Schema({
+  detailed: String,
+  general: String
+});
+var SummarySchema = new _mongoose["default"].Schema({
+  molecularBiologyLevel: SummaryItems,
+  physiologyLevel: SummaryItems
+});
 var GUSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
@@ -27,7 +35,8 @@ var GUSchema = new _mongoose["default"].Schema({
   description: String,
   signalName: [String],
   note: String,
-  groups: [String]
+  groups: [String],
+  summary: SummarySchema
 });
 var ReactionsSchema = new _mongoose["default"].Schema({
   name: String,
