@@ -6,7 +6,7 @@ const geneMembers = new mongoose.Schema({
     productName: String
 });
 
-const McoTree = new mongoose.Schema({
+const ontologyTreeSchema = new mongoose.Schema({
     _id: String,
     name: String,
     description: String,
@@ -16,6 +16,6 @@ const McoTree = new mongoose.Schema({
     subclassOf: [String]
 })
 
-const MCOTree = mongoose.model('mcoTree', McoTree, 'mcoTree')
+const ontologyTree = mongoose.model('ontologyTree', ontologyTreeSchema, 'mcoTree')
 
-export {MCOTree};
+export {ontologyTree};

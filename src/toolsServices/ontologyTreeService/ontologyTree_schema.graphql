@@ -1,7 +1,7 @@
 """
 First Level of the collection
 """
-type GOTree {
+type ontologyNode {
     """
     _
     """
@@ -56,15 +56,15 @@ type Query {
     #### Type
     Tools
     #### Service
-    GOTree
+    ontologyTree
     #### Name
-    getGoTerms
+    getTreeTopParents
     #### Description
-    Obtain the principal classes of the Gene Ontology (Cellular Component, Biological Process, Molecular Function)
+    Obtain the principal classes of the Gene Ontology Tree
     #### Example
     ```json
         {
-            getGoTerms {
+            getTopParents {
                 _id
                 name
                 ontologyId
@@ -72,12 +72,20 @@ type Query {
         }
     ```
     """
-    getGoTerms: [GOTree]
+    getTreeTopParents(
+        """
+        #### Description
+        Name of the ontology to retrieve it top parents (GO, MCO, Multifun)
+        #### Required
+        Required
+        """
+        treeType: String
+    ): [ontologyNode]
     """
     #### Type
     Tools
     #### Service
-    GOTree
+    ontologyTree
     #### Name
     getSubclassesOfTermId
     #### Description
@@ -104,13 +112,13 @@ type Query {
         #### Required
         Required
         """
-        _id: String): [GOTree]
+        _id: String): [ontologyNode]
 
     """
     #### Type
     Tools
     #### Service
-    GOTree
+    ontologyTree
     #### Name
     getSuperclassesOfTermId
     #### Description
@@ -137,13 +145,13 @@ type Query {
         #### Required
         Required
         """
-        _id: String): [GOTree]
+        _id: String): [ontologyNode]
 
     """
     #### Type
     Tools
     #### Service
-    GOTree
+    ontologyTree
     #### Name
     getTermBy
     #### Description
@@ -193,5 +201,29 @@ type Query {
         #### Required
         Optional
         """
-        fullMatchOnly: Boolean = false): [GOTree]
+        fullMatchOnly: Boolean = false): [ontologyNode]
+    """
+    #### Type
+    Tools
+    #### Service
+    ontologyTree
+    #### Name
+    filterTermsNameBySearch
+    #### Description
+    Retrieves a list of term names based on a search
+    #### Example
+    ```json
+        {
+            filterTermsNameBySearch(search: "glucose")
+        }
+    ```
+    """
+    filterTermsNameBySearch(
+        """
+        #### Description
+        value to search as name in terms
+        #### Required
+        Required
+        """
+        search: String): [String]
 }

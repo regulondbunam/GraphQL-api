@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mcoTreeController = void 0;
-var _mcoTree_model = require("./mcoTree_model");
+exports.ontologyTreeController = void 0;
+var _ontologyTree_model = require("./ontologyTree_model");
 var _mongodbFilterObjectParser = require("mongodb-filter-object-parser");
 var _graphql = require("graphql");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -22,11 +22,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
-  function mcoTreeController() {
-    _classCallCheck(this, mcoTreeController);
+var ontologyTreeController = exports.ontologyTreeController = /*#__PURE__*/function () {
+  function ontologyTreeController() {
+    _classCallCheck(this, ontologyTreeController);
   }
-  return _createClass(mcoTreeController, null, [{
+  return _createClass(ontologyTreeController, null, [{
     key: "getTreeTopParents",
     value: function () {
       var _getTreeTopParents = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(treeType) {
@@ -37,7 +37,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
                 _context.next = 2;
                 break;
               }
-              return _context.abrupt("return", _mcoTree_model.MCOTree.find({
+              return _context.abrupt("return", _ontologyTree_model.ontologyTree.find({
                 subclassOf: "RDBONTOLGON00001"
               }));
             case 2:
@@ -45,7 +45,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
                 _context.next = 4;
                 break;
               }
-              return _context.abrupt("return", _mcoTree_model.MCOTree.find({
+              return _context.abrupt("return", _ontologyTree_model.ontologyTree.find({
                 subclassOf: "RDBONTOLMCO00005"
               }));
             case 4:
@@ -53,7 +53,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
                 _context.next = 6;
                 break;
               }
-              return _context.abrupt("return", _mcoTree_model.MCOTree.find({
+              return _context.abrupt("return", _ontologyTree_model.ontologyTree.find({
                 subclassOf: "RDBONTOLMTF00001"
               }));
             case 6:
@@ -74,7 +74,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              return _context2.abrupt("return", _mcoTree_model.MCOTree.find({
+              return _context2.abrupt("return", _ontologyTree_model.ontologyTree.find({
                 subclassOf: _id
               }));
             case 1:
@@ -95,7 +95,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              return _context3.abrupt("return", _mcoTree_model.MCOTree.find({
+              return _context3.abrupt("return", _ontologyTree_model.ontologyTree.find({
                 subclasses: _id
               }));
             case 1:
@@ -110,7 +110,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
       return getSuperclassesOfTermId;
     }()
     /*static async getAllTerms(depth) {
-        return result = await MCOTree.find({}, { projection: depthLimitProjection(depth) }).toArray();
+        return result = await ontologyTree.find({}, { projection: depthLimitProjection(depth) }).toArray();
     }*/
   }, {
     key: "getTermBy",
@@ -126,7 +126,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
                 // filter = searchFilter(search);
                 filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
               }
-              return _context4.abrupt("return", _mcoTree_model.MCOTree.find(filter));
+              return _context4.abrupt("return", _ontologyTree_model.ontologyTree.find(filter));
             case 2:
             case "end":
               return _context4.stop();
@@ -156,7 +156,7 @@ var mcoTreeController = exports.mcoTreeController = /*#__PURE__*/function () {
               throw err;
             case 7:
               _context5.next = 9;
-              return _mcoTree_model.MCOTree.find({
+              return _ontologyTree_model.ontologyTree.find({
                 name: {
                   $regex: search,
                   $options: 'i'

@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mcoTreeResolver = void 0;
-var _mcoTree_controller = require("./mcoTree_controller");
+exports.ontologyTreeResolver = void 0;
+var _ontologyTree_controller = require("./ontologyTree_controller");
 /**
 # ["" Service Resolver]
 
@@ -46,30 +46,30 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 
 /** import the geneController that contains the resolver functions */
 
-var mcoTreeResolver = exports.mcoTreeResolver = {
+var ontologyTreeResolver = exports.ontologyTreeResolver = {
   Query: {
     getTreeTopParents: function getTreeTopParents(root, _ref) {
       var treeType = _ref.treeType;
-      return _mcoTree_controller.mcoTreeController.getTreeTopParents(treeType);
+      return _ontologyTree_controller.ontologyTreeController.getTreeTopParents(treeType);
     },
     getSubclassesOfTermId: function getSubclassesOfTermId(root, _ref2) {
       var _id = _ref2._id;
-      return _mcoTree_controller.mcoTreeController.getSubclassesOfTermId(_id);
+      return _ontologyTree_controller.ontologyTreeController.getSubclassesOfTermId(_id);
     },
     getSuperclassesOfTermId: function getSuperclassesOfTermId(root, _ref3) {
       var _id = _ref3._id;
-      return _mcoTree_controller.mcoTreeController.getSuperclassesOfTermId(_id);
+      return _ontologyTree_controller.ontologyTreeController.getSuperclassesOfTermId(_id);
     },
     getTermBy: function getTermBy(root, _ref4) {
       var search = _ref4.search,
         advancedSearch = _ref4.advancedSearch,
         properties = _ref4.properties,
         fullMatchOnly = _ref4.fullMatchOnly;
-      return _mcoTree_controller.mcoTreeController.getTermBy(search, advancedSearch, properties, fullMatchOnly);
+      return _ontologyTree_controller.ontologyTreeController.getTermBy(search, advancedSearch, properties, fullMatchOnly);
     },
     filterTermsNameBySearch: function filterTermsNameBySearch(root, _ref5) {
       var search = _ref5.search;
-      return _mcoTree_controller.mcoTreeController.filterTermsNameBySearch(search);
+      return _ontologyTree_controller.ontologyTreeController.filterTermsNameBySearch(search);
     }
   }
 };
