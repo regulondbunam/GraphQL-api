@@ -46,7 +46,7 @@
     "express-rate-limit": "^6.2.0",
     "graphql": "^16.5.0",
     "mongodb-filter-object-parser": "^1.5.0",
-    "mongoose": "^8.3.1"
+    "mongoose": "^8.8.3"
   },
   "devDependencies": {
     "@apollo/core-schema": "^0.3.0",
