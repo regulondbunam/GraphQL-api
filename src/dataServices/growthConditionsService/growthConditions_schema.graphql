@@ -56,12 +56,54 @@ type GrowthConditionTerm {
 
 type Query {
     """
+    #### Type
+    Data
+    #### Service
+    GrowthConditions
+    #### Name
+    getAllGrowthCondition
+    #### Description
     Retrieves all growth conditions with optional pagination
+    #### Example
+    ```json
+    {
+        getAllGrowthCondition(limit: 5, page: 0) {
+            data {
+                gcPhrase
+                terms {
+                    name
+                    type
+                }
+            }
+        }
+    }
+    ```
     """
     getAllGrowthCondition(limit: Int, page: Int = 0): GrowthConditionResult!
-
     """
+    #### Type
+    Data
+    #### Service
+    GrowthConditions
+    #### Name
+    getGrowthConditionBy
+    #### Description
     Retrieves growth conditions by search criteria or advanced search
+    #### Example
+    ```json
+    {
+        getGrowthConditionBy(search: "RDMECOLIGCC25809") {
+            data {
+                _id
+                gcPhrase
+                terms {
+                        name
+                        type
+                    }
+            }
+        }
+    }
+    ```
     """
     getGrowthConditionBy(
         search: String,
