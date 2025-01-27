@@ -92,7 +92,7 @@ type Query {
     #### Example
     ```json
     {
-        getGrowthConditionBy(search: "RDMECOLIGCC25809") {
+        getGrowthConditionBy(search: "RDMECOLIGCC00002") {
             data {
                 _id
                 gcPhrase
