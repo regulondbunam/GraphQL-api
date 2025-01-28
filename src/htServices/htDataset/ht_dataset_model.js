@@ -131,6 +131,7 @@ const htDatasetSchema = new mongoose.Schema({
     notes: String,
     nlpGrowthConditionsId: String,
     sourceReferenceGenome: String,
+    datasetType: String
 });
 
 const metadataSchema = new mongoose.Schema({

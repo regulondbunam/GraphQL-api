@@ -147,6 +147,10 @@ type Dataset {
     CHECAR
     """
     sourceReferenceGenome: String
+    """
+    _
+    """
+    datasetType: String
 }
 
 """
