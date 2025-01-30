@@ -1,12 +1,12 @@
 /**
 # [HT Dataset Service Resolver]
-	
+
 ## Description
 
 [Resolves the GraphQL Query based on controller's response
 for HT Dataset Service]
 
-## Usage 
+## Usage
 
 ```javascript
 import {htDatasetResolvers} from './ht_dataset_resolver'
@@ -20,7 +20,7 @@ N/A
 
 N/A
 
-## Return 
+## Return
 
 N/A
 
@@ -32,7 +32,7 @@ N/A
 
 MIT License
 
-## Author 
+## Author
 
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
@@ -45,7 +45,8 @@ export const htDatasetResolvers = {
   Query: {
     getDatasetsFromSearch: (root, {advancedSearch}) => htDatasetController.getDatasetsFromSearch(advancedSearch),
     getDatasetByID: (root, {datasetID}) => htDatasetController.getDatasetByID(datasetID),
-    getDatasetsWithMetadata: (root, {datasetType}) => htDatasetController.getDatasetsWithMetadata(datasetType)
+    getDatasetsWithMetadata: (root, {datasetType, source}) => htDatasetController.getDatasetsWithMetadata(datasetType, source),
+    listAllHTSources: (root, {}) => htDatasetController.listAllHTSources(),
+    listAllDatasetTypes: (root, {}) => htDatasetController.listAllDatasetTypes(),
   },
 };
- 

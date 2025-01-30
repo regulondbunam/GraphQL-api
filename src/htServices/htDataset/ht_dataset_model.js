@@ -97,10 +97,16 @@ const summarySchema = new mongoose.Schema({
 });
 
 const externalReferencesSchema = new mongoose.Schema({
+    _id: String,
     name: String,
     url: String,
     description: String,
     note: String
+})
+
+const CollectionDataSchema = new mongoose.Schema({
+    source: String,
+    type: String
 })
 
 const htDatasetSchema = new mongoose.Schema({
@@ -110,28 +116,32 @@ const htDatasetSchema = new mongoose.Schema({
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
     linkedDataset: linkedDatasetSchema,
-    referenceGenome: String,
-    datasetType: String,
-    temporalId: String,
     growthConditions: growthConditionsSchema,
-    releaseDataControl: releaseDataControlSchema,
     summary: summarySchema,
+    releaseDataControl: releaseDataControlSchema,
+    externalReferences: [externalReferencesSchema],
+    collectionData: CollectionDataSchema,
+    referenceGenome: String,
+    temporalId: String,
     assemblyGenomeId: String,
     fivePrimeEnrichment: String,
-    nlpGrowthConditionsId: String,
     geneExpressionFiltered: String,
     experimentCondition: String,
     cutOff: Number,
     notes: String,
+    nlpGrowthConditionsId: String,
     sourceReferenceGenome: String,
-    externalReferences: [externalReferencesSchema]
+    datasetType: String
 });
 
 const metadataSchema = new mongoose.Schema({
     _id: String,
     datasetType: String,
+    source: String,
     metadataContent: String,
-    status: String
+    status: String,
+    releaseDate: String,
+    reference: [String]
 })
 
 const HTDataset = mongoose.model('ht_dataset_datamarts', htDatasetSchema, 'dataset');

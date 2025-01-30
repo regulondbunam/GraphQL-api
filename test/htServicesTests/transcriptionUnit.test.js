@@ -20,17 +20,17 @@ describe('transcriptionUnit', () => {
 
     const {data} = response;
     expect(data).toMatchObject({
-        "data": {
-          "getTUByID": {
-            "chromosome": "NC_000913.3",
-            "leftEndPosition": 147,
-            "rightEndPosition": 308,
-            "name": "thrL",
-            "length": 162,
-            "strand": "+",
-            "termType": "TTS"
-          }
+      "data": {
+        "getTUByID": {
+          "chromosome": "NC_000913.3",
+          "leftEndPosition": 147,
+          "rightEndPosition": 5076,
+          "name": "thrL-thrA-thrB-thrC",
+          "length": 4930,
+          "strand": "+",
+          "termType": "TTS"
         }
-      });
+      }
+    });
   });
 });

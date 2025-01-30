@@ -29,7 +29,7 @@ const ClosestGenesSchema = new mongoose.Schema({
 const TTSSchema = new mongoose.Schema({
     _id: String,
     chromosome: String,
-    leftEndPosition: Number, 
+    leftEndPosition: Number,
     rightEndPosition: Number,
     name: String,
     strand: String,

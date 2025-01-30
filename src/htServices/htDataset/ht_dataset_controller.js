@@ -1,11 +1,11 @@
 /**
 # [Dataset Service Controller]
-	
+
 ## Description
 
 [Defines functions to resolve GraphQL queries of HT Dataset Service]
 
-## Usage 
+## Usage
 
 ```javascript
 import {htDatasetController} from './ht_dataset_controller.js';
@@ -19,7 +19,7 @@ N/A
 
 N/A
 
-## Return 
+## Return
 
 N/A
 
@@ -31,7 +31,7 @@ RegulonDB HT Web Service
 
 MIT License
 
-## Author 
+## Author
 
 RegulonDB Team: Lopez Almazo Andres Gerardo
 **/
@@ -42,7 +42,7 @@ import {advancedSearchFilter} from 'mongodb-filter-object-parser'
 
 class htDatasetController {
     /** Makes a advancedSearch Query in collection
-     *  @param {String} advSearch the string that need to be parsed to valid BSON format 
+     *  @param {String} advSearch the string that need to be parsed to valid BSON format
      *  for MongoDB Query, must have a format like key[value]
      */
     static async getDatasetsFromSearch(advSearch) {
@@ -57,15 +57,36 @@ class htDatasetController {
         return await HTDataset.findOne({"_id": datasetID})
     }
 
-    static async getDatasetsWithMetadata(datasetType){
+    static async getDatasetsWithMetadata(datasetType, source){
         // TODO: Esto se debe hacer sobre el collectionName en lugar del datasetType, porque buscará el archivo metadata asociado al tipo de colección 
         // requerido
-        const Datasets = await HTDataset.find({"datasetType":datasetType})
-        const Metadata = await MetadataCollection.findOne({"$and":[{"datasetType": datasetType}, {"status": "latest"}]})
-        return {
-            datasets: Datasets,
-            metadata: Metadata
-        };
+        const Datasets = await HTDataset.find({"collectionData.type":datasetType})
+        const Metadata = await MetadataCollection.findOne({"$and":[{"datasetType": datasetType}, {"status": "CURRENT"}, {"source": source}]})
+        if (Datasets && Metadata){
+            return {
+                datasets: Datasets,
+                metadata: Metadata
+            };
+        } else {
+            return {
+                datasets: [],
+                metadata: []
+            }
+        }
+    }
+
+    static async listAllHTSources() {
+        const files = await MetadataCollection.find({}, 'source').exec();
+        const sources = files.map(result => result.source);
+        const uniqueSources = [...new Set(sources)];
+        return uniqueSources;
+    }
+
+    static async listAllDatasetTypes() {
+        const files = await HTDataset.find({}, 'collectionData.type').exec();
+        const datasetTypes = files.map(result => result.collectionData.type);
+        const uniqueSources = [...new Set(datasetTypes)];
+        return uniqueSources;
     }
 }
 

@@ -18,9 +18,10 @@ var _recentQueriesResolver = require("../recentQueriesService/recentQueriesResol
 var _listPageResolver = require("../listPageService/listPageResolver");
 var _downloadableFiles_resolver = require("../downloadableFilesService/downloadableFiles_resolver");
 var _common_resolver = require("./common_resolver");
+var _growthConditions_resolver = require("../growthConditionsService/growthConditions_resolver");
 /** import each Resolver file */
 
 //import { regulonResolvers } from '../regulonService/regulon_resolver';
 
 /** merges all resolver file and exports them to index */
-var resolvers = exports.resolvers = (0, _merge.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _gensorUnit_resolver.gensorUnitResolvers, _dbInfo_resolver.dbInfoResolvers, _recentQueriesResolver.recentUsedQueriesResolver, _listPageResolver.listPageResolver, _downloadableFiles_resolver.downloadableFilesResolver, _common_resolver.commonResolvers]);
+var resolvers = exports.resolvers = (0, _merge.mergeResolvers)([_gene_resolver.geneResolvers, _phrasesResolvers.phrasesResolvers, _operon_resolver.operonResolvers, _coexpressionResolver.coexpressionResolver, _overviews_resolver.overviewsResolver, _regulon_resolver.regulonResolvers, _sigmulon_resolver.sigmulonResolvers, _gensorUnit_resolver.gensorUnitResolvers, _dbInfo_resolver.dbInfoResolvers, _recentQueriesResolver.recentUsedQueriesResolver, _listPageResolver.listPageResolver, _downloadableFiles_resolver.downloadableFilesResolver, _common_resolver.commonResolvers, _growthConditions_resolver.growthConditionResolvers]);

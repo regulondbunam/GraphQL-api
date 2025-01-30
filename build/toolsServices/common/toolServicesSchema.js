@@ -12,9 +12,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 //Read all graphql schemas
 var Dtt = _fs["default"].readFileSync('./src/toolsServices/dttService/dttSchema.graphql').toString();
 var RegNet = _fs["default"].readFileSync('./src/toolsServices/regulatoryNetworkService/regulatoryNetworkSchema.graphql').toString();
-var termTree = _fs["default"].readFileSync('./src/toolsServices/mcoTreeService/mcoTree_schema.graphql').toString();
+var ontologyTree = _fs["default"].readFileSync('./src/toolsServices/ontologyTreeService/ontologyTree_schema.graphql').toString();
 var commonProperties = _fs["default"].readFileSync('./src/toolsServices/common/common_properties.graphql').toString();
-var types = [Dtt, RegNet, termTree, commonProperties];
+var types = [Dtt, RegNet, ontologyTree, commonProperties];
 
 //exports the object that contains all merge schemas
 var typeDefsClosed = exports.typeDefsClosed = (0, _merge.mergeTypeDefs)(types);

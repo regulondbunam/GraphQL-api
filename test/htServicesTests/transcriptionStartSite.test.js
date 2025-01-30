@@ -18,16 +18,16 @@ describe('dataset', () => {
 
     const {data} = response;
     expect(data).toMatchObject({
-        "data": {
-          "getTSSByID":  {
-            "chromosome": "NC_000913.3",
-            "leftEndPosition": 38,
-            "rightEndPosition": 38,
-            "datasetIds": [
-              "RHTECOLITSD00001"
-            ]
-          }
+      "data": {
+        "getTSSByID": {
+          "chromosome": "NC_000913.3",
+          "leftEndPosition": 113,
+          "rightEndPosition": 113,
+          "datasetIds": [
+            "RHTECOLITSD02699"
+          ]
         }
-      });
+      }
+    });
   });
 });

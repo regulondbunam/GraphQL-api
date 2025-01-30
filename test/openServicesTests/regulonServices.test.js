@@ -37,7 +37,8 @@ describe('regulonService', () => {
                     {
                       "name": "gcvB"
                     }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             },
@@ -49,7 +50,8 @@ describe('regulonService', () => {
                     {
                       "name": "mcaS"
                     }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             },
@@ -61,7 +63,8 @@ describe('regulonService', () => {
                     {
                       "name": "dicF"
                     }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             },
@@ -79,7 +82,8 @@ describe('regulonService', () => {
                     {
                       "name": "dsrA"
                     }
-                  ]
+                  ],
+                  "operon": []
                 }
               }
             }

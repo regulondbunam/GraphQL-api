@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.htDatasetResolvers = void 0;
 var _ht_dataset_controller = require("./ht_dataset_controller");
 var _controller_common_functions = require("../common/controller_common_functions");
-/**
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); } /**
 # [HT Dataset Service Resolver]
-	
+
 ## Description
 
 [Resolves the GraphQL Query based on controller's response
 for HT Dataset Service]
 
-## Usage 
+## Usage
 
 ```javascript
 import {htDatasetResolvers} from './ht_dataset_resolver'
@@ -28,7 +28,7 @@ N/A
 
 N/A
 
-## Return 
+## Return
 
 N/A
 
@@ -40,13 +40,10 @@ N/A
 
 MIT License
 
-## Author 
+## Author
 
 RegulonDB Team: Lopez Almazo Andres Gerardo
-**/
-
-/** import the htDatasetController that contains the resolver functions */
-
+**/ /** import the htDatasetController that contains the resolver functions */
 var htDatasetResolvers = exports.htDatasetResolvers = {
   Query: {
     getDatasetsFromSearch: function getDatasetsFromSearch(root, _ref) {
@@ -58,8 +55,17 @@ var htDatasetResolvers = exports.htDatasetResolvers = {
       return _ht_dataset_controller.htDatasetController.getDatasetByID(datasetID);
     },
     getDatasetsWithMetadata: function getDatasetsWithMetadata(root, _ref3) {
-      var datasetType = _ref3.datasetType;
-      return _ht_dataset_controller.htDatasetController.getDatasetsWithMetadata(datasetType);
+      var datasetType = _ref3.datasetType,
+        source = _ref3.source;
+      return _ht_dataset_controller.htDatasetController.getDatasetsWithMetadata(datasetType, source);
+    },
+    listAllHTSources: function listAllHTSources(root, _ref4) {
+      _objectDestructuringEmpty(_ref4);
+      return _ht_dataset_controller.htDatasetController.listAllHTSources();
+    },
+    listAllDatasetTypes: function listAllDatasetTypes(root, _ref5) {
+      _objectDestructuringEmpty(_ref5);
+      return _ht_dataset_controller.htDatasetController.listAllDatasetTypes();
     }
   }
 };

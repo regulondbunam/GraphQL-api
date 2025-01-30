@@ -91,10 +91,15 @@ var summarySchema = new _mongoose["default"].Schema({
   totalOfTFBS: totalOfSchema
 });
 var externalReferencesSchema = new _mongoose["default"].Schema({
+  _id: String,
   name: String,
   url: String,
   description: String,
   note: String
+});
+var CollectionDataSchema = new _mongoose["default"].Schema({
+  source: String,
+  type: String
 });
 var htDatasetSchema = new _mongoose["default"].Schema({
   _id: String,
@@ -103,27 +108,30 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   sourceSerie: sourceSerieSchema,
   sample: sampleSchema,
   linkedDataset: linkedDatasetSchema,
-  referenceGenome: String,
-  datasetType: String,
-  temporalId: String,
   growthConditions: growthConditionsSchema,
-  releaseDataControl: releaseDataControlSchema,
   summary: summarySchema,
+  releaseDataControl: releaseDataControlSchema,
+  externalReferences: [externalReferencesSchema],
+  collectionData: CollectionDataSchema,
+  referenceGenome: String,
+  temporalId: String,
   assemblyGenomeId: String,
   fivePrimeEnrichment: String,
-  nlpGrowthConditionsId: String,
   geneExpressionFiltered: String,
   experimentCondition: String,
   cutOff: Number,
   notes: String,
-  sourceReferenceGenome: String,
-  externalReferences: [externalReferencesSchema]
+  nlpGrowthConditionsId: String,
+  sourceReferenceGenome: String
 });
 var metadataSchema = new _mongoose["default"].Schema({
   _id: String,
   datasetType: String,
+  source: String,
   metadataContent: String,
-  status: String
+  status: String,
+  releaseDate: String,
+  reference: [String]
 });
 var HTDataset = exports.HTDataset = _mongoose["default"].model('ht_dataset_datamarts', htDatasetSchema, 'dataset');
 var MetadataCollection = exports.MetadataCollection = _mongoose["default"].model('dataset_metadata', metadataSchema, "metadata");

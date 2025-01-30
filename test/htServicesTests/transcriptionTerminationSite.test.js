@@ -5,7 +5,7 @@ describe('dataset', () => {
     const response = await axios.post('http://localhost:4004/graphql', {
       query: `
             query {
-                getTTSByID(_id:"ECOLITT000000001")
+                getTTSByID(_id:"ECOLITT000005328")
                 {
                     chromosome
                     leftEndPosition
@@ -18,16 +18,16 @@ describe('dataset', () => {
 
     const {data} = response;
     expect(data).toMatchObject({
-        "data": {
-          "getTTSByID": {
-            "chromosome": "NC_000913.3",
-            "leftEndPosition": 308,
-            "rightEndPosition": 308,
-            "datasetIds": [
-              "RHTECOLITTD00017"
-            ]
-          }
+      "data": {
+        "getTTSByID": {
+          "chromosome": "NC_000913.3",
+          "leftEndPosition": 308,
+          "rightEndPosition": 308,
+          "datasetIds": [
+            "RHTECOLITTD02715"
+          ]
         }
-      });
+      }
+    });
   });
 });
