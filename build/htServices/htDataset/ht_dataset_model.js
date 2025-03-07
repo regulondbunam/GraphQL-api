@@ -70,7 +70,7 @@ var growthConditionsSchema = new _mongoose["default"].Schema({
   growthPhase: String,
   growthRate: String,
   vesselType: String,
-  aerationSpeed: String,
+  agitationSpeed: String,
   mediumSupplements: String,
   otherTerms: [String]
 });
@@ -108,7 +108,7 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   sourceSerie: sourceSerieSchema,
   sample: sampleSchema,
   linkedDataset: linkedDatasetSchema,
-  growthConditions: growthConditionsSchema,
+  growthConditions: [growthConditionsSchema],
   summary: summarySchema,
   releaseDataControl: releaseDataControlSchema,
   externalReferences: [externalReferencesSchema],
