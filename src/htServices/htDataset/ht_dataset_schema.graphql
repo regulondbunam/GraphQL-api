@@ -90,7 +90,7 @@ type Dataset {
     """
     _
     """
-    growthConditions: HTGrowthCondition
+    growthConditions: [HTGrowthCondition]
     """
     _
     """
@@ -402,7 +402,7 @@ type HTGrowthCondition{
     """
     _
     """
-    aerationSpeed: String
+    agitationSpeed: String
     """
     _
     """
