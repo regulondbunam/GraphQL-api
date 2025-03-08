@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.NLPGrowthConditions = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var nlpGCPropertiesSchema = new _mongoose["default"].Schema({
   value: String,
   score: Number,
@@ -29,7 +29,7 @@ var GrowthConditionsSchema = new _mongoose["default"].Schema({
   growthPhase: [nlpGCPropertiesSchema],
   growthRate: [nlpGCPropertiesSchema],
   vesselType: [nlpGCPropertiesSchema],
-  aerationSpeed: [nlpGCPropertiesSchema],
+  agitationsSpeed: [nlpGCPropertiesSchema],
   mediumSupplements: [nlpGCPropertiesSchema],
   additionalProperties: [additionalPropertiesSchema],
   datasetIds: [String],

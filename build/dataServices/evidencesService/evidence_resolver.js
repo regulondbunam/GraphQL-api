@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.evidencesDatamartResolvers = void 0;
 var _evidence_controller = require("./evidence_controller");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
 var evidencesDatamartResolvers = exports.evidencesDatamartResolvers = {
   Query: {
     getAllEvidences: function getAllEvidences(root, _ref) {

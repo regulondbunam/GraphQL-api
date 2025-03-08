@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DownloadableFiles = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var DownloadableFilesSchema = new _mongoose["default"].Schema({
   _id: String,
   title: String,

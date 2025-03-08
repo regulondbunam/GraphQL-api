@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.dbInfoResolvers = void 0;
 var _dbInfo_controller = require("./dbInfo_controller");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); } /**
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); } /**
 # [databaseInfo Service Resolver]
 	
 ## Description

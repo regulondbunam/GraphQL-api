@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.SRNA = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
 var _general_model = require("../common/general_model");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var geneSchema = new _mongoose["default"].Schema({
   _id: String,
   name: String,
