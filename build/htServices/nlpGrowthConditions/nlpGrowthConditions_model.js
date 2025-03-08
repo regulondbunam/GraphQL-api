@@ -29,7 +29,7 @@ var GrowthConditionsSchema = new _mongoose["default"].Schema({
   growthPhase: [nlpGCPropertiesSchema],
   growthRate: [nlpGCPropertiesSchema],
   vesselType: [nlpGCPropertiesSchema],
-  agitationsSpeed: [nlpGCPropertiesSchema],
+  agitationSpeed: [nlpGCPropertiesSchema],
   mediumSupplements: [nlpGCPropertiesSchema],
   additionalProperties: [additionalPropertiesSchema],
   datasetIds: [String],

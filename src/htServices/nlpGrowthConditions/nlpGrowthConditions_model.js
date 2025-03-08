@@ -25,7 +25,7 @@ const GrowthConditionsSchema = new mongoose.Schema({
     growthPhase: [nlpGCPropertiesSchema],
     growthRate: [nlpGCPropertiesSchema],
     vesselType: [nlpGCPropertiesSchema],
-    agitationsSpeed: [nlpGCPropertiesSchema],
+    agitationSpeed: [nlpGCPropertiesSchema],
     mediumSupplements: [nlpGCPropertiesSchema],
     additionalProperties: [additionalPropertiesSchema],
     datasetIds: [String],
