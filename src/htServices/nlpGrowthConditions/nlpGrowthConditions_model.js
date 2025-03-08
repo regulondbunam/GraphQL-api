@@ -10,7 +10,7 @@ const nlpGCPropertiesSchema = new mongoose.Schema({
 const additionalPropertiesSchema = new mongoose.Schema({
     name: String,
     value: [nlpGCPropertiesSchema]
-}); 
+});
 
 const GrowthConditionsSchema = new mongoose.Schema({
     _id: String,
@@ -25,7 +25,7 @@ const GrowthConditionsSchema = new mongoose.Schema({
     growthPhase: [nlpGCPropertiesSchema],
     growthRate: [nlpGCPropertiesSchema],
     vesselType: [nlpGCPropertiesSchema],
-    aerationSpeed: [nlpGCPropertiesSchema],
+    agitationsSpeed: [nlpGCPropertiesSchema],
     mediumSupplements: [nlpGCPropertiesSchema],
     additionalProperties: [additionalPropertiesSchema],
     datasetIds: [String],

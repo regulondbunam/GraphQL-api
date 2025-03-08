@@ -53,7 +53,7 @@ type NLPGrowthConditions {
     """
     _
     """
-    aerationSpeed: [nlpGCProperties]
+    agitationsSpeed: [nlpGCProperties]
     """
     _
     """
