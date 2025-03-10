@@ -48,5 +48,6 @@ export const htDatasetResolvers = {
     getDatasetsWithMetadata: (root, {datasetType, source}) => htDatasetController.getDatasetsWithMetadata(datasetType, source),
     listAllHTSources: (root, {}) => htDatasetController.listAllHTSources(),
     listAllDatasetTypes: (root, {}) => htDatasetController.listAllDatasetTypes(),
+    listAllDatasetStrategies: (root, {}) => htDatasetController.listAllDatasetStrategies(),
   },
 };

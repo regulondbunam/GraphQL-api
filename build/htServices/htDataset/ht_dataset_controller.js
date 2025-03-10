@@ -224,5 +224,37 @@ var htDatasetController = exports.htDatasetController = /*#__PURE__*/function ()
       }
       return listAllDatasetTypes;
     }()
+  }, {
+    key: "listAllDatasetStrategies",
+    value: function () {
+      var _listAllDatasetStrategies = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        var files, datasetStrategies, uniqueStrategies;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.next = 2;
+              return _ht_dataset_model.HTDataset.find({}, 'sourceSerie.strategy').exec();
+            case 2:
+              files = _context6.sent;
+              datasetStrategies = files.map(function (result) {
+                var _result$sourceSerie;
+                return result === null || result === void 0 || (_result$sourceSerie = result.sourceSerie) === null || _result$sourceSerie === void 0 ? void 0 : _result$sourceSerie.strategy;
+              }).filter(function (strategy) {
+                return strategy != null;
+              });
+              ;
+              uniqueStrategies = _toConsumableArray(new Set(datasetStrategies));
+              return _context6.abrupt("return", uniqueStrategies);
+            case 7:
+            case "end":
+              return _context6.stop();
+          }
+        }, _callee6);
+      }));
+      function listAllDatasetStrategies() {
+        return _listAllDatasetStrategies.apply(this, arguments);
+      }
+      return listAllDatasetStrategies;
+    }()
   }]);
 }();

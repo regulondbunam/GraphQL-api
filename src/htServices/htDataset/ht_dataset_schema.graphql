@@ -648,4 +648,22 @@ type Query {
     ```
     """
     listAllDatasetTypes: [String]!
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    listAllDatasetStrategies
+    #### Description
+    List all the dataset strategies for RegulonDB HT
+    #### Example
+    ```json
+    {
+        listAllDatasetStrategies
+    }
+    ```
+    """
+    listAllDatasetStrategies: [String]!
 }
