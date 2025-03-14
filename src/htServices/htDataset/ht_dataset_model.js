@@ -74,6 +74,8 @@ const growthConditionsSchema = new mongoose.Schema({
     vesselType: String,
     agitationSpeed: String,
     mediumSupplements: String,
+    experimentId: String,
+    experimentTitle: String,
     otherTerms: [String],
 });
 

@@ -72,6 +72,8 @@ var growthConditionsSchema = new _mongoose["default"].Schema({
   vesselType: String,
   agitationSpeed: String,
   mediumSupplements: String,
+  experimentId: String,
+  experimentTitle: String,
   otherTerms: [String]
 });
 var releaseDataControlSchema = new _mongoose["default"].Schema({

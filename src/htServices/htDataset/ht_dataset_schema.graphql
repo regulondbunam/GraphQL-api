@@ -410,6 +410,14 @@ type HTGrowthCondition{
     """
     _
     """
+    experimentId: String
+    """
+    _
+    """
+    experimentTitle: String
+    """
+    _
+    """
     otherTerms: [String]
 }
 
