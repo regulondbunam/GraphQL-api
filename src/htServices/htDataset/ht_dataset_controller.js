@@ -88,6 +88,13 @@ class htDatasetController {
         const uniqueSources = [...new Set(datasetTypes)];
         return uniqueSources;
     }
+
+    static async listAllDatasetStrategies() {
+        const files = await HTDataset.find({}, 'sourceSerie.strategy').exec();
+        const datasetStrategies = files.map(result => result?.sourceSerie?.strategy).filter(strategy => strategy != null);;
+        const uniqueStrategies = [...new Set(datasetStrategies)];
+        return uniqueStrategies;
+    }
 }
 
 export { htDatasetController }

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.typeDefs = void 0;
 var _merge = require("@graphql-tools/merge");
 var _fs = _interopRequireDefault(require("fs"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /** Reading each graphql schema of all services defined and parsing to String */
 var Gene = _fs["default"].readFileSync('./src/dataServices/geneService/gene_schema.graphql').toString();
 var Regulon = _fs["default"].readFileSync('./src/dataServices/regulonService/regulon_schema.graphql').toString();

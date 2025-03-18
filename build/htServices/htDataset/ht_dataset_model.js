@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.MetadataCollection = exports.HTDataset = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
 var _general_model = require("../common/general_model");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var publicationSchema = new _mongoose["default"].Schema({
   pmid: Number,
   doi: String,
@@ -70,8 +70,10 @@ var growthConditionsSchema = new _mongoose["default"].Schema({
   growthPhase: String,
   growthRate: String,
   vesselType: String,
-  aerationSpeed: String,
+  agitationSpeed: String,
   mediumSupplements: String,
+  experimentId: String,
+  experimentTitle: String,
   otherTerms: [String]
 });
 var releaseDataControlSchema = new _mongoose["default"].Schema({
@@ -108,7 +110,7 @@ var htDatasetSchema = new _mongoose["default"].Schema({
   sourceSerie: sourceSerieSchema,
   sample: sampleSchema,
   linkedDataset: linkedDatasetSchema,
-  growthConditions: growthConditionsSchema,
+  growthConditions: [growthConditionsSchema],
   summary: summarySchema,
   releaseDataControl: releaseDataControlSchema,
   externalReferences: [externalReferencesSchema],

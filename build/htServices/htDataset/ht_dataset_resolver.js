@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.htDatasetResolvers = void 0;
 var _ht_dataset_controller = require("./ht_dataset_controller");
 var _controller_common_functions = require("../common/controller_common_functions");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); } /**
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); } /**
 # [HT Dataset Service Resolver]
 
 ## Description
@@ -66,6 +66,10 @@ var htDatasetResolvers = exports.htDatasetResolvers = {
     listAllDatasetTypes: function listAllDatasetTypes(root, _ref5) {
       _objectDestructuringEmpty(_ref5);
       return _ht_dataset_controller.htDatasetController.listAllDatasetTypes();
+    },
+    listAllDatasetStrategies: function listAllDatasetStrategies(root, _ref6) {
+      _objectDestructuringEmpty(_ref6);
+      return _ht_dataset_controller.htDatasetController.listAllDatasetStrategies();
     }
   }
 };

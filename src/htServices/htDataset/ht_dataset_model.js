@@ -72,9 +72,11 @@ const growthConditionsSchema = new mongoose.Schema({
     growthPhase: String,
     growthRate: String,
     vesselType: String,
-    aerationSpeed: String,
+    agitationSpeed: String,
     mediumSupplements: String,
-    otherTerms: [String]
+    experimentId: String,
+    experimentTitle: String,
+    otherTerms: [String],
 });
 
 const releaseDataControlSchema = new mongoose.Schema({
@@ -116,7 +118,7 @@ const htDatasetSchema = new mongoose.Schema({
     sourceSerie: sourceSerieSchema,
     sample: sampleSchema,
     linkedDataset: linkedDatasetSchema,
-    growthConditions: growthConditionsSchema,
+    growthConditions: [growthConditionsSchema],
     summary: summarySchema,
     releaseDataControl: releaseDataControlSchema,
     externalReferences: [externalReferencesSchema],
@@ -130,8 +132,7 @@ const htDatasetSchema = new mongoose.Schema({
     cutOff: Number,
     notes: String,
     nlpGrowthConditionsId: String,
-    sourceReferenceGenome: String,
-    datasetType: String
+    sourceReferenceGenome: String
 });
 
 const metadataSchema = new mongoose.Schema({

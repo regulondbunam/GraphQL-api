@@ -7,7 +7,7 @@ exports.downloadableFilesResolver = void 0;
 var _downloadableFiles_model = require("./downloadableFiles_model");
 var _downloadableFiles_controller = require("./downloadableFiles_controller");
 var _controller_common_functions = require("../common/controller_common_functions");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); } /**
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); } /**
 # ["" Service Resolver]
 
 ## Description

@@ -7,7 +7,7 @@ exports.geneResolvers = void 0;
 var _template_model = require("./template_model");
 var _template_controller = require("./template_controller");
 var _controller_common_functions = require("../common/controller_common_functions");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); } /**
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); } /**
 # ["" Service Resolver]
 	
 ## Description

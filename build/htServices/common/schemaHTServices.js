@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.typeDefs = void 0;
 var _merge = require("@graphql-tools/merge");
 var _fs = _interopRequireDefault(require("fs"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /** Reading each graphql schema of all services defined and parsing to String */
 var HT_Dataset = _fs["default"].readFileSync('./src/htServices/htDataset/ht_dataset_schema.graphql').toString();
 var HT_Peaks = _fs["default"].readFileSync('./src/htServices/peaks/peaks_schema.graphql').toString();

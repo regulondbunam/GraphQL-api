@@ -90,7 +90,7 @@ type Dataset {
     """
     _
     """
-    growthConditions: HTGrowthCondition
+    growthConditions: [HTGrowthCondition]
     """
     _
     """
@@ -147,10 +147,6 @@ type Dataset {
     CHECAR
     """
     sourceReferenceGenome: String
-    """
-    _
-    """
-    datasetType: String
 }
 
 """
@@ -406,11 +402,19 @@ type HTGrowthCondition{
     """
     _
     """
-    aerationSpeed: String
+    agitationSpeed: String
     """
     _
     """
     mediumSupplements: String
+    """
+    _
+    """
+    experimentId: String
+    """
+    _
+    """
+    experimentTitle: String
     """
     _
     """
@@ -652,4 +656,22 @@ type Query {
     ```
     """
     listAllDatasetTypes: [String]!
+
+    """
+    #### Type
+    Data
+    #### Service
+    HT Dataset
+    #### Name
+    listAllDatasetStrategies
+    #### Description
+    List all the dataset strategies for RegulonDB HT
+    #### Example
+    ```json
+    {
+        listAllDatasetStrategies
+    }
+    ```
+    """
+    listAllDatasetStrategies: [String]!
 }

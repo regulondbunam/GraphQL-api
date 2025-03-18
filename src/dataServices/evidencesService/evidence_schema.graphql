@@ -1,0 +1,41 @@
+"""
+This schema defines EvidencesDatamart and its structure
+"""
+type EvidencesDatamart {
+    """
+    Unique identifier for the evidence
+    """
+    _id: String
+    """
+    Category of the evidence
+    """
+    category: String
+    """
+    Code of the evidence
+    """
+    code: String
+    """
+    Code rule of the evidence
+    """
+    codeRule: String
+    """
+    Name of the evidence
+    """
+    name: String
+    """
+    List of pertainsTo items
+    """
+    pertainsTo: [String]
+    """
+    Top-level parent category
+    """
+    topParent: String
+    """
+    Type of the evidence
+    """
+    type: String
+}
+
+type Query {
+    getAllEvidences(limit: Int, page: Int = 0): [EvidencesDatamart]!
+}
