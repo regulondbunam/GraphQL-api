@@ -47,55 +47,56 @@ var UsedQueriesController = exports.UsedQueriesController = /*#__PURE__*/functio
     key: "addUsedQuery",
     value: function () {
       var _addUsedQuery = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(querySearchString) {
-        var today, savedQuery, updateFields, options, newQuery;
+        var today, dateOfUse, savedQuery, updateFields, options, newQuery;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               today = new Date();
-              _context2.next = 3;
+              dateOfUse = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0') + ' ' + String(today.getHours()).padStart(2, '0') + ':' + String(today.getMinutes()).padStart(2, '0') + ':' + String(today.getSeconds()).padStart(2, '0');
+              _context2.next = 4;
               return _recentQueriesModel.UsedQueries.findOne({
                 querySearchString: querySearchString
               });
-            case 3:
+            case 4:
               if (!_context2.sent) {
-                _context2.next = 16;
+                _context2.next = 17;
                 break;
               }
-              _context2.next = 6;
+              _context2.next = 7;
               return _recentQueriesModel.UsedQueries.findOne({
                 querySearchString: querySearchString
               });
-            case 6:
+            case 7:
               savedQuery = _context2.sent;
               updateFields = {
                 $set: {
-                  "dateOfUse": today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
+                  "dateOfUse": dateOfUse,
                   "usedTimes": savedQuery.usedTimes + 1
                 }
               };
               options = {
                 upsert: true
               };
-              _context2.next = 11;
+              _context2.next = 12;
               return _recentQueriesModel.UsedQueries.updateOne({
                 "_id": savedQuery._id
               }, updateFields, options);
-            case 11:
-              _context2.next = 13;
+            case 12:
+              _context2.next = 14;
               return _recentQueriesModel.UsedQueries.findOne({
                 "_id": savedQuery._id
               });
-            case 13:
+            case 14:
               return _context2.abrupt("return", _context2.sent);
-            case 16:
+            case 17:
               newQuery = new _recentQueriesModel.UsedQueries({
-                "_id": new _mongodb.ObjectID(),
+                "_id": new _mongodb.ObjectId(),
                 "querySearchString": querySearchString,
-                "dateOfUse": today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
+                "dateOfUse": dateOfUse,
                 "usedTimes": 1
               });
               return _context2.abrupt("return", newQuery.save());
-            case 18:
+            case 19:
             case "end":
               return _context2.stop();
           }

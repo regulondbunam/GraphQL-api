@@ -1,5 +1,5 @@
 import {UsedQueries} from "./recentQueriesModel"
-import { ObjectID } from "mongodb";
+import { ObjectId } from "mongodb";
 
 class UsedQueriesController {
     static async getAllUsedQueries(limit, page) {
@@ -9,11 +9,18 @@ class UsedQueriesController {
     
     static async addUsedQuery(querySearchString) {
         var today = new Date()
+        var dateOfUse =
+            today.getFullYear() + '-' +
+            String(today.getMonth() + 1).padStart(2, '0') + '-' +
+            String(today.getDate()).padStart(2, '0') + ' ' +
+            String(today.getHours()).padStart(2, '0') + ':' +
+            String(today.getMinutes()).padStart(2, '0') + ':' +
+            String(today.getSeconds()).padStart(2, '0');
         if (await UsedQueries.findOne({querySearchString:querySearchString})){
             let savedQuery = await UsedQueries.findOne({querySearchString:querySearchString})
             let updateFields = {
                 $set: {
-                    "dateOfUse": today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
+                    "dateOfUse": dateOfUse,
                     "usedTimes": savedQuery.usedTimes + 1
                 }
             }
@@ -22,9 +29,9 @@ class UsedQueriesController {
             return await UsedQueries.findOne({ "_id":savedQuery._id })
         } else {
             let newQuery = new UsedQueries({
-                "_id": new ObjectID(),
+                "_id": new ObjectId(),
                 "querySearchString" : querySearchString,
-                "dateOfUse": today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
+                "dateOfUse": dateOfUse,
                 "usedTimes": 1
             })
             return newQuery.save()
