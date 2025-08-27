@@ -8,7 +8,8 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var geneOntologyProperties = new _mongoose["default"].Schema({
   _id: String,
-  name: String
+  name: String,
+  genes: [String]
 });
 var componentsSchema = new _mongoose["default"].Schema({
   "function": String,

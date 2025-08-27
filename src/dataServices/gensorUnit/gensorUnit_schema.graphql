@@ -157,15 +157,30 @@ type GUGeneOntology {
     """
     _
     """
-    cellularComponent: [simpleType]
+    cellularComponent: [GUGeneOntologyItem]
     """
     _
     """
-    molecularFunction: [simpleType]
+    molecularFunction: [GUGeneOntologyItem]
     """
     _
     """
-    biologicalProcess: [simpleType]
+    biologicalProcess: [GUGeneOntologyItem]
+}
+
+type GUGeneOntologyItem {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    genes: [String]
 }
 
 type GUResult { 

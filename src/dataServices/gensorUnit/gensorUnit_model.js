@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const geneOntologyProperties = new mongoose.Schema({
 	_id: String,
-	name: String
+	name: String,
+    genes: [String]
 });
 
 const componentsSchema = new mongoose.Schema({
