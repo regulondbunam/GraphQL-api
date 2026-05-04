@@ -128,12 +128,20 @@ type StatisticsDBType {
     _
     """
     externalReferences: dbInfoExternalReferencesType
+    """
+    _
+    """
+    externalDBSources: dbInfoExternalDBReferencesType
 }
 
 """
 _
 """
 type dbInfoRegulons {
+    """
+    _
+    """
+    total: Int
     """
     _
     """
@@ -190,6 +198,10 @@ type productsDBInfoType {
     """
     _
     """
+    total: Int
+    """
+    _
+    """
     srna: detailedStatistics
     """
     _
@@ -218,39 +230,91 @@ type dbInfoExternalReferencesType {
 """
 _
 """
+type dbInfoExternalDBReferencesType {
+    """
+    _
+    """
+    total: Int
+    """
+    _
+    """
+    origin: detailedExtDBReferences
+}
+
+"""
+_
+"""
 type detailedExtReferences {
     """
     _
     """
-    medline: Int
+    gene: Int
     """
     _
     """
-    genbank: Int
+    promoter: Int
     """
     _
     """
-    swissprot: Int
+    product: Int
     """
     _
     """
-    expasy: Int
+    regulator: Int
     """
     _
     """
-    geneprotec: Int
+    regulatoryComplex: Int
     """
     _
     """
-    ouMicroArray: Int
+    regulatoryContinuant: Int
     """
     _
     """
-    pdb: Int
+    sigmaFactor: Int
     """
     _
     """
-    pir: Int
+    terminator: Int
+    """
+    _
+    """
+    transcriptionUnit: Int
+    """
+    _
+    """
+    regulatoryInteraction: Int
+}
+
+"""
+_
+"""
+type detailedExtDBReferences {
+    """
+    _
+    """
+    ecocyc: Int
+    """
+    _
+    """
+    refseq: Int
+    """
+    _
+    """
+    asap: Int
+    """
+    _
+    """
+    ecoliwiki: Int
+    """
+    _
+    """
+    uniprot: Int
+    """
+    _
+    """
+    others: Int
 }
 
 """

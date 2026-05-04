@@ -24,19 +24,30 @@ var detailedStatisticsSchema = new _mongoose["default"].Schema({
   withEvidences: Number
 });
 var regulonsSchema = new _mongoose["default"].Schema({
+  total: Number,
   regulatoryContinuant: detailedStatisticsSchema,
   srna: detailedStatisticsSchema,
   transcriptionFactor: detailedStatisticsSchema
 });
 var detailedExtReferences = new _mongoose["default"].Schema({
-  medline: Number,
-  genbank: Number,
-  swissprot: Number,
-  expasy: Number,
-  geneprotec: Number,
-  ouMicroArray: Number,
-  pdb: Number,
-  pir: Number
+  gene: Number,
+  promoter: Number,
+  product: Number,
+  regulator: Number,
+  regulatoryComplex: Number,
+  regulatoryContinuant: Number,
+  sigmaFactor: Number,
+  terminator: Number,
+  transcriptionUnit: Number,
+  regulatoryInteraction: Number
+});
+var detailedExtDBReferences = new _mongoose["default"].Schema({
+  ecocyc: Number,
+  refseq: Number,
+  asap: Number,
+  ecoliwiki: Number,
+  uniprot: Number,
+  others: Number
 });
 var StatisticsSchema = new _mongoose["default"].Schema({
   regulons: regulonsSchema,
@@ -58,6 +69,7 @@ var StatisticsSchema = new _mongoose["default"].Schema({
   gensorUnits: detailedStatisticsSchema,
   synonyms: detailedStatisticsSchema,
   product: {
+    total: Number,
     srna: detailedStatisticsSchema,
     rnas: detailedStatisticsSchema,
     polypeptides: detailedStatisticsSchema
@@ -65,6 +77,10 @@ var StatisticsSchema = new _mongoose["default"].Schema({
   externalReferences: {
     total: Number,
     origin: detailedExtReferences
+  },
+  externalDBSources: {
+    total: Number,
+    origin: detailedExtDBReferences
   }
 });
 var dbInfoSchema = new _mongoose["default"].Schema({

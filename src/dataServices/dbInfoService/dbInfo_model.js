@@ -20,20 +20,32 @@ const detailedStatisticsSchema = new mongoose.Schema({
 });
 
 const regulonsSchema = new mongoose.Schema({
+    total: Number,
     regulatoryContinuant: detailedStatisticsSchema,
     srna: detailedStatisticsSchema,
     transcriptionFactor: detailedStatisticsSchema
 })
 
 const detailedExtReferences = new mongoose.Schema({
-    medline: Number,
-    genbank: Number,
-    swissprot: Number,
-    expasy: Number,
-    geneprotec: Number,
-    ouMicroArray: Number,
-    pdb: Number,
-    pir: Number
+    gene: Number,
+    promoter: Number,
+    product: Number,
+    regulator: Number,
+    regulatoryComplex: Number,
+    regulatoryContinuant: Number,
+    sigmaFactor: Number,
+    terminator: Number,
+    transcriptionUnit: Number,
+    regulatoryInteraction: Number
+});
+
+const detailedExtDBReferences = new mongoose.Schema({
+    ecocyc: Number,
+    refseq: Number,
+    asap: Number,
+    ecoliwiki: Number,
+    uniprot: Number,
+    others: Number
 });
 
 const StatisticsSchema = new mongoose.Schema({
@@ -56,6 +68,7 @@ const StatisticsSchema = new mongoose.Schema({
     gensorUnits: detailedStatisticsSchema,
     synonyms: detailedStatisticsSchema,
     product: {
+        total: Number,
         srna: detailedStatisticsSchema,
         rnas: detailedStatisticsSchema,
         polypeptides: detailedStatisticsSchema
@@ -63,6 +76,10 @@ const StatisticsSchema = new mongoose.Schema({
     externalReferences: {
         total: Number,
         origin: detailedExtReferences
+    },
+    externalDBSources: {
+        total: Number,
+        origin: detailedExtDBReferences
     }
 });
 
