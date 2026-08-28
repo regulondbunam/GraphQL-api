@@ -22,7 +22,8 @@ var recentQueries = _fs["default"].readFileSync('./src/dataServices/recentQuerie
 var listPage = _fs["default"].readFileSync('./src/dataServices/listPageService/listPageSchema.graphql').toString();
 var downloadableFiles = _fs["default"].readFileSync('./src/dataServices/downloadableFilesService/downloadableFiles_schema.graphql').toString();
 var gcs = _fs["default"].readFileSync('./src/dataServices/growthConditionsService/growthConditions_schema.graphql').toString();
-var types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, GUs, dbInfo, recentQueries, listPage, downloadableFiles, gcs];
+var organism = _fs["default"].readFileSync('./src/dataServices/organismService/organism_schema.graphql').toString();
+var types = [Gene, commonProperties, phrases, Operon, Regulon, Sigmulon, Coexpression, Overviews, GUs, dbInfo, recentQueries, listPage, downloadableFiles, gcs, organism];
 
 /** Exports the merged Schema to the index to construct the GQL Server */
 var typeDefs = exports.typeDefs = (0, _merge.mergeTypeDefs)(types);

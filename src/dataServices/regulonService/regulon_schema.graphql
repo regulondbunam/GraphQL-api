@@ -810,18 +810,25 @@ type Query {
   getAllRegulon(
     """
     #### Description
-    defines the page results showed 
+    defines the page results showed
     #### Required
     Optional
     """
-	limit: Int, 
+	limit: Int,
     """
     #### Description
-    select the current result page 
+    select the current result page
     #### Required
     Optional
     """
-	page: Int = 0): RegulonResult!
+	page: Int = 0
+	"""
+	#### Description
+	usable for specific organismId queries
+	#### Required
+	Optional
+	"""
+	organismId: String = "RDBECOLIORC00001"): RegulonResult!
   """
   #### Type
   Data

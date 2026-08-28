@@ -39,8 +39,9 @@ export class commonController {
      *  @param {Number} limit defines the page results showed (10 by default)
      *  @param {Number} page select the current result page (0 by default)
      *  @param {String} sortValue tells the function the field by which the results will be sorted
+     *  @param {String} organism specifies the organism id for which to retrieve data
      */
-  static async getAll(collection, limit = 0, page = 0, sortValue) {
+  static async getAll(collection, limit = 0, page = 0, sortValue, organism) {
     // variable definitions
     let hasMore = false;
     let response;
@@ -55,13 +56,19 @@ export class commonController {
     // get another data that be in Pagination Type
     const total = await this.countDocumentsIn(collection);
 
+    let filter = {};
+    if (organism) {
+      filter = { "organism._id": organism }
+    }
+
     if (limit == 0){
       limit = total
     }
-    
+
     if (limit > 100) {
       response = await collection
           .aggregate([
+            { $match: filter },
             {
               $limit: limit,
             },
@@ -70,7 +77,7 @@ export class commonController {
             },
           ])
           .allowDiskUse(true);
-    } else response = await collection.find({}).sort(sortValue).limit(limit).skip(offset);
+    } else response = await collection.find(filter).sort(sortValue).limit(limit).skip(offset);
 
     const showedResult = limit * (page + 1);
     let lastPage = 0

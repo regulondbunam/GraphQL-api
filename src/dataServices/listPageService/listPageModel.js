@@ -34,7 +34,8 @@ const listPageModel = new mongoose.Schema({
     },
     sigmulonGeneName: String,
     datamartType: String,
-    summary: summarySchema
+    summary: summarySchema,
+    organismId: String
 });
 
 const ListPage = mongoose.model('listPage', listPageModel, 'listPage')

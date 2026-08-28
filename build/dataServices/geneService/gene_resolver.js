@@ -52,8 +52,9 @@ var geneResolvers = exports.geneResolvers = {
   Query: {
     getAllGenes: function getAllGenes(root, _ref) {
       var limit = _ref.limit,
-        page = _ref.page;
-      return _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name');
+        page = _ref.page,
+        organism_id = _ref.organism_id;
+      return _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name', organism_id);
     },
     getGenesBy: function getGenesBy(root, _ref2) {
       var search = _ref2.search,

@@ -1,8 +1,12 @@
 import {ListPage} from "./listPageModel"
 
 class listPageController {
-    static async getObjectList(datamartType) {
-        return ListPage.find({"datamartType":datamartType}).sort({'name':1})
+    static async getObjectList(datamartType, organismId) {
+        const query = {"datamartType": datamartType};
+        if (organismId) {
+            query.organismId = organismId;
+        }
+        return ListPage.find(query).sort({'name':1})
     }
 }
 

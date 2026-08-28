@@ -499,20 +499,27 @@ type Query {
   getAllGenes(
     """
     #### Description
-    defines the page results showed 
+    defines the page results showed
     #### Required
     Optional
     """
-    limit: Int, 
+    limit: Int,
     """
     #### Description
-    select the current result page 
+    select the current result page
     #### Required
     Optional
     """
-    page: Int = 0): GenesResult! 
-  
-  
+    page: Int = 0,
+    """
+    #### Description
+    specifies the organism for which to retrieve genes, if not specified, it will default to the Escherichia coli
+    #### Required
+    Optional
+    """
+    organism_id: String = "RDBECOLIORC00001"
+  ): GenesResult!
+
   """
   #### Type
   Data

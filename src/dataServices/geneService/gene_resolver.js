@@ -44,7 +44,7 @@ import { commonController } from '../common/controller_common_functions';
 
 export const geneResolvers = {
   Query: {
-    getAllGenes: (root, {limit, page}) => commonController.getAll(Gene, limit, page, 'gene.name'),
+    getAllGenes: (root, {limit, page, organism_id}) => commonController.getAll(Gene, limit, page, 'gene.name', organism_id),
     getGenesBy: (root, {search, advancedSearch, limit, page, properties, organismName, fullMatchOnly}) =>
       geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
   },

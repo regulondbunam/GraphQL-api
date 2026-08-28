@@ -49,8 +49,9 @@ RegulonDB Team: Lopez Almazo Andres Gerardo
 var listPageResolver = exports.listPageResolver = {
   Query: {
     getObjectList: function getObjectList(root, _ref) {
-      var datamartType = _ref.datamartType;
-      return _listPageController.listPageController.getObjectList(datamartType);
+      var datamartType = _ref.datamartType,
+        organismId = _ref.organismId;
+      return _listPageController.listPageController.getObjectList(datamartType, organismId);
     }
   }
 };

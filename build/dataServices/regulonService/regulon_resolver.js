@@ -52,8 +52,9 @@ var regulonResolvers = exports.regulonResolvers = {
   Query: {
     getAllRegulon: function getAllRegulon(root, _ref) {
       var limit = _ref.limit,
-        page = _ref.page;
-      return _controller_common_functions.commonController.getAll(_regulon_model.Regulon, limit, page, "transcriptionFactor.name");
+        page = _ref.page,
+        organismId = _ref.organismId;
+      return _controller_common_functions.commonController.getAll(_regulon_model.Regulon, limit, page, "transcriptionFactor.name", organismId);
     },
     getRegulonBy: function getRegulonBy(root, _ref2) {
       var search = _ref2.search,

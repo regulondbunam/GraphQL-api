@@ -15,6 +15,7 @@ import { listPageResolver } from '../listPageService/listPageResolver';
 import { downloadableFilesResolver } from '../downloadableFilesService/downloadableFiles_resolver';
 import { commonResolvers } from './common_resolver';
 import { growthConditionResolvers } from '../growthConditionsService/growthConditions_resolver';
+import { organismResolvers } from '../organismService/organism_resolver';
 
 /** merges all resolver file and exports them to index */
 export const resolvers = mergeResolvers([
@@ -31,5 +32,6 @@ export const resolvers = mergeResolvers([
     listPageResolver,
     downloadableFilesResolver,
     commonResolvers,
-    growthConditionResolvers
+    growthConditionResolvers,
+    organismResolvers
 ]);

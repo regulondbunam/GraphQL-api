@@ -1,0 +1,70 @@
+type Organism {
+    """
+    _
+    """
+    _id: String
+    """
+    _
+    """
+    name: String
+    """
+    _
+    """
+    description: String
+    """
+    _
+    """
+    sourceFile: String
+    """
+    _
+    """
+    featureType: String
+    """
+    _
+    """
+    strainName: String
+    """
+    _
+    """
+    pgdbName: String
+    """
+    _
+    """
+    type: String
+    """
+    _
+    """
+    genomeVersion: String
+    """
+    _
+    """
+    genomeSize: Int
+    """
+    _
+    """
+    plasmidName: String
+}
+
+type Query {
+    """
+  #### Type
+  Data
+  #### Service
+  Organism
+  #### Name
+  getAllOrganisms
+  #### Description
+  List all the organisms contained in collection
+  #### Example
+  ```json
+  {
+    getAllOrganisms{
+        _id
+        name
+        description
+    }
+  }
+  ```
+  """
+  getAllOrganisms: [Organism]!
+}

@@ -79,8 +79,10 @@ class geneController {
       organismFilter.$and.push(filter);
       filter = organismFilter;
     }
-    const Genes = await Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset);
-    const total = await commonController.countDocumentsIn(Gene, filter);
+    const [Genes, total] = await Promise.all([
+      Gene.find(filter).sort({'gene.name': 1}).limit(limit).skip(offset),
+      commonController.countDocumentsIn(Gene, filter),
+    ]);
     let lastPage = 0
     if (limit > 0) {
       lastPage = Math.floor(total / limit);

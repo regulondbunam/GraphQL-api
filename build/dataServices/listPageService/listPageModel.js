@@ -38,6 +38,7 @@ var listPageModel = new _mongoose["default"].Schema({
   },
   sigmulonGeneName: String,
   datamartType: String,
-  summary: summarySchema
+  summary: summarySchema,
+  organismId: String
 });
 var ListPage = exports.ListPage = _mongoose["default"].model('listPage', listPageModel, 'listPage');

@@ -35,6 +35,10 @@ type regulonList {
 	_
 	"""
     summary: SrnaSummary
+	"""
+	_
+	"""
+    organismId: String
 }
 
 type ListServiceStatistics {
@@ -69,5 +73,5 @@ type ListServiceStatistics {
 }
 
 type Query {
-    getObjectList(datamartType: String!): [regulonList]
+    getObjectList(datamartType: String!, organismId: String): [regulonList]
 }

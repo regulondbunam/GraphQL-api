@@ -64,16 +64,19 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
        *  @param {Number} limit defines the page results showed (10 by default)
        *  @param {Number} page select the current result page (0 by default)
        *  @param {String} sortValue tells the function the field by which the results will be sorted
+       *  @param {String} organism specifies the organism id for which to retrieve data
        */
     function () {
       var _getAll = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(collection) {
         var limit,
           page,
           sortValue,
+          organism,
           hasMore,
           response,
           offset,
           total,
+          filter,
           showedResult,
           lastPage,
           err,
@@ -84,6 +87,7 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               limit = _args.length > 1 && _args[1] !== undefined ? _args[1] : 0;
               page = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
               sortValue = _args.length > 3 ? _args[3] : undefined;
+              organism = _args.length > 4 ? _args[4] : undefined;
               // variable definitions
               hasMore = false;
               // get query response from mongodb through mongoose
@@ -95,6 +99,12 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               return this.countDocumentsIn(collection);
             case 1:
               total = _context.v;
+              filter = {};
+              if (organism) {
+                filter = {
+                  "organism._id": organism
+                };
+              }
               if (limit == 0) {
                 limit = total;
               }
@@ -104,6 +114,8 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               }
               _context.n = 2;
               return collection.aggregate([{
+                $match: filter
+              }, {
                 $limit: limit
               }, {
                 $skip: offset
@@ -114,7 +126,7 @@ var commonController = exports.commonController = /*#__PURE__*/function () {
               break;
             case 3:
               _context.n = 4;
-              return collection.find({}).sort(sortValue).limit(limit).skip(offset);
+              return collection.find(filter).sort(sortValue).limit(limit).skip(offset);
             case 4:
               response = _context.v;
             case 5:
