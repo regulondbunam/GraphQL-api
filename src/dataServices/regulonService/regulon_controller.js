@@ -51,15 +51,17 @@ class regulonController {
    *  @param {Number} page select the current result page (0 by default)
    *  @param {String} properties select the fields to be queried by "search" (by default 
    *  geneInfo[id, name, synonyms] and products[name])
+   *  @param {String} organismId usable for specific organismId queries
    *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
    *  (by default "false")
    */
   static async getRegulonBy(
-    search, 
-    advancedSearch, 
-    limit = 0, 
-    page = 0, 
+    search,
+    advancedSearch,
+    limit = 0,
+    page = 0,
     properties = ["_id", "regulator.name", "regulator.conformations.name", "regulator.abbreviatedName"], 
+    organismId,
     fullMatchOnly = false) {
       const offset = page * limit;
       let filter;
@@ -69,6 +71,11 @@ class regulonController {
       } else if (search !== undefined) {
         // filter = searchFilter(search);
         filter = textSearchFilter(search, properties, fullMatchOnly);
+      }
+      if (organismId !== undefined) {
+        const organismFilter = {$and: [{'organism._id': organismId}]};
+        organismFilter.$and.push(filter);
+        filter = organismFilter;
       }
       const Regulons = await Regulon.find(filter).sort({'regulator.name': 1}).limit(limit).skip(offset);
       const total = await commonController.countDocumentsIn(Regulon, filter);

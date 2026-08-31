@@ -62,9 +62,9 @@ var regulonResolvers = exports.regulonResolvers = {
         limit = _ref2.limit,
         page = _ref2.page,
         properties = _ref2.properties,
-        organismName = _ref2.organismName,
+        organismId = _ref2.organismId,
         fullMatchOnly = _ref2.fullMatchOnly;
-      return _regulon_controller.regulonController.getRegulonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly);
+      return _regulon_controller.regulonController.getRegulonBy(search, advancedSearch, limit, page, properties, organismId, fullMatchOnly);
     }
   }
 };

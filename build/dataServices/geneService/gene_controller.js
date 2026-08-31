@@ -75,7 +75,7 @@ var geneController = exports.geneController = /*#__PURE__*/function () {
        *  @param {Number} page select the current result page (0 by default)
        *  @param {String} properties select the fields to be queried by "search" (by default 
        *  geneInfo[id, name, synonyms] and products[name])
-       *  @param {String} organismName usable for specific organismName queries
+       *  @param {String} organismId usable for specific organismId queries
        *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
        *  (by default "false")
        */
@@ -84,7 +84,7 @@ var geneController = exports.geneController = /*#__PURE__*/function () {
         var limit,
           page,
           properties,
-          organismName,
+          organismId,
           fullMatchOnly,
           offset,
           filter,
@@ -103,7 +103,7 @@ var geneController = exports.geneController = /*#__PURE__*/function () {
               limit = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
               page = _args.length > 3 && _args[3] !== undefined ? _args[3] : 0;
               properties = _args.length > 4 && _args[4] !== undefined ? _args[4] : ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name', 'products.abbreviatedName'];
-              organismName = _args.length > 5 ? _args[5] : undefined;
+              organismId = _args.length > 5 ? _args[5] : undefined;
               fullMatchOnly = _args.length > 6 && _args[6] !== undefined ? _args[6] : false;
               offset = page * limit;
               hasMore = false;
@@ -113,11 +113,10 @@ var geneController = exports.geneController = /*#__PURE__*/function () {
                 // filter = searchFilter(search);
                 filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
               }
-              if (organismName !== undefined) {
-                organismName = new RegExp(organismName, 'i');
+              if (organismId !== undefined) {
                 organismFilter = {
                   $and: [{
-                    'organism.organismName': organismName
+                    'organism._id': organismId
                   }]
                 };
                 organismFilter.$and.push(filter);

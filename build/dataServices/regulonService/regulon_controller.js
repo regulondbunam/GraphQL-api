@@ -70,6 +70,7 @@ var regulonController = exports.regulonController = /*#__PURE__*/function () {
      *  @param {Number} page select the current result page (0 by default)
      *  @param {String} properties select the fields to be queried by "search" (by default 
      *  geneInfo[id, name, synonyms] and products[name])
+     *  @param {String} organismId usable for specific organismId queries
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
@@ -78,10 +79,12 @@ var regulonController = exports.regulonController = /*#__PURE__*/function () {
         var limit,
           page,
           properties,
+          organismId,
           fullMatchOnly,
           offset,
           filter,
           hasMore,
+          organismFilter,
           Regulons,
           total,
           lastPage,
@@ -93,7 +96,8 @@ var regulonController = exports.regulonController = /*#__PURE__*/function () {
               limit = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
               page = _args.length > 3 && _args[3] !== undefined ? _args[3] : 0;
               properties = _args.length > 4 && _args[4] !== undefined ? _args[4] : ["_id", "regulator.name", "regulator.conformations.name", "regulator.abbreviatedName"];
-              fullMatchOnly = _args.length > 5 && _args[5] !== undefined ? _args[5] : false;
+              organismId = _args.length > 5 ? _args[5] : undefined;
+              fullMatchOnly = _args.length > 6 && _args[6] !== undefined ? _args[6] : false;
               offset = page * limit;
               hasMore = false;
               if (advancedSearch !== undefined) {
@@ -101,6 +105,15 @@ var regulonController = exports.regulonController = /*#__PURE__*/function () {
               } else if (search !== undefined) {
                 // filter = searchFilter(search);
                 filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
+              }
+              if (organismId !== undefined) {
+                organismFilter = {
+                  $and: [{
+                    'organism._id': organismId
+                  }]
+                };
+                organismFilter.$and.push(filter);
+                filter = organismFilter;
               }
               _context.n = 1;
               return _regulon_model.Regulon.find(filter).sort({

@@ -53,8 +53,8 @@ var geneResolvers = exports.geneResolvers = {
     getAllGenes: function getAllGenes(root, _ref) {
       var limit = _ref.limit,
         page = _ref.page,
-        organism_id = _ref.organism_id;
-      return _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name', organism_id);
+        organismId = _ref.organismId;
+      return _controller_common_functions.commonController.getAll(_gene_model.Gene, limit, page, 'gene.name', organismId);
     },
     getGenesBy: function getGenesBy(root, _ref2) {
       var search = _ref2.search,
@@ -62,9 +62,9 @@ var geneResolvers = exports.geneResolvers = {
         limit = _ref2.limit,
         page = _ref2.page,
         properties = _ref2.properties,
-        organismName = _ref2.organismName,
+        organismId = _ref2.organismId,
         fullMatchOnly = _ref2.fullMatchOnly;
-      return _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly);
+      return _gene_controller.geneController.getGenesBy(search, advancedSearch, limit, page, properties, organismId, fullMatchOnly);
     }
   }
 };

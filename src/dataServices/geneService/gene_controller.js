@@ -51,7 +51,7 @@ class geneController {
      *  @param {Number} page select the current result page (0 by default)
      *  @param {String} properties select the fields to be queried by "search" (by default 
      *  geneInfo[id, name, synonyms] and products[name])
-     *  @param {String} organismName usable for specific organismName queries
+     *  @param {String} organismId usable for specific organismId queries
      *  @param {String} fullMatchOnly define if "search" will be Case Sensitive and cannot be a substring 
      *  (by default "false")
      */
@@ -61,7 +61,7 @@ class geneController {
       limit = 0,
       page = 0,
       properties = ['gene._id', 'gene.name', 'gene.synonyms', 'gene.type', 'gene.bnumber', 'products.name', 'products.abbreviatedName'],
-      organismName,
+      organismId,
       fullMatchOnly = false
   ) {
     const offset = page * limit;
@@ -73,9 +73,8 @@ class geneController {
       // filter = searchFilter(search);
       filter = textSearchFilter(search, properties, fullMatchOnly);
     }
-    if (organismName !== undefined) {
-      organismName = new RegExp(organismName, 'i');
-      const organismFilter = {$and: [{'organism.organismName': organismName}]};
+    if (organismId !== undefined) {
+      const organismFilter = {$and: [{'organism._id': organismId}]};
       organismFilter.$and.push(filter);
       filter = organismFilter;
     }
