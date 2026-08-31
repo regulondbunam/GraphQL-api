@@ -593,7 +593,7 @@ type Query {
     #### Required
     Optional
     """
-    organismId: String = "RDBECOLIORC00001",
+    organismId: String,
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring

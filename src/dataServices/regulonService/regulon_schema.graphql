@@ -900,11 +900,11 @@ type Query {
     properties: [String] = ["_id", "regulator.name", "regulator.abbreviatedName", "regulator.conformations.name"], 
     """
     #### Description
-    filter the results by organismId, if not specified, it will default to the Escherichia coli
+    filter the results by organismId
     #### Required
     Optional
     """
-    organismId: String = "RDBECOLIORC00001",
+    organismId: String,
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring
