@@ -20,6 +20,7 @@ const summarySchema = new mongoose.Schema({
 const listPageModel = new mongoose.Schema({
     _id: String,
     name: String,
+    bnumber: String,
     synonyms: [String],
     productsName: [String],
     encodedGenes: [String],

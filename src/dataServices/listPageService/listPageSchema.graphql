@@ -10,6 +10,10 @@ type regulonList {
 	"""
 	_
 	"""
+	bnumber: String
+	"""
+	_
+	"""
     synonyms: [String]
 	"""
 	_

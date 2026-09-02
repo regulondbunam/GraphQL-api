@@ -24,6 +24,7 @@ var summarySchema = new _mongoose["default"].Schema({
 var listPageModel = new _mongoose["default"].Schema({
   _id: String,
   name: String,
+  bnumber: String,
   synonyms: [String],
   productsName: [String],
   encodedGenes: [String],
