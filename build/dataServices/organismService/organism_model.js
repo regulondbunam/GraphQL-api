@@ -17,6 +17,10 @@ var OrganismSchema = new _mongoose["default"].Schema({
   type: String,
   genomeVersion: String,
   genomeSize: Number,
-  plasmidName: String
+  plasmidName: String,
+  accession: String,
+  accessionVersion: String,
+  taxonId: String,
+  taxonName: String
 });
 var Organism = exports.Organism = _mongoose["default"].model('organism', OrganismSchema, 'organismsDatamart');

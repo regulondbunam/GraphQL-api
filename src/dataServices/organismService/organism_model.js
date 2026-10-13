@@ -11,7 +11,11 @@ const OrganismSchema = new mongoose.Schema({
     type: String,
     genomeVersion: String,
     genomeSize: Number,
-    plasmidName: String
+    plasmidName: String,
+    accession: String,
+    accessionVersion: String,
+    taxonId: String,
+    taxonName: String
 })
 
 const Organism = mongoose.model('organism', OrganismSchema, 'organismsDatamart')

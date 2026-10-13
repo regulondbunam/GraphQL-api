@@ -43,6 +43,22 @@ type Organism {
     _
     """
     plasmidName: String
+    """
+    _
+    """
+    accession: String
+    """
+    _
+    """
+    accessionVersion: String
+    """
+    _
+    """
+    taxonId: String
+    """
+    _
+    """
+    taxonName: String
 }
 
 type Query {
