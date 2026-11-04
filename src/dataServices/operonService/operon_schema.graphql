@@ -625,6 +625,13 @@ type Query {
     Optional
     """
     properties: [String] = ["operon._id", "operon.name", "transcriptionUnits.name", "transcriptionUnits.promoter.name"],
+	"""
+    #### Description
+    filter the results by organismId, if not specified, it will default to the Escherichia coli
+    #### Required
+    Optional
+    """
+    organismId: String,
     """
     #### Description
     define if \"search\" will be Case Sensitive and cannot be a substring

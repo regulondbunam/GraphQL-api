@@ -45,7 +45,7 @@ import { commonController } from '../common/controller_common_functions';
 export const operonResolvers = {
   Query: {
     getAllOperon: (root, {limit, page}) => commonController.getAll(Operon, limit, page, 'operon.name'),
-    getOperonBy: (root, {search, advancedSearch, limit, page, properties, organismName, fullMatchOnly}) =>
-      operonController.getOperonBy(search, advancedSearch, limit, page, properties, organismName, fullMatchOnly),
+    getOperonBy: (root, {search, advancedSearch, limit, page, properties, organismId, fullMatchOnly}) =>
+      operonController.getOperonBy(search, advancedSearch, limit, page, properties, organismId, fullMatchOnly),
   },
 };

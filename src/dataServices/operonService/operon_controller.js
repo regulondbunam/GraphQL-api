@@ -60,6 +60,7 @@ class operonController {
     limit = 0,
     page = 0,
     properties = ['operon._id', 'operon.name', "transcriptionUnits.name", "transcriptionUnits.promoter.name"],
+    organismId,
     fullMatchOnly = false
 ) {
   const offset = page * limit;
@@ -71,7 +72,11 @@ class operonController {
   } else if (search !== undefined) {
     filter = textSearchFilter(search, properties, fullMatchOnly);
   }
-
+  if (organismId !== undefined) {
+      const organismFilter = {$and: [{'organism._id': organismId}]};
+      organismFilter.$and.push(filter);
+      filter = organismFilter;
+    }
   const Operons = await Operon.find(filter).sort({'operon.name': 1}).limit(limit).skip(offset);
   const total = await commonController.countDocumentsIn(Operon, filter);
   let lastPage = 0

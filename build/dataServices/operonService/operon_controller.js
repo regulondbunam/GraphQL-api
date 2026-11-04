@@ -78,10 +78,12 @@ var operonController = exports.operonController = /*#__PURE__*/function () {
         var limit,
           page,
           properties,
+          organismId,
           fullMatchOnly,
           offset,
           filter,
           hasMore,
+          organismFilter,
           Operons,
           total,
           lastPage,
@@ -93,13 +95,23 @@ var operonController = exports.operonController = /*#__PURE__*/function () {
               limit = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
               page = _args.length > 3 && _args[3] !== undefined ? _args[3] : 0;
               properties = _args.length > 4 && _args[4] !== undefined ? _args[4] : ['operon._id', 'operon.name', "transcriptionUnits.name", "transcriptionUnits.promoter.name"];
-              fullMatchOnly = _args.length > 5 && _args[5] !== undefined ? _args[5] : false;
+              organismId = _args.length > 5 ? _args[5] : undefined;
+              fullMatchOnly = _args.length > 6 && _args[6] !== undefined ? _args[6] : false;
               offset = page * limit;
               hasMore = false;
               if (advancedSearch !== undefined) {
                 filter = (0, _mongodbFilterObjectParser.advancedSearchFilter)(advancedSearch);
               } else if (search !== undefined) {
                 filter = (0, _mongodbFilterObjectParser.textSearchFilter)(search, properties, fullMatchOnly);
+              }
+              if (organismId !== undefined) {
+                organismFilter = {
+                  $and: [{
+                    'organism._id': organismId
+                  }]
+                };
+                organismFilter.$and.push(filter);
+                filter = organismFilter;
               }
               _context.n = 1;
               return _operon_model.Operon.find(filter).sort({
