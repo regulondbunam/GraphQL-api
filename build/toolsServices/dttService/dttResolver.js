@@ -42,8 +42,9 @@ var dttResolver = exports.dttResolver = {
         rightEndPosition = _ref.rightEndPosition,
         strand = _ref.strand,
         objectType = _ref.objectType,
-        covered = _ref.covered;
-      return _dttController.dttController.getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand, objectType, covered);
+        covered = _ref.covered,
+        organismId = _ref.organismId;
+      return _dttController.dttController.getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand, objectType, covered, organismId);
     }
   }
 };

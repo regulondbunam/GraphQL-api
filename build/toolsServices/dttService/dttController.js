@@ -64,6 +64,7 @@ var dttController = exports.dttController = /*#__PURE__*/function () {
         var strand,
           objectType,
           covered,
+          organismId,
           err,
           _args = arguments;
         return _regenerator().w(function (_context) {
@@ -72,6 +73,7 @@ var dttController = exports.dttController = /*#__PURE__*/function () {
               strand = _args.length > 2 && _args[2] !== undefined ? _args[2] : 'both';
               objectType = _args.length > 3 && _args[3] !== undefined ? _args[3] : 'all';
               covered = _args.length > 4 && _args[4] !== undefined ? _args[4] : false;
+              organismId = _args.length > 5 ? _args[5] : undefined;
               if (!(leftEndPosition > rightEndPosition)) {
                 _context.n = 1;
                 break;
@@ -139,6 +141,8 @@ var dttController = exports.dttController = /*#__PURE__*/function () {
                   objectType: {
                     $in: objectType
                   }
+                }, {
+                  "organism._id": organismId
                 }]
               });
             case 2:
@@ -261,6 +265,8 @@ var dttController = exports.dttController = /*#__PURE__*/function () {
                   objectType: {
                     $in: objectType
                   }
+                }, {
+                  "organism._id": organismId
                 }]
               }).exec().
               // This function add to the position of the element a character "+" wich means if the position is outside the range

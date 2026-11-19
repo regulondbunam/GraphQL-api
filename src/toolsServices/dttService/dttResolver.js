@@ -31,6 +31,6 @@ import {dttController} from './dttController';
 
 export const dttResolver = {
     Query: {
-        getGeneticElementsFromInterval: (root, {leftEndPosition, rightEndPosition, strand, objectType, covered}) => dttController.getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand, objectType, covered)
+        getGeneticElementsFromInterval: (root, {leftEndPosition, rightEndPosition, strand, objectType, covered, organismId}) => dttController.getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand, objectType, covered , organismId),
     }
 };

@@ -228,6 +228,13 @@ type Query {
         Define if the elements to draw are completely in the selected range (true) or could be outside the range (false by default)
         #### Required
         Optional
-        """ 
-        covered: Boolean = false): [DTTData]
+        """
+        covered: Boolean = false,
+        """
+        #### Description
+        Defines the organism id to filter the elements to draw
+        #### Required
+        Optional
+        """
+        organismId: String = "RDBECOLIORC00001"): [DTTData]
 }

@@ -41,7 +41,7 @@ class dttController {
      *  @param {String} objectType type of the genetic element to draw 
      *  @param {String} covered indicate elements that are completely contained in the selected range(true)
      */
-    static async getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand='both', objectType = 'all', covered = false){
+    static async getGeneticElementsFromInterval(leftEndPosition, rightEndPosition, strand='both', objectType = 'all', covered = false, organismId) {
         if (leftEndPosition > rightEndPosition){
             const err = new GraphQLError('leftEndPosition must be lower than rightEndPosition')
             err.statusCode = 400;
@@ -84,7 +84,8 @@ class dttController {
                             {strand: strand},
                             {strand: {$exists: false}}
                         ]},
-                        {objectType: {$in: objectType}}
+                        {objectType: {$in: objectType}},
+                        {"organism._id": organismId}
                     ]});
             }
             //When covered is false means draw both cases, when elements are contained in the range and those that not.
@@ -139,7 +140,8 @@ class dttController {
                         {strand: strand},
                         {strand: {$exists: false}}
                     ]},
-                    {objectType:{$in: objectType}}
+                    {objectType:{$in: objectType}},
+                    {"organism._id": organismId}
                 ]}).exec().
                 // This function add to the position of the element a character "+" wich means if the position is outside the range
                 then(dtt_response => {
